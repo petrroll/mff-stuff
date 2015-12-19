@@ -14,5 +14,9 @@ Taktéž je dobré brát na vědomí, že jsou to materiály k bakaláři IOI za
 - Cheatsheet k zkoušce z Linuxu
 - Vypracované hlavičky otázek k Sítím
 
+#### Co tu není, protože to žije jinde?
+- Geniální zápisky ke Kombinatorice a Grafům od Petra Máneka [https://github.com/petrmanek/cs-notes](https://github.com/petrmanek/cs-notes)
+- Poznámky z pravděpodobnosti od Pavla Obdržálka (WIP) [http://www.ms.mff.cuni.cz/~obdrzalp/NMAI059/Zapisky_z_prednasek.pdf](http://www.ms.mff.cuni.cz/~obdrzalp/NMAI059/Zapisky_z_prednasek.pdf)
+
 ####Licence & tak:
 Vzhledem k tomu, že jsem nenašel licence k většině zde zveřejněných materiálu, tak jsem vždy předpokládal, že jsou určitě zveřejněny pod nějakou otevřenější licencí. Pokud víte, že v nějakém případě tak není, tak mi prosím dejte vědět. Rád cokoliv smažu.
