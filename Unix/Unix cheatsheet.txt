@@ -1,0 +1,617 @@
+Cesty v souborovém systému
+
+V zápisu cesty jsou od sebe adresáře odděleny znakem /. Vždy když máme otevřen emulátor terminálu, nacházíme se v nějakém adresáři a všechny příkazy, které v tu chvíli zavoláme spouštíme uvnitř tohoto adresáře. Adresář, ve kterém se právě nacházíme budeme označovat jako pracovní. Každá cesta může být absolutní, nebo relativní. Absolutní začíná lomítkem a vztahuje ke kořenovému adresáři /. Naopak, relativní cesta se vztahuje k pracovnímu adresáři.
+
+Speciální soubory:
+~     ... domovský adresář
+.     ... pracovní adresář
+..    ... nadřazený adresář
+.abc  ... soubory začínající tečkou jsou skryté
+
+
+Skryté soubory se defaultně nezobrazují při vypsání obsahu adresáře, ani při expanzi * (viz níže).
+
+---
+---
+
+Zadání příkazu má obvykle tři části – jméno příkazu, přepínače a parametry. Přepínače a parametry ovlivňují chování příkazu a mohou, ale nemusí být uvedeny.
+ls -i -d /tmp  ... vypíše adresář /tmp (nikoliv jeho obsah) a jeho číslo inode
+ls -id /tmp    ... totéž, se sloučenými přepínači
+ls -i /tmp     ... vypíše obsah adresáře /tmp a čísla inode jednotlivých souborů
+ls -d /tmp     ... vypíše adresář /tmp
+ls -id         ... vypíše pracovní adresář a jeho číslo inode
+ls             ... vypíše obsah pracovního adresáře
+
+---
+---
+
+Metaznaky jsou znaky, které mají v shellu speciální význam. Chceme-li tento speciální význam potlačit a zapsat je jako normální znaky, musíme před ně zapsat zpětné lomítko \. Metaznaky jsou mj. \|&;()<>[]*? a navíc mezera a tabulátor. Nejvíce potíží zažijete pravděpodobně s mezerou. Pozor na to, mezera odděluje jednotlivé parametry příkazu. Chcete-li zadat parametr obsahující mezery, musíte potlačit jejich speciální význam předřazením \ (případně uvozovkami či apostrofy, ale o tom zase někdy jindy).
+
+ls -d *             ... vypíše všechny neskryté soubory v pracovním adresáři
+ls -d *.txt         ... vypíše všechny neskryté soubory s příponou .txt
+ls -d *\ *          ... vypíše všechny neskryté soubory, které obsahují v názvu mezeru
+ls -d /etc/*.conf   ... vypíše všechny neskryté soubory v adresáři /etc s příponou .conf
+ls -d */*.jpg       ... vypíše všechny neskryté soubory s příponou jpg, které se nachází
+                        v podadresáři pracovního adresáře
+ls -d .*            ... vypíše všechny skryté soubory
+
+ls -d ???           ... vypíše všechny neskryté soubory s třípísmenným názvem
+ls -d /tmp/*.??     ... vypíše všechny neskryté soubory v /tmp s dvoupísmennou příponou
+
+Dovnitř závorek [] můžeme napsat libovolnou množinu znaků. Závorky pak odpovídají jednomu znaku z dané množiny. Pokud je ale prvním znakem v množině !, závorky naopak odpovídají libovolnému znaku, který není ze zadané množiny. Místo vyjmenování jednotlivých znaků můžeme zadat i rozsah ([a-z], [0-9], …). Třetí možností je použít některou z předdefinovaných znakových tříd:
+[:alnum:] – písmena a číslice
+[:lower:] – malá písmena
+[:space:] – mezery
+[:alpha:] – písmena
+[:digit:] – číslice
+[:print:] – tisknutelné znaky (tj. ty, které jsou při vypsání vidět)
+[:upper:] – velká písmena
+[:blank:] – bílé znaky (tj. ty, které při vypsání nejsou vidět)
+[:punct:] – interpunkce
+... a další
+
+
+Použití []:
+ls -d *[0-9]*       ... vypíše všechny neskryté soubory, jejihž jméno obsahuje číslici
+ls -d *[!0-9]*      ... vypíše všechny neskryté soubory, jejihž jméno obsahuje alespoň jednu nečíslici
+
+---
+---
+
+man – zobrazí manuálovou stránku příkazu
+•ls – vypíše obsah adresáře (list segments)
+•cd – změní pracovní adresář (change directory)
+•pwd – vypíše pracovní adresář (print working directory)
+•mkdir – vytvoří nový adresář (make directory)
+•rmdir – odstraní prázdný adresář (remove directory)
+•mv – přesune soubory (move)
+•cp – zkopíruje soubory (copy)
+•rm – smaže soubory (remove)
+•wc – spočítá řádky, slova a bajty v souboru (word count)
+•cat – zřetězí a vypíše obsah souborů (concatenate)
+•head – vypíše prvních 10 řádek souboru
+•tail – vypíše posledních 10 řádek souboru
+•echo – opíše své parametry na standardní výstup
+•date – vypíše aktuální čas a datum ve zvoleném formátu
+•touch – změní čas posledního přístupu k souboru; v případě neexistence vytvoří nový soubor
+
+tac  – vypíše zadané soubory s přehozeným pořadím řádků
+rev  – vypíše zadané soubory s převrácenými řádky
+cut  – vypíše jen zadané sloupce ze souboru
+sort – setřídí řádky souboru
+uniq – vypíše opakující se řádky
+tr   – nahradí výskyt zadaných znaků jinými znaky
+join – spojí soubory podle společného sloupce
+last – výpis posledních přihlášení (není v POSIXu)
+who  – zobrazí přihlášené uživatele
+ps   – vypíše procesy bežící na terminálu
+
+getent passwd – vypíše seznam všech uživatelů v síti (není v POSIXu; labová specialita)
+
+---
+---
+
+for name in Karel Jakub Honza; do
+    printf "Jmenuji se %s.\n" "$name"
+done
+
+for file in *; do
+    wc -c "$file"
+done
+
+for i in $(seq 10 -1 0); do
+    echo $i
+    sleep 1
+done
+echo "BUMMMM!"
+
+Pokud napíšete pouze for param; do ... done, bude se do $param postupně dosazovat hodnota všech argumentů zadaných programu na příkazové řádce.
+
+
+[ "$a" = "$b" ]    ... true, když jsou řetězce stejné
+[ "$a" != "$b" ]   ... true, když jsou řetězce různé
+[ $a -eq $b ]      ... true, když je $a = $b (číselně)
+[ $a -ne $b ]      ... true, když je $a ? rovno $b
+[ $a -gt $b ]      ... true, když je $a > $b
+[ $a -ge $b ]      ... true, když je $a ? $b
+[ $a -lt $b ]      ... true, když je $a < $b
+[ $a -le $b ]      ... true, když je $a ? $b
+
+[ -e "$file" ]     ... soubor $file existuje
+[ -d "$file" ]     ... soubor $file existuje a je adresář
+[ -f "$file" ]     ... soubor $file existuje a je obyčejný soubor
+
+[ -n "$str" ]      ... $str není prázdný řetězec
+[ -z "$str" ]      ... $str je prázdný řetězec
+
+[ ! expr ]         ... true, když je expr false
+[ expr1 -a expr2 ] ... true, když jsou expr1 i expr2 true
+[ expr1 -o expr2 ] ... true, když je expr1 nebo expr2 true
+
+
+if blok příkazů 1; then
+    ...
+elif blok příkazů 2; then
+    ...
+else
+    ...
+fi
+
+
+To, zda je podmínka splněna nebo ne závisí na návratové hodnotě posledního z příkazů v bloku příkazů 1. Větve elif a else lze pochopitelně vynechat. Podmínky bude ve většině případů reprezentovat příkaz test:
+if [ $n -eq 1 ]; then
+    echo "<th>$n</th>"
+else
+    echo "<td>$n</td>"
+fi
+
+
+while blok příkazů 1; do
+    blok příkazů 2
+done
+
+
+---
+---
+
+Příkaza read umí načítat text ze standardního vstupu a ukládat jej do proměnných. Jeho syntaxe je prostě read x y z ..., kde x y z jsou jména proměnných. read vždy načte celý řádek a do zadaných proměnných načte postupně obsah prvního pole, druhého pole, … až do poslední proměnné načte celý zbytek řádku (včetně oddělovačů).
+
+Čím jsou oddělena pole? Jedním ze znaků uložených v proměnné $IFS. Její defaultní hodnota je  \t\n (tedy mezera, tabulátor a nový řádek). Její hodnotu můžeme změnit, ale musíme to udělat opatrně – tak, abychom ovlivnili pouze příkaz read a žádný jiný. To nám umožní přiřazení do proměnné bezprostředně předcházející volání příkazu – IFS=: read x y z.
+
+Čtení ze souboru není žádná magie, stačí nám přesměrovat soubor na standardní vstup příkazu read: read x y < soubor.txt. Pokud ale chceme vytvořit while cyklus, který přečte všechny řádky souboru, musíme si pomoci jinak:
+while IFS=: read x _ y _; do
+    printf "%s -- %s\n" "$x" "$y"
+done < /etc/passwd
+
+---
+---
+
+Z hlediska oprávnění nás bude zajímat první pole výpisu, skládající se z deseti znaků. První z nich určuje typ souboru – - značí obyčejný soubor, d je adresář, c speciální znakové zařízení. Existují i další, postupem času se s nimi seznámíme. Z následujících devíti znaků určují první tři oprávnění vlastníka, další tři oprávnění skupiny a poslední tři oprávnění všech ostatních (tedy uživatelů, kteří nejsou vlastníkem daného souboru, ani nejsou ve skupině). Interpretace písmenek je následující:
+
+normální soubory
+r – právo ke čtení
+w – právo k zápisu
+x – právo ke spuštění
+s – setuid / setgid bit – program bude spuštěn s právy vlastníka / skupiny
+
+adresáře
+r – právo vypsat obsah adresáře
+w – právo vytvářet a mazat soubory v adresáři
+x – právo vstoupit do adresáře
+s – setgid bit – nově vytvořené soubory budou mít stejnou skupinu jako adresář
+t – sticky bit – soubory v adresáři může mazat či přesouvat pouze jejich vlastník a root
+
+chmod kdo[+-=]práva
+
+kdo: u – vlastník, g – skupina, o – ostatní, a – všichni
++-=: + – přidej práva, - – odeber práva, = – nastav práva
+práva: r w x s t – viz výše
+
+setuid bit – 4     r – 4
+setgid bit – 2     w – 2
+sticky bit – 1     x – 1
+
+Příklad:
+rwxr-xr-x = 755
+rw-r----- = 640
+rwxrwxrwt = 1777
+rwsrwsrwt = 7777
+
+---
+---
+
+ls /blabla 2> chyby.log
+ls /blabla 2>> chyby.log
+
+Výstup však nemusíme přesměrovat jenom do souboru. Někdy může být zajímavé přesměrovat stderr na stdout či (zřídkakdy) naopak.
+ls /bla > vystup.txt 2>&1   ... stderr je přesměrován na stdout a ten pak do souboru vystup.txt
+ls /bla 2> error.txt 1>&2   ... stdout je přesměrován na stderr a ten pak do souboru error.txt
+
+Roura má vyšší prioritu, tj. první se provede přesměrování pak roura.
+Roura spouští věcci v subshellu.
+
+---
+---
+
+$0      ... jméno běžícího shellového skriptu
+$n      ... n-tý parametr předaný na příkazové řádce; n>9 je třeba uzavřít do {}
+$@      ... všechny parametry předané na příkazové řádce
+$$      ... číslo běžícího procesu (shellu, nebo shellového skriptu) – PID
+$USER   ... přihlášený uživatel
+$HOME   ... domovský adresář
+$PWD    ... aktuální adresář
+$PATH   ... cesta, ve které se vyhledávají spustitelné soubory
+$RANDOM ... náhodné číslo od 0 do 32767
+
+pwd=$(pwd)
+    ... uloží aktuální adresář do proměnné $pwd
+echo "Ahoj, $(whoami | cut -c1 | tr 'a-z' 'A-Z')."
+    ... pozdraví uživatele iniciálou jeho loginu
+
+---
+---
+
+find . -name '*.txt'    ... soubory s příponou .txt
+find . -user root       ... soubory jejichž vlastníkem je root
+find . -type f          ... obyčejné soubory
+find . -type d          ... adresáře
+find . -size +10000c    ... soubory větší než 10000 bajtů
+find . -newer file      ... soubory novější než soubor file
+find . -mtime -7        ... soubory změněné v posledních 7 dnech
+
+find . -prune           ... hledá jenom zadané soubory, nerozbaluje adresáře
+find . -depth           ... zanořuje se do podadresářů (defaultní chování)
+
+Teď teprve přichází ta pravá magie. find umí soubory nejenom vyhledávat, ale také pro ně provádět nejrůznější akce – přejmenovávat, mazat, vypisovat začátky, … Za parametr -exec můžeme napsat jeden shellovský příkaz. Dvojice znaků {} se nahradí jménem zpracovávaného souboru (i s cestou) a příkaz musí být ukončen sekvencí \;. Opět proto, že znak ; má v shellu speciální význam. Příklad, který vypíše první řádek ze všech nalezených souborů:
+find . -type f -name '*.sh' -mtime -14 -exec head -n1 {} \;
+
+Pokud chceme pro daný soubor provést více příkazů, máme dvě možnosti. První je použít více parametrů -exec napsaných za sebou. Druhou je zavolání příkazu sh -c 'příkazy', což je jeden příkaz, který spustí shell a zavolá v něm všechny zadané příkazy. Z hlediska findu se ale tváří jako jeden příkaz a proto ho můžeme předat parametru -exec
+
+Užitečné nePOSIXové parametry
+find . -maxdepth n    ... soubory v hloubce nejvýše n
+find . -mindepth n    ... soubory v hloubce alespoň n
+find . -size +10M     ... soubory větší než 10 megabajtů
+find . -delete        ... smaž všechny odpovídající soubory
+
+---
+---
+
+Basic RE      Extended RE      význam
+.             .                libovolný znak
+[a-fxyz]      [a-fxyz]         jeden znak z množiny
+[^a-z]        [^a-z]           jeden znak mimo množinu
+*             *                libovolný počet opakování (i 0x)
+              +                alespoň jedno opakování
+              ?                nejvýše jedno opakování
+\{n,\}        {n,}             alespoň n opakování
+\{n,m\}       {n,m}            alespoň n a nejvýš m opakování
+\(...\)       (...)            skupina znaků
+\2            \2               obsah 2. zapamatované skupiny
+              ab|cd|ef         jedna z alternativ
+^             ^                začátek řetězce
+$             $                konec řetězce
+
+Pokud má některý ze znaků speciální význam (např. ., [, …) a my chceme hledat jeho normální hodnotu, předřadíme mu zpětné lomítko.
+Příkaz grep filtruje řádky odpovídající základnímu regulárnímu výrazu. grep -E, nebo také egrep filtruje řádky odpovídající rozšířenému regulárnímu výrazu.
+
+---
+---
+
+sed 'příkazy' soubor1 soubor2 ...
+sed -f 'soubor_s_příkazy' soubor1 soubor2 ...
+sed -e 'příkazy' -f 'soubor_s_příkazy' soubor1 soubor2 ...
+
+[adresa1[,adresa2]]příkaz[parametry]
+
+
+n ... vypsání současného PS (není-li -n) a načtení
+      dalšího řádku do PS
+N ... připojení dalšího řádku do PS
+d ... smazání PS, začne od začátku
+D ... smazání prvního řádku PS, začne od začátku,
+      ale nenačítá vstup, je-li PS neprázdný
+p ... vypíše PS na standardní výstup
+P ... vypíše první řádek PS
+
+h ... kopíruje PS do HS
+H ... připoujuje PS do HS
+g ... kopíruje HS do PS
+G ... připojuje HS do PS
+x ... prohazuje obsah PS a HS
+
+:l ... značka l
+bl ... skočí na značku l
+tl ... skočí na značku l, pokud došlo od posledního
+       načtení řádku k úspěšnému nahrazení s///
+Tl ... skočí na značku l, pokud nedošlo od posledního
+       načtení řádku k úspěšnému nahrazení s///
+s/// ... nahrazení (viz minulá hodina)
+y/// ... transliterace (jako tr, bez rozsahů)
+
+q ... ukončí zpracování vstupu a vypíše PS (není-li -n)
+
+---
+---
+
+Eval běží v aktuálním procesu, ne v subprocessu jako $(), | ...
+
+---
+---
+
+Softlink - soubor s reálnou cestou souboru. Vytvoříme pomocí ln-s soubor link, lze i na adresáře. Typ v ls -l je 1.
+Hardlink - normální soubor ukazující na stejné místo v paměti. Počet takových ukazovátek vidíme v druhém sloupci ls -l. Vytváříme ln soubor hardlink, většinou nelze vytvářet na adresáře (logicky).
+
+---
+---
+
+<Ctrl-Z> ... pozastaví provádění běžícího příkazu
+fg       ... spustí pozastavený příkaz v popředí
+bg       ... spustí pozastavený příkaz na pozadí
+jobs     ... vypíše procesy svázané s aktuálním terminálem
+příkaz & ... spustí příkaz na pozadí
+ps       ... vypíše seznam procesů
+
+for link in "www.mff.cuni.cz" "stinovlas.krakonos.org" "www.google.com"; do
+	curl "$link" 2>/dev/null >>downloads.html &
+done
+ps
+
+---
+---
+
+Signály můžeme posílat programem kill. Syntaxe je kill [-signal] pid, kde signal je buď jméno, nebo číslo signálu a pid je číslo procesu (uložené v proměnné $$ a zjistitelné pomocí ps). Pokud neuvedeme číslo signálu, zašle se 15 SIGTERM. POSIX zaručuje existlenci následujících signálů:
+1  SIGHUP    (hang up)
+2  SIGINT    (interrupt)
+3  SIGQUIT   (quit)
+6  SIGABRT   (abort)
+9  SIGKILL   (kill)
+14 SIGALRM   (alarm)
+15 SIGTERM   (terminate)
+
+
+S některými z nich už jste se mohli setkat. Pokaždé, když ukončujete běžící program pomocí <Ctrl-C>, posíláte mu signál SIGINT, když ukončujete vstup pomocí <Ctrl-D>, posíláte SIGQUIT.
+
+šechny výše zmíněné signály (kromě SIGKILL) můžeme odchytávat pomocí příkazu trap. To znamená, že zadefinujeme jakým způsobem se má přerušení zpracovat – např. při zavolání SIGINT můžeme nejdřív uložit rozdělanou práci a poté teprve program ukončit. Nebo jej dokonce můžeme ignorovat a neukončit se vůbec.
+
+Syntaxe je trap 'příkazy' signály, kde signály jsou posloupností čísel nebo jmen příkazů, bez úvodního SIG. Pokud uvedeme trap '' TERM, signál se bude ignorovat.
+
+Nesmíme zapomenout, že ve chvíli kdy odchytáváme signály sami, už se nezpracovávají standardním způsobem – tj. pokud si přejeme ukončit program, musíme to udělat sami příkazem exit.
+
+SIGKILL je neodchytitelný signál. Každý proces můžete ukončit pomocí kill -9 pid. Na druhou stranu z toho plyne, že takový proces nemá šanci po sobě uklidit dočasné soubory apod., takže je vždycky lepší jít na něj po dobrém a poslat mu nejdříve SIGTERM.
+
+Signál se vyvolá i když nějaké vlákno doběhne. V trapu bych neměl čekat.
+
+---
+---
+
+#!/bin/sh
+sleep_and_echo() {
+    sleep $1
+    echo $1
+}
+
+for i in $(seq 1 10); do
+    sleep_and_echo $i &
+    echo "Spuštěn proces č. $i s PID $!"
+done
+
+wait
+
+•Proces (klidně i vlastní funkci) na pozadí spustíme pomoc &
+•PID posledního na pozadí spuštěného příkazu obsahuje proměnná $!
+•Na skončení procesu můžeme počkat pomocí wait $PID (PID může být i více – pak se čeká na dokončení všech procesů).
+•Příkaz wait bez parametrů počká na to než aktuální proces zachytí signál (děti když umírají tak píšou).
+
+---
+---
+
+plus() {
+    echo $(($1+$2))
+}
+plus 3 2
+
+Parametry funkce najdeme v proměnných $1, $2, … – stejně jako u shellového skriptu. Stejně tak seznam všech parametrů najdeme v proměnné $@.
+
+Funkce může vracet návratovou hodnotu pomocí funkce return. Ta okamžitě ukončí provádění funkce. Návratová hodnota je vždy celé číslo a pokud nebyla funkce return zavolána, má se za to že je 0. Návratovou hodnotu posledního spuštěného příkazu nebo funkce zjistíme z proměnné $?. Návratová hodnota by, jak víme, měla znamenat zda funkce skončila úspěšně či ne (s chybou). Pokud chceme, aby funkce vracela jakýkoliv text, číslo apod., je vhodné vrátit je pomocí příkazu echo nebo printf a poté odchytit příkazovou substitucí.
+
+Pozor na to, že všechny proměnné jsou ze své podstaty globální. Pokud tedy zavolám následující kód, bude mi vypsáno 1:
+x=0
+inc() {
+    x=$((x+1))
+}
+inc
+echo $x
+
+
+Lokální proměnné striktně vzato v shellu neexistují. V bashi si můžete pomoci klíčovým slovem local, pravdou ale je že obecně lepší nápad je odlišit od sebe lokální a globální proměnné jménem.
+
+Občas potřebujeme vypsat uvnitř funkce nějaký text (např. výzvu k zadání hesla), ale nechceme, aby byl tento text zachycen příkazovou substitucí (např. heslo=$(ziskejHeslo)). V takovém případě se nám hodí vypsat výzvu na standardní chybový výstup. To uděláme pomocí přesměrování stdout na strerr, což už umíme:
+ziskejHeslo() {
+    printf "Zadej heslo: " 1>&2
+    read passwd
+    echo "$passwd"
+}
+heslo=$(ziskejHeslo)
+
+---
+---
+
+Kdykoliv shell narazí na výskyt $(( ... )), nahradí text uvnitř závrek jeho aritmetickým vyčíslením. Uvnitř se smí používat proměnné, celočíselné konstanty, aritmetické operátory +-*/%, bitové operátory &|^, >>, <<, logické operátory && a ||, ternární operátor expr?expr:expr, operátory porovnání a přiřazení a libovolné množství mezer.
+
+Uvnitř $(( ... )) nemusíme (ale můžeme) používat $ před jménem proměnné, protože jediné řetězce znaků, které se smí uvnitř vyskytnout jsou právě jména proměnných. Aritmetická expanze umí pracovat pouze s celými čísly. I dělení je pouze celočíselné.
+i=$((i+1))    ?    i=$(($i+1))
+x=$((2*3+1-i))
+max=$(( a>b ? a : b ))
+
+
+Aritmetika pro pokročilé
+
+Potřebujeme-li pracovat s desetinnými čísly, mocnit je nebo dělat další operace, které aritmetická expanze nezvládá, můžeme se obrátit na program bc. Jedná se o kalkulátor s libovolnou přesností. Pokud spustíte bc bez parametrů, přepne se do interaktivního módu a očekává vstup z klávesnice. Můžeme mu ale také poslat výraz na standardní vstup a výsledek si přečíst ze standardního výstupu. Jediné co bc oproti aritmetické expanzi postrádá jsou bitové operátory.
+
+Standardně počítá bc s přesností na 0 desetinných míst. Použití přepínače -l ji zvýší na 20. Pokud chceme počítat na jiný počet desetinných míst, můžeme to bc dát na vědomí nastavením scale:
+echo "2*3-5+$y" | bc
+printf "%s\n" 'scale = 50; 104348/33215' | bc
+
+---
+---
+
+Tento příkaz pro nás znamená velké zjednodušení při zpracování argumentů předaných našim shellovým skriptům, neboť nám umožní zpracovat přepínače. Volání getopts prakticky vždy vypadá následovně:
+while getopts dh:m opt
+do
+    case $opt in
+        d) day=1;;
+        h) help=$OPTARG;;
+        m) month=1;;
+        *) echo "Invalid argument";;
+    esac
+done
+shift $(($OPTIND - 1))
+
+
+Do proměnné $opt je opakovaně přiřazováno jméno zadaného přepínače, v proměnné $OPTARG je pak vždy uložena jeho hodnota, pokud ji dostává. Za přepínače, které očekávají hodnotu, napíšeme při předávání getopts dvojtečku. Příkaz shift na konci zaručí, že z $@ zmizí všechny přepínače (které musí být uvedeny jako první) a zbudou další argumenty, pokud skript nějaké očekává.
+
+---
+---
+
+Příkaz xargs čte seznam parametrů ze standardního vstupu a předává jej svému argumentu. Typickým vstupem příkazu xargs je příkaz find. Zatímco při použití find -exec bychom spouštěli příkaz pro každý soubor znovu, find . -name '*.txt' | xargs rm spustí rm pouze jednou a smaže všechny soubory s příponou .txt znatelně rychleji.
+
+xargs má několik přepínačů, které omezují počet nebo délku argumentů, pro které zavolá jeden příkaz. Viz man 1p xargs.
+
+---
+---
+
+Awk je programovací jazyk, orientovaný na práci s textem. Text, který zpracovává dostává stejně jako sed buď na standardním vstupu, nebo ze souboru.
+
+Když programujete v awk, můžete buď psát samostatné awkové skripty (podobně jako pro program sed). Takové skripty započnete shabangem #!/usr/bin/awk -f. Druhou možností je spouštět awk přímo z příkazové řádky pomocí příkazu awk 'text skriptu'.
+
+Základní struktura
+
+Základní příkazy v awk mají podobu VZOR {pravidlo}. Příklady:
+/foo/ { print }   ... vypíše pouze řádky odpovídající regulárnímu výrazu
+BEGIN { sum=0 }   ... před načtením vstupu nastaví proměnnou sum na 0
+END { print sum } ... po ukončení vstupu vypíše obsah proměnné sum
+{ print $1 }      ... vypíše 1. pole ze všech řádků (VZOR je prázdný)
+x==1 { print $2 }      ... vypíše 2. pole záznamu, pokud je proměnná x rovna 1
+
+
+Vzorů a pravidel můžeme mít samozřejmě v jednom skriptu více – pro každý záznam se provedou všechna pravidla, která odpovídají vzorům, tedy nejen první vyhovující. Bloky BEGIN a END se vždy provádí na začátku, resp. na konci skriptu – nezáleží na tom, jak jsou umístěny vůči ostatním pravidlům.
+
+Záznamy a pole
+
+V předchozích příkladech jsme používali pojmy záznam a pole. Awk načítá vstupní text po záznamech a pro každý záznam je jeho i-té pole dostupné v proměnné $i (tedy první pole v $1, druhé v $2, atd. Pozor, tyto proměnné nemají nic společného s pozičními parametry předanými shellu na příkazové řádce, jen používají stejný název.
+
+Pokud neurčíme jinak, awk bude za záznamy považovat jednotlivé řádky a za pole jednotlivá slova (řetězce oddělené mezerami). Chceme-li říci můžeme nastavit proměnnou RS, příp. FS, která specifikuje jaký znak od sebe odděluje jednotlivé záznamy, resp. pole záznamu. Pokud nastavíme RS="", bude se text číst po odstavcích a pole budou jednotlivé řádky (bez ohledu na nastavení FS. Příklad:
+BEGIN { RS=""; FS="\n" }
+{ print $1 }
+
+
+Speciální proměnné
+•RS – record separator – oddělovač záznamů ve vstupním textu.
+•FS – field separator – oddělovač polí ve vstupním textu.
+•ORS – output record separator – oddělovač záznamů ve výstupu.
+•OFS – output field separator – oddělovač polí ve výstupu.
+•NR – number of record – číslo aktuálně zpracovávaného záznamu.
+•NF – number of fields – počet polí v aktuálně zpracovávaném záznamu.
+
+For cyklus
+
+For cyklus v awk je totožný s for cyklem v jazyce C. Má tři části oddělené středníky – blok který se provede před prvním cyklem, ukončovací podmínku a blok, který se provede po každém cyklu. Příklad:
+BEGIN {for(i=0;i<10;i++){print i}}
+
+Už známe vzory ve formě regulárních výrazů /^...$/. Takto zapsaný vzor se porovnává oproti celému načtenému záznamu $0. Vzor můžeme omezit tak, aby vyhledával v jiném řetězci, operátorem ~. Např. $1 ~ /^...$/ odpovídá záznamům, jejichž první pole obsahuje právě 3 znaky. Naopak, vzor $1 !~ /^...$/ odpovídá všem ostatním.
+
+Vzory, ať už jsou to regulární výrazy, porovnávání proměnných, nebo ještě něco jiného, můžeme kombinovat logickými operátory &&, || a !, podobně jako v shellu.
+Můžeme také provést nějakou akci pro rozsah záznamů. Pokud zapíšeme vzor ve formě /start/,/stop/, provede se akce pro všechny záznamy počínaje záznamem vyhovujícím vzoru /start/ a konče záznamem vyhovujícím vzoru /stop/.
+Další řídící konstrukce
+
+Řídící konstrukce v awk jsou hodně podobné těm v C a jiných vyšších programovacích jazycích, proto je nebudu popisovat podrobně, ale uvedu jen přehled:
+if (podmínka) příkaz [ else příkaz ]
+while (podmínka) příkaz
+do příkaz while (podmínka)
+for (proměnná in pole) příkaz     # provede cyklus pro všechny prvky pole,
+                                    v náhodném pořadí
+break                             # ukončí provádění cyklu
+continue                          # přeskočí na další iteraci cyklu
+next                              # přeskočí na zpracování dalšího záznamu
+delete pole[index]
+exit                              # ukončí program (načte konec vstupu)
+
+
+Pole
+
+Pole v awk se indexují hranatými závorkami. Nemusíme je předem deklarovat, stačí rovnou zapisovat na libovolnou pozici uvnitř pole. Např. { x[NR] = $0 } načte všechny záznamy do pole x. můřeme jednoduše používat i vícerozměrná pole, stačí od sebe indexy oddělit čárkou, např. M[i,j]. Poslední zajímavostí je, že indexy polí nemusejí být pouze čísla, můžeme použít také libovolné řetězce.
+
+Další speciální proměnné
+
+Kromě proměnných řídících načítání vstupu, o kterých jsme se bavili minule, má awk ještě řadu dalších užitečných proměnných.
+ARGC     ... počet argumentů zadaných na příkazové řádce
+ARGV     ... pole argumentů zadaných na příkazové řádce
+FILENAME ... jméno právě zpracovávaného souboru, nebo - pro standardní
+             vstup; v bloku BEGIN není definována
+OFMT     ... výstupní formát čísel, defaultně %.6g
+
+
+Funkce
+
+Podobně jako v shellu, funkce nedeklarujeme, ale přímo definujeme. definice vypadá způsobem function jméno(seznam parametrů) { příkazy }. Konkrétně např. function plus(a, b) { return a+b; } . Návratovou hodnotu vracíme klíčovým slovem return. Je potřeba dát pozor na jednu zradu – uvnitř funkcí nelze definovat žádné lokální proměnné. Tento problém řešíme tak, že přidáme seznam pomocných proměnných do hlavičky funkce, při volání je ale neuvádíme. Bývá zvykem oddělit pomocné proměnné od zbytku větším množstvím mezer. Příklad:
+#!/usr/bin/awk -f
+function sum(pole,   i, s) {
+    s=0
+    for (i in pole) s+=pole[i]
+    return s
+}
+
+BEGIN {
+    p[0]=1
+    p[1]=2
+    p[2]=3
+    print sum(p)
+}
+
+
+V awk existuje množství předdefinovaných funkcí – matematických (sin, cos, exp, rand, …), řetězcových (length, sub, gsub, substr, split, …) a jiných. Jejich popis najdete v manuálové stránce awk.
+
+Přepínače awk
+
+Velmi užitečným přepínačem je -v. Umožňuje dovnitř skriptu dostat proměnnou zvenku. Např. při zavolání awk -v x=10 '... skript ...' bude uvnitř skriptu nastavena proměnná x na hodnotu 10. Funguje i pro RS, FS a další interní proměnné.
+
+---
+---
+
+Soubor -f vytvořit a smazat.
+stinovlas@ibex:~$ touch -- -f; rm -- -f
+
+10. až poslední, 13. až 17.
+stinovlas@ibex:~$ tail -n +10 /etc/passwd
+stinovlas@ibex:~$ head -n 17 /etc/passwd | tail -n +13
+
+Loginy a jména lidí v síti:
+getent passwd | cut -d: -f1,5
+
+Divnej join
+join -t\; knihy vypujcky | sort -t\; -k 4 | join -t\; -1 4 -2 1 - ctenari | cut -d\; -f 4,6
+
+Vypište pouze hlavičky From:, To: a Subject: a poté tělo e-mailu, bez ostatních hlaviček
+sed -rn '/^(From:|To:|Subject:)/{p;d};1,/^$/!p'
+
+Rozepište věty na vstupu tak, aby na každém řádku byla jedna věta. Věta se pozná tak, že začíná velkým písmenem a končí tečkou. Předpokládejte, že se nikde nevyskytují vícenásobné mezery, ani žádné tabulátory. Jednodušší varianta navíc předpokládá, že žádná věta není obsažena na dvou řádcích, těžší již nikoliv. Zkuste napsat alespoň nějaké řešení a potom nejelegantnější.
+sed -rn 'H;${x;s#\n# #g;s#([.!?]) *#\1\n#g;p}'
+
+Palindrom
+cat palin | head -n1 > pal_temp
+ cat pal_temp | rev  >> pal_temp
+ uniq -c < pal_temp | wc -l | tr 12 YN
+ rm pal_temp
+
+Jmena
+#Zvlada jmena skladajici se z vice krestnich jmen a jednoho prijmeni (na konci), pro jedno jmeno a jedno prijmeni by bylo vyrazne kratsi
+ getent passwd | cut -d: -f5 | sort | uniq -d > tmp_names
+ rev tmp_names | cut -f1 -d" " | rev | cat -n | tr -s " " | tr  "\t" " " > tmp_surnames
+ rev tmp_names | cut -f2- -d" " | rev | cat -n | tr -s " " | tr  "\t" " " > tmp_firstnames
+ join -1 1 -2 1  tmp_surnames tmp_firstnames | cut -d" " -f2- | sort
+ rm tmp_surnames
+ rm tmp_firstnames
+ rm tmp_names
+
+Zalohovani
+ #!/bin/bash
+ source="$1"
+ cd "$source" #Nemusím se vracet, protože to běží v subshell
+ dest_dir_name=$(pwd | rev | cut -d"/" -f1 | rev) #Řeší problémy spřípadným / na konci parametru
+ dest="/tmp/${dest_dir_name}-$(date +"%Y-%m-%d")"
+ cp -a "." "$dest"
+
+Rev
+sed -r "
+ {
+s/$/\n/
+ :r
+ s/(.)\n(.*)/\n\2\1/
+ tr
+ s/\n//
+ }"
+
+
+
+
+
