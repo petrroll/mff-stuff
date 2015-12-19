@@ -1,12 +1,12 @@
 #### What is this and why is it in Czech?
-This repository is a collection of almost all digital materials I created / modified / enhanced with notes while studying at MFF Cuni. That's also the reason why this repo is in Czech as we're quite unsurprisingly tought in Czech (though there's an English program available) and therefore all materials are in Czech.
+This repository is a collection of almost all digital materials I created / modified / enhanced with notes while studying at MFF CUNI. That's also the reason why this repo is in Czech as we're quite unsurprisingly tought in Czech (though there's an English program available) and therefore all materials are in Czech.
 
 ---
 
 ####Varování:
 Naprostou většinu zde zveřejněných materiálů jsem psal pro sebe, takže rozhodně není rozumné čekat kdovíjakou kvalitu / snahu psát poznámky tak, aby je pochopil každý. Pokud se ale na nečem zaseknete, tak klidně vytvořte issue / napište.
 
-Taktéž je dobré brát na vědomí, že jsou to materiály k bakaláři IOI začínajícího v roce 2014/2015, takže leccos už může být dávno zastaralé.
+Taktéž je dobré brát na vědomí, že jsou to materiály k bakaláři IOI začínajícího __v roce 2014/2015__, takže leccos už může být dávno zastaralé.
 
 ####Co tu je?
 - Podtrhané & občas opoznámkované zápisky z přednášek Analýzi 1, 2
