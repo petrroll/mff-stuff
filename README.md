@@ -12,11 +12,12 @@ Taktéž je dobré brát na vědomí, že jsou to materiály k bakaláři IOI za
 - Podtrhané & občas opoznámkované zápisky z přednášek Analýzi 1, 2
 - Podtrhaná & občas opoznámkovaná skripta z Lineární algebry 1&2
 - Cheatsheet k zkoušce z Linuxu
-- Vypracované hlavičky otázek k Sítím
+- Vypracované hlavičky otázek k 
+- (WIP)Podtrhané & občas opoznámkované slidy z Logiky
 
 #### Co tu není, protože to žije jinde?
 - Geniální zápisky ke Kombinatorice a Grafům od Petra Máneka [https://github.com/petrmanek/cs-notes](https://github.com/petrmanek/cs-notes)
-- Poznámky z pravděpodobnosti od Pavla Obdržálka (WIP) [http://www.ms.mff.cuni.cz/~obdrzalp/NMAI059/Zapisky_z_prednasek.pdf](http://www.ms.mff.cuni.cz/~obdrzalp/NMAI059/Zapisky_z_prednasek.pdf)
+- (WIP)Poznámky z pravděpodobnosti od Pavla Obdržálka  [http://www.ms.mff.cuni.cz/~obdrzalp/NMAI059/Zapisky_z_prednasek.pdf](http://www.ms.mff.cuni.cz/~obdrzalp/NMAI059/Zapisky_z_prednasek.pdf)
 
 #### Chcete přispět?
 - Super, nahoďte PR / pošlete mi mail s tím, co sem mám přidat a já tak rád učiním!
