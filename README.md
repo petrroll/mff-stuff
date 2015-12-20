@@ -17,7 +17,7 @@ Taktéž je dobré brát na vědomí, že jsou to materiály k bakaláři IOI za
 
 #### Co tu není, protože to žije jinde?
 - Geniální zápisky ke Kombinatorice a Grafům od Petra Máneka [https://github.com/petrmanek/cs-notes](https://github.com/petrmanek/cs-notes)
-- (WIP)Poznámky z pravděpodobnosti od Pavla Obdržálka  [http://www.ms.mff.cuni.cz/~obdrzalp/NMAI059/Zapisky_z_prednasek.pdf](http://www.ms.mff.cuni.cz/~obdrzalp/NMAI059/Zapisky_z_prednasek.pdf)
+- (WIP)Poznámky z pravděpodobnosti od Pavla Obdržálka  [http://pobdr.matfyz.cz/?p=NMAI059&u=zs1516](http://pobdr.matfyz.cz/?p=NMAI059&u=zs1516)
 
 #### Chcete přispět?
 - Super, nahoďte PR / pošlete mi mail s tím, co sem mám přidat a já tak rád učiním!
