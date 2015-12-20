@@ -12,7 +12,7 @@ Taktéž je dobré brát na vědomí, že jsou to materiály k bakaláři IOI za
 - Podtrhané & občas opoznámkované zápisky z přednášek Analýzi 1, 2
 - Podtrhaná & občas opoznámkovaná skripta z Lineární algebry 1&2
 - Cheatsheet k zkoušce z Linuxu
-- Vypracované hlavičky otázek k 
+- Vypracované hlavičky otázek k Sítím
 - (WIP)Podtrhané & občas opoznámkované slidy z Logiky
 
 #### Co tu není, protože to žije jinde?
