@@ -9,7 +9,7 @@ Naprostou většinu zde zveřejněných materiálů jsem psal pro sebe, takže r
 Taktéž je dobré brát na vědomí, že jsou to materiály k bakaláři IOI začínajícího __v roce 2014/2015__, takže leccos už může být dávno zastaralé.
 
 ####Co tu je?
-- Podtrhané & občas opoznámkované zápisky z přednášek Analýzi 1, 2
+- Podtrhané & občas opoznámkované zápisky z přednášek Analýzy 1, 2
 - Podtrhaná & občas opoznámkovaná skripta z Lineární algebry 1&2
 - Cheatsheet k zkoušce z Linuxu
 - Vypracované hlavičky otázek k Sítím
