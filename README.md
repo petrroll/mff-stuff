@@ -11,6 +11,7 @@ Taktéž je dobré brát na vědomí, že jsou to materiály k bakaláři IOI za
 ####Co tu je?
 - Podtrhané & občas opoznámkované zápisky z přednášek Analýzi 1, 2
 - Podtrhaná & občas opoznámkovaná skripta z Lineární algebry 1&2
+- Podtrhané & občas opoznámkovaná stripta z Algebry (neaktuální verze)
 - Cheatsheet k zkoušce z Linuxu
 - Vypracované hlavičky otázek k Sítím
 
