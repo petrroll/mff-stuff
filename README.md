@@ -14,13 +14,17 @@ U každého zdroje proto bude v závorce rok, ke kterému se to váže (vždycky
 - Podtrhané & občas opoznámkované zápisky z přednášek Analýzy 1, 2 (2014)
 - Podtrhaná & občas opoznámkovaná skripta z Lineární algebry 1&2 (2014)
 - Cheatsheet k zkoušce z Linuxu (2014)
-- Podtrhané & občas opoznámkovaná stripta z Algebry (2014)
+- Podtrhané & občas opoznámkovaná stripta z Algebry (2015)
+  - Lidsky přepsané důkazy k Algebře (2015)
+  - Vyřešené otázky z Algebry (2015)
 - Vypracované hlavičky otázek k Sítím (2014, 2015)
 - (WIP)Podtrhané & občas opoznámkované slidy z Logiky (2015)
 
 #### Co tu není, protože to žije jinde?
-- Geniální zápisky ke Kombinatorice a Grafům od Petra Máneka [https://github.com/petrmanek/cs-notes](https://github.com/petrmanek/cs-notes)
-- (WIP)Poznámky z pravděpodobnosti od Pavla Obdržálka  [http://pobdr.matfyz.cz/?p=NMAI059&u=zs1516](http://pobdr.matfyz.cz/?p=NMAI059&u=zs1516)
+- Geniální zápisky ke Kombinatorice a Grafům od Petra Máneka (?) [https://github.com/petrmanek/cs-notes](https://github.com/petrmanek/cs-notes)
+- (WIP)Poznámky z pravděpodobnosti od Pavla Obdržálka (2015) [http://pobdr.matfyz.cz/?p=NMAI059&u=zs1516](http://pobdr.matfyz.cz/?p=NMAI059&u=zs1516)
+- Naskenované (ale fakt dobré) poznámky z Pravděpodobnosti a Statistiky od Vladislava Vancáka (2015) [https://drive.google.com/file/d/0Bz-Pul5jCKNCcUQ3eTZ5YS1Dd2c/view](https://drive.google.com/file/d/0Bz-Pul5jCKNCcUQ3eTZ5YS1Dd2c/view)
+  - Chybí poslední kapitola
 
 #### Chcete přispět?
 - Super, nahoďte PR / pošlete mi mail s tím, co sem mám přidat a já tak rád učiním!
