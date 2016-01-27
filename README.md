@@ -21,7 +21,7 @@ U každého zdroje proto bude v závorce rok, ke kterému se to váže (vždycky
 - (WIP)Podtrhané & občas opoznámkované slidy z Logiky (2015)
 
 #### Co tu není, protože to žije jinde?
-- Geniální zápisky ke Kombinatorice a Grafům od Petra Máneka (?) [https://github.com/petrmanek/cs-notes](https://github.com/petrmanek/cs-notes)
+- Geniální zápisky ke Kombinatorice a Grafům od Petra Mánka (?) [https://github.com/petrmanek/cs-notes](https://github.com/petrmanek/cs-notes)
 - (WIP)Poznámky z pravděpodobnosti od Pavla Obdržálka (2015) [http://pobdr.matfyz.cz/?p=NMAI059&u=zs1516](http://pobdr.matfyz.cz/?p=NMAI059&u=zs1516)
 - Naskenované (ale fakt dobré) poznámky z Pravděpodobnosti a Statistiky od Vladislava Vancáka (2015) [https://drive.google.com/file/d/0Bz-Pul5jCKNCcUQ3eTZ5YS1Dd2c/view](https://drive.google.com/file/d/0Bz-Pul5jCKNCcUQ3eTZ5YS1Dd2c/view)
   - Chybí poslední kapitola
