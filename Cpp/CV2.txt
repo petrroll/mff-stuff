@@ -1,0 +1,32 @@
+#Stringy
+- øetìzce std::string (8bitù)
+- operace +, +=/.append, .push_back
+- insert, erase, ...
+- .pop_back
+- .clear
+- .size() : poèet znakù ve stringu
+- internì pole
+- .substr()
+
+##Vstupy a výstupy
+>> výstpu
+<< vstup
+getline(cin, s)
+
+##Pøevody
+- <x-typ> sto<x>(string s) - pøevod stringù na èísla, napø 'int stoi(string s)
+.to_string(x)
+
+- copy()
+- char* c_str() : vrací pointer na C-èkovský string
+
+##Iterátory:
+- begin(), end(), cbegin(), cend() - cXYZ je konstantní interátor, 
+- rbegin(), rend(), crbegin(), crend() - jdou od zadu do pøedu (rend ukazuje "na zaèátek, vice versa)
+
+## Vyhledávací funkce
+- .find(string needle) / .rfind(string needle)
+- .find_first_of(<množina znakù>), find_last_of(..), find_first_not_of(..), find_last_not_of(..)
+  - Najde první výskyt znaku z množiny (nebo doplòku)
+- npos (konstanta) vrátí když nenašlo hledaný zápis
+

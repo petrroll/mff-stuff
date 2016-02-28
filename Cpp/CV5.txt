@@ -1,0 +1,55 @@
+Streamy:
+
+- iostream
+  - istream
+  - ostream
+
+- Definované operátory << nebo >>
+- Streamy mají stavy
+  - setstate() lze nastavit stav
+    - pøidá nový stav
+  - good(), eof(), fail(), bad()
+- metoda exceptions(bity)
+  - Tj. když se nastaví nìjaké bity (ty co specifikuje daná fce), tak se vyvolá vyjímka
+
+- Funkce na ètení
+  - get, read : dobré na binární
+  - getline : dobré na text
+  - ignore(size) 
+
+- peek() : nastaví kam v tom streamu ukazuje
+
+- write(char* s, size0) : binárnì zapíše size bytù od pointeru
+  - << na zápis textu
+  - << endl flushne buffer
+
+- Manipulátory : nastaví se jednou a pak pro všechny výpisy platí
+  - setfill(<fill>)
+  - left, right, ...
+
+cin >> i >> skipms >> d; - naète èíslo, pøeskoèí mezery, naète druhé èíslo
+
+----
+fstream
+- ifstream, ofstream, ...
+
+- ifs.open(...)
+- ifs.close(...)
+  - Nenechávat na destrukturu, ty nesmí vyvolávat vyjímky
+
+- seekg, seegb : skákání sem a tam (i záporvnì, atd.)
+- ètení za konec : EOF
+- psaní za konec : prostì tao tam zapíše
+
+----
+stringstream
+- normálnì stream representace stringu
+
+----
+redefinování opetárotu
+
+istreawm &operator>>(istream& is, zlomek& z){
+  is >> z.cit
+  if(is.peek() == '/') { is.ignore(); is >> z.jmen; }
+  else { is.setstate(failbit); }
+}

@@ -1,0 +1,78 @@
+#Kontainery:
+
+- sekvenèní
+ - dají se jen normálnì procházet popoøadì
+
+- asociativní
+  - mají klíè
+  - lze v nich rychle hledat
+  - dále se dìlí
+    - ord : redblack tree : platí a < b
+    - unord : hashovací tabulka : nejrychlejší získání
+
+##Funkce
+- bool empty() const
+- size_t size() const
+
+- begin, end, cbegin, cend : vrací iterátory
+- insert, erease()
+- push_front/back()
+- pop_front/end() : nevrací ten prvek
+- emplace_front/end() : vloží prvek, ale vytvoøí ho rovnou na místì (tj. nekopíruje se)
+
+##Kontainery a inheritance:
+- Vector<A> nemùže držet instanci B, která od A dìlí
+  - Tøeba mít Vector<*A>
+  - Mùže ale oøízne
+
+- Vector pøi nièení volá destruktory na svých prvcích, pointery ale nemají destruktory
+  - Tj. mít Vector<unique_pointer<A>> v;
+
+
+##Sekvenèní
+
+###Array:
+- konstantí délka
+- .at(index) : stejné jako pole[index]
+
+- A pole[5] : Array<A, 5> {1, 2, 3, ... }
+
+###Vector:
+- vkládání / braní z konce relativnì rychlé
+  - amortizovanì O(1)
+  - mùžeme pøedpovídat resize() -> defaultní instance objektù
+
+- vnitønì pole, tj. adresa na první prvek (&pole[0] je C-like pole)
+- Vector<bool> je pomalý, protože pøes bity
+
+###Dequee
+- vkládání & braní i ze zaèátku rychlé
+- v podstatì spoják Vector'ù
+- poøád má [] a at
+
+###List
+- obousmìrný spoják
+- splice : vytrhne kus spojáku a pøipojí do druhého
+- nemá random iterátory
+- má obousmìrné iterátory
+
+## Asociativní
+- normální jsou ordered
+- jinak explicitnì unordered_
+
+-set<Key>, multiset<Key>, map<Key, Value>, multimap<Key, Set>
+  - set, map: pro jeden klíè tam mùže být pouze jedna hodnota (pokud znovu pøidám, tak se nic nestane; ?ASI? i u mapy)
+  - v setu je každému klíèi hodnota
+- žádné pusb_back, push_front, ... nejsou
+- find(Key) : vrací iterátor na první prvek (u multisetu / multimapy) / end() (když nenajdu)
+
+- na ordered verzi musí být dekladovaný operátor <, pøípadnì možnost vnutit komparátor
+
+-u multisetù:
+  - lower_bound(key) : první prvek s daným klíèem / upper_bound(key) : za posledním prvekm s daným klíèem
+  
+- iterátory u mapy (po dereferenci) vrací pair: ->first ->second (key, value)
+
+- pokud mám iterátor na nìjaký prvek a zmìním daný kontainer, tak daný zneplatním iterátor
+  - nikde se o tom nedozvím (nìjaké debugovací implementace umí)
+  - vyjma listu, u toho to funguje; a orderovanejch asociativních typù

@@ -1,0 +1,45 @@
+.hpp - hlavièkové soubory
+* dekladace deffinice typù a tøíd
+* implementace funkcí a metod malého rozsahu (aby šel inline použít i zvenku .cpp souboru (tøeba pøi pøekladu))
+* Hlavièky globálních funkcí vìtšího než malého rozsahu
+* Externí dekladace globálních promìnných - radìji nepoužívat (lepší singletony)
+* Veškerý generický kód (šablony tøíd a funkcí)
+  * Konkrétní kód pro instance šablon (k pøíslušným typùm) se generuje pøi kompilaci
+
+.cpp
+* Implementace funkcí a metod
+* Definice globálních a statických promìnných (vèetnì inicializace) 
+
+#Závislosti kódu
+* Identifikátory musí být definované pøed prvním použití
+  * Tìla metod jsou analyzovaná až na konci tøídy -> zevnitø lze používat položky dekladované pozdìji
+* Cyklické závislosti nutné vyøešit rozbitím na  dekladaci a definici
+
+class one;
+class two {
+  std::shared_ptr<one> p_;
+}
+
+class one : public two {};
+
+#Dekladace a definice
+* Vìc smí být v rámci pøekladu jednoho modulu definovaná pouze jednouLockerbie 
+* V rámci jednoho slinkovaného celku (.exe, .dll) mùže existovat pouze jednu definici promìnné a non-inline funkce
+  * Mùže ale obsahovat více definic inline-funkcí / tøídy / typu
+
+##Types
+* Struct (public) stejná jako class (default public), rozdíl jen v default pøístupnosti prvkù
+* Union: v Cpp nepoužívat, v podstatì oneof
+
+##Pojmenovani typù
+* typedef A A2;
+* using A2 = A; Cpp11
+
+##Function decladation and definition
+* Dekladace v classe class A{ int f(int p); };
+* Definice A::f(int p) {};
+* Klíèové slovo static, virtual (definice bez toho)
+* Globální vìci jakoby venku všech tøíd (jak u definice, tak dekladace)
+
+* Inline globální fce jen v definici (klíèové slovo inline)
+* Inline metody (inline se pak používá jen v rámci toho .cpp souboru) inline na úrovni definice

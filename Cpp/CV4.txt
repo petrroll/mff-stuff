@@ -1,0 +1,116 @@
+#Iterátory
+
+##Forward
+- *it
+- it->f
+- ++
+- ==, != 
+- = 
+
+- jednosmìrnej spoják spoják
+
+##Didi
+- obousmìrnej forward, navíc --
+
+##Random
+- it[i]
+- it += N
+- it -= N
+- (it_1 - it_2)
+- <, >, <=, >=
+
+- vector, ...
+
+
+#Algoritmy
+- <algorithm>, <numerics>
+
+##for_each(Begin, End, F)
+- F funkce / funktor s operátorem volání funkce / lambda výraz
+  - void f(const T& t) / void f(T& t)
+  - pokud neconst funkce a neconst iterátory, tak mùžeme on-fly mìnit daný kontainer
+  - vrací funktor (napøíklad když chceme zachovat stav)
+
+##count_if(B, E, Pre)
+- Pre je funkce, která vrací, jestli poèítat nebo ne (bool)
+
+##min_element(B, E)
+- vrací forward iterátor na daný prvek
+- lineární
+- volitelnì (B, E, C)
+  - comparer vrací bool, parametry odkazy na levý a pravý prvek, a vrací, zda je levý menší než pravý
+
+##find, find_if, find_if_not
+- lineární obecnì, nìkteré kontainery mají lepší implementace
+
+##search_m(B, E, S, P)
+- hledá výskyt souvislé n-tice (její délku definuje S), kde P vrací zda 1 nebo 0
+- vrací iterátor na první prvek z té n-tice
+
+##search(B, E, Bi, Ei, ?C)
+- hledáme první výskyt sekvence Bi - Ei v B až E
+- C je nepovinný, definuje zda jsou stejné
+- nepovinné 
+
+## bool is_sorted(B, E, ?C)
+- vrátí jestli je sorted
+
+## copy(B, E, Oi)
+- copy_if(B, E, Oi, C)
+- Oi iterátor je output iterátor, v podstatì nekonstantní forward (pøi záspisu se pohne dopøedu)
+  - nepoužívá to push_back, tj. je tøeba místo naalokované dopøedu
+    - to je problém, je tøeba adaptér iterátor (back_iserter(<container>)) - v podstatì proxi, která jen pushuje
+
+## move()
+- analogické copy, ale jen move
+
+## transform(B, E, O, F)
+- f je transformující fce u f(const T& t)
+
+## transform(B, E, B2, O, F)
+- soubìžnì procházím B - E, a B2 - kamDojdu a dohromady je transformuju do u
+- u f(const T1& t1, const T2& t2)
+
+
+## generate()
+- B, E, F
+- ukládá volání F (bez parametrù) do intervalu B..E
+
+## remove (B, E, &val) / remove_if / remove_copy 
+- poslední val je hodnota / prvek, který to má odstranit
+
+## unique 
+- pøetøídí, aby prvních n bylo unikátních
+- ukáže na první duplicitní prvek
+
+## reverse (B, E)
+- otoèí poøadí
+
+## sort(B, E, ?C)
+- potøebuje random iterátory
+- C je pro menšítko
+- nlogn
+
+## stable_sort(B, E, ?C)
+- pomalejší, ale stabilní
+
+## partial_sort
+- top K vìcí
+
+## lower_bound / upper_bound
+- musí být na setøídìném rozsahu, pak najde první a poslední výskyt daného prvku
+
+## merge
+- jeden krok mergesortu
+
+## T accumulate(B, E, T t0)
+- poustupnì sèítá t0 += t1, ...
+- ze specifikovat "sèítací" fci
+
+## T mem_product(B, E, B2, FAccumulate, FMultiply)
+- skaldární souèin...
+
+iota(B, E, T t0)
+- forward iterátory
+- postupnì vyplní hodnotami vždy o jedna vìtší
+

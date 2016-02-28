@@ -1,0 +1,42 @@
+- Inline z hlediska Cpp není inline z hlediska assembleru (jen to umoòuje), ale hlavnì pokyn pro linker, aby neøešil vícenásobnou dekladaci
+- Buïto rozdìlím membery fce na dekladaci a definici a nebo rovnou definuju stylem jako v C# (viz slidy)
+
+- Dekladace globálních promìnnıch "extern", pak dále tøeba i definice v .cpp (pravidlo pouze jedné definice)
+  - Therefore do not use
+
+#Místo na data
+
+- Globální statickı storage - alokovanı kompilátorem (v binárce) : tj. pøi nahrání do pamìti pak referencuju pøesnì tu pamì
+- Thread-local storage - promìnné oznaèené thread_local
+
+- Zásobník 
+  - Parametry funkcí
+  - Pomocné objekty
+  - Lokální promìnné
+  - T x; : i kdy jde o tøídu
+
+- Halda
+  - new / delete
+  - dneska reference counting mechanizmy, ownership, ...
+  - T* x = new T(); : i vùèi int'u
+
+##Chytré pointery
+- Jen na vìci na haldì
+- Øeší chytrou dealokaci
+
+- Pøístup pøes šipku, mùeme klidnì dereferencovat pøes *
+
+- shared_ptr<T> 
+  - std::make_shared<T>() : invokes new
+  - Pøi kopírování se zvyšuje poèet referencí
+  - Jinak klasickı reference counting
+    - Problém s cyklickımi strukturami
+
+- unique_ptr<T>
+  - std::make_uniquie<T>()
+  - Nelze kopírovat, tøeba pøedávat ownership pøes std::move(ptr)
+    - Zabije pùvodní pointer (vynuluje)
+
+- Nealokovat vìci dynamicky
+  - Dynamicky velká pole
+  - ivotnost se nekreje s voláním nìjaké funkce

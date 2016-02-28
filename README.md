@@ -18,7 +18,11 @@ U každého zdroje proto bude v závorce rok, ke kterému se to váže (vždycky
   - Lidsky přepsané důkazy k Algebře (2015)
   - Vyřešené otázky z Algebry (2015)
 - Vypracované hlavičky otázek k Sítím (2014, 2015)
-- (WIP)Podtrhané & občas opoznámkované slidy z Logiky (2015)
+- Podtrhané & občas opoznámkované slidy z Logiky (2015)
+- Mindmapa k architektuře počítačů (2014)
+- Nekompletní poznámky k Metodice programovacích jazyků (2014)
+- Naprosto nekompletní poznámky k Cpp (2015)
+
 
 #### Co tu není, protože to žije jinde?
 - Geniální zápisky ke Kombinatorice a Grafům od Petra Mánka (?) [https://github.com/petrmanek/cs-notes](https://github.com/petrmanek/cs-notes)

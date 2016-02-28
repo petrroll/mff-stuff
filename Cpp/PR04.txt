@@ -1,0 +1,19 @@
+#Organizace pamìti:
+- kódový segment
+- datový segment 
+  - globální promìnné 
+  - øetìzcové konstnanty
+- heap
+  - daruje OS, mùže zvìtšit OS
+  - spravuje si runtime jazyka
+  - pøi alokaci skrz jazyk zarovnané bloky
+- zásobník
+  - pøipraven OS
+  - každé vlákno vlastní stack
+
+- Kontainer array (nová syntax) není stejný jako C-like array
+  - Umí se to lépe kopírovat, je to obalení pole pomocí interface kontaineru
+- N-tice Tuple
+
+- polymorfismus
+  - rozpoznání typu jen u objektù s virtuální funkcí / virtuálním prvkem

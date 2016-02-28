@@ -1,0 +1,95 @@
+#Pøíkazy:
+
+switch(v) {
+  //Jenom vyctove typy
+  case 1:
+    break;
+  case 2:
+    prikazy;
+  case 3:
+    prikazy;
+    break;
+  default:
+    break;
+}
+
+enum e { v1, v2, v3, ... } //e je int, hodnoty 1, 2, 3, ...
+enum class F { v1, v2, v3, ... } //F už není pøevoditelný na int
+
+int i = v1;
+e i = v1;
+E e = F::v1
+
+while(ruzne_od_nuly) {}, do {} while(), 
+for(<init>; <podminka>; <inkrement>){S} = <init>; while(<podminka>){S; <inkrement>;}
+break patøí nejvnitønìjšímu cyklu
+return // pro void - nepovinej ; return <smth> to co má vrátit - povinej
+
+shifty >>, <<, 
+logické podmínky &&, ||, ... //zkrácené vyhodnocování implicitnì
+v1 ? v2 : v3
+
+//range interace, && kvùli tomu aby se odvodilo zda má jít o referenci nebo kopii
+for(auto && s: v) {
+}
+
+Øetìžce C:
+char* -> ukazatel na null terminated char pole
+char* arg[] == char** arg
+
+Øetìzce Cpp:
+stdstring v std.h
+
+Standardní knihovna Cpp
+* Kontainery
+* Algoritmy
+
+////
+#include <vector>;
+#include <string>;
+#include <iostream>;
+#include <algorithm>;
+
+using namespace std;
+
+int main(int numArgs, char** args) {
+
+	vector<string> v = vector<string>();
+	for (int i = 0; i < numArgs; ++i) {
+
+		v.push_back(string(args[i]));
+
+	}
+
+	for (size_t i = 0; i < v.size(); ++i) {
+		cout << v.at(i) << endl;
+	}
+
+	for (auto i = v.cbegin(); i != v.cbegin.end(); ++i) {
+		cout << *i << endl; //Je pøetíženej *
+	}
+
+	for (auto && s : v) {
+		cout << s << endl;
+	}
+
+	struct fnctor {
+		void operator()(const string &s) const { //pøetížené závorky
+			cout << s << endl;
+		}
+	};
+
+	for_each(v.cbegin(), v.cend(), fnctor());
+	for_each(v.cbegin(), v.cend(), [&](const string &s) {cout << s << endl; }); //kdyby místo prvního & bylo =, tak se zkopíruje ten stream
+
+	return 0;
+
+
+}
+* Interatory
+
+stdvector.h
+std::vector(std::string) v;
+
+
+
