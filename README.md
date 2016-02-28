@@ -27,6 +27,7 @@ U každého zdroje proto bude v závorce rok, ke kterému se to váže (vždycky
  - V slabom zákone veľkých čísel má byť P(|Xn-μ|>ε) ide k nule.
  - Poznámka na 5. strane : Každý jev s nulovou P(E) a každý jev s P(E) = 1 je nezávislý s libovolným jevem.
  - Dôkaz na 10.strane: riadok po an ide k a +, druhe rovná sa má byť len and...
+- Poznámky k hned několika předmětům (TeMno, Kombagra, Analýza) od Václava Končického (2016) [http://atrey.karlin.mff.cuni.cz/~koncicky/notes/](http://atrey.karlin.mff.cuni.cz/~koncicky/notes/)
 
 #### Chcete přispět?
 - Super, nahoďte PR / pošlete mi mail s tím, co sem mám přidat a já tak rád učiním!
