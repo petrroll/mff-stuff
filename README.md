@@ -11,27 +11,39 @@ Taktéž je dobré brát na vědomí, že jsou to ve valné většině materiál
 U každého zdroje proto bude v závorce rok, ke kterému se to váže (vždycky ten první z dvou kalendářních, vázajících se k tomu akademickému).
 
 ####Co tu je?
+
+
+#####Prvácké předměty:
 - Podtrhané & občas opoznámkované zápisky z přednášek Analýzy 1, 2 (2014)
 - Podtrhaná & občas opoznámkovaná skripta z Lineární algebry 1&2 (2014)
 - Cheatsheet k zkoušce z Linuxu (2014)
+- Vypracované hlavičky otázek k Sítím (2014, 2015)
+
+#####Druhácké předměty:
+- Podtrhané & občas opoznámkované slidy z Logiky (2015)
+- Naprosto nekompletní poznámky k Cpp (2015)
+- Podtrhaná & občas opoznámkovaná skripta z ADS 2 (2015)
+- Podtrhaná & občas opoznámkovaná skripta z Autůmatů a gramatik (2015)
+
+#####Další předměty:
 - Podtrhané & občas opoznámkovaná stripta z Algebry (2015)
   - Lidsky přepsané důkazy k Algebře (2015)
   - Vyřešené otázky z Algebry (2015)
-- Vypracované hlavičky otázek k Sítím (2014, 2015)
-- Podtrhané & občas opoznámkované slidy z Logiky (2015)
 - Mindmapa k architektuře počítačů (2014)
 - Nekompletní poznámky k Metodice programovacích jazyků (2014)
-- Naprosto nekompletní poznámky k Cpp (2015)
-
 
 #### Co tu není, protože to žije jinde?
+
+#####Prvácké předměty:
 - Geniální zápisky ke Kombinatorice a Grafům od Petra Mánka (?) [https://github.com/petrmanek/cs-notes](https://github.com/petrmanek/cs-notes)
+- Poznámky k hned několika předmětům (TeMno, Kombagra, Analýza) od Václava Končického (2016) [http://atrey.karlin.mff.cuni.cz/~koncicky/notes/](http://atrey.karlin.mff.cuni.cz/~koncicky/notes/)
+
+#####Druhácké předměty:
 - (WIP)Poznámky z pravděpodobnosti od Pavla Obdržálka (2015) [http://pobdr.matfyz.cz/?p=NMAI059&u=zs1516](http://pobdr.matfyz.cz/?p=NMAI059&u=zs1516)
 - Naskenované (ale fakt dobré) poznámky z Pravděpodobnosti a Statistiky od Vladislava Vancáka (2015) [https://drive.google.com/file/d/0B__lvxrRkCkMb1o2cUVZSFZacGM/view](https://drive.google.com/file/d/0B__lvxrRkCkMb1o2cUVZSFZacGM/view?usp)
  - V slabom zákone veľkých čísel má byť P(|Xn-μ|>ε) ide k nule.
  - Poznámka na 5. strane : Každý jev s nulovou P(E) a každý jev s P(E) = 1 je nezávislý s libovolným jevem.
  - Dôkaz na 10.strane: riadok po an ide k a +, druhe rovná sa má byť len and...
-- Poznámky k hned několika předmětům (TeMno, Kombagra, Analýza) od Václava Končického (2016) [http://atrey.karlin.mff.cuni.cz/~koncicky/notes/](http://atrey.karlin.mff.cuni.cz/~koncicky/notes/)
 
 #### Chcete přispět?
 - Super, nahoďte PR / pošlete mi mail s tím, co sem mám přidat a já tak rád učiním!
