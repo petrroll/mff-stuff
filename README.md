@@ -24,6 +24,7 @@ U každého zdroje proto bude v závorce rok, ke kterému se to váže (vždycky
 - Naprosto nekompletní poznámky k Cpp (2015)
 - Podtrhaná & občas opoznámkovaná skripta z ADS 2 (2015)
 - Podtrhaná & občas opoznámkovaná skripta z Autůmatů a gramatik (2015)
+- Podtrhaná & občas opoznámkovaná skripta z Databázových systémů (2015)
 
 #####Další předměty:
 - Podtrhané & občas opoznámkovaná stripta z Algebry (2015)
