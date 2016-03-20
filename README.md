@@ -34,6 +34,11 @@ U každého zdroje proto bude v závorce rok, ke kterému se to váže (vždycky
 
 #### Co tu není, protože to žije jinde?
 
+#####Všechno:
+- Sada zápisek ze __všeho__ možného i nemožného (třeba TeMNO) z dávných let (okolo roku 2007-2012) od Petera Černa [http://popelka.ms.mff.cuni.cz/cerno/notes/](http://popelka.ms.mff.cuni.cz/cerno/notes/)
+  - Ručně psané, nejspíš na grafickém tabletu, nechybí občasné kresby
+  - Alespoň teorie množin se zdá naprosto kompletní a velmi dobře zapsaná
+
 #####Prvácké předměty:
 - Geniální zápisky ke Kombinatorice a Grafům od Petra Mánka (?) [https://github.com/petrmanek/cs-notes](https://github.com/petrmanek/cs-notes)
 - Poznámky k hned několika předmětům (TeMno, Kombagra, Analýza) od Václava Končického (2016) [http://atrey.karlin.mff.cuni.cz/~koncicky/notes/](http://atrey.karlin.mff.cuni.cz/~koncicky/notes/)
