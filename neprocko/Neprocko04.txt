@@ -1,0 +1,115 @@
+Permutace
+perm([],[])
+perm([X|Xs],Zs) :- perm(Xs, Ys), select(X,Xs,Ys).
+% nageneruje 123, 213, 231, ...
+% snazi se nejdrive vkladat jednicku
+% kdyz prohodime select, tak mame lexikograficke poradi
+
+Deklarativní a procedurální správnost programu
+- program správný deklarativně
+	- odpověď na dotaz existuje
+- ale nesprávný procedurálně
+	- odpověď nelze nalést metodou splnování cíle
+	- metoda není úplná
+- program správný deklarativně
+	- nemůže dát špatný výsledek
+	- nemusí dát žádný výsledek
+- program nesprávný procedurálně
+	- se může zacyklit
+	- např. najde všechna řešení, ale pak se zacyklí
+	- viz příklady genealogické ze slidů
+
+Př.
+
+soucet(0,X,X):-prirozene_cislo(X).
+soucet(s(X), Y, s(Z)) :- soucet(X,Y,Z).
+
+soucin (0,X,0):-prirozene_cislo(X).
+soucin(s(X), Y, Z) :- soucin(X,Y,W), soucet(W,Y,Z).
+ 
+soucin2 (0,X,0):-prirozene_cislo(X).
+soucin2 (s(X), Y, Z) :- soucet(W,Y,Z),soucin2(X,Y,Z).
+
+zkusit si:
+soucet (W, s(0), Z).
+- vypíše W=0, Z=1
+- dál zkouší další řešení, při tom se zacyklí
+
+Nedeterminismus
+- determinismus - každý možný term jde zunifikovat s právě jedním pravidlem
+
+- co je lepší?
+- deterministická
+	- při úspěchu není nutný návrat
+	- snáze se ladí
+- nedeterminismus
+	- mocný nástroj
+	- někdy ho potřebujeme
+		- viz generování permutací
+
+Koncová rekurze
+- návrat z každého rekurzivního volání je triviální
+- je možné nahradit iterací
+	- překladač provádí automaticky
+
+fak(0, s(0)).
+fak(s(N), F) :- fak(N, F1), soucin(F1, s(N), F).
+- po ukončení rekurzivního volání jsem ještě musel něco spočítat
+
+fak2(N, F) :- fak2(N, s(0), F).
+%fak2 (N, A, F) :- N! * A
+fak(O, A, A).
+fak(s(N), A, F) :- soucin(s(N), A, A1), fak2(N, A2, F).
+- násobení dělám rovnou, ne až při vracení se zpět
+
+- stačí konstantní prostor na zásobníku
+
+Krabičkový model výpočtu
+- zastaví se na každé bráně
+- vypíše bránu, hloubku rekurze, cíl
+- možnost zadávat příkazy
+- spypoint - možnost sledování konkrétní proměnné
+- podrobné přízkazy viz slidy
+
+Aritmetické operátory
+- is - nepatří do čistého prologu
+- různé fce viz slidy
+- nebacktrackují
+- aritmetické funkce
+
+max(X,Y,X) :- X<= Y.
+max( X, Y, Y).
+
+max(2,1,1).
+-> chyba
+
+Oprava:
+max(X,Y,X) :- X<= Y.
+max( X, Y, Y) :- X < Y.
+
+mezi (X, Y, X) :- X =< Y.
+mezi (X, Y, Z) :- X < Y, NoveX is X+1, mezi (NoveX, Y, Z).
+
+- příklady na slidech
+- délka seznamu s akumulátorem a bez něj
+- insertsort
+- mergesort
+	- první řádka Xs = [_ [_|_]] důležitá
+	- jednoprvkový seznam by se dělil na jednoprvkový a prázdný
+	- donekonečna
+- quicksort
+	- tato implementace pomalejší než procedurální
+	- umí se i lépe, o tom později
+
+- třídění termů
+	- vestavěný sort
+	- predikát porovnávání termů dle tohoto - @<= atp.
+
+Binární stromy
+- složený term t(L, K, P)
+- levý podstrom, kořen, pravý
+
+- insert prvku
+	- kód ze slidů nefunguje na výpis, jelikož do K se vloží anonymní proměnná a on to neumí srovna na <
+	- 
+- 

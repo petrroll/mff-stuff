@@ -1,0 +1,234 @@
+Program
+- fakty
+- funktory
+
+clovek(C):-muz(C).
+clovek(C):-zena(C).
+- clovek hlava, C tělo
+
+
+
+- postupně se snažím aplikovat jednotlivé definice
+- nejdříve se podívám na ženy a pak na muže
+	- záleží na pořadí
+- definice predikátu člověk říká, že člověk je muž nebo žena
+	- alternativně můžeme zapsat pomocí středníku
+	- clovek(C):- zena(C);muz(C).
+	- větší prioritu má , (a), je možné použít závorky, ale nedoporučuje se to
+bratr(Bratr, Osoba):- rodic(R, Bratr), rodic(R, Osoba), muz(Bratr).
+	- člověk si může být sám bratrem
+	- potřebujeme, aby Bratr a Osoba byli různí
+	- Bratr \= Osoba
+	- operátor neunifikovatelnosti
+	- negace není součástí základního Prologu
+	- kvantifikátory
+anonymní proměnná
+	- rodic(X):-rodic(X,Y).
+	- predikát, který je říká, že člověk je rodič
+	- místo Y můžeme napsat _ - anonymní proměnná
+	- dva různé výskyty _ označují různé proměnné
+		- v příkladu s bratrem nemůžeme použít
+genealogický problém
+	- fakta
+		- zelené písmo
+		- aby to fungovalo, musíme povolit nevlastní příbuzenské vztahy
+
+		muz(otec).
+		muz(ja).
+		zena(vdova).
+		zena(dcera).
+		
+		rodic(otec, ja).
+		rodic(vdova, dcera).
+
+		manzele(ja, vdova).
+		manzele(otec, dcera).
+		% manzele(Manzel, Manzelka) - není symetrický
+
+		-jak zavést symetrický predikát?
+		manzele(X,Y) :- manzele(Y, X) % NE, zacyklí se
+		sezdani(X,Y) :- manzele(X,Y) ; manzele(Y, X).
+		
+		% potrebujeme zavest zobecneneho rodice
+		orodic(A,B) :- rodic(A,B).
+		orodic(A,B) :- manzele(A,R), rodic(R, Y). %pro symetricke manzele		
+
+Syntax
+- nejsou žádné datové typy
+- pouze termy
+	- jednoduchý
+		- konstanta
+			- atom - posloupnost malých písmen, speciálních znaků, cokoli mezi apostrofy
+				- speciální znaky bez /* - začátek komentáře
+				- také bez ?-, ;, , , atp.
+			- číslo - desetinná, záporná, v matematické notaci
+			- [] - prázdný seznam (v novějších verzích už není považováno za konstantu)
+		- proměnná - začíná velkým písmenem nebo podtržítkem
+			- včetně samotného podtržítka, tj. anonymní proměnné
+	- složený
+		- muz(adam) - funktor + atom
+		- rodic(X,Y) - funktor s více atomy
+		- funktor je určený jménem i aritou
+		- vícenásobně vnořené funktory
+		- číselné operace - jiný typ složeného výrazu
+
+- procedura
+	- posloupnost klauzulí se stejným hlavním funktorem
+	- pokud fakta nepíšeme hned u sebe, Prolog si toho všimne a vydá varování
+- klauzule - pravidlo nebo fakt
+- pravidlo - hlava :- tělo
+	- 
+- fakt - pravidlo s prázdným tělem
+- direktiva - pravidlo s prázdnou hlavou
+	- vyhodnocují se zvláštním způsobem
+	- nepoužívá se hledání dalších možností
+	- nevypisuje proměnné
+- komentáře
+	- %
+	- /* na více řádků
+
+Procedurální vs. neprocedurální
+- proměnné - procedurální
+	- jsou deklarovány
+	- mohou být globální, lokální
+	- změna hodnoty přiřazovacím příkazem
+
+- vs. neprocedurální
+	- dynamická alokace paměti
+		- garbage collector
+	- platnost proměnné je omezena na klauzuli, v níž se vyskytuje
+	- neexistuje přiřazovací příkaz
+		- hodnoty jsou přiřazovány při splňování cíle
+		- volná / vázaná
+		- může být vázána na hodnotu při splňování cíle
+		- neúspěch -> návrat -> odvolání vazby
+		- přiřazení se dá simulovat - ale nechceme to dělat
+
+- datový typ záznam / složený term
+	- položky identifikovány jménem
+
+	- 
+
+Einsteinova hádanka
+- problém prý formuloval v mládí Einstein, s tím, že jen malé procento populace dokáže vyřešit z hlavy
+- také připisováno Lewisovi Carlovi
+
+- dá se vyřešit s tím, co dosud známe, dá se najít řešení na internetu
+- můžeme vytvořit datovou strukturu
+- ze zadání je možné usoudit, že domy stojí v řadě
+	ulice(_,
+		_,
+		dum(_, _, _, facebook, _),
+		dum(modry, _, _, _, _),
+		dum(_,mu, _, _, _))
+
+Operátory
+- procedurální jazyky a+b*c-1
+- infixová notace
+- adam \= eva alias pro \=(adam, eva)
+- display - standardní predikát
+	- vypíše záznam v kanonickém tvaru
+
+Unifikace
+- základní operace na termech
+- dva termy lze unifikovat 
+	- jsou-li identické
+	- stanou se identickými po substituci vhodné hodnoty proměnným v obou termech
+- hledá nejobecnější unifikaci
+	datum (D1, M1, 2016)=datum(D2, unor, R)
+	- D1=D2, M1 = unor, R = 2016
+- vyvolá ji operátor =
+- úspěch, pokud termy lze unifikovat
+- výsledkem úspěšné unifikace je substituce hodnot za proměnné
+- \= uspěje, pokud termy nelze unifikovat
+
+- lze unifikovat S a T termy:
+	- identické konstanty
+	- dvě proměnné, které jdou ztotožnit
+	- proměnná a term různý od proměnné
+X = f(X) - další nekonečný cyklus
+	- vyzkoušet, co dělá překladač
+
+Algoritmus splňování cíle
+- unifikace + backtracking
+- záleží na pořadí
+- platnost proměnné se omezuje na pravidlo, ve kterém se vyskytuje
+
+- pro každou klauzuli zkusím
+- přejmenovat proměné
+- pokud jde zunifikovat, tak se zavolám znovu se seznamem cílů, na který provedu substituci z unifikace
+
+
+Artimetika
+
+%prirozene_cislo(X) :- X je přirozené číslo
+prirozene_cislo(0).
+prorozene_cislo(s(X)) :- prirozene_cislo(X).
+
+%mensi(X,Z) :- X je menší než Y
+mensi(0, s(X)):- prirozene_cislo(X).
+mensi(s(x), s(Y)):- mensi(X,Y).
+
+?- mensi( s(s(0)), s(s(s(s(0)))) ).
+true.
+
+- první není konstanta
+- 2 < 4 -> 1 < 3 -> 0 < 2 -> úspěch podle 1
+- 4 < 2 -> 3 < 1 -> 2 < 0 -> už nemám, jak bych dál pokračoval -> false
+
+
+Rekurze
+- hlavní pracovní nástroj
+- strukturální rekurze
+- řízena strukturou argumentů
+- rekurzivní datová struktura
+- báze - fakt nebo nerekurzivní pravidlo
+- krok rekurze - rekurzivní pravidlo
+- 
+soucet( 0, X, X) :- prirozene_cislo(X).
+soucet(s(X), Y, s(Z)) :- soucet(x, Y, Z).
+
+- které argumenty jsou vstupní a které výstupní?
+- syntaxe to nespecifikuje
+- např. mensi (X, s(s(0)) )
+- + vstup - musí být konkretizován
+- - výstup - nesmí být konkretizován
+- ? vstup i výstup 
+- +- obsahuje volné proměnné
+
+Předkové
+- % predek(+Predek, ? Potomek
+%predek1(?Predek, +Potomek)
+- nejdříve rodič
+predek1(
+
+- výpočet se dá pustit oběma směry
+- ne vždy jsou oba směry stejně efektivní
+- pro každý směr je lepší napsat vlastní predikát
+
+Seznam
+- [] prázdný seznam
+- [a, b, c ] neprázdný seznam
+- nevhovuje zápisu termu
+- syntaktické pozlátko pro
+	- .(Hlava, Tělo)
+	- hlava prvkek, tělo je zbytek seznamu
+	- [a, b, c ] = .(a, .(b, .(c, d)))
+	- display([a,b,c]) - notace od Prologu 7 neviditelná 
+		- tečka se používá pro něco jiného ./2
+
+- operátor | 
+- .(Hlava, Tělo) = [Hlava | Tělo]
+- odděluje nejen hlavu a tělo, ale libovolné 2 části seznamu
+
+%prvek(X, Seznam) :- X je prvkem seznamu
+prvek(X, [X|_]).
+prvek(X, [_|T]) :- prvek(X,T).
+
+- předdefinován jako member
+
+- vypuštění prvku ze seznamu
+- předdefinován jako select
+% vypust(X,Xs,Ys):- Seznam Ys vznikne vypuštěním prvku X ze seznamu Xs.
+vypust(X,[X|Xs],Xs).
+vypust(X,[Y|Ys],[Y|Zs]) :-vypust(X,Ys,Zs).

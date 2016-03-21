@@ -1,0 +1,125 @@
+Obsah:
+Operátory
+Vestavěné predikáty
+Neúplně definované datové struktury
+Řez a negace
+
+Operátory
+- technická věc
+- pro počítání s čísly - infixové, dopředu definované např. +, -, *, ...
+- můžeme si nadefinovat vlastní
+- direktiva op(Priorita, Druh, Jmeno)
+	- priorita mezi 1 a 1200 - nižší hodnota, váže více
+	- druh
+		- určuje aritu
+		- pozici
+		- asociativitu
+		- f - reprezentuje operátor
+		- x, y - reprezentují operandy
+		- unární prefixové fx; fy, postfixové xf, yf
+		- x je operand s menší prioritou, y je operand se stejnou nebo vyšší prioritou
+		- yfx zleva asociativní
+		- xfy zprava asociativní
+		- xfx není asociativní (nesmí se napsat vícekrát za sebou, např. =)	
+Př.
+ a-b-c 
+ :- op( 500, yfx, - ).
+ c má prioritu 0, - má prioritu 500, (a-b) má prioritu 500 a <=
+ (a-b)-c
+ 500 0
+ <=  <
+-> ok
+
+vs. 
+
+ a-(b-c)
+ 0 500
+ < <=
+-> ko
+	- jméno - pro definování více operátorů se stejnou prioritou
+Př. 
+- můžeme vytvořit formule výrokového počtu
+- vytvoříme si všechny operátory potřebné k vytvoření výrokové formule:
+	- spojky, závorky, proměnné (p(a) = proměnná a)
+- ověření správnosti iterativně - true, false, proměnná jsou formule, a spojka b je formule, pokud a a b jsou formule
+
+- vyhodnocení na základě seznamu hodnot spojek
+	- opět induktivně
+	- pomocí predikátů eval_non(true, false), eval_non(false, true) a pod. si nasimuluji chování logických spojek
+Pozn. vnitřní chování prologu: (non p(a)) or p(b) <==> or((non p(a)), p(b)) 
+
+- splnitelnost formule
+	- dá se spustit eval(+F, -S, +H) místo eval(+F, +S, -H)?
+
+Vestavěné predikáty
+- pro testování typu term
+- užití viz př.
+
+Př. Algebrogramy
+- napíšeme program na řešení algebrogramů
+soucet(S1, S2, S) :- S je součet S1 a S2
+
+soucet (S1,S2,S) :- s1(S1,S2, S, 0, [nabidka cislic], [nepouzite cislice- nabidka bez toho, co bylo pouzito]
+
+=:= test na aritmetickou rovnost
+- problém z přijímaček je problematický v tom, že seznamy mají různou délku
+- na přednášce je řešení hrubou silou, lepší je heuristika
+
+Neúplně definované datové struktury
+- rozdílový seznam
+	- [a,b,c] -> [a,b,c|S] - S
+	- S je volná proměnná
+	- zřetězení seznamů v konstantním čase
+	- zretez (A-B, B-C, A-C).
+	- zretez ([a, b,c|X]-X, [d,e|Y]-Y, Z).
+	- [a, b,c|X] se zunifikuje na A, X na B, [d, e|Y]-Y na B, Z na A-C
+	- Z je [a,b,c,d,e|Y]-Y
+	- využívám toho, že X a Y jsou volné proměnné
+- převod
+	- rozdílový na obyčejný
+	prevod2(Xs, Xs-[]), kde Xs je obyč. a Xs - [] je rozdílový
+
+	- obyčejný na rozdílový - trochu složitější, viz slidy
+
+Př. quicksort efektivně
+- dá se zrychlit pomocí vynechání append a použití rozdílových seznamů ke zřetězení
+- není jen dosazením definice, musí se udělat chytře
+- promyslet doma
+
+Př. splnitelnost
+- problém - do volného konce je možné přiřadit cokoli, i stejnou proměnnou s jinou pravdivostní hodnotou- nikde jsme to nezakázali
+- chceme, aby se funkce splnitelnosti chovala deterministicky a vracela právě jednu hodnotu
+
+Řez
+- řešení problému výše
+- zamezím backtrackingu
+- predikát ! při pokusu o backtracking hledání zařízne s neúspěchem
+- oprava splnitelnosti - použiji deterministickou variantu predikátu member
+	- každou variantu proměnné tam vloží jen jednou
+	
+Červený řez
+- mění deklarativní význam programu
+
+Zelený řez
+- pouze odřezává neprespektivní větve výpočtu.
+Př.
+max(X,Y,X) :- X >= Y, !.
+- zrychlím, nemeěním deklarativní význam programu
+- pozor, nemůžu vynechat kontrolu  X < Y u druhého řádku
+
+Negace
+- ma_rada(lida, X) :- plesaty(X), !, fail.
+- na fail vždy selže a ! mě zarazí v backtrakingu
+-> selže pro plešaté
+- na dalším řádku už klidně ma_rada(lida, X) :- muz(X).
+
+not(C) :- C, !, fail.
+not(C).
+- trochu jiná negace, než jsme zvyklí
+- cíl C se nepodařilo splnit algoritmeme splňování cíle
+
+- proto je doporučené používat \+ 
+
+
+
+- 

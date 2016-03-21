@@ -1,0 +1,135 @@
+Neprocedurální programování
+- formální věci:
+	- info: ksvi.mff.cuni.cz/~dvorak/vyuka
+	- prerekvizity: programování, ads, výroková a predikátová logika
+		- nejsou formální, je to dobré mít za sebou
+		- náročnější pro studenty prvního ročníku
+
+	- zkouška:
+	- písemná část:
+		- 3 hodiny
+		- seznam predikátů a funkcí
+		- test základů
+		- jeden větší příklad (Prolog nebo Haskell)
+	- potom ještě 1,5 hodiny na naprogramování větší úlohy + probírání na ústní části
+	- pro přihlášení ke zkoušce je potřeba mít zápočet (ke zkoušce je užitečné mít za sebou hotový větší zápočtový program)
+	- zářijové termíny - budou se snažit nějaký udělat, určitě nebudou více než 2
+
+	- cvičení:
+	- praktické
+	- zápočet - všichni chtějí zápočtový program v Prologu nebo Haskellu
+		- součástí uživatelská a vývojová dokumentace
+		- testovací data
+		- zadání v cca polovině semestru
+
+	- přednášející
+		- jsou dva
+		- Tomáš Dvořáka, místnost 405
+		- Jan Hric
+	
+- sylabus
+	- Lisp - úvodní kurz do programování, kontroverzní
+
+Neprocedurální programování
+- není to programování bez procedur
+- procedurální (imperativní) programování
+	- předchozí programování
+	- programovací styl
+	- jazyky C, Pascal, C++, C#, Java, assembler, ...
+	- mohu proměnné měnit přiřazovacím příkazem - základní věc, člověka nenapadne, že by to šlo bez toho
+- neprocedurální programování
+	- bez přiřazovacího příkazu
+	
+- logické programování
+		- popisuji problém, který chci řešit
+	- prostředky matematické logiky
+	- Prolog - programmation en Logique
+	
+- funkcionální programování
+	- program definice funkcí
+	- výpočet - aplikace funkce na argumenty
+	- skládání funkcí, matematické funkce bez vedlejších efektů
+	- zákážeme vedlejší efekty
+	- jazyky LISP, Haskell  
+
+Logické programování
+- 1960, reprezentace znalostí z umělé inteligence
+- 1971 Robert Kowalski, Alain Colmerauer
+	- programátor a logik
+	- v létě
+	- funkcionální interpretace Hornových klauzulí (a ^ b ^ c ^ d => e neboli !a v !b v !c v !d v e)
+	- 1. program - francouzský dokazovací systém QA
+1977 David Warren
+	- kompilátor, edinburský dialekt
+1983 Warren Abstract Machine WAM
+	- architektura paměti, instrukční sada
+	- standardní cíl kompilátorů prologu 
+	- bytecode pro Prolog, "mezijazyk"
+1995 ISO Prolog standard
+2000 ISO pro moduly
+
+- aplikace
+	- výuka a výzkum
+	- zpracování přirozeného jazyka
+	- automatické dokazování
+	- expertní systému, webové aplikace, systémy řízení, atp.
+	- navazující předmět - programování s omezujícími podmínkami
+- navazující jazyky
+	- datalog
+	- pro databázové systémy
+	- Mercury
+	- Erlang
+
+- opakování logiky
+	- reálný a abstraktní svět - v abstraktním modelujeme reálný
+	- výrok - tvrzení, o němž lze rozhodnout, zda je či není pravdivé
+	- výrokový počet
+		- logické spojky
+		- výrokové proměnné = atomy = prvovýroky
+		- závorky
+	- interpretace - dosazení od proměnných, na jejichž základě definuji pravdivost
+		- speciální příklad tautologie
+		- interpretací je exponenciálně mnoho - moc na brute force
+	- sestrojíme dokazovací systém 
+		- odvozovací pravidlo, např. modus ponens
+		- důkaz - postoupnost formulí - buď tautologie, nebo odvozovací pravidlo
+		- množina tautologií P: úplnost, korektnost
+		- pro výrokovou logiku korektní a úplný dokazatelný systém existuje
+	- predikátová logika I. řádu - výroková logika + kvantifikátory, relační (predikátové) a funkční symboly 
+		- je možné sestavit pro PL I. řádu korektní a úplný problém?
+		- ano, ale tento problém není algoritmizovatelný
+		- problém je rozhodnutelný, pokud se omezíme na Hornovy klauzule
+		- rezoluce
+- fakta
+	- term ukončený tečkou
+	- muz(adam).
+	- složené z atomu (konstanta) a funktoru (funkční/relační symbol)
+	- pomocí faktů definuji predikát
+
+- SWI prolog
+	- volně dostupný interpret Prologu
+	- open source
+	- editor zdrojového kódu
+	- PceEmacs - vestavěný editor SWI Prologu
+	- ?- prompt
+- XPCE - nástroj pro tvorbu GUI 
+	
+- syntax
+	- edit(file('test.pl')). % nový soubor 
+	- edit(rodina). % edituj program rodina
+	- překlad = konzultace
+		- consult(rodina).
+	- muz(Kdo). % Kdo proměnná
+		- ptám se, kdo všechno je muž
+		- výstup všechny možnosti
+	- konjunkce = ,
+	- rodic(Kdo, kain),muz(Kdo).
+		 Kdo = adam
+		 false.
+	- středník ;
+		- dej mi další výsledek
+		- najdu dalšího rodiče - eva, ta ale není muž
+	- otec(Kdo, Dite) :- rodic(Kdo, Dite), muz(Kdo).
+		- implikace zprava doleva
+		- splňování podcílů zleva doprava
+

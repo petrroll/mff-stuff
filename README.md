@@ -26,6 +26,7 @@ U každého zdroje proto bude v závorce rok, ke kterému se to váže (vždycky
 - Podtrhaná & občas opoznámkovaná skripta z Autůmatů a gramatik (2015)
 - Podtrhaná & občas opoznámkovaná skripta z Databázových systémů (2015)
 - Podtrhaná & občas opoznámkovaná skripta z Grafiky 2 (2015)
+- Poznámky z neprocedurálního programování (2015) od Anety Šťastné
 
 #####Další předměty:
 - Podtrhané & občas opoznámkovaná stripta z Algebry (2015)
