@@ -1,2 +1,2 @@
-Programování v Cpp (2015)
+Neprocedurální programování (2015)
 - Poznámky Anety Šťastné
