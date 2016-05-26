@@ -1,0 +1,2 @@
+- speedup Polygonální scéna se nedìlá, relálnì
+- radiance: hustota na sjednocení prostorových úhlù vycházejíccích ze všech bodù jednotkové plochy
