@@ -1,0 +1,44 @@
+1) důsledek Ricovy věty
+2) K
+3) K (bez důkazu kontextivitosti)
+4) BK
+5) v prezentaci (spočetně rekurzivní - snad)
+6) BK
+7) K
+8) BK
+9) BK
+10)BK
+11)BK
+12)BK
+13)K
+14)K
+15)R
+16)R
+17)BK
+19)BK
+20)=2)K
+21)K
+22)K
+23)BK
+24)BK
+25)K
+26)K
+
+K->Kontextový
+BK->Bezkontextový
+
+1) Pokud dokážeme, že doplněk je rekurzivně spočetnej, tak nám vyjde, že danej jazyk rek. spočetnej bejt nemůže, páč jinak by byl spočetnej. A to není určitě.
+A o doplňku to řekneme následujícím způsobem:
+
+První zkontroluješ, jestli ten kód, co jsi dostal je automat (říkejme mu T). To je triviální.
+Pokud je, tak začneš dělat následující:
+1) nageneruješ všechny slova délky 1, a postupně je zkusíš předhodit Tčku. Nesimuluješ ho, ovšem, celý, ale jen jeho první krok (prostě jen jeden posun). Když na ten krok přijme, tak hurá, když ne, tak jdeš dál.
+2) Nageneruješ všechny slova délky <= 2 a zkusíš je předhodit Tčku, kde nyní odsimuluješ 2 kroky.
+...
+.
+.
+.
+
+A takhle, pokud existuje slovo "w", které automat přijímá, tak je určitě dlouhé max "n" a je přijatelné na "m" kroků automatu. A tedy jej v max(n,m) kroce přijmeš.
+
+
