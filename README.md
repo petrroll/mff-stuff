@@ -28,6 +28,7 @@ U každého zdroje proto bude v závorce rok, ke kterému se to váže (vždycky
 - Podtrhaná & občas opoznámkovaná skripta z Grafiky 2 (2015)
 - Poznámky z neprocedurálního programování (2015) od Anety Šťastné a linky na řešené problémy od Lukáše Jendleho a Šťěpána Hojdara (2015)
 - Podtrhané & opoznámkované prezentace z Automatů a gramatik (2015) + řešená většina zkoušených jazyků.
+- Podtrhaná & opoznámkovaná skripta k Optimalizačním metodám (2015) + nafocené poznámky (moje, Štěpána Hojdara, Martina Šerého)
 
 #####Další předměty:
 - Podtrhané & občas opoznámkovaná stripta z Algebry (2015)
