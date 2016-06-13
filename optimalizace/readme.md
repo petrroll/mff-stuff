@@ -4,5 +4,5 @@ Opoznámkovaná / podtrhaná skripta k přednáškám z Optimalizačních metod 
 
 Nafocené poznámky ode:
 - Mne
-- Šťěpána Hojdara
+- Štěpána Hojdara
 - Martina Šerého (nejde o poznámky z hodin, ale jen výpisky ke zkoušce.
