@@ -1,0 +1,105 @@
+CME principle
+- it is possible to represent all colours with 3 representants
+- but not single 3 ones
+-> reason why negative red is needed
+
+- sometimes we need the distance between colors
+- for example order of some product, +- distance ?
+- circle around x,y
+
+- MacAdams's Ellipses
+- not circles, ellipses
+- we are sensitive in the lower part of the x,y,z digagram
+
+- different people see different ellipses, also the same person in different time has diffrent results
+
+- 1960 - people are trying to stretch the diagram to make the ellipses circles
+- partially successful
+- it is important to understand that this is a 3D problem, as luminiscence is also non-linear
+
+- 1976 - scientists asking people from movie and printing industry
+- film industry quite ... with CIE 1960 -> L*u*v
+	- has maximum
+	- the color is dependent on the maximum light in your scene
+	- incadescent ilumination	
+		- color of light
+		- we can normalize it quite quickly in our brain
+		. we can stab to the colour of our light
+	- the cut through the central part is also not linear (ellipses instead of circles)
+	- not much in use
+- designers wanted something, where coordinates made sense -> L*a*b
+	- a b are axes
+	- a is red-green, b is yellow-blue
+	- in photography, we change b to balance the white
+	- 
+- in both systems hue can be expressed through angle and luminiscence through the distance from center
+- we can also count hue difference (for a designer, the distance in luminiscence is not so bad as in hue)
+
+- LCH - Lab in radial coordinates
+- CIE 94 - computing the difference in LCH space with correction coeficients (domain specific)
+	- to make it most linear for different domains
+- CIEDE200 - adding another part to the difference equation 
+	- RT - blue rotation
+	- quite complicated
+	- implementation can be downloaded
+	- always check your implementation with the sample one
+
+- there is no colour space perfect for every task
+
+- CIELAB - not perceptually uniform
+	- some corrections in the way of counting the difference
+
+Beyond colour spaces
+- device colour spaces (RGB, CMYK)
+- colour metric spaces (Lab, Luv)
+	- roots in colorimetry, to measure values and differences
+- colour ordering spaces (munsell, coloroid)
+	- to find colour of some property
+
+- people are trying to make color samples
+
+Colour collections
+- primary aim to provide a list of numbered sample colours
+- no ordering - not a color space
+- usually some order
+- used in product specifications
+- physical samples provided usually, matching is done against them
+
+RAL-Farben
+- RAL classic - box of colours 
+	- RAL 4010 for example
+	- loose standard, guide
+	- how much does my colour differ from the sample is between me and customer
+	- no sorting
+	- delta i - under 1 not perceptable, over two perceptable, over 5 huge difference
+
+FS 595
+	- five digit numbers
+	- enumeration of colours for U.S. military purposes
+
+Pantone
+	- enumeration of colours and a specification of how to get them
+	- one can get certified colorants and then he can get certified colors through the receipts
+	- only some of it can be obtained by the standard CMYK
+
+
+- people compare colours on day light
+-> there are boxes which can simulate the standardised light conditions
+
+Colour ordering systems
+- Absolute COS
+	- RAL Design, Munsell 
+	- each entry associated with unique colours
+
+- Relative COS
+	- HSV, HLS
+	- front-ends to colour spaces
+	- HSV coordinates are not unique
+
+TV colour spaces
+- NTSC - backword compatible solution
+- YIQ
+- YuV
+- YCbCr
+- luminance abbreviated as Y
+- 
