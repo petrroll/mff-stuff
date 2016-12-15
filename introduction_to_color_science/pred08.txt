@@ -1,0 +1,51 @@
+Measurements
+- photometry, colorimetry - see prewious lesson
+- calibration of brightness measurements
+	- could be done by different ways
+	- shining of black body
+		- around absolute zero
+		- but this temperature is quite hard to obtain
+	- reference lamps
+		- instead, we use the shining of gold by a given temperature
+		- gold is used because it doesn't oxidize
+		- for example iron creates a layer of oxids around it when getting to high temperature
+		-> gold is moe accurate
+		- now special lamps are created using this principle
+		- burning time is limited
+	- exactly calibrated detector
+		- another possible way to do the calibration
+		- it is quite difficult to create it
+		- but by low temperatures it is possible and sometimes used
+	- surface with exact reflection
+		- used e.g. by photograpers, a table of appropriate material
+		- table has different shades of grey and some basic colours
+		-> photograph then can be normalized such that the colours the same as they really look like
+- monochromators
+	- devices which produce monochromatic light
+	- prism monochromator
+		- using two lens and a prism such that the wave length is normalized enough
+	- grating type monochromator
+		- it is possible to read a CD/DVD through it
+		- uses mirrors and a grading table
+		- light gets normalized through refraction
+	- spectro-radiometer 
+		- uses the principle of grating type monochromator
+		- has something more on the beginning and end
+	- filters
+		- usually too wide-band
+		- 
+	- lyot filters
+		- using liqid crystals
+		- many layers, each one frequency band
+	- lasers
+		- expensive
+		- inflexible - only one wave length
+- there is lamp measurement lab
+		- they measure characteristics of different tlamps
+		- in Prague
+		- 3D model of brightness
+- viewing booths
+	- special boxes with well-defined light environment
+	- companies use it to compare their products and check that the colour is the right one
+	- 
+	- 

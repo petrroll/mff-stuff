@@ -1,0 +1,139 @@
+Research
+- we usually don't see what has been done on the university
+	- great part of funding for postgraduate students
+- research takes a long time and is succesful only sometimes
+- 55 000 a month for carrier in these projects
+	- there exist a specific grants, which allow that
+	-> think about postgraduate studium
+
+Color reproduction
+- colors are non-linear - on different surfaces the amount of color reflected differs
+	- for example all red is reflected, but almost no green, etc.
+	- (the teacher uses ColorSync Utility - color space for different printers can be shown)
+	- the color space which can be shown on the monitor is different from the one which can be printed
+		- cyan, dark green, purple - monitors are bad at that colors
+		- on the other hand, printers can reproduce dark green quite well
+		- it is not easy to print a magazine ...
+		- what we see that bright green can be displayed but can't be printed 
+			-> we have to get this color inside the color space of the printer somehow
+			=> gamut mapping
+Gamut mapping
+- big gap between additive and subtractive methods
+- story - one of his students discovered that one specie doesn't fit into picture when photographed
+	-> trying to catch the real color of that animal, because it is very rare
+
+	- global
+		- we shift all colors to preserve the overall feeling from the picture
+		- one would say that this is best for the photographs, beause contrast stays the same
+		- however, nobody uses it in reality, because the colors are too pale then
+		- instead, some non-linear shrinking is used
+	- local 
+		- we only change the colors which are outside the given space
+
+Inkjets
+- color inkjets are becoming rare nowdays
+- big drawback - price of ink
+		- ink dries up
+- color quality is better then by laserjets
+- modern color printer has 6 or 7 types of ink
+	- dark and light cyan
+	- dark and light magenta
+	- yellow
+	- dark and light black
+
+- work well just on certain materials
+	- on photographic paper the pictures are better than on normal paper
+	- on the photographic paper has a small drains which make the ink to go deep and the resulting dots are smaller 
+- types of jets
+	- bubble jet
+		- we have a small pipe with ink
+		- the end of the pipe is heated and a bubble of ink falls on the paper
+		- we try to get smallest dots possible
+		- ink requirements
+			- not too liquid, so paper is not too softened
+			- liquid enough to penetrate the paper
+			- non-toxic, non-flammable
+			- oh, wait, also colorful :D
+	- piezo heads
+		- only surviving to these days
+		- Epson
+		- print head is more expensive
+	- laser printers
+		- fast
+		- low cost per page
+		- expensive
+		- reduced gamut
+		- not capable of any additional colours
+		- in most cases no laser inside these days
+		- basically computer controlled photocopier
+	
+
+		- electrostatic printing
+			- invented in 1938 
+			- we charge part of the paper and make the toner parts get there
+			- it is possible to make it work also without computer
+			- old photocopies were made only through group of lenses which transported the reflected light to charge some parts of paper
+				-> reason for bad contrast of old copies
+			- nowdays everywhere is negative charge and the laser gets it away in some parts
+			- LED diods are often used instead of lasers because they work faster for wide printers 
+			- but their spectrum is not uniform
+		- toners
+			- small particles
+			- by inkjets, the ink physically over the paper
+			- toner is on the surface
+				-> reason for being waterproof
+		- how to get the right amount of toner on the page?
+			- brush - that wouldn't work after tousands of pages
+			-> tiny iron particles on an electromagnet, after print the stream gets away, it falls to a reservoir
+			- nowdays it is not needed any more, because the amount of toner pieces on the drum gets reduced to one layer by a shade
+		- the laser printers are quite small, because basically you need the paper to go through and get charged
+	- offset printers
+		- first printers which were compatible with digitalisation
+			-> influenced the color representation in software
+		- durability, speed, cheap for large volumes
+			-> cheaper ink
+			- companies printing newspapers order inks by tons, not kilograms
+		- we have printing sheet from aluminium
+		- the sheet is rough and when we give water on it, it sticks (precisely)
+		- after the water, we put oily ink on the sheet and it sticks only to places where there's no water
+		- there is an offset cylinder, to which gets the ink and from which the paper gets coloured
+			- paper is soft and got squashed 
+			- discovered by accident - a rubber cylinder under the sheet
+				- one turn without paper
+				- the next paper got ink from both sides and one side has been sharper
+		- excellent gamut
+		- additional colours possible - gold, silver, etc.
+		- extreme speed
+		- not suitable for small series
+		- small offset printer - can be sutiable for tousands of pages
+
+		- newspaper print - they don't need to use heat, because the ink gets quicly into the paper
+		- magazines use different paper and heating is usually needed to get the ink into the paper
+			-> different machines are used for magazines and newspapers
+	
+Pantone Hexachrome
+- pantone standard for printers
+- upper bound on what is possible to print
+- 
+
+Measurement technologies
+	- photometry - intensity
+		- basic unit - lumen
+		- sensitivity of average human observer
+		- spectrophotometry - doesn't make sense really, beacause we don't perceive the whole spectrum 
+	- colorimetry - color value measuments
+		- basically a single pixel camera
+		- same for decades, only getting more user friendly
+	- spectroradiometry - measuring the frequencies of the image
+		- radiometry - electromagnetic stuff
+		- spectroradiometry - electromagnetic radiation, with concern foro human
+		- units - Joules, Watts 
+			- we measure energy per m^2, angle (and second) etc.
+			- the same units are for radiometry, but with different subscript
+				- tiny integral in definiton
+		- when taking some light
+			- radiometry counts everything under curve
+			- phptometry gives bad coefficient for spectra, which aren't perceived much by human and 
+			a good coeficient to the important frequencies 
+				- multiplying by a "gaussian peak" of human sensitivity 
+	

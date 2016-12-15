@@ -1,0 +1,34 @@
+Digital printing
+- we have whole pipeline of devices - scanner, monitor, ink printer, offset printer
+	-> the goal is to make the picture seem the same on each of these devices
+- it is problematic, because e.x. monitor has additive colours, but ink printer is subtractive
+- solution:
+	- PCS - Profile Connection Space (CIELAB)
+		- colour space common for all devices
+		- input is not the problem - colour spaces of input devices have usually smaller colour spaces
+		- output is problem, because I have to know the parameters of output device and furthermore I go from larger space to smaller one
+		-> I have to solve what to do with colours outside the colour space
+			- there are more ways to do that as has been said during previous lessons
+- we have to calibrate the devices
+	- projector/monitor
+		- a camera and program with specified colours
+		- it measures the RGB curves and changes the input accordingly
+	- printer
+		- different printing technologies, papers, inks, ...
+		- the printers are not calibrated, but built to fit a certain standard
+			- Japanese standard
+			- American standard
+		- the data are in CMYK, it is better because the printers are calibrated to these pigments
+		- however, then they are limited to implicit gamut of industry standard CMYK printers
+		- L*a*b - perfect for this, but CMYK is still used
+		- literatura - Jan-Peter Hoffman - Digital colour management
+
+	- camera
+		- Apple is using a small colour space - Apple RGB, new iPhones have P3
+		- Adobe has a greater one
+		- if I have 8 bits per chanell - in jpg each colour has 8 bits, if I have too wide colour space, I have to wase more space for colour representation
+		- PDF X	
+			- acronym for PDF Exchange
+		- HDR images
+			- OpenEXR - open source, BSD style license
+			- 

@@ -1,0 +1,84 @@
+Colour Collections
+	Pantone
+	
+Colour Ordering System Sub-Types
+Absolute
+	- pick a colour with given number
+	- 
+Relative
+	- 
+
+Munsell COS
+- Hue
+	- 5 basic colors + 5 between + 0 - 9 scale between them
+		-> 5 is exactly between 2 colors
+- Value
+	- 1-10
+	- 
+- Color space 
+	- non-linear because of perceptual reasonsss
+	- 
+
+Natural Color System
+- swedish, good designers
+- standard for interior design
+- mainly color appearence
+
+- Hue
+	- 6 basic colors (without purple)
+	- %black%chromaticnessY90R
+	- Primalex uses NCS
+		- many builders use NCS
+	
+RAL design
+- small atlas
+- they took care to make the colors easily manufacturable
+
+
+Beamers
+- 3D movies - the beamer can't be brighter because of physical limits
+		- screen big and glasses filter another part of the light 
+		- too much heat from light
+
+- laser beamers
+	- really beatyful colours
+	- we don't waste any light on filtering
+	
+	- small ones
+		- red and blue lasers are common
+		- green laser have been created only recently
+		- in this boxes they use native green diodes
+		
+- the whole movie industry moved to much larger color space lately
+	- anticipation of better technology?
+
+Reproduction
+- photographic film
+	- only really durable
+	- high contrast, good color gamut
+- Russia, 1910
+	- take 3 photographs with red, green and blue colors
+	- then colored the negatives and gave it together
+	- no color degradation
+	- travelled around Russia
+		-> many colorful images of Russia from ~1910
+
+Printers
+- CMYK
+	- non-linear
+		- teoretically linear, but not in reality
+	- printable color space is smaller, than the one displayable
+	- in green and blue we can print what can't be displayed
+	-> solved by gamut mapping
+- Gamut mapping
+	- global
+		- trying to shrink all the points inside the printable area
+		- the difference between details stays the same
+	- local
+		- projection of the points outside of the colour space into it
+		- destroys the relation between neighbouring details
+		- (-8, 5, -10) the negative values can't be projected on 0, because that would change the hue
+		- actually we need to project the color in the direction to the white point
+			-> iterative methods
+
+		-  
