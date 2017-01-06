@@ -1,0 +1,71 @@
+Printers
+- it is hard to calibrate them
+- if we wanted to do it the same as with monitors, we would need to print hundreads of pages
+- every printer uses different technology, different paper
+- the behaviour is non-linear
+- usually, colour wedges are printed
+	- they have linear scale whith different shades of black and other colours
+	- important is that every segment is different from the one next to him
+	- we can notice the rest of it e.g. on tetra pack 
+
+Paper Type characteristics
+	- tone value increase
+	- how much ink is soaked into the paper
+		- through TVI
+			- a raster with dots of different size is printed (dots are lineary greater and greater) 
+			- then the size of dots is measured
+			-> TVI curve - difference of reality and what has been printed
+		- is slightly non-linear to the amount of ink
+
+Video installations and virtual reality
+- on buildings etc.
+- an ability to light a beamer on a surface to make it white and without structure
+- then other colors and stuff can be added
+- not only colours, but space calibration
+- virtual reality has been used to find out how spiders get orientated in the space
+
+White Balance, Colour Appearance Transform (CAT)
+- colour constancy
+- chromatic adaptation - what our brain does
+- white balance - what we need the camera to do to make the colours see the same
+	- sometimes we don't want to do it - e.g. sunset looks horrible
+	- it's goal is to make the picture seem the same as it perceived the person how took it
+	- not only eyes compensate the picture in a way, but also brain
+	- even laptops have now the ability to adaptate the monitor to the intensity of light
+	
+- algorithms for white balance - determining iluminant
+	- white patch
+		- assumes that brightest pixel is white
+	- gray world
+		- assumes that on average there are all values from white to black
+		- basically getting the center of gravity to the middle
+		- doesn'ŧ work well with highly colourful scenes
+	- gamut constraint
+		- assumption is that the colour space of picture have the same shape as the one in reality
+		-
+	- robotics - make the robot to find a yellow ball
+		- it is really hard
+		- the RGB values can't be hard-coded
+   
+- algorithms for white balance - determining how would the picture look like with different illuminant
+	- matrix adaptation
+		- transformation matrix, source and destination white as input
+
+- people can tell apart white box in orange light and orange box in white light, which shouldn't be possible
+	- still not understood
+	- a colour scientist has a theory, that the direct ilumination is the same, but the indirect not
+		- indirect ilumination of white on orange gets more orange with every refraction
+		- indirect ilumination of orange on white doesn't change
+		
+
+Raytracing
+- counting where the ray coming into the eye has come from 
+
+CWNI - Colured World, Neutral Iluminants
+- uses raytracing, but without light source
+- then chroma of that is counted and subtracted from the original image
+	-> we get non-colurful stuff
+	- then the extract the colour of iluminant from that
+- used to do the correction
+
+
