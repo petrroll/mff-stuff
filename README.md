@@ -36,7 +36,9 @@ U každého zdroje proto bude v závorce rok, ke kterému se to váže (vždycky
   - Vyřešené otázky z Algebry (2015)
 - Mindmapa k architektuře počítačů (2014)
 - Nekompletní poznámky k Metodice programovacích jazyků (2014)
- Nekompletní poznámkovaná skripta Introduction to color science (2016)
+- Nekompletní poznámkovaná skripta Introduction to color science (2016)
+  - Poznámky z hodin od Anet Šťastné (2016)
+- Různé materiály k Ochraně informací (~2016)
 
 #### Co tu není, protože to žije jinde?
 
