@@ -6,5 +6,5 @@ Další zdroje:
 - otazky.pdf (2015) obsahuje .pdf'ko s řešeníma na otázkamy z kterých se vybírají cvičení 1-14 do testu
   - odpovědi jsou v komentářích (tj. je třeba .pdf viewer, který to umí zobrazit)
   - občas jsou tam chyby
-- Lidsky přepsané důkazy všech vět ze skript od Šťěpána Hojdara (2015) [dropbox](https://www.dropbox.com/sh/c6h7e5aasz6hfyq/AAC9yDuEa_Esvnz4_8h7eznka?dl=1)
+- Lidsky přepsané důkazy všech vět ze skript od Šťěpána Hojdara (2015) [dropbox](https://www.dropbox.com/sh/xyck7hqh1iqb394/AAD6pDgO_ydu7JxV5Uezx5bma?dl=0)
 - [Zodpovězené otázky](http://atrey.karlin.mff.cuni.cz/~katka/skola/algebra/zkouskove-otazky.pdf), ze kterých se vybírají cvičení 1-14 do testu, od Katky Zákravské (2015)
