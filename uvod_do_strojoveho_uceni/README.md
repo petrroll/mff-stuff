@@ -1,0 +1,2 @@
+- Opoznamkovane prezentace k Uvodu do strojoveho ucení 2016 (Hladká & Holub)
+  - https://ufal.mff.cuni.cz/courses/npfl054
