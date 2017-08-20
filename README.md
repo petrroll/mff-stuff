@@ -39,6 +39,8 @@ U každého zdroje proto bude v závorce rok, ke kterému se to váže (vždycky
 - Nekompletní poznámkovaná skripta Introduction to color science (2016)
   - Poznámky z hodin od Anet Šťastné (2016)
 - Různé materiály k Ochraně informací (~2016)
+- Opoznámkovaný Úvod do aproximačních algoritmů (2016)
+- 
 
 #### Co tu není, protože to žije jinde?
 
