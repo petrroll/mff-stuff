@@ -42,6 +42,7 @@ U každého zdroje proto bude v závorce rok, ke kterému se to váže (vždycky
 - Opoznámkovaný Úvod do aproximačních algoritmů (2016)
 - Peterkovy Síťě (2016) + Nějaké řešené otázky (pdf + link na gdocs)
 - Opoznámkovaný úvod do strojového učení (2016)
+- Opoznámkované prezentace Úvod do počítačové lingvistiky (2016)
 
 #### Co tu není, protože to žije jinde?
 
