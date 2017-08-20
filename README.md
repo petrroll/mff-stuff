@@ -42,7 +42,16 @@ U každého zdroje proto bude v závorce rok, ke kterému se to váže (vždycky
 - Opoznámkovaný Úvod do aproximačních algoritmů (2016)
 - Peterkovy Síťě (2016) + Nějaké řešené otázky (pdf + link na gdocs)
 - Opoznámkovaný úvod do strojového učení (2016)
-- Opoznámkované prezentace Úvod do počítačové lingvistiky (2016)
+- Opoznámkované prezentace a shrnutí od studentů k Úvod do počítačové lingvistiky (2016)
+
+#####Státnice:
+- Ve složce státnice řešené otázky z minulých státnich (pre-2017) z jednotlivých okruhů Obecné informatiky
+  - Ne všechny okruhy, některé špatně formátované, některé řešené špatně
+  - Velký dík Martinu Šerému, Petře Pelikánové, Janě Bátorové, Katce Zákravské, Dominikovi Smržovi (a mně)
+- Poznámky Petry Pelikánové k většině okruhů
+- Zahuštěné poznámky k Optimu, Temnu, a úvodu Algebry od Petry Pelikánové
+- Seznam definic ke státnicím
+
 
 #### Co tu není, protože to žije jinde?
 

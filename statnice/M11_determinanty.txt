@@ -1,0 +1,16 @@
+P13: 1. Definujte pojem „determinant“.
+P13: 2. Jaký je vztah determinantu matice A a k ní inverzní matice A^(-1)?
+	1/det(A)
+
+P12: 3. Dokažte, že det A = det A^T.
+	znaménka se nemění, když beru 1 z každého řádku a sloupečku, tak to je to samé pro překlopenou matici
+
+P15: 4. Zformulujte Laplaceův rozvoj determinantu podle prvního řádku.
+P15: 5. Lze použít tento rozvoj jako alternativní definici determinantu, popřípadě za jakých okolností?
+	ANO
+
+P15: 6. Pro matici A platí A² = A³. Jaký je determinant matice A?
+	0 nebo 1
+
+P15: 7. Buď A ∈ T^(n*(n−1)) pevná. Rozhodněte a zdůvodněte, zda zobrazení f ∈ T^n → det(A|f) je lineární.
+	ANO

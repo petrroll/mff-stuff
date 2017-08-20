@@ -1,0 +1,80 @@
+Diskretna matematika
+====================
+
+Systém různých reprezentantů
+Definujte systém různých reprezentantů množinového systému (M i , i = 1, 2, . . . , n) a formulujte nutné a postačujı́cı́ podmı́nky pro jeho existenci (Hallova věta).
+       S = {s1, s2, ... sn} : si € Mi & |S| = n, Vij: si != sj
+       VJ <= I |UMj| => |J|
+
+Rozhodněte, která z následujı́cı́ch tvrzenı́ jsou pravdivá a odpovědi zdůvodněte.
+1. Má-li množinový
+systém (M i , i = 1, 2, . . . , n) systém různých reprezentantů, potom platı́ ∀I ⊆ {1, 2, . . . , n}, 1 ≤ |I| ≤ n-1 : | i∈I UMi | > |I|.
+- ne: nemusí platit ostře. Například pro Mi = {x_i}, X = [n]
+2. Množinový
+systém (M i , i = 1, 2, . . . , n) má systém různých reprezentantů, jestliže ∀I ⊆ {1, 2, . . . , n}, 1 ≤ |I| ≤ n − 1 : | i∈I UMi | > |I|.
+- ne: stejný argument jako výše
+3. Každý k-regulárnı́ bipartitnı́ graf (k ≥ 1) má perfektnı́ párovánı́.
+       systém různých reprezentantů nám dsot pomůže I = vrcholy levé partity, Mi jsou vrcholy incidentní s i-tým vrcholem.
+       Díky bipartitnosti & k-regulárnosti máme jistotu, že partity jsou stejně velké ergo SRR nám dává přesně párování
+       Ve chvíli, kdy k-reg bip graf splňuje Hallovu podmínku máme vyhráno
+       Kde ta podmínka je splněna díky tomu, že když za každý jeden vrchol zleva přidáme k-vrcholů zprava. Win win situácia...
+
+Systém různých reprezentantů (jaro 2016)
+1. Definujte systém různých reprezentantů množinového systému (M i , i = 1, 2, . . . , n) a formulujte nutné a postačující podmínky pro jeho existenci (Hallova věta).
+- viz výše
+
+2. Nechť M je nějaká množina s n prvky (n ≥ 2) a nechť n−1
+je množinový systém všech (n − 1)-prvkových podmnožin
+množiny M . Ukažte, že n−1 má systém různých reprezentantů.
+- Sjednocení každých dvou množin z X je celé M (neb se musí lišit v jiném prvku). Ergo Hall FTW.
+3. Mějme množinový systém {M 1 , M 2 , . . . , M k }, kde M i označuje množinu celých čísel {−i, −i + 1, ..., −1, 0, 1, ..., i − 1, i}.
+Kolik různých systémů různých reprezentantů má tento množinový systém?
+- 3*4*5... k-krát
+1
+       (k+2)! / 2
+
+Princip inkluze a exkluze
+1. Formulujte princip inkluze a exkluze.
+2. Kolik čı́sel z množiny 1, 2, . . . , 360 nenı́ dělitelných žádným z čı́sel 4, 6, 9 ?
+       360 - (360%4 + 360%6 + 360%9 - 360%18 - 360%12 - 360%36 + 360%36)
+
+Systém různých reprezentantů
+1. Definujte systém různých reprezentantů (konečného) množinového systému (M i , i = 1, 2, . . . , n) a vyslovte Hallovu větu.
+- viz výše
+2. Pro celé čı́slo k ≥ 1 ukažte, že každý bipartitnı́ k-regulárnı́ graf (graf, jehož všechny vrcholy majı́ stupeň roven k) má perfektnı́ párovánı́.
+- Hallova věta je splněna. I kdyby všichni do stejných, tak je splněna s rovností.
+3. Kolik různých (lišı́cı́ch se alespoň jednou hranou) perfektnı́ch párovánı́ má úplný bipartitnı́ graf K n,n ?
+       n! ~ první má n mžstí, druhý už jen n-1, třetí n-2 atd...
+
+17
+Uspořádané množiny
+1. Definujte vlastnosti, které musí mít binární relace, aby byla částečným uspořádáním.
+       ČUM - tranzitivita
+       Ostré - silná antisymetrie - Va,b !(a>b & b>a)
+       NeOstré - slabá antisymetrie - V a,b (a>b & b>a => a=b)
+
+2. Rozhodněte, zda relace R na množině celých čísel definovaná R = {(x, y) ∈ Z 2 : |x| ≤ |y|} je částečným uspořádáním.
+       -1R1 aj 1R-1 tzn je porušena podmínka antisymetrií
+
+3. V závislosti na n ∈ N určete velikost maximálního řetězce v částečném uspořádání množiny {1, 2, . . . , n} pomocí relace dělitelnosti.
+       je to log2 n
+       ten řetěz je tvořen 1, 2, 4, 8, 16 ...
+
+20
+Částečné uspořádání
+1. Definujte pojmy „řetězec“ a „antiřetězec“ v částečném uspořádání.
+- řetězec: každé dva prvky jsou porovnatelné
+- žádné dva prvky nejsou navzájem porovnatelné
+2. Nechť množina X obsahuje všechny body s celočíselnými souřadnicemi náležící lichoběžníku s vrcholy A = (0, 0), B = (10, 0), C = (4, 4) a D = (0, 4). Částečné uspořádání na X je definováno předpisem (x, y) ≤ (x 0 , y 0 ) ⇔ (x + y < x 0 + y 0 ∨(x, y) = (x 0 , y 0 )).
+Určete délku nejdelšího řetězce i největšího antiřetězce včetně důkazu jejich maximality.
+       řetězcce jsou tvořeny cestičkami +1 v nějaké ose. Tj nejdelší manhatanská vzdálenost v lichoběžníku odpovídá nejdelšímu řetězci
+       Antiřetězce jsou neporovnatelné prvky - ergo prvky s absolutní hodnotou
+              ty najdeme an úseškách pod 45°
+3. Zformulujte větu o řetězcích a antiřetězcích (větu o dlouhém a širokém) a uveďte hlavní ideu důkazu. Ilustrujte ji načástečném uspořádání z předchozí úlohy.
+       alph(A)omeg(A) > |A|
+       Indukcí podle délky jednoho z těch dvou [anti či řetězec]
+              alph(A)== 1 ~ poté |A| == omeg(A)
+              X je množina maximálních prvků
+              alph(A\X) = alph(A) -1 & omeg(A\X)<omeg(A)
+              |X| <= omeg(A)
+              alph(A)omeg(A) = (alph(A\X)+1)omeg(A) = alph(A\X)omeg(A)+omeg(A) = |A\X| + |X| = |A|

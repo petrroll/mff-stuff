@@ -1,0 +1,13 @@
+5. Architektura počítačů a operačních systémů
+Architektury počítače. Procesory, multiprocesory.
+ Sběrnice, protokoly. Vstupní a výstupní zařízení. 
+ Architektury OS. 
+ Vztah OS a HW, obsluha přerušení. 
+ Procesy, vlákna, plánování. 
+ Synchronizační primitiva, vzájemné vyloučení. 
+ Zablokování a zotavení z něj. 
+ Organizace paměti, alokační algoritmy. 
+ Principy virtuální paměti, stránkování, algoritmy pro výměnu stránek, výpadek stránky, stránkovací tabulky. 
+ Systémy souborů, adresářové struktury. 
+
+--- Moc dlouhé otázky : check PDF pro zadání ---

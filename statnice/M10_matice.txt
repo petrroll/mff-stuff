@@ -1,0 +1,15 @@
+L15: 1. Napište definici reálné ortogonální matice.
+        Následující vlastnosti dokažte nebo vyvraťte protipříkladem:
+           1. Ortogonální matice řádu n jsou uzavřené na součet. ANO
+           2. Ortogonální matice řádu n jsou uzavřené na součin. ANO: Musí platit (AB)^T * (AB) = I
+           3. Ortogonální matice řádu n s operací součin tvoří grupu. ANO
+
+P15: 2. Napište definici regulární reálné matice a uveďte souvislost regularity matice s jejím jádrem, determinantem a vlastními čísly.
+	Souvislost s vlastními čísly: Věta 10.12
+
+P15: 4. Rozhodněte, zda pro regulární matici A ∈ R^(n×n) je zobrazení x ∈ R^n→ Ax + (1, …, 1)^T prosté a na R^n. Zdůvodněte.
+	ANO a ANO
+
+P15: 3. Dokažte, že pozitivně definitní reálné matice jsou regulární.
+
+Sporem: A nebude regulární -> existuje vektor a pro který Aa = 0 -> a^T A a = 0 -> dim(ker f) > 0 spor.

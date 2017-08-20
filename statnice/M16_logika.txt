@@ -1,0 +1,31 @@
+Jazyk, formule, sémantika, tautologie. Rozhodnutelnost, splnitelnost, pravdivost, dokazatelnost. Věty o kompaktnosti a úplnosti výrokové a predikátové logiky. Normální tvary výrokových formulí, prenexní tvary formulí predikátové logiky. 
+
+
+J14: 1. Uveďte, co je důkaz ve výrokové teorii T a co znamená zápis T |– ϕ, je-li ϕ výrok teorie T.
+    Důkaz: posloupnost výroků, A1, ... An, An = A, V Ai, Ai je axiom / dokazatelné z předchozích výroků pomocí Modus ponens.
+    Výrok je dokazatelný v teorii. Existuje důkaz z axiomů teorie k výroku.
+J14: 2. Uveďte, co je spor a vyvratitelná formule teorie T a co znamená, že teorie T je sporná či bezesporná.
+    Spor: důkaz Fí&NotFí; vyvratitelná: existuje důkaz nonFí; sporná: platí v ní spor / lze z ní dokázat vše; bezsporná: není sporná
+J14: 3. Uveďte, co je nezávislá formule výrokové teorie T.
+    Věta, která není ani dokazatelná ani vyvratitelná.
+
+L13: 4. Definujte normální konjunktivní tvar formule.
+    Konjunkce disjunkcí.
+P13: 5. Definujte jazyk výrokové logiky.
+
+L12: 6. Zformulujte větu o úplnosti výrokové logiky. Uveďte hlavní body jejího důkazu.
+P12: 7. Zformulujte větu o kompaktnosti predikátové logiky. Uveďte hlavní body jejího důkazu.
+
+L13: 8. Napište formuli v normálním konjunktivním tvaru, která je ekvivalentní formuli A ∧ (B ∨ (C ∧ D)).
+    Udělám tabulku & z ní.
+L13: 9. Je možné každou formuli převést do normálního konjunktivního tvaru? Zdůvodněte.
+    Ano, tabulka existuje ke všemu.
+
+J14: 10. Dokažte |– A → A přímo z logických axiomů A → (B → A) a (A → (B → C)) → ((A → B) → (A → C)).
+L12: 11. Dokažte |– ϕ → ϕ přímo z logických axiomů.
+
+P13: 12. Rozhodněte, zda je formule ¬(¬(A ∧ B) ∨ B) → C tautologie.
+    Ano, vnořím první negaci dovnitř: ((A ∧ B) ∧ ¬B) -eq 0
+P13: 13. Uvažujte množinu výrokových proměnných P = A, B, C a formuli ϕ = A → B. Kolik je neekvivalentních P-teorií T takových, že T, ϕ je sporná teorie? Zdůvodněte.
+    Průnik modelů musí být prázdný, tj. teorie musí mít všechny modely A = 1, B = 0. Tj. ta teorie může mít modely: 101, 100, obě, ani jedno (sporná sama o sobě).
+    

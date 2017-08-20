@@ -1,0 +1,70 @@
+6. Základy sítí
+Taxonomie počítačových sítí. Architektura ISO/OSI. 
+Přehled síťového modelu TCP/IP. 
+Směrování. 
+Koncept adresy, portu, socketu. Architektura klient/server. 
+Základy fungování protokolů HTTP, FTP a SMTP.
+
+J17:
+4 TCP a NAT
+
+Napište význam a postup nastavení polí „source port“, „destination port“, „sequence number“ a „acknowledgment number“ z hlavičky. 
+- Výchozí a konečný TCP/IP port určující jaké aplikaci má daný paket na stroji jít / z jaké vychází. Adresace 4. (transportní) vrstvy.
+- Ack number, potvrzuje přijetí paketů až do daného SEQ. number od druhé strany.
+- Seq. number je číslo označující kolikátý poslaný paket to je, aby se dalo zajistit pořadí. Nemusí začínat na 0, odkud bude začínat se dohodne při 3-way handshake na začátku. 
+
+2. Standard IP deﬁnuje následující hlavičku: Napište, která hlavní pole IP a TCP hlaviček a jak ovlivňuje mechanismus překladu adres (NAT).
+- Source IP, Destination IP: musí se překládat při provozu ven / dovnitř
+
+L16: 
+1. Popište (nebo nakreslete) postup zahájení a ukončení TCP spojení. Vysvětlete motivaci three way handshake. 
+- dohodnutí se na SEQ numbers a oknech.
+-> SYN, SEQ n, ACK 0
+<- SYN ACK, SEQ k, ACK n+1
+-> ACK, SEN n+1, ACK k+1
+2. Vysvětlete (nebo nakreslete), jak TCP zabezpečuje spolehlivost (reliability) a jaká je v TCP základní myšlenka řízení toku (ﬂow control). 
+- Spolehlivost pomocí ACKů, pakety musí být potvrzované, jinak jsou poslané znova. Je možné okno, kdy lze posílat další i bez ACKu, většinou je ale rozumně malé.
+- Díky ACKům a rozumně malému oknu je zajištění, že kanál / consumer nebude zahlcen.
+
+3. Standard TCP deﬁnuje následující hlavičku:
+K předchozím dvěma bodům doplňte význam a postup nastavení polí „source port“, „destination port“, „sequence number“, „acknowledgment number“ a „window“ z hlavičky.
+- Viz výše, Window říká kolik lze dostat ještě paketů před tím, než musí přijít potvrzení.
+
+L14:
+5 DNS
+1. Struˇcnˇe popiˇste princip pˇrekladu dom´enov´eho jm´ena na IP adresu syst´emem DNS.
+- Zeptám se svého DNS na celou adresu. Ten mi vrátí informaci, kde žije autorita nejvyšší. Zeptám se autority na adresu, ten mi vrátí nižší autoritu. Ten mi vrátí nižší autoritu, ... . A nakonec se mi vrátí záznam. Případně tohle udělá sám router (zeptám se ho rekurzivně, tj. aby mi to sám celé zjistil).
+
+
+2. Struˇcnˇe popiˇste princip reverzn´ıho pˇrekladu IP adresy na dom´enov´e jm´eno syst´emem DNS.
+- Reverzně speciální doména pro zpětný lookup. Zeptám se na něj, dostanu rekurzivně zpětný záznam.
+3. Vysvˇetlete rozd´ıl mezi autoritativn´ımi a neautoritativn´ımi DNS servery. Co je prim´arn´ı a sekund´arn´ı DNS server ?
+- primární: spravují informace
+- sekundární: spravují jen kopie
+- autoritativní: spravuje danou zónu, tj. spravuje nějaké hosty
+- neuatoritativní: např cache pro nižší zóny, ...
+
+P14:
+1. Jak vypad´a adresa komunikuj´ıc´ıho procesu v protokolu TCP ?
+IPv4 (4byte) / IPv6 (16 byte) + port (16bit)
+2. Po jaky´ch jednotk´ach potvrzuje protokol TCP pˇrijat´a data ? 
+- po oknech paketů (tj. po několika paketech, maximálně po velikosti okna)
+Jak protokol TCP minimalizuje poˇcet datagram˚u pˇren´aˇseny´ch kv˚uli potvrzen´ı ?
+- Existují okna, stačí posílat po několika paketech.
+3. Jak protokol TCP ˇr´ıd´ı tok v situaci, kdy odes´ılatel produkuje data rychleji, neˇz je pˇr´ıjemce schopen je zpracovat ?
+- Přijámač sníží okno, neposílá ACK tak často. Producent musí zastavit a čekat na ACK.
+4. Jak´e internetov´e protokoly jsou vystavˇeny nad protokolem TCP (nejm´enˇe dva pˇr´ıklady) ?
+HTTP, FTP, SSH, ...
+
+J13: 
+
+1. Co vyjadˇruje modulaˇcn´ı rychlost, v ˇcem se mˇeˇr´ı a jaky´ m´a vztah k pˇrenosov´e rychlosti ? Kdy je modulaˇcn´ı rychlost ˇc´ıselnˇe vˇetˇs´ı neˇz rychlost pˇrenosov´a ?
+- moduleční: počet přenesených signálových prvků za sekundu. Jak rychle se mění stavy nosné.
+Přenosová rychlost: přenesená informace. Může být větší při větším množství stavů.
+
+2. Jak se d´a pˇri komunikaci zas´ıl´an´ım paket˚u zajistit spolehlivost pˇrenosu a proˇc je spolehlivost vˇzdy relativn´ı a nikoli u´pln´a ?
+- Ani potvrzování nemůže zajistit, že ty zprávy vždy dojdou. Nikdy nejde zajistit 100 % spolehlivost.
+3. Popiˇste alesponˇ tˇri mechanismy detekce chyb v pˇren´aˇseny´ch datech a srovnejte je podle jejich u´ˇcinnosti. Jak u´ˇcinnost hodnot´ıte 
+- CRC, parita, zdvojení. 
+
+--- Cokoliv předtím odpovídá Peterkovo sítím ---

@@ -1,0 +1,100 @@
+J16: 
+Deﬁnujte pojem střední hodnoty reálné náhodné proměnné (na konečném pravděpodobnostním prostoru).
+- Střední hodnota X je Integral{-inf, inf} x*f(x) dx; Kde f(x) je hustota dané náhodné reálné proměnné. Jde o vážený průměr dané hodnoty.
+
+Vyslovte větu o linearitě střední hodnoty.
+- E(aX + b) = aEX
+- E(A+B) = EA + EB
+
+Mějme šestistěnou hrací kostku očíslovanou 1–6 a proveďme s ní následující experiment. Nejprve hodíme jednou a výsledek označíme n. Poté jako X označíme součet n hodů kostkou. Určete střední hodnotu náhodné proměnné X.
+- EX = SUM(i:1-6){1/6 * i * 3,5}
+
+L16: 
+Nechť A a B jsou dva jevy v pravděpodobnostním prostoru. Napište, jak je deﬁnována podmíněná pravděpodobnost, že nastane jev A, za podmínky, že nastal jev B.
+- P(A|B) = P(A&B) / P(B) = (P(B|A)*P(A)) / P(B)
+
+Pytlík bonbónů obsahuje bonbóny tří různých příchutí: malinové, jahodové a citrónové. Od každé příchuti je v něm celkem 15 bonbónů. Z pytlíku náhodně vybereme šest bonbónů (bez vracení). Vyjádřete vzorečkem následující pravděpodobnosti (nemusíte dopočítávat numericky): 
+(a) Pravděpodobnost, že aspoň jeden vybraný bonbón je citrónový. 
+- 1-(nevyberu žádný, tj. 30/45 * 29/44 * ...)
+(b) Pravděpodobnost, že jsme od každé příchuti vybrali aspoň jeden bonbón. 
+- 1-(3* 30/45*29/44*...)
+(c) Pravděpodobnost, že všechny vybrané bonbóny jsou citrónové, za podmínky, že aspoň jeden vybraný bonbón je citrónový.
+- P(6|1) = P(6 & 1) / P(1) 
+- P(6 & 1) = P(6) = 15/45 * 14/44 * ...
+- P(1) = 1-(30 over 6)/(45 over 6)
+ 
+P16:
+1. Deﬁnujte pojem náhodné reálné veličiny a její střední hodnotu na konečných pravděpodobnostních prostorech. 
+- Náhodná reálná veličina je funkce X: F -> R, taková, pro kterou existuje funkce f, kde platí, P(X <= a) = Integral{-inf, a} f(x) dx; EX výše.
+
+2. Uveďte vztahy, které platí pro střední hodnotu součtu a střední hodnotu součinu dvou náhodných reálných veličin a naznačte, jak je lze dokázat. 
+- E(X + Y) = EX + EY (úplná pravděpodobnost)
+- E(X*Y) = EX*EY // pro nezávislé
+
+3. Maxmilián má v kapse tři dvacetikoruny, jednu desetikorunu, dvě pětikoruny, šest dvoukorun a tři jednokorunové mince (a žádné další). Náhodně ze své kapsy vytáhne trojici mincí. Určete střední hodnotu součtu hodnot těchto tří mincí.
+
+L15: 
+1. Deﬁnujte podm´ınˇenou pravdˇepodobnost n´ahodny´ch jev˚u.
+- P(A|B) = P(A&B)/P(B)
+
+2. Urˇcete stˇredn´ı hodnotu souˇctu hod˚u dvou kostek (ˇsest stˇen, kaˇzd´a pad´a se stejnou pravdˇepodobnost´ı, jedna kostka je modr´a a druh´a zelen´a).
+- 2*3.5
+
+3. Jak´a je pravdˇepodobnost, ˇze souˇcet je sud´e ˇc´ıslo, pokud na zelen´e kostce padlo m´enˇe neˇz na modr´e 
+- 6/15
+
+L14: 
+1. Deﬁnujte nez´avislost n´ahodny´ch jev˚u. Oˇcek´av´a se deﬁnice platn´a i pro v´ıce neˇz dva jevy.
+- Pro každou podmnožinu je P, že nastanou dohromady násobek jednotlivých pravděpodobností.
+
+2. Necht ’ Ω = {001,010,100,111} ⊆ {0,1}3 a pravdˇepodobnost kaˇzd´eho element´arn´ıho jevu ω ∈ Ω je stejn´a. Pro i = 1,2,3oznaˇcme Ai jev ” i-ty´ symbol je 0“. 
+Jsou jevy A1, A2 a A3 po dvou nez´avisl´e ?
+- Po dvou ano, pravděpodobnost 1/4
+Jsou vˇsechny tˇri jevy nez´avisl´e ?
+- Ne, P(A1 and P2 and P3) != 1/2^3, ale 0
+
+P13: 
+1. Hod´ıme dvˇema bˇeˇzny´mi hrac´ımi kostkami, modrou a zelenou. Jak´a je pravdˇepodobnost, ˇze na modr´e kostce padlo v´ıce neˇz na zelen´e ?
+- 15/36
+
+2. Jak se tato pravdˇepodobnost zmˇen´ı, pokud v´ıme, ˇze na zelen´e padlo sud´e ˇc´ıslo ?
+- Výčet možností, přepočítám.
+
+1. V osud´ı se nal´ez´a 10 ˇcerny´ch a 10 b´ıly´ch, jinak naprosto stejny´ch, m´ıˇck˚u. Vylosujeme 5 m´ıˇck˚u, jeden po druh´em bez vracen´ı. Jak´a je pravdˇepodobnost, ˇze budou nejvy´ˇse dva ˇcern´e ?
+- P(0č)+P(1č)+P(2č)
+- P(2č) = (10 over 3)*(10 over 2) / (20 over 5) ||  C(5, 3)*10*9*10*9*8/(20!/15!)
+
+2. Jak´a bude pravdˇepodobnost, ˇze budou nejvy´ˇse dva ˇcern´e, pokud je budeme losovat jeden po druh´em a vylosovany´ m´ıˇcek po zaznamen´an´ı barvy vr´at´ıme zpˇet do osud´ı (tedy pˇred kaˇzdy´m losov´an´ım budou v osud´ı vˇzdy vˇsechny m´ıˇcky) ?
+- P(0č) = 1/2^5
+- P(1č) = 1/2^5 * (5 over 1)
+- P(2č) = 1/2^5 * (5 over 2)
+
+
+L12: 
+1. Deﬁnujte stˇredn´ı hodnotu diskr´etn´ı n´ahodn´e veliˇciny.
+- Výše, EX = SUM_x(x*P(x))
+
+2. Jak odhadnete stˇredn´ı hodnotu n´ahodn´e veliˇciny s rozdˇelen´ım F, pokud m´ate k dispozici pozorov´an´ı n´ahodn´eho vy´bˇeru s rozdˇelen´ım F ? Dokaˇzte, ˇze je tento odhad nestranny´.
+- Udělám průměr náhodného výběru. Jde o nestraný odhad kvůli slabému zákonu velkých čísel.
+
+3. Vysvˇetlete postup statistick´eho testov´an´ı hypot´ez. Ve vaˇsem vysvˇetlen´ı deﬁnujte pojmy
+” nulov´a hypot´eza“ a
+” hladina spolehlivosti“.
+- Nulová hypotéza je základní hypotéza statu quo, ve statistickém testování ji buď zamítneme nebo se nám ji nepodaří zamítnout.
+- Hladina spolehlivoti je minimální 1-pravděpodobnost, že dostaneme stejný výsledek nebo víc zavrhující H0, abychom H0 zavrhli. Tj. nejde o vlastnost dat, ale parametr statistického testování.
+
+4. Uvaˇzujte ˇsestici (1,2,2,3,3,3) jako pozorov´an´ı n´ahodn´eho vy´bˇeru s norm´aln´ım rozdˇelen´ım. Chcete zjistit, zda by stˇredn´ı hodnota tohoto rozdˇelen´ı mohla by´t rovna 2.2. Pouˇzijete t-test, p-hodnota je p ≈ 0.7, jaky´ z´avˇer uˇcin´ıte ?
+- Spočítám interval spolehlivosti pro 0.7, zjistím jestli do něj 2.2 spadá.
+
+P12: 
+1. Pravdˇepodobnost jevu A je P(A), pravdˇepodobnost jevu B je P(B). Vyj´adˇrete pravdˇepodobnost P(A∩B) souˇcasn´eho vy´skytu A a B, pokud v´ıte, ˇze A a B jsou nez´avisl´e.
+- Pro nezávislé platí, že P(A&B) = P(A) * P(B)
+
+2. Rozˇsiˇrte pˇredchoz´ı vyj´adˇren´ı pro pˇr´ıpad, kdy A a B jsou z´avisl´e. Staˇc´ı v tomto pˇr´ıpadˇe k vyj´adˇren´ı P(A∩B) znalost P(A) a P(B) ? 
+- Nestačím, musíme znát alespoň nějakou podmíněnou pravdpěpodobnost. Např. můžeme použít P(A & B) = P(A|B) * P(B)
+
+3. V experimentu se h´az´ı dvˇema kostkami. Pro kter´a n ∈{2...12} je jev ”souˇcet hod˚u obou kostek je n“ z´avisly´ na jevu ”hod prvn´ı kostky je 1“ ?
+- Určitě pro n>7
+- Určitě pro 2
+- Pro 7 nezávislé.
+- Pro všechny ostatní jsou závislé.

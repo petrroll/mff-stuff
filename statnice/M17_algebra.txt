@@ -1,0 +1,60 @@
+Podgrupa, normální podgrupa, faktorgrupa, ideál. Homomorfismy grup a dalších struktur. Podílová tělesa. 
+
+P16
+7 Mohutnost
+1. Napište deﬁnici pojmů „množina A má nejvýše tak velkou mohutnost jako množina B“ a „množiny A a B mají stejnou mohutnost“. 
+- Existuje prosté zobrazení z množiny A do množiny B. Pokud i inverzně, mají stjenou mohutnost.
+2. Ukažte, že množiny přirozených a celých čísel mají stejnou mohutnost. 
+- Existuje izomorfismus, který přiřazuje 1:1.
+3. Ukažte, že množiny přirozených a reálných čísel nemají stejnou mohutnost.
+- Neexistuje izomorfismus. Viz diagonální důkaz (nekonečnost desetiného rozvoje)
+
+P15: 
+14 Grupa
+1. Deﬁnujte izomorﬁsmus dvou grup. 
+- f: G(.) -> H(*) takove, ze Va,b f(a) * f(b) = f(a.b) je homomorfismus
+- izomorfismus je bijektivni homomorfismus 
+2. Uveďte příklad dvou konečných komutativních navzájem neizomorfních grup se stejným počtem prvků. Nezapomeňte ověřit, že uvedené grupy nejsou izomorfní.
+- Z4, Z2x2: (1,0) má order 4 v jendé a order 2 v druhé. 
+
+15 Grupa
+1. Deﬁnujte podgrupu grupy. 
+- Podgrupa je podmnožina uzavřená na operaci, která je současně grupa. Tj. podalgebra G(-, 0).
+2. Rozhodněte, zda cyklická grupa Z6 obsahuje podgrupu izomorfní se Z2, Z3 a Z4. Pro každou z možností buď uveďte příslušnou podgrupu, nebo zdůvodnění, že daná podgrupa neexistuje.
+- Z2 ano: je to dělitel (0, 3)
+- Z3 ano: je to dělitel (0, 2, 4)
+- Z4 ne: 4 nedělí 6, podmínka pro podgrupu
+
+J14: 
+1. Deﬁnujte pojem ” grupa“. 
+- Množina G s operací (.) je grupa G(.) pokud:
+  - Operace je asociativní a(bx) = (ab)x (pologrupa)
+  - Existuje neutrální prvek (monoid)
+  - Každý prvek má inverzi 
+2. Uvažujte algebry A = {0,1,2,3,4,5} s operací sčítání modulo 6 a B = {1,2,3,4,5,6} s operací násobení modulo 7. Ukažte, že A a B jsou grupy.
+- Uzavřenost kvůli modulo, ano. Inverzní prvky (0, 1 check)
+- Asociativní ano.
+- Inverzní prvky u sčítání ano. U násobení taky ano, 7 nesoudělná s čímkoliv v B.
+3. Jsou A a B cyklické grupy ? Pokud ano, naleznˇete u kaˇzd´e alesponˇ jeden gener´ator.
+- A: 1
+- B: 3
+4. Jsou A a B izomorfn´ı ?
+- Ano, všechny cyklické se stejným počtem prvků jsou izomorfní.
+
+L13: 
+1. Je Z4 (mnoˇzina {0,1,2,3} spolu s operacemi sˇc´ıt´an´ı a n´asoben´ı modulo 4) tˇeleso ? Proˇc ? 
+- neutrální prvky Ok, asociativita, komutativita ok
+- 2 není invertabilní vůči "*", tj. není.
+2. Lze na mnoˇzinˇe {0,1,2,3} deﬁnovat operace sˇc´ıt´an´ı a n´asoben´ı tak, aby vy´sledn´a struktura byla tˇelesem ? Zd˚uvodnˇete.
+
+L12: 
+1. Deﬁnujte pojem ” tˇeleso“. 
+- R(+, *, -, 0, 1)
+- R(+) komutativní grupa
+- R(*) monoid s 1 jako neutrální
+- a*(b+c) ab + ac
+- Každý R-0 invertabilní
+2. Jsou mnoˇziny Z, Q a R s obvykle deﬁnovany´mi operacemi sˇc´ıt´an´ı a n´asoben´ı tˇelesa ?
+- Všechny až na Z ano, Z nemá inverzní prvky k násobení.
+3. Sestavte tˇeleso nad mnoˇzinou o tˇrech prvc´ıch.
+- 0, 1, 2, mod 3

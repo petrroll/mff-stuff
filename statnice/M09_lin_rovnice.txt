@@ -1,0 +1,5 @@
+P12: 1. Dokažte, že elementární úpravy používané v Gausově eliminační metodě nemění řešení soustavy.
+P13: 2. Spočítejte Gausovou eliminační metodou řešení soustavy dané touto rozšířenou maticí:
+              1 1 1 1
+              1 1 4 4
+              1 2 3 4
