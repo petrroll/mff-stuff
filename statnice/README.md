@@ -1,0 +1,5 @@
+- [MI]xx_XYZ.txt: Vypsané staré (pre-2017) státnicové otázky k okruhùm obecné informatiky
+- StatniceDeniniceFull.txt: Vypsané definice ke státnicím
+- Lingvistika.txt: Linky na gdocs s øešenými otázkami zamìøení Poèítaèová lingvistika
+- poznamky-PP.pdf: Scany státnicových poznámek k jednotlivým okruhùm od Petry Pelikánové
+- zápisky-AS/: Zhuštìné poznámky k optimalizaèním metodám, temnu, a algebøe od Petry Pelikánové
