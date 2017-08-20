@@ -3,23 +3,23 @@ This repository is a collection of almost all digital materials I created / modi
 
 ---
 
-####Varování:
+#### Varování:
 Naprostou většinu zde zveřejněných materiálů jsem psal pro sebe, takže rozhodně není rozumné čekat kdovíjakou kvalitu / snahu psát poznámky tak, aby je pochopil každý. Pokud se ale na nečem zaseknete, tak klidně vytvořte issue / napište.
 
 Taktéž je dobré brát na vědomí, že jsou to ve valné většině materiály k bakaláři IOI začínajícího __v roce 2014/2015__, takže leccos už může být dávno zastaralé. Postupně ale, doufám, budou přibývat materiály z novějších ročníků, takže třeba relevanci udržíme.
 
 U každého zdroje proto bude v závorce rok, ke kterému se to váže (vždycky ten první z dvou kalendářních, vázajících se k tomu akademickému).
 
-####Co tu je?
+#### Co tu je?
 
 
-#####Prvácké předměty:
+##### Prvácké předměty:
 - Podtrhané & občas opoznámkované zápisky z přednášek Analýzy 1, 2 (2014)
 - Podtrhaná & občas opoznámkovaná skripta z Lineární algebry 1&2 (2014)
 - Cheatsheet k zkoušce z Linuxu (2014)
 - Vypracované hlavičky otázek k Sítím (2014, 2015)
 
-#####Druhácké předměty:
+##### Druhácké předměty:
 - Podtrhané & občas opoznámkované slidy z Logiky (2015)
 - Naprosto nekompletní poznámky k Cpp (2015)
 - Podtrhaná & občas opoznámkovaná skripta z ADS 2 (2015)
@@ -30,7 +30,7 @@ U každého zdroje proto bude v závorce rok, ke kterému se to váže (vždycky
 - Podtrhané & opoznámkované prezentace z Automatů a gramatik (2015) + řešená většina zkoušených jazyků.
 - Podtrhaná & opoznámkovaná skripta k Optimalizačním metodám (2015) + nafocené poznámky (moje, Štěpána Hojdara, Martina Šerého)
 
-#####Další předměty:
+##### Další předměty:
 - Podtrhané & občas opoznámkovaná stripta z Algebry (2015)
   - Lidsky přepsané důkazy k Algebře (2015)
   - Vyřešené otázky z Algebry (2015)
@@ -55,16 +55,16 @@ U každého zdroje proto bude v závorce rok, ke kterému se to váže (vždycky
 
 #### Co tu není, protože to žije jinde?
 
-#####Všechno:
+##### Všechno:
 - Sada zápisek ze __všeho__ možného i nemožného (třeba TeMNO) z dávných let (okolo roku 2007-2012) od Petera Černa [http://popelka.ms.mff.cuni.cz/cerno/notes/](http://popelka.ms.mff.cuni.cz/cerno/notes/)
   - Ručně psané, nejspíš na grafickém tabletu, nechybí občasné kresby
   - Alespoň teorie množin se zdá naprosto kompletní a velmi dobře zapsaná
 
-#####Prvácké předměty:
+##### Prvácké předměty:
 - Geniální zápisky ke Kombinatorice a Grafům od Petra Mánka (?) [https://github.com/petrmanek/cs-notes](https://github.com/petrmanek/cs-notes)
 - Poznámky k hned několika předmětům (TeMno, Kombagra, Analýza) od Václava Končického (2016) [http://atrey.karlin.mff.cuni.cz/~koncicky/notes/](http://atrey.karlin.mff.cuni.cz/~koncicky/notes/)
 
-#####Druhácké předměty:
+##### Druhácké předměty:
 - (WIP)Poznámky z pravděpodobnosti od Pavla Obdržálka (2015) [http://pobdr.matfyz.cz/?p=NMAI059&u=zs1516](http://pobdr.matfyz.cz/?p=NMAI059&u=zs1516)
 - Naskenované (ale fakt dobré) poznámky z Pravděpodobnosti a Statistiky od Vladislava Vancáka (2015) [https://drive.google.com/file/d/0B__lvxrRkCkMb1o2cUVZSFZacGM/view](https://drive.google.com/file/d/0B__lvxrRkCkMb1o2cUVZSFZacGM/view?usp)
  - V slabom zákone veľkých čísel má byť P(|Xn-μ|>ε) ide k nule.
@@ -74,5 +74,5 @@ U každého zdroje proto bude v závorce rok, ke kterému se to váže (vždycky
 #### Chcete přispět?
 - Super, nahoďte PR / pošlete mi mail s tím, co sem mám přidat a já tak rád učiním!
 
-####Licence & tak:
+#### Licence & tak:
 Vzhledem k tomu, že jsem nenašel licence k většině zde zveřejněných materiálu, tak jsem vždy předpokládal, že jsou určitě zveřejněny pod nějakou otevřenější licencí. Pokud víte, že v nějakém případě tak není, tak mi prosím dejte vědět. Rád cokoliv smažu.
