@@ -1,8 +1,14 @@
 P14: 1. Definujte reálný skalární součin.
+- Skalání součin na R je operace V^2->R
+  - <x,x> >= 0, 0 jen pokud x = 0
+  - <x,y> = <y,x>
+  - <x + ay, z> = <x,z> + a<y,z>
+  -- Standardne> x^Ty
 P14: 2. Rozhodněte, zda je skalárním součinem nad R³ zobrazení <x, y> = 2x₁y₁ + 2x₂y₂ + 2x₃y₃ + x₁y₃ + x₃y₁ + x₂y₃ + x₃y₂.
 	Ověříme 4 vlastnosti z definice.
 
 J16: 3. Napište definici ortogonálního doplňku množiny vektorů M do vektorového prostoru V.
+- M'={x€V | <x,y> = 0 Vy€M}
 J16: 4. Najděte bázi ortogonálního doplňku k jádru matice
                 1 1 1
             A = 2 1 0
@@ -11,12 +17,12 @@ J16: 4. Najděte bázi ortogonálního doplňku k jádru matice
 	tj. jenom udělám gausovku a zjistím bázi matice A
 
 J16: 5. Najděte všechny vektory, které náleží zároveň do jádra matice A a do řádkového prostoru matice A⁵.
-	nulový vektor
+	nulový vektor, jinak nic: řádkový prostor a kernel(A) jsou na sebe navzájem kolmé
 
 L16: 6. Ukažte, že ortogonální doplněk je vždy podprostor.
-	je tam nula
-	není nadmnožinou toho prostoru
-	takže už by jen něco mohlo chybět, chceme uzavřenost. Pro ort. dopl. platí, že se všema původníma vektorama (pod)prostoru se vynásobí na nulu. Takže kombinace vektorů z ort. dopl. je zase nula.
+- je tam nula
+- je uzavřený (pro každé x,y ta podmínka platí i pro součet a násobek)
+- z definice je to podmnožina
 
 L16: 7. V R⁵ určete dimenzi ortogonálního doplňku množiny všech řešení soustavy
                   (1 1 1 1 1)     (5)
@@ -26,7 +32,10 @@ L16: 7. V R⁵ určete dimenzi ortogonálního doplňku množiny všech řešen�
 	Vyřeším soustavu -> #nul. řádků je dimenze řešení -> 5 - #nul.řádků , tj. počet nenulových řádků
 
 J12: 8. Zformulujte Cauchy-Schwarzovu nerovnost o vztahu mezi skalárním součinem dvou vektorů a jejich normami.
+- Pro normu indukovanou skalárním součinem platí: 
+- Vx,y: ||x||*||y|| <= |<x,y>|
 	Věta 8.8
 
 J12: 9. Najděte ortogonální doplněk k prostoru generovanému vektory (3, -2, 2)^T a (1, 2, 2)^T při použití standardního skalárního součinu.
-	spočítáme vektorový součin těch dvou vektorů, ort. doplňkem je span(výsledku)
+- spočítáme vektorový součin těch dvou vektorů, ort. doplňkem je span(výsledku)
+- Kernel matice s těmito vektory v řádcích: (-1, -1/2, 1)

@@ -1,16 +1,19 @@
 P13: 1. Definujte pojem „determinant“.
+- orientovaný objem rovnoběžníku vymezeného vektory v řádcích matice
+- det(A) = SUM(p€Sn) sgn(p) * TIMES(a_i,p(i))
 P13: 2. Jaký je vztah determinantu matice A a k ní inverzní matice A^(-1)?
-	1/det(A)
+- 1/det(A), neb det(A) * det(A^-1) = det(In) = 1
 
 P12: 3. Dokažte, že det A = det A^T.
-	znaménka se nemění, když beru 1 z každého řádku a sloupečku, tak to je to samé pro překlopenou matici
+- znaménka se nemění, když beru 1 z každého řádku a sloupečku, tak to je to samé pro překlopenou matici
+- uvědomíme si, že inverzní permutace má stejné znaménko, formálně z toho
 
 P15: 4. Zformulujte Laplaceův rozvoj determinantu podle prvního řádku.
+- Det(A) = SUM_j->n( (-1)^i+j * a_1,j * det(A^1,j) ) // det(A^1,j) bez i-tého řádku a j-tého sloupce
 P15: 5. Lze použít tento rozvoj jako alternativní definici determinantu, popřípadě za jakých okolností?
-	ANO
+- Ano, za všech okolností, A musí tedy být čtvercová (ale jinak je stejně determinant 0 neb singulární a n >= 2)
 
 P15: 6. Pro matici A platí A² = A³. Jaký je determinant matice A?
-	0 nebo 1
+- Neb det(A*B) = det(A)*det(B), tady det(A)^2 = det(A^3), tj. 0 nebo 1
 
-P15: 7. Buď A ∈ T^(n*(n−1)) pevná. Rozhodněte a zdůvodněte, zda zobrazení f ∈ T^n → det(A|f) je lineární.
-	ANO
+
