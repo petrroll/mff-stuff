@@ -1,0 +1,232 @@
+Základní pojmy teorie grafů, reprezentace grafu. Stromy a jejich základní vlastnosti, kostra grafu. Eulerovské grafy. Rovinné grafy, barvení grafů. Mengerova věta, dualita toků a řezů. 
+
+Teoria grafov
+=============
+10 2012 - jaro
+Souvislost grafu
+minimální číslo takové, že existuje hranový/vrhocholový řez velikosti "k".
+
+Definujte hranovou (k e (G)) a vrcholovou (k v (G)) souvislost grafu G.
+Pokud δ(G) je minimálnı́ stupeň grafu G, najděte přı́klady grafů, pro které platı́:
+1. δ(G) = k e (G) = k v (G)
+2. δ(G) > k e (G) = k v (G)
+3. δ(G) = k e (G) > k v (G)
+4. δ(G) > k e (G) > k v (G)
+       pseudo motýlek
+         x   x
+        /|\ /|\
+       x-x x x-x
+        \|/ \|/
+         x   x
+
+Dokažte nerovnost δ(G) ≥ k e (G) ≥ k v (G).
+ - První zjevně, odeberu prostě hrany daného vrcholu.
+ - Druhá vychází z Mangereho vět. Každá n-tice vrcholově disj. je i n-tice hranově disj. Obráceně ale neplatí.
+
+Souvislost grafu
+1. Definujte hranovou souvislost k e (G) a vrcholovou souvislost k v (G) grafu G.
+- viz výše
+2. Jaká nerovnost existuje mezi hranovou souvislostı́ k e (G) a vrcholovou souvislostı́ k v (G) grafu G ? Zdůvodněte.
+- hranová > vrcholová, viz výše
+
+8
+Grafy
+1. Definujte pojem kostra grafu“.
+”
+- Podgraf grafu obsahující všechny vrcholy, který je zároveň stromem.
+2. Pro která přirozená čı́sla n existuje graf s právě n různými kostrami ? Ukažte.
+       kružnice délky n
+
+7
+Grafy
+Uvažte dva grafy S a D. U obou grafů jsou vrcholy polı́čka šachovnice n × n. Hrany v S spojujı́ polı́čka, mezi kterými se lze dostat jednı́m tahem střelcem (střelec se pohybuje jen šikmo pod úhlem 45 stupňů) a hrany v D spojujı́ polı́čka, mezi kterými se lze dostat jednı́m tahem dámou (t.j. šikmo jako střelec nebo svisle či vodorovně).
+1. Definujte pojem barevnosti grafu.
+- funkce b: V->[n], Vxy€E, b(x) != b(y)
+- nejmenší n takové, že pro něj b existuje
+2. Určete barevnost grafu S.
+       n-1 protože na každé diagonále je n barev, v podstatě sudoku / latinský čtverec
+3. V závislosti na n rozhodněte, zdali jsou grafy S a D eulerovské.
+       S není euler bo není souvislý [černá políčka]
+       D není euler pro sudá n [čtyři rohy mají lichý stupeň]
+       D je euler pro lichá n [v rohu máme sudý stupeň & indukcí pohybu [o jedo políčko] ukážeme zachováí sudosti]
+
+Rovinné grafy
+Graf (s alespoň třemi vrcholy) nazýváme rovinnou triangulací, pokud v libovolném jeho rovinném nakreslení je každá stěna trojúhelník.
+1. Uveďte obecný horní odhad počtu hran rovinného grafu vzhledem k počtu jeho vrcholů. Jde počet hran rovinné triangulace upřesnit ?
+- E < 3V - 6
+2. Dokažte, že pro každé n ≥ 3 existuje rovinná triangulace s n vrcholy.
+       trojúhelník do nějž vrazíme doprostřed vrchol & teď indukčně vždy do nějaké stěny
+           x
+          /|\
+         / x \
+        / / \ \
+        x-----x
+3. Pro která k existuje rovinný graf, jehož všechny vrcholy mají stupeň k ?
+- 1, 2, 3, ?4, ?5
+
+6 leto 2016
+Teorie grafů (barvení grafů) (povinné téma vašeho zaměření)
+1. Napište definici barevnosti grafu a určete barevnost následujícího grafu:
+- viz výše
+2. Zformulujte Brooksovu větu o barevnosti grafů maximálního stupně ∆.
+- Nechť je graf k-degenerovaný, barevnost <= k + 1
+3. Dokažte bez použití Brooksovy věty, že obsahuje-li souvislý graf maximálního stupně ∆ vrchol stupně menšího než ∆, pak jeho barevnost je nejvýše ∆.
+- Indukcí, obarvím ten s menším stupňem, odžíznu. Zmenší se něčemu stupeň, ... pokračuju.
+
+Kostra grafu
+1. Definujte co je to kostra souvislého grafu.
+- viz výše
+2. Mějme graf G = (V, E) na n vrcholech, jehož každý vrchol má stupeň d. Předpokládejme, že G má k koster a že každá hrana G je obsažena ve stejném počtu koster. Nechť e je hrana grafu G. Kolik koster má graf G − e = (V, E \ {e})?
+- u = k/d, kn=u*(d-1)
+3. Kolik koster má graf na následujícím obrázku?
+- shrug
+
+Teorie grafů
+Mějme graf G, který vznikne z cyklu C 9 na vrcholech v 1 , . . . , v 9 přidáním hran (v i , v j ) pro všechna i ≡ j (mod 3).
+1. Kolik nejvíce hran je možné z grafu G odebrat, aby zůstal stále souvislý ?
+- počet hran - 8 (aby zůstal jako kostra)
+2. Spočítejte, kolik vrcholů je třeba z grafu G odebrat, aby se vrcholy v 1 a v 5 ocitly v různých komponentách souvislosti.
+- nakreslit, vyzkoušet
+Ukažte, že tento počet nelze snížit. : 
+- mengerova věta, k vrcholově souvislých cest
+3. Zformulujte Mengerovu větu o charakterizaci vrcholově k-souvislých grafů. Uveďte hlavní ideu důkazu.
+- Graf je vrcholově k-souvislý existuje li pro každé dva vrcholy k vrhocholově disj. cest.
+- dělení hran (převedení na hranově souvislé) & tok
+
+
+Souvislost grafu
+1. Definujte hranovou (k e (G)) a vrcholovou (k v (G)) souvislost grafu G.
+- viz výše
+2. Pokud δ(G) je minimální stupeň grafu G, najděte příklady grafů, pro které platí:
+(a) δ(G) = k e (G) = k v (G)
+(b) δ(G) > k e (G) = k v (G)
+(c) δ(G) = k e (G) > k v (G)
+(d) δ(G) > k e (G) > k v (G)
+3. Dokažte nerovnost δ(G) ≥ k e (G) ≥ k v (G).
+- viz výše
+
+
+Souvislost grafu
+1. Definujte vrcholovou a hranovou k-souvislost jako vlastnosti grafu.
+- hranová >= vrcholová
+2. Jaký je vztah mezi k-souvislostı́ grafu a disjunktnı́mi cestami mezi dvojicemi vrcholů ?
+- Ford-Falkersonova věta / Mengerova věta.
+3. Dokažte, že pokud je 3-regulárnı́ graf (všechny jeho vrcholy majı́ stupeň roven 3) hranově k-souvislý, pak je také vrcholově k-souvislý.
+- NETUŠÍM
+
+Grafy
+1. Definujte pojem (neorientovaného) stromu v teorii grafů.
+- Souvislý graf bez kružnic.
+2. Jaký je vztah mezi počtem vrcholů a hran stromu ?
+- E = n-1
+3. Necht’ T = (V, E) je strom s |V | ≥ 3 a e ∈ V 2 \ E je nová hrana. Dokažte, že graf T + e = (V, E ∪ {e}) obsahuje právě jednu kružnici.
+- mezi vrcholy, kam se přidala hrana musela vést již jiná cesta, jinak nesouvislý -> nestrom. Tj. nyní musí být cyklus neb cesta + nová hrana.
+
+18
+Rovinné grafy
+1. Definujte pojmy oblouk“ a nakreslenı́ grafu“.
+- oblouk je funkce [0, 1] => R^2, spojitá prostá
+- nakreslení je přiřazení bodů do R^2, a přiřazení oblouků k hranám, že koncové body, a že žádný bod není nekoncovým bodem
+- rovinné pokud existuje a pokud se žádné oblouky nekříží mimo koncových bodů.
+2. Najděte přı́klad souvislého grafu, který splňuje rovnost |E| = 3|V | − 6, ale nenı́ rovinný.
+  K3,3 + 6 hran
+3. Rovinné nakreslenı́ grafu je triangulace, jestliže je hranice každé stěny trojúhelnı́k. Dokažte, že rovinný graf G = (V, E) s
+alespoň 3 vrcholy je triangulacı́ právě tehdy, když |E| = 3|V | − 6.
+- S / 2 = E / 2, V + E + s = 2
+- Viz důkazy diskrétka.
+
+20
+Základnı́ pojmy teorie grafů
+1. Definujte úplný graf K n a úplný bipartitnı́ graf K m,n .
+- všechny hrany co možné
+- biparitní dvě množiny bodů [m], [n]: všechny hrany mezi
+2. Pro jaká m, n ∈ N je K m,n cestou ?
+  1,1;1,2;1,0
+3. Pro jaká n ∈ N je K n rovinný ?
+  1,2,3,4 (každý větší má K5)
+4. Pro jaká m, n ∈ N je K m,n rovinný ?
+  K3,3 už není
+  K2,milion je (velká partita uprostřed)
+Odpovědi zdůvodněte.
+
+17
+Grafy
+1. Uved’te tvrzenı́ o maximálnı́m počtu hran rovinného grafu.
+  3n-6
+2. Jaký bude maximálnı́ počet hran v přı́padě rovinného bipartitnı́ho grafu?
+  nejsou trojúhelníky: 2n-4
+3. Pro které hodnoty m, n je úplný bipartitnı́ graf K m,n rovinný?
+  Viz nahoře
+18
+
+Grafy
+1. Vyslovte Eulerovu větu o kreslenı́ grafů jednı́m uzavřeným tahem.
+  Pokud je souvislý & všechny vrcholy mají sudý stupeň.
+2. Charakterizujte grafy, které lze nakreslit jednı́m tahem, který ale nemusı́ být uzavřený.
+  Právě dva / žádné vrcholy mají lichý stupeň. & Souvislost.
+
+1
+Nejkratšı́ cesta grafem
+1. Uvažujte graf s kladným ohodnocenı́m hran (délka). Definujte formálně problém hledánı́ nejkratšı́ cesty mezi dvěma uzly
+tohoto grafu.
+- Nejkratší cesta je cesta, pro kterou neexistuje jiná cesta (líšící se alespoň v jedné hraně), která by měla součet ohodnocení hra kratší.
+2. Napište pseudokód algoritmu pro hledánı́ nejkratšı́ cesty mezi dvěma uzly grafu s kladným ohodnocenı́m hran.
+- začnu vrcholem, přidám jeh sousedy do min. haldy. Vyberu nejmenšího souseda, otevřu jeho sousedy, případně aktualizuju aktuální sousedy, ...
+
+16
+Eulerovské grafy
+1. Definujte eulerovský graf.
+- Eulerovský graf je graf, ke kterému existuje eulerovský tah. Tj. tah procházející všechny hrany a začínající & končící ve stejném bodě.
+2. Formulujte nutnou a postačujı́cı́ podmı́nku pro to, aby graf byl eulerovský (Eulerovu větu).
+  Sudé stupňě & souvislost.
+3. Necht’ n ∈ N, uvažujme graf G = (V, E) s vrcholy V = {0, 1}^n a hranami mezi těmi vrcholy, jejichž posloupnosti se lišı́
+v lichém počtu pozic (tedy napřı́klad pro n = 2 je V 00 spojen s V 01 a V 10 ale nikoliv s V 11 ). Pro která n je tento graf
+eulerovský ?
+  Určitě je souvislý. Odevšad se dá dostat všude (postupně změnama o jednu pozici)
+  - O jednu pozici každý souvisí s (n over 1) vrcholy
+  - O tři pozice (n over 3) 
+  - ...
+  -> Je součet i=1, 3, 5, ... n: (n over i) sudý?
+
+17
+Vlastnosti grafů
+1. Definujte stupeň vrcholu v (neorientovaném) grafu.
+- počet incidentních hran
+2. Vyjádřete (bez sumy) součet stupňů vrcholů stromu, tedy
+P
+v∈V
+deg(v) pro strom T = (V, E).
+  2n - 2
+
+3. V závislosti na přirozeném čı́sle n rozhodněte, kdy existuje graf s 2n vrcholy takový, že n vrcholů má stupeň 1 a n vrcholů
+stupeň 2. Pro která n existuje takový graf, který je navı́c souvislý ?
+  Pro lichá "n" to fungovat nemůže (lichý součet stupňů vrcholu -> nemožné (páč součet stupňů & princip sudosti))
+  Pro sudá "n" cestičky délky 4
+
+  Souvislost jen pro n = 2
+
+
+2
+Tok v síti
+1. Definujte síť a tok.
+- Graf, z, s € E, c: E-> R
+- Tok: f: E->R, až na z, s co přičete odteče, tok c(e) >= f(e)
+2. Formulujte v pseudokódu Fordův-Fulkersonův algoritmus pro hledání maximálního toku v síti.
+- přes DFS najdu nenasycenou cestu (beru v úvahu zpetné cesty), zlepším, ...
+- jakmile nejde, konec
+3. Jakou má tento algoritmus časovou složitost:
+(a) pro sítě s jednotkovými kapacitami,
+- "M", pokaždé zlepším o 1
+(b) pro sítě s celočíselnými kapacitami,
+- součet kapacit (pokaždé zlepším o 1)
+(c) pro sítě s reálnými kapacitami ?
+- nedefinovanou, nemusí doběhnout
+
+21
+Grafy
+1. Definujte pojem bipartitního grafu (ne nutně úplného).
+- dvě disjunktní & pokrývající množiny vrcholů, hrany jen mezi nimi
+2. Rozhodněte, pro která n ∈ N existuje bipartitní graf s n vrcholy, jehož doplněk je také bipartitní.
+  2, 2; 1, 2; partita velikosti 3 vytvoří K3 -> :(
+3. Pro které hodnoty m, n ∈ N je úplný bipartitní graf K m,n rovinný ? Odpověď zdůvodněte.
+- viz výše, 2,x & x,2: velká partita uprostřed

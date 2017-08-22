@@ -1,0 +1,637 @@
+Velké
+=====
+1. Korpusy. Charakterizovat korpusy, ktere jsme probirali (zdroje textu, co je v nich znackovano atd.).
+   K cemu jsou korpusy dobre v teoretickem i aplikovanem vyzkumu.
+=======================================================================================================
+- korpus je sbírka textů, v ideálním případě kompletní a samostatná
+- v lingvistice to je soubor textů, promluv apod. považovaný za více méně reprezentativní vzorek jazyka
+- obvykle elektronické
+- v současnosti obsahují miliony slov
+- vlastnosti analyzovány pomocí značek (tagů, informace identifikující a klasifikující slova) a konkoračních programů
+- korpus bude vždy zkreslený, něco nebude obsahovat (třeba neslušné věty)
+
+Charakteristika moderních korpusů
+---------------------------------
+- výběr vzorků a reprezentativnost: jazyk nekonečný, korpus konečný -> je nutné hledat způsoby, jak konstruovat vyvážené a méně jednostranné korpusy
+- konečná velikost: mají pevnou velikost, která umožňuje kvantitativní výzkum (vyjma monitorovacích korpusů kam data stále přibývají)
+- strojem čitelná podoba: -> snadné prohledávání, rychlá manipulace, snadné doplňování o dodatečné informace
+- standardní reference: aby korpus mohl sloužit širšímu publiku, musí dodržovat určité standardy
+
+Probrané korpusy
+----------------
+- Brownův korpus: Francis a Kučera, 1 milion slov 1961, 15 druhů textu, 500 textů, první moderní elektronický
+- Penn Treebank: první syntakticky anotovaný, 1 milion slov, Wall Street Journal, 80.-90. léta
+- Pražský závislostní korpus: založeno na FGD, 100 000 vět, 1.25 milionu běžných slov, anotace na úrovni morfologie, analytické roviny a tektogramatické roviny
+- Český národní korpus: UK, MUNI, ÚJČ AV, morfologické značkování, 600 milionů slov
+
+- British National Corpus: 100 milionů slov, morfologická anotace, paný a mluvený jazyk
+- American National Corpus: 22 milionů slouv současné am. angličtiny, morfologická anotace
+- Corpus of Contemporary American English: 410 milionů slov, 20 milionů za rok mezi 1990 a 2010, morfologická anotace
+- Oxford English Corpus: 2 biliony slov, morfologická anotace, gramatické vztahy získané pomocí Sketch Engline
+
+K čemu dobré
+------------
+- pro překlad, pro generování
+- jsou dobrým zdrojem dat
+- jsou relativně reprezentativní
+
+
+2. MOSAIC
+=========
+- Morphemic Oriented System of Automatic Indexing and Condensation
+- vytvořeno v 70. letech na MFF (Kirschner a kolektiv)
+- cílem byla metoda pro automatickou indexaci nezkrácených dokumentů, avšak umožňuje i kondenzaci textů
+- využívá toho, že řada přípon a koncovek nese význam
+
+Algoritmus
+----------
+- vstupem je nijak nepředzpracovaný text, u kterého je zachováno typografické členění
+- výstupem je seznam deseti nejvýznamnějších termínů (seřazený dle četnosti)
+
+1) Lematizace
+- určení základního tvaru, ze kterého vznikl tvar nalezený v textu
+- spojeno s morfologickou analýzou -> značky
+
+2) Selekce
+- nalezená lemmata jsou profiltrována a některá jsou odstraněna
+	* některé koncové segmenty se můžou pojit s kmeny slov, které nepatří do dané tematické oblasti
+	* malý negativní slovník, řádově desítky slov
+	* omezení na určité slovní tvary (některá slova se v odborném textu mohou objevit pouze v určitém pádě nebo čísle)
+	* škrtnou se slova, která obsahují nevhodné kombinace znaků
+
+3) Zjednodušené syntaktická analýza
+- zejména analýza jmenných skupin
+- pomocí jazyka Q-systémů
+- odhalí se několikaslovné termíny, u nichž se započítávaly i termíny v nich obsažené
+- př. zesilovač vs. operační zesilovač TESLA KC 415
+
+4) Výpočet vah jednotlivých termínů
+- určují se na základě: pozice v textu (nadpis, podtitul,...)
+                        délky slovního spojení (delší mají větší váhu)
+                        vztahu k jiným výrazů (hlavně na principu inkluze -- obsažení v jiném termínu)
+
+5) Normalizace
+- důležité pro porovnávání dokumentů různé délky
+
+Výhody
+------
+- nejsou nutné vytvářet slovníky odborných termínů, stačí množiny relevantních koncovek a přípon, negativní slovník a pravidla
+- lokální syntaktická analýza umožňuje větší flexibilitu při hledání termínů
+
+Problémy
+--------
+- pracné vytváření slovníků a omezujících pravidel v závislosti na tematické oblasti
+- neřeší nevyjádřené podměty a odkazování pomocí zájmen apod.
+
+
+3. ASIMUT
+=========
+- Automatická Selekce Informace Metodou Úplného Textu
+- MFF 90. léta
+- úkolem vyhledávání informací v úplném textu (nijak předem upravován)
+- 2 části: dotazovací modul a jazykový modul
+- text v databázi byl předem rozdělen na sekce, části, odstavce, věty a slova
+- součástí byl negativní slovník -- obsahoval slova, která nenesou žádnou informační hodnotu nebo se často opakují (spojky, zájmena,...)
+- při vkládání nového textu se vytvářela konkordance (speciální index, přes který se poté vyhledávalo)
+	všem slovům mimo negativní přiřazena adresa a frekvence výskytu v textu
+	vyhledávání probíhalo na konkordanci
+- nefunguje dobře se slovesama
+
+Vyhledávací modul
+-----------------
+- operátory určující vzdálenost slov (slova musí být vedle sebe, mezi slovy max 2 další slova, ve stejné větě,...)
+- operátor disjunkce (čárka), skloňování (vykřičník)
+
+Jazykový modul
+--------------
+- modul pro automatické skloňování českých slov
+- prošel několika verzemi, v té finální umožňoval zadat pouze slovo (podstatné nebo přídavné jméno) a bez dalších informací jej uměl vyskloňovat
+- metoda založená na vlastnostech jednotlivých koncových segmentů základních tvarů
+- jako podklad použit retrográdní slovník dr. Slavíčkové (slova řazena abecedně od posledního znaku slova, diakritika samostatné znaky)
+- místo rozsáhlého slovníku byly potřeba jen seznamy výjimek pro koncovky
+- systém dokáže odvodit potřebné odvozené kmeny (patro/pater)
+- přegenerování -- ne vždy lze spolehlivě určit skloňování (životný vs. neživotný tvar - právník/trávník)
+                -- systém vygeneroval i nesprávné tvary, ale ty se v textu běžně neobjevují
+- !!! nedělá lemmatizaci -- prostě slovo odzadu rozebírá tak dlouho, až pozná, jak ho má vyskloňovat, a pak to udělá, aniž by to slovo kdy hledal v nějakym slovníku
+                         -- jedinej slovník, kterej má, je seznam výjimek
+                         -- s tím souvisí to, že slova, která hledáte, mu musíte zadat v prvním pádě jednotného čísla.
+
+
+4. Podrobně popište automatický překlad metodou zašuměného kanálu
+=================================================================
+- idea byla překlad z francouzštiny do angličtiy
+- hledáme model P(A|F) - udává pravděpodobnost anglické věty a za předpokladu, že máme francouzskou větu f
+- tréninkový korpus nám pomůže nastavit parametry
+- použijeme bayesův vzorec: P(a|f) = P(f|a) * P(a) / P(f)
+- obrátil se směr překladu -> budeme hledat dva modely:
+		1. jazykový model cílového jazyka P(a) -- např. trigramový model založený na rozsáhlejším korpusu cílového jazyka (stamiliony slov)
+		2. překladový model P(f|a) -- založen na menším paralelním korpusu francouzko-anglického
+- důležité: překlad probíhá obráceně
+            jazykový model odfiltruje nepodařené překlady, vyrovná chyby překladového modelu
+            jazykový model vybírá pouze "hezké věty", nemá vztah k originálu
+            hledání překladových hypotéz (dekodování) je obtížné samo o sobě
+- zašumněný kanál protože předstíráme, že jsme obdrželi větu "pokaženou" přenosem přes nespolehlivý kanál a hledáme její správný originál
+
+
+5. Chomského teorie popsaná v knize Syntactic structures
+========================================================
+- 3 základní komponenty: 1. Báze
+                            - soubor bezkontextových pravidel generující složkové stromy (=frázové ukazatele)
+                         2. Transformační komponenta
+                            - transformační pravidla operující na celých frázových ukazatelích
+                            - z nich vytváří povrchovou strukturu věty
+                            - 2 typy pravidel: obligatorní (nepovinné) a fakultativní (povinné)
+                         3. Fonologická komponenta
+                            - obsaguje regulární přepisovací pravidla přidělující řetězům morfémů fonetické interpretace
+- transformace jsou definovány strukturním indexem řetězců (řez stromem i přes různé úrovně, výraz se matchuje na množině vrcholů)
+                               a strukturní změnou (co se má s vrcholy provést)
+- pravidla jsou příliš silná (na úrovni Turingova stroje) -> později se omezovala
+
+6. Gramatická správnost, 2 hlavní metody, co se dá kontrolovat obecně, co v češtině
+   Jaké jsou v češtině metody kontroly gramatiky, LanGR, RFODG
+===================================================================================
+Co kontrolovat obecně
+---------------------
+- slovosled
+- forma sloves (čas)
+TODO
+
+Problémy češtiny
+----------------
+- gramatická shoda, hlavně shoda podmětu s přísudkem
+- interpunkce
+- neprojektivní konstrukce
+- zájmena (mě/mně)
+
+Metody
+------
+- Chybové vzorky - vhodnější pro jazyky s pevným slovosledem, kde se chybné konstrukce vyskytují v lokálním kontextu
+- Gramatika - nelze rozeznat, kdy je konstrukce opravdu chybná a kdy je chybná kvůli neúplné gramatice
+
+RFODG
+-----
+- Robust Free-Order Dependency Grammar
+- jedno pravidlo gramatiky může popisovat správnou i chybnou konstrukci zároveň
+- výpočet probíhá ve fázích
+- interpret gramatiky rozhoduje, jak se bude stejné gramatické pravidlo používat
+- 3 fáze: pozitivní projektivní
+          negativní projektivní nebo pozitivní neprojektivní
+          negativní neprojektivní
+- novější implementace (Holan) umožňuje ještě plynulejší fázování výpočtu
+
+LanGR
+-----
+- Květoň 2003
+- je to to, co používá MS Word
+- pravidla psána ručně na základě korpusu, pracují v cyklech, jsou vzájemně nezávislá, jsou neuspořádaná
+- pravidla mohou mít neomezený kontext
+- pracuje s pozitivními a negativními desambiguačními pravidly
+- snaha o velkou precision (85%, nenabízím k opravě správné) oproti recall (30%, odhalení všeho)
+	uživatele otravuje tak jednou za 3-4 stránky
+- primárně pro češtinu
+- každé pravidlo má 4 části: kontext
+                             desambiguace -- po odstranění všech značek je něco špatně, musí se to ještě opravit
+                             report
+                             akce
+- neřeší problém, že věta může být správně, ale až v dalekém kontextu
+- problém jak hodnotit kvalitu grammar-checkeru, nutno dělat ručně
+- příprava: segmentace (rozseká na věty)
+            tokenizace (rozseká na slova)
+            morfologická analýza (každému tokenu dá seznam dvojic lemma-tag
+            morfologická deambiguace (výběr dvojic, ideálně jedna pro jeden token)
+            syntaktická analýza
+            sémantická analýza
+
+
+Malé
+====
+1. Co je to morfém a jak ho klasifikujeme?
+- Morfém je nejmenší jazyková jednotka nesoucí význam.
+- Klasifikace: lexikální (nese význam slova, =kmen) a gramatický (nese gramatickou roli slovního tvaru)
+
+2. Na co slouzi strukturni index u Chomskeho gramatiky?
+- strukturní index = řez stromem, i přes různé hladiny
+- pomocí něj se tvoří pravidla (část transformace, vrcholy, na kterých se poté provede změna)
+
+3. Rozdil mezi hloubkovou a povrchovou rovinou.
+- povrchová řeší zápis věty
+- hloubková řeší význam věty
+- jedné povrchové reprezentaci může odpovídat více hloubkových (věta je významově víceznačná)
+  a naopak (jeden význam lze vyjářdřit různě)
+
+4. Vauquoisuv trojuhelnik (stacilo nakreslit)
+- čím vyšší patro, tím těžší provedení
+
+                    Interlingua
+              ________^      \____________
+             /                            \ konceptualní generování
+            / kon. analýza                 \
+           /                               \/
+  semantická -----semantic transfer----> semantická
+  struktura                             struktura
+       ^                                   \
+      / shallow                             \ sémantické generování
+     / semant. analýza                       \
+    /                                        \/
+syntaktická ----syntactic transfer------> syntaktická
+struktura                                  struktura
+    ^                                           \
+   /                                             \ syntaktické generování
+  / parsing                                       \
+ /                                                \/
+slova ------------------direct-----------------> slova
+  ^                                                |
+  |                                                | morfologické generování
+  |morf. analýza                                   |
+  |                                               \/
+source lang.                                    target lang.
+text                                              text
+
+
+- běžně proběhne morf., syntak. a semant. analýza, pak transfer do interlingui, pak se generuje text v novém jazyce
+- ručně běžně části synt. a semant. analýzy, uprava textu do hezké podoby
+- strojově třeba transfer
+
+5. Ontologie - co to je a jak se pouziva
+- ontologie je množina tříd objektů, která klasifikuje objekty universa
+- každý objekt (slovo) do třídy patří (+), nepatří (-), nebo na ní nezávisí (0)
+- třídy je možné dále dělit
+- jsou doménové či vrcholové (množ. nejzákladnějších výrazů, nezávislé na jazyku)
+- použití v sémantických sítích, klasifikace slov
+
+6. EuroWordNet, WordNet
+- sémantické sítě
+- umožňují určit různé vztahy a směry vztahů mezi pojmy, tj. nejen hierarchii sémantických tříd, ale i vztahy napříč nimi
+- WordNet se pokouší o klasifikaci slov v angličtině
+             shormažďuje slova do skupin synonym (patřících k jednomu konceptu)
+             dělí slova na víc možných významů, řazených podle frekvence
+- EuroWordNet původní koncept vylepšuje ještě o vrcholové ontologie
+                                                jazykově nezávislé koncepty, tedy dělení sítí napříč jazyky
+                                                jazykově nezávislý index
+- WordNet je používán např. v míře spolehlivosti překladů Meteor MT na hledání synonymity; hodí se i pro získávání znalostí z internetu
+
+7. Český národní korpus (slozeni, velikost, typy znacek)
+- vyvíjen na UK, MUNI a ÚJČ AV
+- obsahuje cca 500 miliónů slov, část je veřejně přístupná
+- je morfologicky anotovaný
+- morfologický slovník obsahuje přes 700 000 lemmat, rozezná 15 mil. slovních tvarů, používají se poziční tagy (15 pozic), využívá statistické modely
+- přesnost cca 94 %, po desambiguaci přiřadí cca 4.29 tagů průměrně
+
+8. Překladová paměť
+- využití dříve přeložených textů (člověkem)
+- systém ukládá dvojici: text v původním jazyce a překlad
+- když se objeví podobná či stejná fráze jako v tom přeloženém, nabídne překlad
+- vhodné pro techničtější texty, pro beletrii tolik ne
+- terminologická databáze: plněna ručně, je z konkrétních termínů obou jazyků
+- dnes se kombinuje se statistickým překladem
+
+9. Co je to izolační jazyk + příklad
+- izolační jazyk je příkladem analytického jazyka
+- každé slovo je i morfémem, nemá před/přípony
+- čínština, vietnamština
+
+10. co je to interlingua a k čemu se používá
+- interlingua je hypotetický formální logický zápis sdělení
+- konstrukce obecné interlingui zatím moc neexistuje (význam se těžko zapisuje)
+- bývá to umělý jazyk volně založený na románských jazycích
+- používá se na překlad mezi dvěma jazyky (jako mezijazyk)
+
+11. rozdíl extenze / intenze v sémantice
+- extenze je souhrn věcí, které pod pojem spadají
+- intenze je popis (charakteristika, definice) pojmu
+- př. "čtyřúhelník": intenze = rovinný mnohoúhelník se 4 vrcholy a 4 stěnamy
+                     extenze = různoběžník, rovnoběžník (obdélník, čtverec, kosočtverec), lichoběžník, deltoid,...
+
+12. Kategoriální gramatika
+- každému vstupnímu slovnímu tvaru je přiřazena kategorie, která reprezentuje syntaktické vlastnosti
+- kategorie mají obecný formát a/b nebo a\b, kde lomítko určuje pozici argumentu b (je vpravo /, je vlevo \ od a)
+- v čisté kat. gram. jsou pouze dvě pravidla (zkracování): X/Y Y => X
+                                                           Y X\Y => X
+
+13. Česílko
+- lokalizace velkých SW systémů
+- snaha minimalizovat lidský podíl na překladu
+- myšlenka překládat z jazyka blízkého místo z jazyka typově odlišného
+- překlad FAHQ (plně automatický, vysoce kvalitní), blízké jazyky, plné morfologické slovníky, statistická analýza češtiny
+- přeloží se pomocí lidí do jednoho jazyka, z tohoto se pak překládá do podobných jazyků (často stejný slovosled, shodná syntaxe, né úplně odlišné tvarosloví)
+
+14. Lemmatizace - co to je a kde se používá
+- proce výběru správného základního tvaru, ze kterého byl odvozen vstupní tvar
+- používá se ve vyhledávání v textech
+
+15. Teorie minimalismu - autor a na které teori navazuje
+- autorem Chomsky
+- obsahuje jen 2 roviny: rovinu logické formy (reprezentace jazyka a významu) a fonetickou rovinu (zvuková stránka jazyka)
+- navazuje na teorie: Standard Theory (Chomsky)
+                      Extended ST
+                      Government-binding Theory (založena na obecných principech univerzální gramatiky a parametrech platných pro daný jazyk)
+
+16. Vztah mezi významem a pravdivostí přirozených jazyků
+- pravdivost dána kontextem, není obsažena v jazyce, jsou k ní potřeba různá pravidla a předpoklady světa
+- i nepravdivé věty mohou mít svůj význam
+- u některých vět zase není možné ověřit pravdivost
+- těžké rozlišit věty se stejným významem
+- sémantika formálních jazyků pojmy často ztotožňuje
+
+17. Rozdíly mezi modelově teoretickou a kompozicionální sémantikou
+- modelově-teoretická: pracuje s pravdivostními podmínkami vztaženými k určitému modelu
+                       syntaktické kategorie odpovídají sémantickým typům
+                       obsahuje základní lexikální výrazy a jejich interpretaci, syntaktická a sémantická pravidla
+- kompozicionální: vychází z principu kompozicionality, tj. malé významové jednoty -> skládám -> určují větší jednoty (věty,..)
+                   používá různé reprezentace -- sémantické rysy a jejich skládání
+                                                 koncepty a převod ze syntaktické reprezentace
+                                                 logickou reprezentaci a zjišťování pravdivosti
+
+18. 4 typy anaforických vztahů v textu + příklady
+- anafora = odkazování zpětně v textu
+- typy: 1. Zájmena a nevyjádřený větný člen -- "Jakub šel udělat čaj. To neměl dělat."
+        2. Určité jmenné skupiny -- dvojí sousloví označující to samé, "Vyhrajeme, řekl _Pavel Nedvěd_. Mužstvo mělo rádo, když _jejich kapitán_ takto promluvil."
+        3. Elipsa -- vynechání části věty s informací, která je příjemci známá, "Petr přinesl dva stoly. Dřevěný a kovový."
+        4. Textové spojovací výrazy -- spojky, například, na jedné straně -- na druhé straně, "Nejdříve si dáme jídlo, pak siestu."
+
+19. Preeditace při automatickém překladu
+- text se ručně oseká o zvláštnosti, zkrátí se věty
+- víceznačná slova se nahradí jednoznačnými
+- zavedeno, když se zavedly slovníky pro předpony apod.
+
+20. Co je to ALPAC
+- American Language Processing Advisory Committee
+- 1966 vydána zpráva, konstatuje nutnost investic do dlouhodobého teoretického lingv. výzkumu
+- měla za důsledek konec podpory, i když nebyla negativní
+- práce mimo USA pokračovaly
+
+21. valence
+- od 60. let
+- zachycuje vazby vyžadované nebo povolené řídícími slovy
+- vznikl Valex (valenční slovník) - Lopatková, Žabokrtský
+- v rámci FGP: slovesa - Panevová, Hajičová; substantiva - Novotný, Panevová; adjektiva - Piťha, Panevová
+- 2 základní druhy závislých členů na TG rovině
+	aktanty - konatel, patient, adresát, origo, efekt
+            - každý z nich ve větě pouze jednou (ale lze je koordinovat)
+	volná (fakultativní) doplnění - mohou se vyskytovat vícekrát
+- aktanty jsou obligatorní a fakultativní (na TG rovině)
+- obligatorní aktant nesmí ve větě chybět (může na povrchové rovině, pokud ho známe třeba z kontextu)
+- valenční rámec = množina aktantů a volných doplnění ve větě
+
+22. co znamena zkratka TAG, strucne vysvetlit princip
+- Tree Adjoining Grammars
+- zákl. strukturou jsou stromy: základní (udává valenční vztahy a strukturu věty) a pomocný
+- nahrazují se uzly stromu jinými stromy tehdy, když se uzel a kořen stromu shodují
+- substiuovatelné uzly jsou označené šipkou
+- proces končí, když nelze žádný uzel nahradit
+- mohou dosahovat až kontextových gramatik (list nahrazen pomocným stromem)
+- typy změn: subsitutce, adjungace (vnitřní uzel nahrazen pomocným stromem)
+
+23. rozdil mezi interliguou a pivotnim jazykem
+- interlingua je umělý jazyk
+- pivotní jazyk je nějaký přirozený
+- oboje funguje jako mezijazyk při překladu
+
+24. Fregova koncepce (Fregeho princip kompozicionality)
+- týká se sémantiky
+- výhnam složeného výrazu je jednoznačně určen významy jeho částí a způsobem jejich kombinace
+
+25. presupozice
+- předpoklady (světa,...)
+- je to problém u významu vět
+
+26. HPSG
+- Head Driven Phrase Structure Grammar
+- zahrnuje principy, gramatická pravidla a slovníkové položky (tříděné dle různých kategorií)
+- slovo má 2 základní rysy: 1. phon (zvuk, fonetická forma)
+                            2. synsem (syntaktické a sémantické informace)
+- rysy dále děleny
+- zákl. typem je znak, který se dělí na slova a fráze
+
+27. LFG
+- Lexical Functional Grammar
+- lexical = bohatý lexikální slovník, který obsahuje např. informace o vztazích mezi různými tvary sloves
+- functional = gramatické pojmy (jako podmět a předmět) jsou primitivními typy, tj. nejsou definovány přes konfiguraci frázových složek
+- dělí jazyk do několika struktur, 2 hlavní: 1. Gramatická reprezentace (f-structure) -- mapuje atribut-hodnota, reprezentuje funkční vztahy ve větě
+                                             2. Syntaktické složky (c-structure) -- používá složkové stromy, spojuje slova do frází
+- každá c-struktura se spojuje jen s jednou f-strukturou, ale ne naopak
+- každé pravidlo c-struktury má informace jak přejít na f-strukturu
+- pomocí unifikací se skládá f-struktura celé věty
+
+28. FGD
+- Functional Generative Description (funkční generativní popis)
+- Sgall, Hajičová, Panevová
+- pro účely teoretického popisu struktury českých vět
+- základná charakteristikou je stratifikační přístup k popisu jazyka -> popis rozdělen do 5 rovin
+- každý rovina je množinou zápisů vět, každá má svou syntax
+- závislostní, generativní (ale i analýza): 1. fonetická
+                                            2. fonologická
+                                            3. morfématická
+                                            4. povrchová (má význam hlavně pro analýzu)
+                                            5. tektogramatická -- teorie valence (aktanty a volná doplnění)
+- na tektogramatické a povrchové rovině je věta zachycena jako závislostní strom, na zbylých stačí řetězec
+- princip forem a funkcí -- jednotka na vyšší rovině reprezentuje funkci jenotky na nižší rovině.
+
+29. co je to alomorf
+- varianta morfému odvozená od stejného základu
+
+30. Brownuv korpus
+- sestavili Francis a Kučera
+- první moderní elektronický korpus
+- cca 1 milion slov z textů roku 1961
+- 15 druhů textů, 500 textů, v různých kategoriích různý počet
+
+31. Co jsou n-gramy
+- n-gram = n-tice slov za sebou
+- využití v automatickém překladu, v míře BLEU (zkoumá se počet jejich výskytů)
+
+32. co je transfer v automatickom preklade
+- přeložení jazyka přes mezijazyk (resp. proces toho trojúhelníku)
+- 3 fáze: analýza, převod na interlinguu (resp. strukturu umožňující generování), generování textu
+
+33. Pouziva sa u systemu MOSAIC syntakticka analyza? Preco? (preco ano, preco nie)
+- ano, ale pouze zjednodušená (analýza jmenných skupin)
+- pro odhalení několikaslovných termínů
+
+34. Pražský závislostní korpus
+- projekt ÚFALu
+- teoretickým základem je FGD (funkční generativní popis) od Sgalla
+- vytvoření závislostního stromu se sémantickými značkami a valencí, anotace TFA, koreference (gramatické a omezeně textové), gramatémy (deep gender, number etc.))
+- Roviny anotace: 1. Morfologická (cca 2 mil. slovních jednotek)
+                  2. Analytická = povrchově syntaktická (cca 1.5 mil)
+                  3. Tektogramatická (0.8 mil)
+- vyhledávací program NetGraph, anotační (a vyhledávací) nástroj TrEd
+
+35. Unifikační gramatiky, jejich vyhody a nevyhody
+- objekt je reprezentován množinou vlastností (jednoduchých rysů)
+- popis každé vlastnosti je dvojice název:hodnota vlastnosti
+- popis objektu je neuspořádaná množina vlastností, tzv. sestava rysů (feature structure)
+- unifikace je povolena, pokud si hodnoty stejného rysu neodporují
+- výhoda: jednoduchá práce lingvistů (gramatiky se psaly jednodušeji)
+- nevýhoda: složitějších všt sestavy hodně bobtnají, občas vznikají velké struktury -> nevhodné
+- problém: je možné unifikovat i vlastnosti, které spolu nijak nesouvisí -> typ sestavy = má poznamenáno, které atributy může mít
+
+36. Rozdíly mezi morfologickou analýzou a značkováním
+- morf. analýza vyprodukuje lemmata a značky
+- značkování je proces výběrz jediné správné značky v daném kontextu
+
+37. vytvorit zavislostny a zlozkovy strom pre vetu "Ve včerejším závodu startovali výborní skokani."
+- zavislostni = jako na střední
+- složkový = to co bylo na Obecné lingvistice
+
+38. co je vyhlazovani
+- v podstatě nahrazení nulových pravděpodobností malými hodnotami
+- ve slovníku je monoho nulových pravděpodobností výskytu nějakých n-gramů, ale některé z nich zastupují existující kombinace
+
+39. Strojovy preklad
+a) kategorie
+b) principy u jednotlivych kategorii, uvest priklady
+- pravidlový -- překládá slova, pomocí pravidel je skládá k sobě
+                př. METEO
+- statistický -- využití korpusových dat
+                 vygenerování více překladů, kterým je přiřazena pst, že je překlad správně
+                 jednoduchý pstní model - uváží se frekvence slova v trénovacích datech = pst slova
+                 př. Model zašumněného kanálu, Google Translate, Moses
+
+c) metody vyuzivajici pomoci cloveka
+- pracuje s překladovou pamětí - části textu překládá člověk, systém ukládá dvojici: text v pův. jazyce, překlad
+                               - objeví se stejná či podobná fráze -> nabídne překlad
+- terminologická databáze - plněna ručně, z konkrétních termínů obou jazyků
+- dnes se kombinuje se statistickým překladem
+
+40. 3 hlavní morfologické přístupy
+- morfologie založená na morfémech - slovo je řetízek morfémů
+- morfologie založená na lexémech - slovo je výsledek aplikace pravidel, které slovo mění a tím vytváří nový slovní tvar
+- morfologie založená na slovech - důležité jsou vzory, máme zákl. tvar a vzor slova -> vygenerujeme všechny jeho tvary
+
+41. České překladové systémy
+APAČ
+----
+- Kirschner
+- Aj -> Čj, překlad z oblasti vodovodních pump
+- využíval transdukční slovník - překladač koncovek + slovník (cca 1500 výrazů)
+
+RUSLAN
+------
+- překlad manuálů k OS sálových počítačů
+- byl pomalý, 1 věta asi 4 minuty
+- slovník cca 8500 slov + transdukční slovník
+- využit transfer
+- gramatika zapsána pomocí Q-systémů
+- záchranná pravidla pro případ problémů při analýze
+- výzkum zastaven těsně před provozními zkouškami
+
+Česílko
+-------
+- lokalizace velkých SW systémů
+- lidský překlad do jednoho jazyka, do příbuzných jazyků pak strojem z něj
+- plné morf. slovníky, statistická analýza češtiny, FAHQ překlad
+
+- další: PC translator (komerční)
+42. kontrola překlepů
+- mnoho požadavku, které nelze v praxi splnit (či velmi obtížně): 1. nalézt všechny překlepy, nalezené opravit
+                                                                  2. přezkoušet kontextové podmínky korigované verze
+                                                                  3. neznámá slova nehlásit jako chyby
+                                                                  4. nedávat falešná chybová hlášení
+                                                                  5. korektura co nejvíce automatická
+                                                                  6. krátký čas zpracování
+- 2 základní metody: 1. porovnávání řetězců se slovníkem
+                        - slovník nebo lemmata + morfologická analýza
+                        - spolehlivé, jednoduché
+                        - pomalé, náročné na kvalitu slovníku, nerozezná neznámá slova od chybných, zlepšení musí zařídit autor nebo uživatel
+                     2. srovnání skupin znaků, hledání nedovolených kombinací
+                        - nezávislé na slovníku, rychlé
+                        - velmi neúplné, i řada chybných slov je z povolených kombinací
+- možná vylepšení: vzít v úvahu okolnosti vzniku chyb (blízké klávesy,...)
+                   zohlednit statistiku chyb (ale nejsou data)
+                   zohlednit pravopisné chyby (mě x mně,...)
+                   heuristika na oddělení chyb a neznámých slov
+                   zapojení syntaxe a sémantiky (pro gramatickou kontrolu)
+                   pracovat s kontextem
+- uživateli nabízet různé typy potvrzení/opravy: opravy blízko u sebe -> chceš to nebo to?
+                                                 jedna je lepší -> potvrď tu lepší
+                                                 oprava je jednoznačná -> opravit
+
+43. Statisticke metody
+- v podstatě zkoumají, jako mají různé kombinace slov v daném jazyce pravděpodobnost
+- výskytu slova P(w) = #výskytů v T / #všech slov T
+- modelování jazyka = snaží se předpovídat, co bude následující slovo na základě kontextu
+                      h historie, P(w|h) -> Bayesova věta -> Věta o úplné psti -> = P(wn | w1...wn-1) * P(Wn-1 | ...) a furt stejně až * p(W1)
+                      běžně se historie omezuje na 3 slova
+- n-gramy = n-tice slov za sebou
+- vyhlazování = nahrazení nulových pstí za malé hodnoty
+- metoda zašumněného kanálu
+- Bleu = BP * (p1*...*p4)^(1/4)
+- paralelní korpus jako trénovací množina příkladů dobrého překladu (pro stat. překlad)
+
+44. syntakticka analyza
+- rozbor struktury věty
+
+ATN = Augmented Transiton Netvorks
+----------------------------------
+- typy hran: CAT _ - přechod do dalšího stavu, nalezne-li příslušnou kategorii
+             JUMP - přechod do dalšího stavu bez hledání kategorií
+             SEEK _ - přechod k podsíti
+   (takovej automat)
+
+Q-systémy
+---------
+- formalismus pro transformaci grafů -> jsou linearizovány (stromy)
+                                         - Chomsky to dělal přes řez, tady prostě píšu Kořen(Syn1, Syn2,...)
+- při zpáteční transformaci nevíme umístění synů (byli ve větě před kořenem, za ním?) -> přidáme zástupnou značku
+- 3 typy objektů: atomy (konstanta, A-J), stromy (L-N), seznamy stromů (U-Z)
+- používala se i čísla, protože málo písmen na popis
+- pro vstupní graf nás zajímá, jestli na konci bude v grafu hrana od začátku na konec
+- čištění grafu: vše, co bylo na levé straně pravidla je označeno (a pak se to maže
+- operátory
+- trochu zapadly, protože je napsali ve franc. části Kanady -> museli publikovat francouzsky
+
+45. Sestavy rysu a jejich pouziti
+- základní datové struktury unifikačních gramatik
+- obsahují kombinaci rysů popisující určitý jev (např. shodu)
+- hodnotou rysu může být zase sestava nebo proměnná
+- zavedl se typ, aby nešlo unifikovat neosouvisející vlastnosti
+
+46. Penn TreeBank
+- první a nejznámější syntakticky anotovaný korpus
+- cca 1 mil. slov z článků z Wall Street Journal -> burzovní angličtina
+
+47. BLEU
+- míra kvality překladu
+- porovnává kvalitu automatického překladu vůči lidskému překladu
+- zkoumá, zda se dané slovní n-gramy vyskytují v některém z referenčních překladů
+- Bleu = BP * (p1 * p2 * p3 * p4)^(1/4), BP je postih za stručnost (jinak by byly favorizované krátké věty, pro které existují všechny/většina n-gramy)
+- nebere v úvahu morfologii -- drobnosti typu chybné koncovky jsou brány jako zcela špatný překlad (i když nebrání srozumitelnosti)
+- také silně závisí na slovosledu
+
+48. METEO a jeho historický význam
+- překlad metorologických zpráv z angličtiny do francouzštiny
+- dobře definovaná a správně omezená podmnožina syntaxe a sémantiky
+- uměl rozpoznat, že neví, jak text přeložit
+- používal Q-systémy (obsahuje 15 vnořených)
+- ve své době jediný komerčně využívaný systém, METEO System fungovalo do r. 2001
+
+49. prevest zavislostni strom vety "Maly chlapec psal dopis na stole" na slozkovy. Je prevod jednoznacny?
+- není jednoznačný: malý chlapec na stole, psal na stole
+- závislostní = rozbor ze střední, složkový = to, co bylo na Obecné lingvistice
+
+50. deleni jazyku z hledika morfologie
+- analytické: slovo = morfém, př. vietnamština, čínština
+- syntetické: slovo > morfém, flektivní -- omezená míra řetězení, daný tvar morfému nese více významů, př. latina
+                              aglutinační -- jeden morfém nese jeden význam, př. japonština, maďarština
+- polysyntetické: slovo = věta, př. eskymácké a indiánské jazyky
+
+51. Two level morphology
+- systém zpracování morfologie vyvinutý Lauri Karttunenem a Kimmo Koskeniemmin na začátku 80's
+- první obecný model zpracování morfologie přirozeného jazyka
+- pro češtinu nevhodné
+- založen na konečných stavových automatech a na nich definovaných oboustranných přechodech
+- mechanismus morfologie byl pro všechny jazyky společný (byl požadavek, aby bylo nezávislé na jazyku)
+- pro každý jazyk se musel vytvořit slovník a pravidla (přechody mezi stavy)
+- první úroveň lexikální, druhá povrchová
+- pravidla se aplikují paralelně, podmínky se mohou vztahovat k oběma úrovním zároveň či k jedné z nich
+- zároveň se prohledává slovník a uplatňují pravidla
+
+52. Alepson 4 vlastnosti, ktere musi splnovat moderni korpusy
+TODO
+
+53. TIL
+- Transparentní intezionální logika
+- založena na lambda kalkulu
+- nemá vlastní logické spojky, kvantifikátory apod. takže není vázaná na konrkrétní slova
+- universum je množina společná všem možným světům

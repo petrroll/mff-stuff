@@ -1,0 +1,2 @@
+- Poznámky od Jiřího Sgalla (2016)
+  - http://iuuk.mff.cuni.cz/~sgall/vyuka/BCALG/bcalg.pdf

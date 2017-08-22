@@ -1,0 +1,110 @@
+Nerual networks
+
+			80'-90'			MODERNÍ na Img recognition	
+Architecture		jedna skrytá vrstva	CNN
+Activation function	2*sigm(2x)-1 tanh	relh		
+Output function		id, sigmoid		softmax
+Loss			Mean squared error	negative log likelyhood
+Optimalization		SGD+back propagation	
+Regulaziation		L1, L2 regularizace
+
+Perceptorový (fyziologický) model 50. - 60. léta
+- v poèátku inspirované zvíøecím mozkem
+- následnì divergovali od fyziologického modelu
+
+- binární klasifikátor
+- nejde xor a další lineárnì neseperabilní funkce
+
+Konekcionalismus 80 - 90. léta
+- hodnì malých jednoduchých èástí vytvoøí komplexní systém
+- zvládlo i lineárnì neseperabilní funkce
+- postupnì se nadšení vyèerpalo
+
+Perceptorový model: 
+- DAG, hodnoty mají váhy
+- každý neuron má vstupy (hrany do nìj), výstup, aktivaèní fci
+-> když je aktivaèní fce identita, tak neuronová sí odpovídá lineární regresi
+-> když je aktivaèní fce výstupního neuronu sigmoid, tak odpovídá logické regresi
+
+Neuronové sítì s jednou skrytou vrstvou
+- více vrstev
+- v mezivrstvách spojené každé s každými v té tìsnì další vrstvì
+- pokud skrytá vrstva má nelineární aktivaèní fci, tak tento model dokáže representovat libovolnou fci
+ - staèí jedna skrytá vrstva
+ - staèí libovolná nelineární, omezená, monotónní fce (mùže být daná dopøedu)
+ -> pak už jen nastavením vah & dostateèným poètem neuronù dokážu representovat libovolnou fci s libovolnou pøesností
+
+- uèíme se tak, že minimalizujeme SUM_xi,yi€dataTrain: L_th(f(x, th)) 
+- stochastický gradient descent 
+ - lezu ve všech parametrech najednou
+ - pøi uèení neprocházím pøes všechna trénovací data, ale sampluju s odpovídající distribucí v testovacích datech
+ -> má poøád ubiased odhad støední hodnoty loss funkce
+
+
+- výpoèet loss funkce si mùžeme pøedstavit jako další vrstva & nový výstupní neuron
+- skrz back propagaci spoèítáme parciální derivaci vùèi každému parametru w_i
+ - když procházím zpátky a jdu hranou (s aktuální loss function), tak vím, jaká je parciální derivace vùèi dané hranì
+ - vychází z f(g(x))`=f`(g(x))*g`(x)
+
+Hilton et al. 2006
+- lze natrénovat hlubokou neuronovou sí (MNIST) s error rate 1.25 % -> vzbudilo rozruh
+- z teoretického hlediska: pøidáním vrstev lze ušetøit exponenciálnì neuronù (vùèi poètu vrstev)
+
+
+[OUTPUT                                       ]
+    |            |
+|Ruènì    |  [Mapping from features           ]
+|vytvoøená|      |           |          |
+|pravidla |  |Hand     | |ML      | |advanced|
+    |        |generated| |features| |features|
+    |        |features |     |          |
+    |            |           |      |basic   |
+    |            |           |      |features|
+    |            |           |           |
+[INPUT                                        ]
+
+Rule         classical      Representation 
+based           ML             learning
+
+                                      Deep 
+                                     learning
+
+
+- rozpoznání øeèi 
+ - 26 % -> 17.7 %
+ - 2010 -> 2013
+
+- Image recognition
+ - 28.2 % -> 16.4 %
+ - 2010 -> 2012 (hluboká neuronová sí)
+
+                                      /
+Novinky:                             /
+- nová aktivaèní funkce relh -------/
+ - hyperbolický tangenc mìl vcelku špatnou derivaci na krajích
+ -> pøi více skrytých vrstvách se pak ve zpìtné propagaci ztrácela
+ - relh v kladu propustí stejnou derivaci jako dostala
+
+- nová výstupní funkce softmax
+ - zobecnìní sigmoidu
+
+- konvuluèní sítì (pro obrázky)
+ - vstupy jsou konvuluce (hodnota na místì je nìjak zvážené okolí)
+
+- strojový pøeklad
+ - mám enkodéry a dekodéry a nìjaký (nám neznámý) intermidiate stav, který jej spojuje
+ - dneska obèas enkodér jeden pro všechny jazyky
+
+
+
+
+
+
+
+
+
+
+
+
+
+

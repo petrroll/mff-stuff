@@ -1,0 +1,53 @@
+Grupa, okruh, těleso - definice a příklady. 
+Malá Fermatova věta. 
+Dělitelnost a ireducibilní rozklady polynomů. 
+Rozklady polynomů na kořenové činitele pro polynom s reálnými, racionálními, komplexními koeficienty. 
+Násobnost kořenů a jejich souvislost s derivacemi mnohočlenu. 
+
+
+J16: 1. Definujte pojem „ireducibilní polynom“.
+P14: 2. Definujte pojem „ireducibilní polynom nad tělesem T“.
+Polynom stupně >= 1 dělitelný pouze nenulovými skaláry & asociovanými polynomi (tj. polynomu které dělí a které jsou jím zároveň děleny)
+
+P12: 3. Ukažte, že každý polynom stupně alespoň 1 má jednoznačný rozklad na součin ireducibilních polynomů.
+- Mějme dvě různé posloupnosti ireducibilních polynomů jejiž součin je p. Vyberme pak jeden z jednoho. Pro toho víme, že dělí-li p, tak dělí nějaký ireduc. z druhé posloupnosti. To je, pro ireducibilní polynom možné jen pro polynom asociovaný. Tj. tyto dva jsou až na asociaci stejné. Můžeme je odebrat a pokračovat indukcí dál.
+
+J16: 4. Najděte rozklad polynomu x⁴-1 na ireducibilní polynomy v Q[x].
+- -1, 1 je kořen, dle věty ale není vícenásobný a dle dělitelnosti žádný jiný v Q není. Tj. (x-1)*(x+1)*(x^2+1)
+J16: 5. Najděte rozklad polynomu x⁴-1 na ireducibilní polynomy v Z₅[x].
+- 1, 4, 2, 3 (žádný nemůže být vícenásobný)
+P12: 6. Najděte rozklad polynomu x³+x na ireducibilní polynomy v R[x].
+- x(x^2 + 1)
+P12: 7. Najděte rozklad polynomu x³+x na ireducibilní polynomy v C[x].
+- x(x^2 + 1) = x(x-i)(x+i)
+J16: 8. Najděte ireducibilní polynom stupně 2 v Z₂[x].
+- x^2-x+1
+
+P14: 9. Nad kterými z uvedených těles existuje ireducibilní polynom stupně alespoň dva (ilustrujte příkladem): Q, C, Z₂, Z₃?
+- Z2 viz výše
+- C: Ne, viz základní veta algebry.
+- Q: x^2+x+1
+- Z3: x^2-x+2
+
+P14: 10. Definujte pojem „vícenásobný kořen polynomu“.
+- Vícenásobný kořen polynomu, je takový kořen polynomu p, který je kořenem i polynomu p'. Případně také můžeme říct, že je to kořen a polynomu p, který je kořenem také p/(x-a)^k-1, kde k je násobnost polynomu. 
+P14: 11. Pro která z uvedených těles se polynom x⁴ - 2x³ + 2x² - 2x + 1 rozkládá na lineární činitele: Q, C, Z₂, Z₃?
+- C: Ano
+(x-1)^2*(x^2+1)
+- Q ne: viz výše
+- Z2 ne: viz výše (x^2+1 nemá kořen)
+- Z3 ne: stejně jak Z2
+
+
+L14: 12. Nechť P(x) je kubický polynom (polynom stupně tři) s reálnými koeficienty. Rozhodněte a náležitě zdůvodněte, která z následujících tvrzení jsou pravdivá.
+1. P(x) má alespoň jeden a nejvýše tři kořeny v oboru komplexních čísel.
+- Ano, vychází ze základní věty Algebry.
+2. P(x) má právě tři různé reálné kořeny.
+- Není nutně pravda, R již není algebraicky uzavřené těleso, tedy pro něj neplatí základní věta algebry a nemusí mít ani 3 nerůzné reálné kořeny.
+3. P(x) má alespoň jeden reálný kořen.
+- Ano, komplexní kořeny jsou vždy združené. Tj. musí jich být sudý počet. 
+4. Má-li P(x) právě jeden reálný kořen, je tento kořen vícenásobný.
+- Ne nutně, mohou být dva různé združené komplexní.
+5. Má-li P(x) právě dva různé reálné kořeny, je jeden z nich vícenásobný.
+- Ano, komplexních musí být sudý počet. Tj. pokud jsou dva různé reálné, musí být 3 reálné tj. jeden vícenásobný.
+

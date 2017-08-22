@@ -1,0 +1,38 @@
+Většina otázek byla rozdělena na 2-3 podotázky (pro jednotlivé části nebylo stanoveno za kolik jsou bodů)
+
+[Zaměření Temno+Kombagra]
+1. Automaty
+	Uvažujte slova nad abecedou {O,1}*. Jazyk L(A) = {w | w je dělitelné třemi}
+	1. Zkonstruujte deterministický zásobníkový automat přijímající jazyk L(A).
+	2. Napište k němu regulární výraz.
+	3. Napište k němu gramatiku, která je co (nejstriktnější) nejvýš v Chomského hierarchii.
+2. Databáze
+	Máme tabulku Rozvr s atributy: Kód předmětu, Název předmětu, Rok, Semestr, Den, Čas zčačátku, Místnost, Délka, Typ (Přdnáška/cvičení), Vyučující.
+	Žádný atribut nemá hodnotu NULL, databáze zajišťuje, že nezačíná žádné 2 věcí zároveň na stejném místě. Už ale nezaručuje, že časy (délky) se nepřekrývají, či že jeden vyučující nemá rozvrženo více výuky ve stejný čas.
+	1. Napište minimální (primární) klíč, pokud jich existuje více napište libovolný.
+	2. Kterým normálním formám (1NF - 5NF) schéma vyhovuje a zdůvodněte proč.
+	3. Převeďte to do BCNF.
+3. Sítě
+	SMTP viz Kuba
+4. ADS
+	1. Definujte topologické uspořádání pro orientovaný acyklický graf.
+	2. Popište algoritmus, kterým lze najít topologické uspořádání a rozeberte jeho časovou složitost.
+	3. Jak lze pomocí algoritmu na nalezení topologického uspořádání najít počet různých cest z vrcholu u do vrcholu v.
+5. Architektura počítačů
+	viz Kuba to bylo taky rozdělené do 3 podotázek
+6. Programování
+	Viz Kuba bylo to na 2 podotázky byly
+	1. Vytvořte návrh
+	2. Upravte návrh tak, aby bylo možné jednotlivým tvarům nastavovat rozměry, všechny rozměry jsou typu double, ale kažýd tvar jich může mít různý počet a různě pojmenované.
+
+Zaměření:
+7.Temno
+	1. Zformulujte axiom výběru.
+	2. Jak souvisí axiom výběru s existencí neměřitelných množin?
+8. Kombagra
+	1. Uvažujte úplný tripartitní graf. Jaké velikosti mohou mít partity, aby měl graf perfektní párování?
+	2. Zformulujte Tutteovu větu o perfektním párování
+	3. Nechť T je storm. Dokažte že T má perfektní párování právě tehdy když T-v 
+9. Kombagra
+	1. Formulujte Ramseyovu  větu pro úplné grafy s obarvením hran dvěma barvama.
+	2. Dokažte, že v nekonečné posloupnosti různých celých čísel lze vybrat nekonečnou monotonní podposloupnost.

@@ -1,0 +1,28 @@
+L15: 1. Napište definici reálné ortogonální matice.
+- Čtvercová jejíž sloupce jsou ortonormální vektory.
+- Matice zobrazení zachovávajícího úhly a vzdálenosti.
+
+Následující vlastnosti dokažte nebo vyvraťte protipříkladem:
+1. Ortogonální matice řádu n jsou uzavřené na součet. 
+- Ne, nejsou. In + In není ortogonální.
+2. Ortogonální matice řádu n jsou uzavřené na součin. 
+- ANO: Musí platit (AB)^T * (AB) = I
+3. Ortogonální matice řádu n s operací součin tvoří grupu. 
+- ANO
+- Existence neutrálního prvku (In), asociativita, inverse
+
+P15: 2. Napište definici regulární reálné matice a uveďte souvislost regularity matice s jejím jádrem, determinantem a vlastními čísly.
+- Čtvercová matice je regulární, je-li její rank n.
+- Má-li n LN nezávislých sloupcových vektorů. 
+- Je-li jediné řešení Ax=0 nulový vektor.
+
+- Regulární matice nemá vlastní číslo 0
+- Dimenze kernelu je 0 (a obsahuje pouze 0)
+- Determinant je nenulový (ekvivalentní definice, ve skutečností)
+
+P15: 4. Rozhodněte, zda pro regulární matici A ∈ R^(n×n) je zobrazení x ∈ R^n→ Ax + (1, …, 1)^T prosté a na R^n. Zdůvodněte.
+- Ano, neb zobrazení regulární maticí je na i prosté (ze stejně velkého prostoru do stejně velkého prostoru a kernel zobrazení je {0})
+- Posunití je také prosté & na a složení dvou takových zobrazení zachovává obě vlastností.
+
+P15: 3. Dokažte, že pozitivně definitní reálné matice jsou regulární.
+- Sporem: A nebude regulární -> existuje vektor a pro který Aa = 0 -> a^T A a != 0 -> spor s definicí pozitivní definistnosti.

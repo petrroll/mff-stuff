@@ -1,0 +1,174 @@
+ADS
+===
+
+Triedenia
+---------
+
+Složitost a třídění
+1. V porovnávacím modelu nelze třídit rychleji než v čase Ω(n log n). Vyslovte tuto větu precizně, včetně toho, co přesně se myslí porovnávacím modelem.
+       lemma: n! > n^(n/2)
+2. Popište třídicí algoritmus, který v porovnávacím modelu dosahuje časové složitosti O(n log n).
+3. Popište třídicí algoritmus, který dosahuje časové složitosti O(n). Které předpoklady věty nesplňuje?
+       Bucket sort, radix sort
+4. Co z věty plyne pro časovou složitost operací Insert a ExtractMin v haldě ?
+
+Přihrádkové třídění
+1. Zapište v pseudokódu algoritmus přihrádkového třídění pro Z záznamů, které obsahují klíč z množiny {1, . . . , U } a hodnotu (libovolné přirozené číslo).
+2. Jakou časovou složitost tento algoritmus má ?
+3. Popište, jak použít přihrádkové třídění k odstraňování násobných hran z grafu. Vrcholy grafu jsou očíslovány čísly 1 až N ,
+hrany jsou zadány jako M neuspořádaných dvojic čísel vrcholů.
+
+Třı́děnı́ Merge Sort
+1. Napište pseudokód třı́dı́cı́ho algoritmu Merge Sort.
+2. Napište časovou složitost tohoto algoritmu pro n prvků v průměrném a nejhoršı́m přı́padě.
+3. Je váš algoritmus stabilnı́ ? Proč ?
+
+Třı́děnı́ Heap Sort
+1. Napište pseudokód třı́dı́cı́ho algoritmu Heap Sort.
+2. Zdůvodněte, jaká je časová složitost tohoto algoritmu pro n prvků.
+3. Srovnejte časovou složitost tohoto algoritmu s časovou složitostı́ algoritmu Quick Sort.
+
+Třı́děnı́ Quick Sort
+1. Napište pseudokód třı́dı́cı́ho algoritmu Quick Sort.
+2. Zdůvodněte, jaké jsou nejmenšı́ a největšı́ počty kroků a spotřeba paměti tohoto algoritmu pro n prvků.
+3. Napište průměrnou časovou složitost tohoto algoritmu pro n prvků. Odvozenı́ nenı́ požadováno.
+
+
+Vyhledavacie stromy
+-------------------
+
+Vyhledávací stromy
+1. Definujte „binární vyhledávací strom“.
+2. Definujte „AVL strom“.
+       neúplný binární samovyvažující BVS - tž. rozdíl hloubek se liší max o jedna
+3. Spočítejte nejmenší a největší počet vrcholů v obecném binárním vyhledávacím stromu výšky 3 a v AVL stromu téže výšky.
+Nakreslete příklady těchto extrémních stromů. (Výšku stromu definujeme jako maximální počet hran na cestě kořen-list.)
+       největší - úplný binární strom výšky tři [u obou]
+       BVS - cesta je nejmenší
+       AVL - chlupatá cesta je největší
+         x
+       /   \
+       x    x
+       |\   |
+       x x  x
+       |
+       x
+4. Popište, kde se ve vyhledávacím stromu může nacházet následník daného vrcholu, tedy vrchol s nejmenším klíčem větším než daný.
+
+B-stromy
+1. Definujte B-strom (tedy zejména strukturu uzlů, pravidla pro obsazenı́ uzlů, pravidla pro vyváženı́ stromu).
+       B-strom je B/2 B Strom [AB-strom s A = ceiling(B/2)]
+       B určuje počet synů které má vnitřní uzel [max B min B/2]
+2. Popište algoritmus mazánı́ prvku s vyváženı́m z B-stromu, neuvažujte redundantnı́ prvky.
+
+Binárnı́ vyhledávacı́ stromy
+1. Definujte AVL strom.
+2. Napište postup vkládánı́ nového prvku do AVL stromu včetně postupu vyvažovánı́. U vyvažovánı́ nenı́ potřeba psát odděleně symetrické přı́pady rotace.
+       DÚ - nedá se zapamatovat
+
+1
+Binárnı́ stromy
+1. Definujte binárnı́ strom a binárnı́ vyhledávacı́ strom, jednak formálně, jednak jako třı́du ve zvoleném programovacı́m jazyce
+(C#, C++, Java, pouze signatury operacı́ a definice atributů, nikoliv implementace).
+2. Napište kdy je binárnı́ strom vyvážený a jaký je vztah mezi výškou a počtem uzlů vyváženého binárnı́ho stromu.
+3. Napište kód operace nalezenı́ prvku v binárnı́m vyhledávacı́m stromu.
+4. Napište podmı́nku vyváženı́ AVL stromu a vysvětlete, proč se tato varianta stromů uvažuje.
+
+Algoritmy na grafoch
+--------------------
+
+Kostra grafu
+1. Napište pseudokód algoritmu pro hledánı́ minimálnı́ kostry ohodnoceného grafu.
+       Broůvka - všeci stromečky pohromadě & v každé iteraci vyberu pro každý stromeček nejmenší hranu vedoucí ven, tu přidám & aktualizuju si stromečky
+       Jarník - jeden strom & z hran vedoucích ven vyberu nejmenší, tu přidám & aktualizuju si hrany
+       Kruskal - beru od nejmenší, dokud spojují dvě různé komponenty
+       -v počtu hran
+
+Toky v sítích
+1. Definujte problém maximálního toku v síti.
+       Máme Zdroj & Stok, v orietnovaném ohodnoceném grafu,
+2. Zapište v pseudokódu Fordův-Fulkersonův algoritmus na hledání maximálního toku.
+       v každé iteraci najde zlepšujícíc cestu [tj. nenasycená] tak já naplní [tj. pustí po ní minimální rezervu]
+3. Dokažte, že pro libovolnou síť s celočíselnými kapacitami se Fordův-Fulkersonův algoritmus zastaví.
+       pro celá čísla ti každá iterace zvedne tok alespoň o jedna
+4. Sestrojte síť s nejvýše 10 hranami, na níž Fordův-Fulkersonův algoritmus použije alespoň 10000 zlepšujících cest.
+         #
+  10000 /|\ 10000
+       Z |1S
+  10000 \V/ 10000
+         #
+2. Napište pseudokód algoritmu pro hledánı́ maximálnı́ho toku v sı́ti.
+
+Minimálnı́ cesta grafem
+1. Definujte pojem minimálnı́ cesty mezi dvěma vrcholy v ohodnoceném neorientovaném grafu.
+2. Zvolte si vhodný algoritmus pro hledánı́ minimálnı́ cesty v grafu ohodnoceném celými čı́sly (kladnými i zápornými) a napište pseudokód algoritmu.
+       Floyd-Warshall [mocnění matice]
+
+Algoritmus topologického uspořádánı́
+1. Definujte topologické uspořádánı́ na orientovaném grafu.
+       v1 .. vn : Ve€E : e=(vi, vj) & vi > vj
+2. Charakterizujte grafy, které lze topologicky uspořádat.
+       lesy - tj. grafy bez cyklů
+       DAG
+3. Napište pseudokód pro algoritmus topologického uspořádánı́, který poběžı́ v lineárnı́m čase vzhledem k velikosti grafu.
+       DFS na obráceném grafu [tj. otočení]
+
+Topologické uspořádání
+1. Definujte topologické uspořádání na orientovaném grafu.
+2. Charakterizujte grafy, které lze topologicky uspořádat. Volitelně, pokud topologické uspořádání grafu existuje, je pro daný graf určeno jednoznačně ?
+3. Jakou má asymptotickou složitost (v nejhorším případě) algoritmus pro určení topologického uspořádání ? Vyjádřete v závislosti na počtu vrcholů N a počtu hran M.
+4. Jakou má asymptotickou složitost (v nejhorším případě) nalezení nejkratších cest z daného vrcholu na topologicky uspořádaném grafu? Popište ideu algoritmu, který dosáhne optimální složitosti.
+
+Text
+----
+
+Vyhledávánı́ v textu
+1. Popište strukturu vyhledávacı́ho automatu algoritmu Aho Corasick pro vyhledávánı́ v textu (načrtněte přı́klad pro hledané řetězce he“, she“, her“).
+2. Napište pseudokód algoritmu Aho Corasick pro vyhledávánı́ v textu (pouze vyhledávánı́, nikoliv konstrukci vyhledávacı́ho automatu).
+3. Jaká je časová složitost tohoto algoritmu ?
+
+Ine
+---
+
+Fourierova transformace
+1. Definujte diskrétní Fourierovu transformaci nad tělesem C.
+       zobrazení:
+              F: C^n -> C^n
+              F(x)i = sum(xk * om^(j*k))
+              kde om je pevně zvolená primitivní n-tá odmocnina 1
+2. Vypočtěte Fourierův obraz vektoru (1, 0, −1, 0).
+       (2, -i-1, 0, -i-1)
+3. Jakou časovou a paměťovou složitost má algoritmus FFT?
+4. Jak vypadá inverze DFT?
+
+Třı́dy složitosti
+1. Definujte pojmy P, NP, NP-těžký a NP-úplný problém.
+2. Uved’te tři přı́klady NP-úplných problémů.
+
+Hašovánı́
+1. Definujte pojmy hašovacı́ funkce“ a kolize“.
+       hash: mapování z jedné množiny do druhé
+       kolize: h(x) = h(y) & x/=y
+2. Jaké vlastnosti by měla mı́t dobrá hašovacı́ funkce ?
+       k-univerzálnosti
+              Vm,n Vx,y P[f(x) = m & f(y) = y] =< 1/|S|^k
+       slabá univerzálnost: Vx,y : x/=y P[f(x) = f(y)] =< 1/|S|
+       S je to kam mapujeme
+3. Vysvětlete, jak hašovánı́ s odděleně uloženými nesetřı́děnými řetězci řešı́ vkládánı́ prvků v přı́padě kolize. Odhadněte očekávanou délku řetězců a očekávaný počet porovnánı́ při úspěšném vyhledánı́ položky.
+
+Rozděl a panuj
+1. Jaká je základní myšlenka metody Rozděl a panuj ?
+2. Časová složitost algoritmů typu Rozděl a panuj se obvykle popisuje rekurentní rovnicí typu T (n) = a · T (n/b) + Θ(n c ). Jaký význam mají parametry a, b a c?
+       - a #podproblému
+       - b zmenšovací poměr vstupu [b=2 znamená, že vždy rozdělím vstup na poloviny & zpracovávám ty]
+       - c složitost složení všech podproblémů
+3. Vyřešte rekurentní rovnici T (n) = 2 · T (n/2) + Θ(n) s okrajovou podmínkou T (1) = 1. Pokud jste při řešení použili nějakou větu, uveďte její znění.
+       Master Theorem
+4. Uveďte příklad algoritmu, jehož složitost je touto rekurentní rovnicí popsána.
+
+Halda
+1. Definujte „haldu“ (obyčejnou minimovou binární).
+2. Popište, kde všude se v haldě může nacházet nejmenší a kde největší prvek.
+3. Zapište pseudokód operace vložení prvku do haldy.
+4. Dokažte, že alespoň jedna z operací vložení prvku a smazání minima v n-prvkové haldě musí mít časovou složitost Ω(log n).
+

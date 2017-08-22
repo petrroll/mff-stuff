@@ -1,0 +1,132 @@
+J16: 1. Definujte jádro lineárního zobrazení f: U → V.
+- Ker(f) = {x€U | f(x) = 0}
+P16: 2. Definujte bázi vektorového prostoru.
+- Lineárně nezávislá množina X, že span(X) = V
+- span(X) = {průnik U | U je vektorový prostor V <= U}
+L13: 3. Definujte pojmy prostého zobrazení (injektivního) a zobrazení na (surjektivního).
+- Prosté zobrazení je takové, f(x) == f(y) <> x == y
+- Zobrazeni na je takove Vy: Ex: f(x) = y
+
+Uvažujeme lineární zobrazení f: R³ → R³ zadané jako f(x, y, z) = (x + y + z, y + 2z, 2x + y).
+J15: 4. Rozhodněte a zdůvodněte, zda je toto zobrazení prosté (injektivní).
+	Udělám si matici zobrazení → když bude regulární, tak zobrazení je prosté
+	regulárnost: udělám odstupňovaný tvar a když řádky lin. nezávislé (žádný není nulový), tak je regulární
+	Zobrazení není prosté
+
+J15: 5. Rozhodněte a zdůvodněte, zda je toto zobrazení na (surjektivní).
+- Víme, že není prosté. Tedy nemůže být ani na. Platí totiž dim(Img(f)) + dim(Ker(f)) = dim(U), tj. tím, že dimenze kernelu je nenulová, tak dimenze Img(f) může být maximálně 2 (což taky je).
+	Zobrazím bázi levého prostoru (tj. vynásobím matici zobrazení a bázi) a to
+	by opět měla být báze obrazu. Pokud je nová báze lin. nezávislá, tak je to na.
+	Jinak to není surjektivní.
+
+	Pokud není, lze dokázat přes větu dim(Img(f)) + dim(Ker(f)) = dim(U), nebo protipříkladem (např. (0, 0, 1) nemá obraz)
+
+J15: 6. Rozhodněte a zdůvodněte, zda je pravdivé tvrzení „každý vektor v ∈ R³ má při zobrazení f žádný nebo alespoň dva vzory“.
+	Tvrzení platí.
+	V kernelu jsou aspoň 2 vektory, takže 0 má alespoň 2 vzory
+	Když se x a z rovnají, tak to je nekonečně vzorů
+	Báze je velikost 2, když budou mít bázické vektory nekonečně vektorů, tak i všechny ostatní. Báze je třeba (1,1,1) a (6,4,8). Oba mají. Pro druhý stačí vyřešit Gausovku a vyjde jeden řádek nulový.
+
+Uvažujeme lineární zobrazení f: R³ → R³ zadané jako (a + b, b + c, c + a) → (a − b, b − c, c − a) pro a,b,c ∈ R.
+J14: 7. Rozhodněte a zdůvodněte, zda je f dobře definované na celém R³.
+	Na začátku dostaneme nějaký vektor (k,l,m) a pro ten chceme rozložit čísla, aby platilo:
+		k = a+b
+		l = b+c
+		m = c+a
+	A z tohodle pak zobrazujeme pomocí f
+	Takže si "přidáme" zobrazení g: (k,l,m) → (a+b, b+c, c+a)
+	g dostaneme tak, že si napíšeme přechodovou matici z kanonické báze (tj. báze levé strany g) do báze B₁ (tu vyrobím jako (B₁|kan) → RREF
+	Výsledná matice A bude: matice pro f * matice pro g * (k,l,m)
+
+	dobře definované: chceme, že pro každý vstup je právě jeden výstup
+		- Každé lineární zobrazení pomocí matice je dobře definované.
+
+	na celém R³: dimenze kernelu A musí být 0 (jenom nulový vektor)
+		- Je definované na celém R, je to složení dvou lineárních zobrazení.
+
+J14: 8. Rozhodněte a zdůvodněte, zda je toto zobrazení na (surjektivní).
+J14: 9. Rozhodněte a zdůvodněte, zda je toto zobrazení prosté (injektivní).
+Řešení od P.P.:
+a+b  = k   1 1 0| k   1 1  0| k
+  b+c= l   0 1 1| l ~ 0 1 -1| -m +l
+a  +c= m   1 0 1| m   0 0  2| l + m -k  => c = 1/2(l+m-k)  => b = -m + l +1/2(l+m-k) => a = k-b = 3/2k-3/2l+1/2m
+
+a = 3/2k - 3/2l + 1/2m
+b =-1/2k + 3/2l - 1/2m  => (k,l,m) -> (2k + m, l - m, -2k - 2l) 
+c =-1/2k + 1/2l + 1/2m
+
+zobrazením kanonické báze dostaneme
+(1,0,0) -> (2, 0,-2)
+(0,1,0) -> (0, 1,-2) => když tyhle obrazy naskládáme do sloupců matice
+(0,0,1) -> (1,-1, 0)    máme matici zobrazení f (z kanonické báze do kanonické)
+protože obrazy kanonické báze jsou lineárně nezávislé, generují celý prostor R^3 => f je na
+matice zobrazení je regulární, tedy její kernel je pouze {o}, žádné dva různé vzory nemají stejné obrazy => f je prosté
+
+L13: 10. Nechť X = {1, 2, 3} a Y = {1, 2, 3, 4, 5}. Rozhodněte, zda je více prostých zobrazení X do Y nebo zobrazení Y na X.
+	X → Y: 5*4*3 = 60 (alt (5 nad 3) * 3!)
+PP: Y na X: (5 nad 3)*3!*3*3 (vyberu který 3 budou ty na + zbylé 2 mají 3 a 3 možnosti)
+PH: Y na X: 5^3 (každé z těch 5 mohu nezávisle zobrazit na jedno ze tří)
+
+J16: 11. Na vektorovém prostoru reálných polynomů stupně nanejvýš 5 definujme lineární zobrazení f představující druhou derivaci. Určete bázi jádra f a bázi obrazu f.
+	Báze levého prostoru: x⁰,…, x⁵
+	Báze jádra: x⁰, x¹
+	Báze obrazu: x⁰,…,x³ (resp. 2x⁰, 6x¹, 12x², 20x³ -- přímý převod)
+
+J16: 12. Spočítejte hodnost matice zobrazení f vzhledem k bázi 7, 3 – x, x², x + x³, 2 – x⁴, 2 + 3x − x⁵.
+	6, páč převod mezi bázemi nemění hodnost.
+
+P16: 13. Dokažte jednoznačnost souřadnic vektoru vzhledem k dané bázi.
+- předpokládejme, že existují dvě vyjdáření, odečtu je, 0 vytvořená lineární kombinací netriviálních koeficientů (kdyby všechny 0, tak se vyjádření nelišily): spor s tím, že báze je Lineárně nezávislá množina.
+
+P16: 14. Buď
+            1 2 3 4
+        A = 5 6 7 0
+            8 9 0 0
+        Rozhodněte, zda
+        (a) řádky jsou lineárně nezávislé, 
+		- ANO, jde o odstupňovaný tvar (podívej se na pravou hranu)
+        (b) řádky generují prostor R⁴, 
+		- NE, nemohou, musely by být 4 (všechny báze stejně velké)
+        (c) sloupce jsou lineárně nezávislé, 
+		- NE (nemohou, 4 vektory v R^3)
+        (d) sloupce generují prostor R³. 
+		- ANO Ano: 3 LN řádky znamená i 3 LN nezávislé sloupce, tj. generují všechno.
+
+P16: 15. Definujte isomorfismus mezi vektorovými prostory.
+- Izomorfismus je lineární zobrazení f: U->V mezi prostory stejné dimenze, které je "na" a "prosté"
+
+P16: 16. Uvažujme lineární zobrazení f: U → V mezi vektorovými prostory takové, že libovolná množina generátorů U se zobrazí na generátory V. Je f prosté?
+- ne nutně, ale je určitě "na". Pokud by prostor V měl menší dimenzi, pak může mít méně generátorů a dva generátory z U by se mohli muset zobrazit na jeden ve V. 
+
+P16: 17. Uvažujme lineární zobrazení f: R³ → R³ dané předpisem f(a, b, c) = (a + b + c, 2a + c, 2b + c). Určete
+        (a) dimenzi obrazu f(R³), 
+		- 2
+        (b) dimenzi jádra Ker(f), 
+		- 1 (jeden řádek  matice zobrazení lineárně závislý)
+        (c) zda f je prosté, 
+		- NE (nemůže být, kernel je nenulový)
+        (d) zda f je na. 
+		- NE (nemůže být, je to mezi stejně velkými prostory a kernel je nenulový)
+
+
+P13: 18. Dané lineární zobrazení f: R³ → R³ zobrazí jednotkové vektory následovně: f(1, 0, 0) = (2, 0, 2), f(0, 1, 0) = (1, 1, 2) a f(0, 0, 1) = (−1, 3, 2). Najděte matici tohoto zobrazení a bázi jádra (kernelu).
+
+- Matice:
+   2 1 -1
+   0 1  3
+   2 2  2
+
+- Matice není reguálární, ker(a) = (2, -3, 1).
+
+P13: 19. Dané lineární zobrazení f: R⁴ → R³ zobrazí vektor (a, b, c, d) na vektor (a + b, b + c, c + d). Rozhodněte, zda vektor (5, -2, -3) je obrazem nějakého vektoru z R⁴ a pokud ano, najděte alespoň jeden jeho vzor.
+
+- spočítám soust. lin. rovnic
+1 1 0 0 |  5
+0 1 1 0 | -2
+0 0 1 1 | -3
+
+d zvolíme libovolně, zbytek vyjde, zpětná substituce, určitě má řešení.
+
+
+P15: 7. Buď A ∈ T^(n*(n−1)) pevná. Rozhodněte a zdůvodněte, zda zobrazení f ∈ T^n → det(A|f) je lineární.
+	ANO, je totiž určené nějakou maticí a každá matice odpovídá nějakému lineárnímu zobrazení.

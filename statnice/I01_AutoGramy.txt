@@ -1,0 +1,78 @@
+Chomského hierarchie, třídy automatů a gramatik, determinismus a nedeterminismus. Uzávěrové vlastnosti tříd jazyků. 
+
+
+- Definujte formálně pojem "jazyk"
+       * množina slov - kde slovo je uspořádaná k-tice znaků z abecedy
+       * plus definice gramatiky & automatů
+- Popište pomocí gramatik jazyk L obsahující slova {a^n b^n, n € N} nad abecedou {a,b}. Do jaké třídy Chomského klasifikace patří vaše gramatika?
+       * S -> aSb
+       * S -> e
+       * vezmeme konečný automat generující tento jazyk - tento má k stavů
+              - nyní slovo délky >2k aka na a-čkách či na b-čkách se zopakují stavy & tam budeme pumpovat, abysme dostali slovo které není z L
+- Popište pomocí gramatik jazyk L obsahující slova {a^n b^n c^n, n € N} nad abecedou {a,b, c}. Do jaké třídy Chomského klasifikace patří vaše gramatika?
+       * kontextová
+              - S -> e
+              - S -> abc
+              - S -> ZabbcK
+              - Z -> ZT1
+              - T1a -> aT1
+              - T2b -> bT2
+              - T3c -> cT3
+              - aT1b -> aabT2
+              - bT2c -> bbcT3
+              - T3K -> cK
+- Popište jazyk Ln (n € N) obsahující slova v abecedě {0, 1} taková, že na n-tém místě od konce je písmeno 1. K popisu použijte některý známý formální jazyk (množinový zápis, regulární výraz, gramatika apod).
+       * [0,1]* 1 [0,1]^k-1
+- Ukažte, do jaké třídy v Chomského hierarchii patří jazyk, Ln, pokud je dáno pevné n, vysvětlete proč.
+       * regulární jazyk, protože jsme ho dali přes regulární výraz
+- Vysvětlete pumping lemma pro bezkontextové jazyky.
+       * meh...
+- Popište lineárně omezený Turingův stroj.
+       * naučit definice - je to Turingův stroj s O(n) velkou páskou - kde n je velikost slova
+- Zařaďte do Chomského hierarchie jazyk L = {ww | w € {a,b}*} (tedy nalezněte vzhledem k inkluzi co nejmenší třídu hiererchie, do které jazyk patří). Odpověď dokažte.
+       * je Kontextový
+              - cestující token toto slovo vygeneruje
+              - nejde pumpovat bezkontextově - vezmeme slovo w = a^i b
+              - rozklad poté obsahuje buď samé ačka či maximálně jedno bčko
+              - ačka napumpujeme & bčko vynecháme
+- Vyslovte Myhill-Nerodovu větu.
+       * Jazyk L je regulární právě tehdy když existuje pravá kongruence koečného indexu, že L je sjednocením jejich tříd
+- Popište deterministické & nedeterministické zásobníkové automaty.
+       * sedmice - automat [5] + zásobník + počáteční znak na zásobníku
+- Zařaďte do Chomského hierarchie jazyk L nad abecedou X = {a, b, c}, kde L = {ucv | u,v € {a,b}* & u != v} (tedy nalezněte vzhledem k inkluzi co nejmenší třídu hiererchie, do které jazyk patří). Odpověď dokažte.
+       * Domácí úkol
+- Popište kontextové gramatiky & nezkracující gramatiky. Jak spolu kontextové & nezkracující gramatiky souvisejí?
+       * Jsou ekvivalentní
+       * Kontextové:
+              - aXb -> aYb
+              - S -> e
+       * Nezkracující:
+              - S -> e
+              - a -> b kde |a| < |b|
+- Zařaďte do Chomského hierarchie jazyk L = {ww^R | w € {a,b}*}, kde w^R značí zrcadlový obraz slova w (nalezněte vzhledem k inkluzi co nejmenší třídu hiererchie, do které jazyk patří). Odpověď dokažte.
+       * jde dělat zásobníkem
+       * na pumpování vezmeme slovo se spoustou aček & jedním bčkem na konci. Pak budeme vždycky pumpovat a & tím pádem rozbijeme symetrii
+- Definujte formálně pojem "regulární jazyk".
+- Popište bezkontextové gramatiky & derivační stromy. Jak spolu bezkontextové gramatiky & derivační stromy souvisejí?
+       * převody
+- Zařaďte do Chomského hierarchie jazyk L = {a^i b^j | i,j € N & i <= j} (nalezněte vzhledem k inkluzi co nejmenší třídu hiererchie, do které jazyk patří). Odpověď dokažte.
+       * přes zásobníkový automat
+- Napište gramatiku pro jazyk L = {0^n 1^n | n € N}.
+       * viz druhá otázka
+- Do jaké třídy Chomského hierarchie patří vaše gramatika?
+- Sestavte vhodný typ automatu rozpoznávací jazyk L.
+- Definujte formálně typ automatu z předchozího kroku.
+- Popište jazyk L obsahující slova v abecedě {0, 1, X} tž. uprostřed slova je vždy X & slovo je symetrické, tedy pro slovo délky n je na pozici i i na pozici n-i+1 stejný znak, i € 1..n. K popisu použijte gramatiku.
+- Sestavte automat rozpoznávající jazyk z předchozího bodu.
+- Množina terminálů obsahuje symboly "if", "else" & "null". Jazyk L je popsán touto gramatikou:
+       E -> null
+       E -> if E
+       E -> if E else E
+    Ukažte na příkladu slova s více derivačními stromy, že tato gramatika není jednoznačná.
+       * if if null else null
+- Upravte gramatiku tak, aby byla jednoznačná.
+       * vrazit závorky kolem E
+- Definujte zásobníkový automat.
+- Vyslovte pumping lemma pro bezkontextové gramatiky.
+- Zařaďte do Chomského hierarchie jazyk L = {a^i b^j c^k | i,j,k € N & i <= j <= k} nad abecedou {a,b,c} Odpověď dokažte.
+       * bezkontextovým pumping lemmatem jde rozbít

@@ -1,0 +1,245 @@
+=============
+= jaro 2017 =
+=============
+7. Konvergence řad
+	Definujte konvergenci nekonečné řady a definujte absolutní konvergenci nekonečné řady. Zodpovězte následující otázky a odpovědi
+	zdůvodněte.
+	- řada konverguje : sum(ai) € R
+	- absolutní konvergence, když konvergují členy řady v absolutní hodnotě
+	1. Konverguje absolutně řada 1 − 1/2 + 1/4 − 1/8 + 1/16 − . . . ?
+	- ano, neb konverguje řada 1/2^i
+	2. Konverguje řada 1 − 1/2 + 1/3 − 1/4 + 1/5 − . . . ?
+	- ano, ale absolutně. Konverguje kvůli Leibnizově kritériu.
+	3. Je pravda, že když řada a_1 + a_2 + . . . konverguje, potom i řada a_1^2 + a_2^2 + . . . konverguje ?
+	- určitě to platí pro abslutní konvergenci. Pro neabsolutní ne, např. 1/sqrt(n) alternující konverguje. Na druhou ale 1/n nekonverguje.
+
+===============
+= podzim 2016 =
+===============
+
+7. Mohutnost
+	1. Napište definici pojmů „množina A má nejvýše tak velkou mohutnost jako
+	   množina B“ a „množiny A a B mají stejnou mohutnost“.
+	   - Existuje prosté zobrazení z množiny A do množiny B. 
+	   - Existuje prosté & na zobrezaní z A do B.
+	2. Ukažte, že množiny přirozených a celých čísel mají stejnou mohutnost.
+	- Čísluju 0, -1, 1, -2, 2, ...
+	3. Ukažte, že množiny přirozených a reálných čísel nemají stejnou mohutnost.
+	- představme si očíslování reálných čísel, vyberme nové číslo, které se od i-tého bude vždy lišit na i-té pozici. Tj. nebude nikde v očíslování. (Použijeme jen podmnožinu z číslic {0, 1})
+18. Newtonův integrál
+	1. Definujte pojem „(určitý) Newtonův integrál“.
+	2. Vyslovte větu o výpočtu určitého integrálu pomocí substituce.
+	3. Spočtěte integrál
+		od 0 do sqrt(pí/2)	z {x* sin(x^2)dx}
+22. Taylorův polynom
+	1. Definujte pojem „Taylorův polynom“.
+	2. Vyslovte některou z vět popisující chybu při aproximaci Taylorovým polynomem.
+	3. Napište Taylorův polynom pátého stupně pro funkci danou předpisem f (x) = sin x · cos x v okolí bodu 0.
+
+=============
+= léto 2016 =
+=============
+20. Funkce více proměnných
+	1. Definujte pojem „parciální derivace“.
+	2. Vyslovte větu o Lagrangeových multiplikátorech (vázané extrémy).
+	3. Nalezněte lokální extrémy funkce f (x, y, z) = sin x sin y sin z na množině {(x, y, z) ∈ R^3 : x + y + z = π/2, x, y, z > 0}.
+21. Funkce více proměnných
+	1. Definujte pojem „totální diferenciál“.
+	2. Vyslovte větu o nutné podmínce pro lokální extrém funkce více proměnných.
+	3. Nalezněte lokální a globální extrémy funkce f (x, y) = x + 2y/x + 1/y na množině (0, ∞)^2.
+
+=============
+= jaro 2016 =
+=============
+11. Derivace a extrémy funkce
+	1. Definujte pojem „derivace funkce v bodě“ pro funkci jedné reálné proměnné.
+	2. Rozhodněte o platnosti následujících tvrzení:
+		(a) Pokud f'(a) = 0, tak f nabývá v bodě a maxima nebo minima.
+		(b) Pokud f nabývá v bodě a maxima nebo minima, tak f'(a) = 0.
+	3. Najděte extrémy funkce g(x) = x^2e^{−x}.
+12. Limita funkce v bodě
+	1. Definujte pojem „limita funkce“ (jedné reálné proměnné).
+	2. Vyslovte větu o limitě složené funkce.
+	3. Rozhodněte, zda existuje následující limita. Pokud ano, spočtěte ji.
+		lim_{x->0} (cos x)^{sin(x)/x^3}
+
+===============
+= podzim 2015 =
+===============
+16. Čísla
+	1. Definujte pojem „limita posloupnosti reálných čísel“ (vlastní i nevlastní).
+	- vlastni lim a_n = a <> Ve>0, E:m0, Vm>m0 |a_m0 - a| < e
+	- nevlastni: lim_an = +inf <> Vc, Em0, Vm>m0 a_m > c // symetricky pro -inf
+	2. Posloupnost (a_n) je definovaná rekurentním předpisem
+		a_1 = 1
+		a_n+1 = sqrt(2a_n + 3).
+	Rozhodněte, zda posloupnost (a_n) má limitu a pokud ano, tak ji spočtěte.
+	- L = sqrt(2L+3)
+	- L^2 - L = 3, kladný kořen
+20. Metrické prostory
+	1. Definujte pojem „metrický prostor“.
+	2. Označme M = {(x, x) | x ∈ R}, tedy M je „úhlopříčná přímka“ v prostoru R^2 s L_∞-metrikou. Rozhodněte, zda M je
+		(a) uzavřená,
+		(b) otevřená,
+		(c) kompaktní.
+	Zdůvodněte.
+
+============= 
+= jaro 2015 =
+=============
+5. Taylorův polynom
+	1. Definujte Taylorův polynom. Vyslovte některou z vět popisujı́cı́ chybu při aproximaci Taylorovým polynomem.
+	2. Napište Taylorův polynom třetı́ho stupně pro funkci odmocnina z (x)  v okolı́ bodu 1. 
+
+=============
+= léto 2015 =
+=============
+15. Integrál
+	1. Definujte pojem "Riemannův integrál“.
+	2. Vyslovte větu o výpočtu neurčitého integrálu metodou per partes.
+	3. Spočtěte určitý integrál: od 0 do pí z 
+		x^2 sin(x)dx
+16. Taylorův polynom
+	1. Definujte Taylorův polynom. Vyslovte některou z vět popisujı́cı́ chybu při aproximaci Taylorovým polynomem.
+	2. Napište Taylorův polynom třetı́ho stupně pro funkci log(x) v okolı́ bodu 1.
+
+===============
+= podzim 2014 =
+===============
+12. Limita posloupnosti
+	1. Definujte pojem "limita posloupnosti reálných čı́sel“ (vlastnı́ i nevlastnı́).
+	- viz výše
+	2. Vyslovte větu o strážnı́cı́ch.
+	- Mějme posloupnosti an, bn, cn. Pokud existuje n0, že Vn>n0 -> an <= bn <= cn a an, cn konverguji s limitou "a", tak bn konverguje s limitou "a".
+	3. Rozhodněte, zda existuje limita a pokud ano, spočtěte ji:
+		lim_{n→∞} {1 + 2 + · · · + dolní celá část (sqrt(n))} /n
+		- ano, konverguje k 1/2
+		- nahoře mohu čísla napárovat, takže to bude sqrt(n)/2 čísel ~sqrt(n) 
+13. Metrické prostory
+	1. Definujte pojem "uzavřená množina“ v metrickém prostoru.
+	2. Rozhodněte o platnosti následujı́cı́ch tvrzenı́:
+		(a) Jsou-li F_1 , F_2 , . . . uzavřené množiny, je i jejich sjednocení uzavřená množina.
+		(b) Jsou-li F 1 , F 2 , . . . uzavřené množiny, je i jejich průnik uzavřená množina.
+		(c) Nenı́ možné, aby byly uzavřené množiny A i (X \ A).
+	3. Jsou následujı́cı́ množiny uzavřené ? Zdůvodněte.
+		(a) (1, ∞)
+		(b) {0}
+		(c) ∅
+14. Metrické prostory
+	1. Definujte pojmy "metrika“ a "metrický prostor“.
+	2. Rozhodněte o následujı́cı́ch množinách, zda jsou otevřené a zda jsou uzavřené v metrickém prostoru reálných čı́sel s
+	eukleidovskou metrikou. O jedné z těchto množin vaše tvrzenı́ dokažte.
+	(a) < 0, 1 >
+	(b) (0, ∞)
+	(c) (−∞, 1 >
+	(d) (−∞, ∞)
+
+=============
+= jaro 2014 =
+=============
+7. Parciálnı́ derivace
+	1. Definujte pojem parciálnı́ derivace funkce.
+	2. Vyslovte nutnou podmı́nku pro lokálnı́ extrém funkce vı́ce proměnných.
+	3. Nalezněte lokálnı́ a globálnı́ extrémy funkce f (x, y) = xy + 12/x + 18/y na množině (0, ∞) 2 .
+
+=============
+= léto 2014 =
+=============
+6. Vlastnosti polynomů
+	Necht’ P (x) je kubický polynom (polynom stupně tři) s reálnými koeficienty. Rozhodněte a náležitě zdůvodněte, která z
+	následujı́cı́ch tvrzenı́ jsou pravdivá.
+	1. P (x) má alespoň jeden a nejvýše tři kořeny v oboru komplexnı́ch čı́sel.
+	2. P (x) má právě tři různé reálné kořeny.
+	3. P (x) má alespoň jeden reálný kořen.
+	4. Má-li P (x) právě jeden reálný kořen, je tento kořen vı́cenásobný.
+	5. Má-li P (x) právě dva různé reálné kořeny, je jeden z nich vı́cenásobný.
+7. Derivace a monotonie
+	1. Definujte pojem "derivace funkce“ pro funkci jedné reálné proměnné.
+	2. Popište souvislost derivace funkce s tečnou ke grafu funkce.
+	3. Vyslovte Lagrangeovu větu o střednı́ hodnotě.
+	4. Vyslovte větu o vztahu znaménka derivace a monotonie funkce. Naznačte postup důkazu alespoň jedné jejı́ větve.
+	5. Zjistěte, na kterých intervalech je funkce xe^{−x} rostoucı́ či klesajı́cı́.
+
+===============
+= podzim 2013 =
+===============
+11. Integrál
+	1. Definujte pojem (určitý) Newtonův integrál.	
+	2. Vyslovte větu o výpočtu určitého integrálu pomocı́ substituce.
+	3. Spočtěte integrál od 0 do 2 z funkce: xe^{-x^2} dx.
+12. Integrál
+	1. Definujte pojem Riemannův integrál.
+	2. Vyslovte větu o výpočtu neurčitého integrálu metodou per partes.
+	3. Spočtěte neurčitý integrál funkce x^2e^{-x}dx
+
+=============
+= jaro 2013 =
+=============
+8 Parciálnı́ derivace a totálnı́ diferenciál
+	1. Definujte pojem parciálnı́ derivace funkce.
+	2. Vypočı́tejte totálnı́ diferenciál funkce f(x,y) = xe^{(x^2)+(y^2)} v bodě (0, 0).
+	3. Vysvětlete geometrickou interpretaci totálnı́ho diferenciálu funkce dvou proměnných.
+=============
+= léto 2013 =
+=============
+12. Limita funkce
+	1. Definujte pojem limita funkce.
+	2. Rozhodněte zda limita exituje a pokud ano, spočítejte ji
+		lim_{n->nekonečnu} horní celá část z odmocniny z (n) děleno odmocnina z (n)
+13. Limita funkce
+	1. Definujte pojem limita funkce.
+	2. Rozhodněte zda limita exituje a pokud ano, spočítejte ji
+		lim_{n->nekonečno} (n + odmocnina z n) / (n - odmocnina z n)
+14. Zobrazenı́
+	1. Definujte pojmy prostého zobrazenı́ (injektivnı́ho) a zobrazenı́ na (surjektivnı́ho).
+	- prosté zobrazení: Vx,y x!=y: f(x) != f(y)
+	- zobrazeni na V y€Y: Ex: f(x) = y
+	2. Necht’ X = {1, 2, 3} a Y = {1, 2, 3, 4, 5}. Rozhodněte, zda je vı́ce prostých zobrazenı́ X do Y nebo zobrazenı́ Y na X.
+	- X do Y, z Y do X žádné prosté není. 
+
+===============
+= podzim 2012 =
+===============
+
+14. Derivace, Newtonova metoda
+1. Definujte pojem derivace funkce.
+2. Zjistěte, na kterých intervalech je funkce xe^(−x^2) rostoucı́ a klesajı́cı́.
+3. Popište Newtonovu metodu hledánı́ nulového bodu funkce.
+15. Primitivnı́ funkce
+1. Definujte pojem primitivnı́ funkce.
+2. Vyslovte větu o výpočtu primitivnı́ funkce metodou per partes.
+3. Najděte primitivnı́ funkci k x*sin(x).
+
+=============
+= jaro 2012 =
+=============
+7. Limita posloupnosti
+	1. Definujte pojem supremum množiny reálných čı́sel.
+	- supremum je minimum z horních závor. Horní závora je číslo c€R, Vx€X: x=<c.
+	2. Definujte pojem limita posloupnosti reálných čı́sel.
+	- viz výše
+	3. Definujte pojem "cauchyovská posloupnost“ a vyslovte Bolzano–Cauchyovu větu o limitě cauchyovských posloupnostı́.
+	Dokažte alespoň jednu implikaci této věty.
+	- Cauchyovská poslounost je posloupnost pro kterou platí Ve> 0 En0, Vm,n> n0: |a_n - a_m| < e
+	- Cauchyovská posloupnost konverguje. Pokud konverguje, tak od nějakého členu (n0) je to o epsylon od limity (stejně tak jsou všechny další). To znamená, že i všechny další (členy m) jsou od ní max. o epsylon daleko, tj. vzdálenost mezi m, n (a libovlnými dál) musí být menší než epsylon.
+	- obdobně na druhou stranu. Vezmeme hodnotu n0, všechny zatím, tj. včetně všech od těch těsně za tím jsou od sebe o epsylon. Tj. jsou od honodty a_n0 o epsylon. Tj. konverguje.
+	4. Rozhodněte, zda existuje limita a pokud ano, spočtěte ji:
+	lim_{n jde k nekonečnu} (−1)^n
+	- nemá limitu, vzdálenost prvků se nikterak nezmenšuje (Cachyovská podmínka)
+
+=============
+= léto 2012 =
+=============
+12. Spojitost a derivace
+	1. Definujte pojem spojitost funkce v bodě.
+	2. Definujte pojem derivace funkce.
+	3. Zjistěte, na kterých intervalech je funkce xe −x rostoucı́ a klesajı́cı́.
+13. Spojitost a limita funkce v bodě
+	1. Definujte pojem limita funkce.
+	2. Definujte pojem spojitost funkce v bodě.
+	3. Pokud lim_x→a f(x) = F ∈ R a lim_x→a g(x) = G ∈ R, pak lim_x→a (f (x) + g(x)) = F + G. Dokažte.
+14. Taylorův polynom
+	1. Definujte Taylorův polynom a vyslovte větu o zbytku Taylorova polynomu. Podejte přı́klad praktického využitı́ Taylorova
+	polynomu.
+	2. Použijte Taylorovy polynomy stupňů 3, 4 a 5 pro výpočet hodnoty sin(2). Použijte rozvoj v takovém bodě, ve kterém je
+	výpočet numericky dostatečně snadný. Okomentujte vaše výsledky, pokud vı́te, že sin(2) ≈ 0.9092974.
