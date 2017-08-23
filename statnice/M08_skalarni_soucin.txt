@@ -33,7 +33,7 @@ L16: 7. V R⁵ určete dimenzi ortogonálního doplňku množiny všech řešen�
 
 J12: 8. Zformulujte Cauchy-Schwarzovu nerovnost o vztahu mezi skalárním součinem dvou vektorů a jejich normami.
 - Pro normu indukovanou skalárním součinem platí: 
-- Vx,y: ||x||*||y|| <= |<x,y>|
+- Vx,y: |<x,y>| <= ||x||*||y||
 	Věta 8.8
 
 J12: 9. Najděte ortogonální doplněk k prostoru generovanému vektory (3, -2, 2)^T a (1, 2, 2)^T při použití standardního skalárního součinu.
