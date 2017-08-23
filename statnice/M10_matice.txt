@@ -1,6 +1,7 @@
 L15: 1. Napište definici reálné ortogonální matice.
-- Čtvercová jejíž sloupce jsou ortonormální vektory.
-- Matice zobrazení zachovávajícího úhly a vzdálenosti.
+- Stvorcova matica Q je ortogonalna pokial pre nu plati Q^T * Q = In
+- Vlastnost (nie definicia!): Čtvercová jejíž sloupce jsou ortonormální vektory.
+- Vlastnost (nie definicia!): Matice zobrazení zachovávajícího úhly a vzdálenosti.
 
 Následující vlastnosti dokažte nebo vyvraťte protipříkladem:
 1. Ortogonální matice řádu n jsou uzavřené na součet. 
