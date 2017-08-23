@@ -12,9 +12,9 @@ Následující vlastnosti dokažte nebo vyvraťte protipříkladem:
 - Existence neutrálního prvku (In), asociativita, inverse
 
 P15: 2. Napište definici regulární reálné matice a uveďte souvislost regularity matice s jejím jádrem, determinantem a vlastními čísly.
-- Čtvercová matice je regulární, je-li její rank n.
-- Má-li n LN nezávislých sloupcových vektorů. 
-- Je-li jediné řešení Ax=0 nulový vektor.
+- Definicia: Je-li jediné řešení Ax=0 nulový vektor.
+- Vlastnost: její rank je n.
+- Vlasnost: Má n LN nezávislých sloupcových vektorů. 
 
 - Regulární matice nemá vlastní číslo 0
 - Dimenze kernelu je 0 (a obsahuje pouze 0)
