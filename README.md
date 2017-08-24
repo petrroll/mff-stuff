@@ -48,8 +48,8 @@ U každého zdroje proto bude v závorce rok, ke kterému se to váže (vždycky
 - Ve složce státnice řešené otázky z minulých státnich (pre-2017) z jednotlivých okruhů Obecné informatiky
   - Ne všechny okruhy, některé špatně formátované, některé řešené špatně
   - Velký dík Martinu Šerému, Petře Pelikánové, Janě Bátorové, Katce Zákravské, Dominikovi Smržovi (a mně)
-- Poznámky Petry Pelikánové k většině okruhů
-- Zahuštěné poznámky k Optimu, Temnu, a úvodu Algebry od Petry Pelikánové
+- Poznámky Anety Šťastné k většině okruhů
+- Zahuštěné poznámky k Optimu, Temnu, a úvodu Algebry od Anety Šťastné
 - Seznam definic ke státnicím
 
 
