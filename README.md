@@ -1,4 +1,4 @@
-#### What is this and why is it in Czech?
+ #### What is this and why is it in Czech?
 This repository is a collection of almost all digital materials I created / modified / enhanced with notes while studying at MFF CUNI. That's also the reason why this repo is in Czech as we're quite unsurprisingly tought in Czech (though there's an English program available) and therefore all materials are in Czech.
 
 ---
@@ -44,7 +44,7 @@ U každého zdroje proto bude v závorce rok, ke kterému se to váže (vždycky
 - Opoznámkovaný úvod do strojového učení (2016)
 - Opoznámkované prezentace a shrnutí od studentů k Úvod do počítačové lingvistiky (2016)
 
-#####Státnice:
+##### Státnice:
 - Ve složce státnice řešené otázky z minulých státnich (pre-2017) z jednotlivých okruhů Obecné informatiky
   - Ne všechny okruhy, některé špatně formátované, některé řešené špatně
   - Velký dík Martinu Šerému, Petře Pelikánové, Janě Bátorové, Katce Zákravské, Dominikovi Smržovi (a mně)
