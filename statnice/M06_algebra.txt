@@ -50,4 +50,3 @@ L14: 12. Nechť P(x) je kubický polynom (polynom stupně tři) s reálnými koe
 - Ne nutně, mohou být dva různé združené komplexní.
 5. Má-li P(x) právě dva různé reálné kořeny, je jeden z nich vícenásobný.
 - Ano, komplexních musí být sudý počet. Tj. pokud jsou dva různé reálné, musí být 3 reálné tj. jeden vícenásobný.
-

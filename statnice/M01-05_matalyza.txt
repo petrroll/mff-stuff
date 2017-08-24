@@ -78,10 +78,20 @@
 	- L^2 - L = 3, kladný kořen
 20. Metrické prostory
 	1. Definujte pojem „metrický prostor“.
+	- Metrický prostor je dvojice (M, d), 
+	- M je množina != 0
+	- d: MxM -> R: 
+	  - d(x,y) >= 0
+	  - d(x,y) = d(y,x)
+	  - d(x,y) = 0 => x = y
+	  - d(x,z) <= d(x,y) + d(y,z)
 	2. Označme M = {(x, x) | x ∈ R}, tedy M je „úhlopříčná přímka“ v prostoru R^2 s L_∞-metrikou. Rozhodněte, zda M je
 		(a) uzavřená,
+		- Ne, doplněk je otevřený.
 		(b) otevřená,
+		- Ne, body na přímce nemají koulové okolí.
 		(c) kompaktní.
+		- Není omezená, takže nemůže být kompaktní.
 	Zdůvodněte.
 
 ============= 
@@ -117,22 +127,37 @@
 		- nahoře mohu čísla napárovat, takže to bude sqrt(n)/2 čísel ~sqrt(n) 
 13. Metrické prostory
 	1. Definujte pojem "uzavřená množina“ v metrickém prostoru.
+	- Mejmě prostor M, podmnožinu A. A je uzavřená množina, pokud doplněk A v M je otevřená množina.
+	- Množina je otevřená, pokud pro každý bod existuje nenulové kulové okolí, které je celé v ní.
 	2. Rozhodněte o platnosti následujı́cı́ch tvrzenı́:
 		(a) Jsou-li F_1 , F_2 , . . . uzavřené množiny, je i jejich sjednocení uzavřená množina.
+		- Pokud je to sjednocení konečné, tak ano. Pro nekonečné sjednocení to neplatí.
 		(b) Jsou-li F 1 , F 2 , . . . uzavřené množiny, je i jejich průnik uzavřená množina.
+		- Ano, platí nezávisle na tom, jestli je to průnik konečný nebo nekonečný.
 		(c) Nenı́ možné, aby byly uzavřené množiny A i (X \ A).
+		- Je to možné, pro {0} a celé M, jinak ne.
 	3. Jsou následujı́cı́ množiny uzavřené ? Zdůvodněte.
 		(a) (1, ∞)
+		- Ano, je uzavřená, ne omezená ale uzavřená. Stejný argument jako níže.
 		(b) {0}
+		- Ano, má jediný prvek. Jeho doplněk je naopak otevřená, protože ke každému bodu existuje epsylonové okolí (hodnot velmi blízkých 0 třeba, když u nuly).
 		(c) ∅
+		- Ano, stejně jako uzavřená.
 14. Metrické prostory
 	1. Definujte pojmy "metrika“ a "metrický prostor“.
+	- Viz výše. 
 	2. Rozhodněte o následujı́cı́ch množinách, zda jsou otevřené a zda jsou uzavřené v metrickém prostoru reálných čı́sel s
 	eukleidovskou metrikou. O jedné z těchto množin vaše tvrzenı́ dokažte.
 	(a) < 0, 1 >
+	- Je uzavřený, není otevřený. 
 	(b) (0, ∞)
+	- Je otevřený, není uzavřený.
 	(c) (−∞, 1 >
+	- Je uzavřený, není otevřený.
+	  - Není otevřený: bod 1 nemá epsylonové koulové okolí v intervalu (doprava).
+	  - Je uzavřený: jeho doplněk (1, +inf) je otevřené neb každý bod má epsylonové okolí (kvůli hustotě na R)
 	(d) (−∞, ∞)
+	- Je uzavřený i otevřený.
 
 =============
 = jaro 2014 =
@@ -145,14 +170,6 @@
 =============
 = léto 2014 =
 =============
-6. Vlastnosti polynomů
-	Necht’ P (x) je kubický polynom (polynom stupně tři) s reálnými koeficienty. Rozhodněte a náležitě zdůvodněte, která z
-	následujı́cı́ch tvrzenı́ jsou pravdivá.
-	1. P (x) má alespoň jeden a nejvýše tři kořeny v oboru komplexnı́ch čı́sel.
-	2. P (x) má právě tři různé reálné kořeny.
-	3. P (x) má alespoň jeden reálný kořen.
-	4. Má-li P (x) právě jeden reálný kořen, je tento kořen vı́cenásobný.
-	5. Má-li P (x) právě dva různé reálné kořeny, je jeden z nich vı́cenásobný.
 7. Derivace a monotonie
 	1. Definujte pojem "derivace funkce“ pro funkci jedné reálné proměnné.
 	2. Popište souvislost derivace funkce s tečnou ke grafu funkce.
