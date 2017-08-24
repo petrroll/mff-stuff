@@ -4,9 +4,10 @@ Teoria grafov
 =============
 10 2012 - jaro
 Souvislost grafu
-minimální číslo takové, že existuje hranový/vrhocholový řez velikosti "k".
 
 Definujte hranovou (k e (G)) a vrcholovou (k v (G)) souvislost grafu G.
+minimální číslo takové, že existuje hranový/vrhocholový řez velikosti "k" (pro uplny graf je vrcholova zadefinovana jako n-1)
+
 Pokud δ(G) je minimálnı́ stupeň grafu G, najděte přı́klady grafů, pro které platı́:
 1. δ(G) = k e (G) = k v (G)
 2. δ(G) > k e (G) = k v (G)
@@ -27,7 +28,7 @@ Souvislost grafu
 1. Definujte hranovou souvislost k e (G) a vrcholovou souvislost k v (G) grafu G.
 - viz výše
 2. Jaká nerovnost existuje mezi hranovou souvislostı́ k e (G) a vrcholovou souvislostı́ k v (G) grafu G ? Zdůvodněte.
-- hranová > vrcholová, viz výše
+- hranová >= vrcholová, viz výše
 
 8
 Grafy
@@ -44,7 +45,7 @@ Uvažte dva grafy S a D. U obou grafů jsou vrcholy polı́čka šachovnice n ×
 - funkce b: V->[n], Vxy€E, b(x) != b(y)
 - nejmenší n takové, že pro něj b existuje
 2. Určete barevnost grafu S.
-       n-1 protože na každé diagonále je n barev, v podstatě sudoku / latinský čtverec
+	n, na hlavni diagonale je n policek, tvori tedy uplny podgraf o n vrcholech, min barev nedostaneme, na druhou stranu staci kazou radu obarvit jednou barvou, cili n staci
 3. V závislosti na n rozhodněte, zdali jsou grafy S a D eulerovské.
        S není euler bo není souvislý [černá políčka]
        D není euler pro sudá n [čtyři rohy mají lichý stupeň]
@@ -53,7 +54,7 @@ Uvažte dva grafy S a D. U obou grafů jsou vrcholy polı́čka šachovnice n ×
 Rovinné grafy
 Graf (s alespoň třemi vrcholy) nazýváme rovinnou triangulací, pokud v libovolném jeho rovinném nakreslení je každá stěna trojúhelník.
 1. Uveďte obecný horní odhad počtu hran rovinného grafu vzhledem k počtu jeho vrcholů. Jde počet hran rovinné triangulace upřesnit ?
-- E < 3V - 6
+- E <= 3V - 6 u triangulace plati rovnost
 2. Dokažte, že pro každé n ≥ 3 existuje rovinná triangulace s n vrcholy.
        trojúhelník do nějž vrazíme doprostřed vrchol & teď indukčně vždy do nějaké stěny
            x
@@ -62,7 +63,9 @@ Graf (s alespoň třemi vrcholy) nazýváme rovinnou triangulací, pokud v libov
         / / \ \
         x-----x
 3. Pro která k existuje rovinný graf, jehož všechny vrcholy mají stupeň k ?
-- 1, 2, 3, ?4, ?5
+- 4 jde -- "domecek jednim tahem, kde je strecha i uprosted vrchol a navic strechu spojime s dolnimi vrcholy"
+- 5 jde -- nakreslil jsemi, ale je osklivy, hint: podle E <= 3V - 6 potrebujete alespon 12 vrcholu
+- 6 nejde z E <= 3V - 6
 
 6 leto 2016
 Teorie grafů (barvení grafů) (povinné téma vašeho zaměření)
@@ -86,9 +89,9 @@ Mějme graf G, který vznikne z cyklu C 9 na vrcholech v 1 , . . . , v 9 přidá
 1. Kolik nejvíce hran je možné z grafu G odebrat, aby zůstal stále souvislý ?
 - počet hran - 8 (aby zůstal jako kostra)
 2. Spočítejte, kolik vrcholů je třeba z grafu G odebrat, aby se vrcholy v 1 a v 5 ocitly v různých komponentách souvislosti.
-- nakreslit, vyzkoušet
+- nakreslit, vyzkoušet (4)
 Ukažte, že tento počet nelze snížit. : 
-- mengerova věta, k vrcholově souvislých cest
+- mengerova věta, k vrcholově souvislých cest -- 125 145 1985 1765
 3. Zformulujte Mengerovu větu o charakterizaci vrcholově k-souvislých grafů. Uveďte hlavní ideu důkazu.
 - Graf je vrcholově k-souvislý existuje li pro každé dva vrcholy k vrhocholově disj. cest.
 - dělení hran (převedení na hranově souvislé) & tok
@@ -112,7 +115,8 @@ Souvislost grafu
 2. Jaký je vztah mezi k-souvislostı́ grafu a disjunktnı́mi cestami mezi dvojicemi vrcholů ?
 - Ford-Falkersonova věta / Mengerova věta.
 3. Dokažte, že pokud je 3-regulárnı́ graf (všechny jeho vrcholy majı́ stupeň roven 3) hranově k-souvislý, pak je také vrcholově k-souvislý.
-- NETUŠÍM
+hranove k-souvisly => k hranove disjunktnich cest => (*) k vrcholove disjunktnich cest => vrcholove k-souvisly
+sporem ukazeme ze zminene hranove disjuktni cesty jsou nutne i vrcholove disjunktni: kdyby ne, existuje bod A, ktery je ve dvou hranove disjunktnich cestach (cesty c, d), c tedy obsahuje usek ...XAY... a d obsahuje ...ZAW..., kde |{X,Y,Z,W}| = 4 (jsou ruzne), cili A ma s4 ruzne sousedy -> spor
 
 Grafy
 1. Definujte pojem (neorientovaného) stromu v teorii grafů.
@@ -121,6 +125,7 @@ Grafy
 - E = n-1
 3. Necht’ T = (V, E) je strom s |V | ≥ 3 a e ∈ V 2 \ E je nová hrana. Dokažte, že graf T + e = (V, E ∪ {e}) obsahuje právě jednu kružnici.
 - mezi vrcholy, kam se přidala hrana musela vést již jiná cesta, jinak nesouvislý -> nestrom. Tj. nyní musí být cyklus neb cesta + nová hrana.
+- naopak musi byt prave jedna: kdybychom dostali dve kruznice, tak jejich symetricka diference (xor) tvori dalsi kruznici, a jelikoz nova hrana neni v xoru, tak je to kruznice v puvodnim grafu -> nestrom
 
 18
 Rovinné grafy

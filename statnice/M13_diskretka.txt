@@ -12,7 +12,7 @@ systém (M i , i = 1, 2, . . . , n) systém různých reprezentantů, potom plat
 - ne: nemusí platit ostře. Například pro Mi = {x_i}, X = [n]
 2. Množinový
 systém (M i , i = 1, 2, . . . , n) má systém různých reprezentantů, jestliže ∀I ⊆ {1, 2, . . . , n}, 1 ≤ |I| ≤ n − 1 : | i∈I UMi | > |I|.
-- ne: stejný argument jako výše
+- ano: pro |I| < n dostavame silnejsi versi Hallovy podminky, pro |I| = n vezmeme nejake J, ze |J| = n - 1 (a tedy mame jedno j \in I, j \notin J), plati |j€J UMj| > |J| => |j€J UMj| > n - 1 => |j€J UMj| >= n => |j€J UMj| >= |I| => |i€I UMi| >= |I| Hallova podminka tedy plati i pro |I| = n
 3. Každý k-regulárnı́ bipartitnı́ graf (k ≥ 1) má perfektnı́ párovánı́.
        systém různých reprezentantů nám dsot pomůže I = vrcholy levé partity, Mi jsou vrcholy incidentní s i-tým vrcholem.
        Díky bipartitnosti & k-regulárnosti máme jistotu, že partity jsou stejně velké ergo SRR nám dává přesně párování
@@ -51,7 +51,7 @@ Uspořádané množiny
 1. Definujte vlastnosti, které musí mít binární relace, aby byla částečným uspořádáním.
        ČUM - tranzitivita
        Ostré - silná antisymetrie - Va,b !(a>b & b>a)
-       NeOstré - slabá antisymetrie - V a,b (a>b & b>a => a=b)
+       NeOstré - slabá antisymetrie - V a,b (a>b & b>a => a=b), (reflexivita?)
 
 2. Rozhodněte, zda relace R na množině celých čísel definovaná R = {(x, y) ∈ Z 2 : |x| ≤ |y|} je částečným uspořádáním.
        -1R1 aj 1R-1 tzn je porušena podmínka antisymetrií
