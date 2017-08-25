@@ -66,6 +66,8 @@ L13: 10. Nechť X = {1, 2, 3} a Y = {1, 2, 3, 4, 5}. Rozhodněte, zda je více p
 	X → Y: 5*4*3 = 60 (alt (5 nad 3) * 3!)
 PP: Y na X: (5 nad 3)*3!*3*3 (vyberu který 3 budou ty na + zbylé 2 mají 3 a 3 možnosti)
 PH: Y na X: 5^3 (každé z těch 5 mohu nezávisle zobrazit na jedno ze tří)
+DS: ad PH, konstantní zobrazení (vše zobrazím na 1) není "na", čili 5^3 jich neni.
+    jinak alternativne bez pocitani: ke kazdemu prostemu zobrazeni f € (X → Y) muzeme vzit inverz, tenhle inverz neni z Y (dva prvky z Y nezobrazuje) cili lze tenhle inverz doplnit dvema ruznymi zpusoby aby to byla funkce z Y na X. Jelikoz uz obraz inverzu pokryva svym obrazem cele X, je i vysledna funkce urcite na X. Takze uz bez pocitani je tech druhych vic
 
 J16: 11. Na vektorovém prostoru reálných polynomů stupně nanejvýš 5 definujme lineární zobrazení f představující druhou derivaci. Určete bázi jádra f a bázi obrazu f.
 	Báze levého prostoru: x⁰,…, x⁵
@@ -96,7 +98,7 @@ P16: 15. Definujte isomorfismus mezi vektorovými prostory.
 - Izomorfismus je lineární zobrazení f: U->V mezi prostory stejné dimenze, které je "na" a "prosté"
 
 P16: 16. Uvažujme lineární zobrazení f: U → V mezi vektorovými prostory takové, že libovolná množina generátorů U se zobrazí na generátory V. Je f prosté?
-- ne nutně, ale je určitě "na". Pokud by prostor V měl menší dimenzi, pak může mít méně generátorů a dva generátory z U by se mohli muset zobrazit na jeden ve V. 
+- ne nutně, ale je určitě "na". Pokud by prostor V měl menší dimenzi, pak může mít méně generátorů a dva generátory z U by se mohli muset zobrazit na jeden ve V. (Priklad: U != {0} a V = {0})
 
 P16: 17. Uvažujme lineární zobrazení f: R³ → R³ dané předpisem f(a, b, c) = (a + b + c, 2a + c, 2b + c). Určete
         (a) dimenzi obrazu f(R³), 
@@ -116,7 +118,7 @@ P13: 18. Dané lineární zobrazení f: R³ → R³ zobrazí jednotkové vektory
    0 1  3
    2 2  2
 
-- Matice není reguálární, ker(a) = (2, -3, 1).
+- Matice není reguálární, ker(a) = span((2, -3, 1)).
 
 P13: 19. Dané lineární zobrazení f: R⁴ → R³ zobrazí vektor (a, b, c, d) na vektor (a + b, b + c, c + d). Rozhodněte, zda vektor (5, -2, -3) je obrazem nějakého vektoru z R⁴ a pokud ano, najděte alespoň jeden jeho vzor.
 
