@@ -1,0 +1,221 @@
+=============
+= léto 2017 =
+=============
+(nezveřejněno)
+
+4. Programovací jazyky: princip objektového návrhu
+	Předpokládejte, že navrhujete objektový model editoru pro 2D vektorovou grafiku. Editor má dovolit uživateli vybírat z nabídky různých typů grafických tvarů (přímka, čtverec, kružnice ...) - tvar se nejprve vyber podle názvu a pak kliknutím umístí na plochu.
+
+	1. Navrhněte objektový model (hierarchii tříd, rozhraní objektů, signatury metod) umožňující snadno implementovat nové druhy tvarů. Rozhraní by mělo dovolit registraci každého typu grafického tvaru v editoru a dále vykreslování tvarů.
+	2. Doplňte model tak, aby uživatel editoru mohl zadávat parametry tvarů. Poečet a názvy parametrů jsou pro každý typ tvaru jiné. typ parametru je vždy double.
+
+	Pro řešení úlohy si vyberte jeden z jazyků Java, Cěě, C#. Při hodnodnocení odpovědi nebudou uvažovány drobné syntaktické chyby, ale obecně by použité konstrukce měly odpovídat zvolenému programovacímu jazyku.
+
+-----
+Mail s Tůmou (ředseda komise):
+-----
+
+> 2) Programovací jazyky: principy objektového návrhu
+> ...
+> Ráda bych se dozvěděla, jakým způsobem měla být řešena tato úloha a ve kterých povinných či povinně volitelných předmětech (pro zaměření Obecná informatika) byly probírány metody umožňující řešení tohoto problému.
+
+Odpověď:
+Ve zkratce, zadání požadovalo navrhnout model, který "dovolí registraci každého typu tvaru" a "zadávání parametrů tvarů".  Tedy například použít variaci na téma Factory Design Pattern (skicuji):
+
+public abstract class ShapeType {
+	  abstract public String [] getParameters ();
+	    abstract public Shape makeShape (Parameters params);
+}
+
+public class SquareShapeType extends ShapeType {
+	  @Override
+	    public String [] getParameters () {
+			    return (new String [] { "side" });
+				  }
+				    @Override
+					  public Shape makeShape (Parameters params) {
+						      return (new SquareShape (params));
+							    }
+}
+
+...
+
+public abstract class Shape {
+	  abstract public void draw ();
+}
+
+public class SquareShape extends Shape {
+	  public SquareShape (Parameters params) { ... }
+	    @Override
+		  public void draw () { ... }
+}
+
+...
+
+Registrace nového tvaru by pak byla otázkou volání nějaké metody register (ShapeType type, String name) uvnitř editoru, konstrukce s parametry je řešena typem Parameters, který by měl být seznam párů String, double.
+
+Toto je jedno z více možných řešení, ke kterému se všechny konstrukce probíraly na úvodním předmětu programování z Javy, podobně C# a C++. Studenti řešili úlohu zhruba takto, nebo s použitím jedné třídy reprezentující jak typ, tak instanci tvaru a metodou pro vytvoření instance, nebo například s použitím introspekce na datových typech (takové řešení bych již pokládal za poměrně pokročilé).
+
+
+=============
+= jaro 2017 =
+=============
+nic
+
+===============
+= podzim 2016 =
+===============
+
+11. Neprocedurální programování
+    1. Mějme následující predikáty v Prologu:
+        muz( adam ).           %adam je muz          
+        muz( hugo ).           %hugo je muz             
+        zena ( eva ).          %eva je zena           
+        rodic ( adam , hugo ). %adam je rodicem huga 
+        rodic ( eva , hugo ).  %eva je rodicem huga  
+		 atd.
+		Napište predikáty otec/2 a dedecek/2 s následujícím významem:
+		otec (Ot , Di)    % "Ot" j e otcem "Di"
+		dedecek (De , Di) % "De" j e dedeckem "Di"
+
+	2. Jak jsou v Prologu definovány seznamy ?
+	3. Mějme predikát concat/3, který spojí dva seznamy:
+		concat ( [ ] , L , L ) .
+		concat ( [ X| T ] , L , [ X| S ] ) : − concat (T, L , S ) .
+
+		Jaký bude výsledek volání predikátu r(+I,-O), který je definován následovně (+I značí zadaný vstup a -O nalezený výstup) ?
+
+		r ([] ,[]).
+		r ( [ X| T ] , L): − r (T, T1 ) , concat ( T1 , [ X] , L ) .
+	4. Liší se nějak následující Prolog dotazy ?
+		X = 1 + 3.
+		X is 1 + 3.
+12. Rozhraní pro synchronizaci
+	1. Napište rozhraní zámku (mutex) jako objektu pro synchronizaci. Popište sémantiku metod.
+	2. Načrtněte možnou implementaci zámku z předchozího bodu (stačí minimální funkční řešení).
+	3. Napište rozhraní podmínkové proměnné (condition variable) jako objektu pro synchronizaci. Popište sémantiku metod.
+	4. Vysvětlete, proč některé metody rozhraní podmínkové proměnné akceptují zámek jako parametr.
+
+=============
+= léto 2016 =
+=============
+15. Programovací jazyky
+	Pro vypracování otázky si zvolte jeden z jazyků C#, C++, Java (volbu vyznačte).
+	1. Navrhněte objektový model pro dokument zapsaný ve zjednodušené verzi XML, kde stromová struktura jazyka obsahuje
+	pouze elementy, které mohou mít atributy (atribut je dvojice jméno, hodnota). Pořadí elementů je podstatné, pořadí
+	atributů podstatné není, u jednoho elementu nelze opakovat atributy se stejným jménem.
+	Model by měl umožnit vytištění dokumentu v obvyklém formátu a jeho snadnou modifikaci (přidávání atributu a podobně).
+	Respektujte pravidla objektového návrhu (čeká se návrh objektového modelu, tedy v tomto bodě není třeba psát těla
+	metod).
+	2. Přidejte do modelu metodu „forEach“ (včetně těla), která jako parametr akceptuje lambda výraz a aplikuje jej na každý
+	atribut elementu, na kterém je zavolána a na všechny podelementy daného elementu. Lambda výraz má dva parametry,
+	atribut a element atributu.
+	Příklad dokumentu:
+	<element1key1="value1" key2="value2">
+	  <element2key1="value1" key2="value2"/>
+	  <element2key1="value1" key2="value2"/>
+	</element1>
+
+16. Programovací jazyky
+	Pro vypracování otázky si zvolte jeden z jazyků C#, C++, Java (volbu vyznačte).
+	1. Navrhněte třídu, která bude poskytovat dynamické pole (kontejner, do kterého lze neomezeně přidávat další objekty a
+	udržuje se pořadí objektů podle vkládání). Pole umožní alespoň přidávat nové objekty na konec, zjistit počet objektů v
+	poli a vrátit objekt na dané pozici.
+	Dbejte na to, aby váš návrh co nejméně omezoval typy ukládaných objektů, ale přitom poskytoval běžnou typovou bez-
+	pečnost.
+	Naznačte podstatné části implementace (definice třídy, hrubě těla metod).
+	2. Napište (ideálně jednou větou), co je (ve vztahu k dynamickému poli) iterátor či enumerátor (dle zvoleného implementačního
+	jazyka) a naznačte implementaci iterátoru či enumerátoru pro vaší implementaci dynamického pole.
+	3. Do třídy implementující dynamické pole přidejte metodu „sort“, která pole na místě setřídí pomocí algoritmu QuickSort.
+	Tento algoritmus neimplementujte, pouze napište, jak bude vypadat deklarace metody (parametry a návratová hodnota), a
+	zda kvůli ní budete muset nějak upravit zbytek vaší třídy pro dynamické pole. Metodu navrhněte tak, aby v ní byl QuickSort
+	principiálně implementovatelný, tedy například stanovte případná omezení na hodnoty vkládané do pole a popište, jak se
+	taková omezení vyjádří v kódu.
+
+=============
+= jaro 2016 =
+=============
+nic
+
+===============
+= podzim 2015 =
+===============
+
+10. Objektově orientované programování
+	Pro vypracování otázky si zvolte jeden z jazyků C#, C++, Java. V odpovědi můžete vynechat nepodstatné syntaktické detaily,
+	hodnotí se zejména použití vhodných nástrojů jazyka. Otázka se týká objektového modelu, očekává se tedy definice rozhraní tříd
+	(hlavní metody a atributy), nikoliv implementace (těla metod).
+	Virtuální stroj pracuje s pojmenovanými proměnnými a se zásobníkem, má instrukce pro přemisťování hodnot mezi proměnnými
+	a vrcholem zásobníku, aritmetické instrukce odpovídající operátorům v postfixové notaci a instrukce (podmíněných) skoků pro
+	realizaci větvení a cyklů v pseudokódu. Příklad kódu reprezentujícího výraz „a = b < c ? d - e : f“:
+	0:PUSH b
+	1:PUSH c
+	2:JGE 7
+	3:PUSH d
+	4:PUSH e
+	5:SUB
+	6:JMP 8
+	7:PUSH f
+	8:POP a
+	
+	1. Navrhněte objektovou datovou strukturu pro reprezentaci pseudokódu virtuálního stroje. Datová struktura by měla umož-
+	ňovat jednak provádění instrukcí, jednak výstup pseudokódu v textové podobě. Důraz je kladen na čistotu objektového
+	návrhu a snadnou rozšiřitelnost množiny instrukcí, důležitá je i rychlost provádění instrukcí.
+	2. Kde a jak budete reprezentovat stav stroje, tedy zásobník, hodnoty proměnných a ukazatel instrukcí ?
+	3. Princip řešení vysvětlete podrobněji na reprezentaci instrukcí „PUSH v“ (uložení hodnoty proměnné v na zásobník) a „JGE
+	x“ (porovnání dvou hodnot na vrcholu zásobníku a podmíněný skok na adresu x).
+	4. Jak minimalizovat opakující se kód při implementaci podobných instrukcí (například binárních operací) ?
+
+11.Šablony a generika
+	Dva základní způsoby implementace kontejnerových typů (dynamická pole, vyhledávací stromy, hashovací tabulky ...) v objek-
+	tových jazycích jako Java, C# nebo C++ jsou s využitím polymorfismu a s využitím šablon či generik.
+	1. Ilustrujte oba způsoby implementace kontejnerových typů na návrhu rozhraní kontejneru reprezentujícího množinu objektů
+	s uspořádáním. Zvolte si některý z jazyků Java, C# nebo C++, ve vaší implementaci stačí uvést veřejné rozhraní (třídy a
+	metody) pro vkládání objektu a pro testování přítomnosti objektu.
+	2. Srovnejte výhody a nevýhody obou přístupů.
+	3. Co musí platit pro objekty, které budeme chtít vložit do kontejneru z prvního bodu (setříděná množina) ?
+	4. Jak se požadavku z předchozí otázky docílí v kódu ?
+
+=============
+= léto 2015 =
+=============
+
+=============
+= jaro 2015 =
+=============
+
+===============
+= podzim 2014 =
+===============
+
+=============
+= léto 2014 =
+=============
+
+=============
+= jaro 2014 =
+=============
+
+===============
+= podzim 2013 =
+===============
+
+=============
+= léto 2013 =
+=============
+
+=============
+= jaro 2013 =
+=============
+
+===============
+= podzim 2012 =
+===============
+
+=============
+= léto 2012 =
+=============
+
+=============
+= jaro 2012 =
+=============
