@@ -47,9 +47,11 @@
 	- f(x) - T_a_f_n(x)  = R_a_f_n(x)
 	- existuje takové "c" mezi "a" a "a+h", že: R_a_f_n = f^(i+1)(c)*(x-a)^(i+1) / (i+1)!
 	3. Napište Taylorův polynom pátého stupně pro funkci danou předpisem f (x) = sin x · cos x v okolí bodu 0.
-	- 
-	- TODO
-
+	- Díky derivaci součinu se se bude počet členů vždy zdvojnásobovat a jeho znaménko bude fluktuovat 0, +, 0, -, ... 
+	- Když kladné / záporné, tak nenulových členů polovina.
+	- 2/2 x + 0x^2 - 8/2*3! x^3 + 0x^4 + 32/2*5! x^5 = x - 2/3 x^2 + 2/15 x^5
+	- limita v nekonečnu 0, limita v mínus nekonečnu, nekonečno
+	- globální maximum neexistuje
 =============
 = léto 2016 =
 =============
@@ -91,7 +93,10 @@
 		(b) Pokud f nabývá v bodě a maxima nebo minima, tak f'(a) = 0.
 		- Ano, viz výše.
 	3. Najděte extrémy funkce g(x) = x^2e^{−x}.
-	- TODO
+	- první derivace nulová 0, 2
+	- všude kladná, jinde nenulová, tj. 0 je globální minimum
+	- druhá derivace v 2 záporná, tj. lokální maximum
+	- 
 12. Limita funkce v bodě
 	1. Definujte pojem „limita funkce“ (jedné reálné proměnné).
 	- f: U-> R, a je hromadný bod (každé jeho okolí má neprázdný průnik s U)
@@ -106,7 +111,9 @@
 	-> lim_x->a f(g(x)) = B
 	3. Rozhodněte, zda existuje následující limita. Pokud ano, spočtěte ji.
 		lim_{x->0} (cos x)^{sin(x)/x^3}
-		- TODO
+		- e^(log(cos x)*sin(x)/x^3)
+		- v exponentu l'Hospital
+		- Vede na hrůzu: NEVIM
 
 ===============
 = podzim 2015 =
@@ -146,7 +153,7 @@
 	1. Definujte Taylorův polynom. Vyslovte některou z vět popisujı́cı́ chybu při aproximaci Taylorovým polynomem.
 	- viz výše
 	2. Napište Taylorův polynom třetı́ho stupně pro funkci odmocnina z (x)  v okolı́ bodu 1. 
-	- TODO
+	- 1 + 1/2(x-1) - 1/4*2! * (x-1)^2 + 3/8*3! * (x-1)^3
 
 =============
 = léto 2015 =
@@ -161,12 +168,13 @@
 	- FG + c = Integral{fG} + Integral{fG}
 	3. Spočtěte určitý integrál: od 0 do pí z 
 		x^2 sin(x)dx
-	- TODO
+	- 2x per partes: -x^2cos(x) + 2xsin(x) + 2cos(x)
+	-> pi^2 - 4
 16. Taylorův polynom
 	1. Definujte Taylorův polynom. Vyslovte některou z vět popisujı́cı́ chybu při aproximaci Taylorovým polynomem.
 	- viz výše
 	2. Napište Taylorův polynom třetı́ho stupně pro funkci log(x) v okolı́ bodu 1.
-	- TODO
+	- 0 + 1*(x-1) + (x-1)^2/2 - 2(x-1)^3/3!
 
 ===============
 = podzim 2014 =
@@ -243,7 +251,11 @@
 	- DK: Mějme nějaký úsek, pokud f(a) < f(b) nebo jsou stejné, tak musí dle Lagrange o střední hodnotě existovat c: 
 	- f'(c) = f(a)-f(b) / a-b, pokud jsou ale všechny první derivace kladné / nulové, tak to není možné
 	5. Zjistěte, na kterých intervalech je funkce xe^{−x} rostoucı́ či klesajı́cı́.
-	- TODO
+	- f'(x) = (1-x)e^-x
+	- x < 0: rostoucí, první derivace kladná
+	- x€ [0, 1): rostoucí, kladné
+	- x == 1: nerostoucí, neklesající
+	- x > 1: záporné, klesající
 
 ===============
 = podzim 2013 =
@@ -256,14 +268,16 @@
 	- f(a) = x, f(b) = y
 	- Integral_a,b f(fi)fi' = Int_f(a),f(b) f = Integral_x,y f
 	3. Spočtěte integrál od 0 do 2 z funkce: xe^{-x^2} dx.
-	- TODO
+	- substituce, -1/2 e^{-x^2}
+	-> - 1/2 e^{-4} - (-1/2)
 12. Integrál
 	1. Definujte pojem Riemannův integrál.
 	- viz výše
 	2. Vyslovte větu o výpočtu neurčitého integrálu metodou per partes.
 	- viz výše
 	3. Spočtěte neurčitý integrál funkce x^2e^{-x}dx
-	- TODO
+	- per partes, 2x
+	-> e^-x(x^2 + 2x + 2)
 
 =============
 = jaro 2013 =
@@ -272,7 +286,9 @@
 	1. Definujte pojem parciálnı́ derivace funkce.
 	- Viz výše
 	2. Vypočı́tejte totálnı́ diferenciál funkce f(x,y) = xe^{(x^2)+(y^2)} v bodě (0, 0).
-	- TODO
+	- dx: e^{(x^2)+(y^2)} * (1+2x^2)
+	- dy: xe^{(x^2)+(y^2)}*2y
+	-> L = x + 0y
 	3. Vysvětlete geometrickou interpretaci totálnı́ho diferenciálu funkce dvou proměnných.
 	- Totální diferenciálk je lineární funkce (lineární zobrazení) popisující, z geometrického hlediska, tečnou nadrovinu (aby byla tečná nadrovina, musíme ji ještě posunout do bodu f(a), tečná nadrovina je totiž lineární afinní funkce).
 	- V případě funkce dvou proměnných jde konkrétně o rovinu v prostoru, která se dotýká bodu f(a) a blízké okolní body aproximuje ze všech lineráních funkcí nejlépe. 
@@ -284,13 +300,14 @@
 	- viz výše
 	2. Rozhodněte zda limita exituje a pokud ano, spočítejte ji
 		lim_{n->nekonečnu} horní celá část z odmocniny z (n) děleno odmocnina z (n)
-		- TODO
+		- mezi (n/n) a (n+2/n)
 13. Limita funkce
 	1. Definujte pojem limita funkce.
 	- viz výše
 	2. Rozhodněte zda limita exituje a pokud ano, spočítejte ji
 		lim_{n->nekonečno} (n + odmocnina z n) / (n - odmocnina z n)
-		- TODO
+		- zleva vynásobím "n+sqrt(n)"
+		- vyjde nahoře i dole n^2, ... -> limita 1
 14. Zobrazenı́
 	1. Definujte pojmy prostého zobrazenı́ (injektivnı́ho) a zobrazenı́ na (surjektivnı́ho).
 	- prosté zobrazení: Vx,y x!=y: f(x) != f(y)
@@ -306,7 +323,9 @@
 1. Definujte pojem derivace funkce.
 - viz výše
 2. Zjistěte, na kterých intervalech je funkce xe^(−x^2) rostoucı́ a klesajı́cı́.
-- TODO
+- derivace: e^{-x^2}*(1-2x^2)
+- |x| < sqrt(0.5): rostoucí
+- |x| > sqrt(0.5): klesající
 3. Popište Newtonovu metodu hledánı́ nulového bodu funkce.
 - Stará otázka, netýká se.
 15. Primitivnı́ funkce
@@ -317,7 +336,7 @@
 2. Vyslovte větu o výpočtu primitivnı́ funkce metodou per partes.
 - viz výše
 3. Najděte primitivnı́ funkci k x*sin(x).
-- TODO
+- per partes sin(x) -x*cos(x)
 
 =============
 = jaro 2012 =
@@ -346,18 +365,18 @@
 	2. Definujte pojem derivace funkce.
 	- viz výše
 	3. Zjistěte, na kterých intervalech je funkce xe −x rostoucı́ a klesajı́cı́.
-	- TODO
+	- viz výše
 13. Spojitost a limita funkce v bodě
 	1. Definujte pojem limita funkce.
 	- viz výše
 	2. Definujte pojem spojitost funkce v bodě.
 	- viz výše
 	3. Pokud lim_x→a f(x) = F ∈ R a lim_x→a g(x) = G ∈ R, pak lim_x→a (f (x) + g(x)) = F + G. Dokažte.
-	- TODO
+	- Od nějakého n0, jsou oba blíž F, resp. G než nějaké epsylon. Tj. jejich součet, je blíž než dva epsylony. 
 14. Taylorův polynom
 	1. Definujte Taylorův polynom a vyslovte větu o zbytku Taylorova polynomu. Podejte přı́klad praktického využitı́ Taylorova
 	polynomu.
 	- viz výše
 	2. Použijte Taylorovy polynomy stupňů 3, 4 a 5 pro výpočet hodnoty sin(2). Použijte rozvoj v takovém bodě, ve kterém je
 	výpočet numericky dostatečně snadný. Okomentujte vaše výsledky, pokud vı́te, že sin(2) ≈ 0.9092974.
-	- TODO
+	- Udělám taylorův v pi/2, dopočítám
