@@ -32,15 +32,14 @@ Chomského hierarchie, třídy automatů a gramatik, determinismus a nedetermi
 - Zařaďte do Chomského hierarchie jazyk L = {ww | w € {a,b}*} (tedy nalezněte vzhledem k inkluzi co nejmenší třídu hiererchie, do které jazyk patří). Odpověď dokažte.
        * je Kontextový
               - cestující token toto slovo vygeneruje
-              - nejde pumpovat bezkontextově - vezmeme slovo w = a^i b
-              - rozklad poté obsahuje buď samé ačka či maximálně jedno bčko
-              - ačka napumpujeme & bčko vynecháme
+              - bezkontextovy neni -- vezmeme w = a^n . b^n, cili cele slovo je a^n b^n a^n b^n
+              - pumpujeme maximalne dve skupiny vedle sebe, coz to rozbije
 - Vyslovte Myhill-Nerodovu větu.
        * Jazyk L je regulární právě tehdy když existuje pravá kongruence koečného indexu, že L je sjednocením jejich tříd
 - Popište deterministické & nedeterministické zásobníkové automaty.
        * sedmice - automat [5] + zásobník + počáteční znak na zásobníku
 - Zařaďte do Chomského hierarchie jazyk L nad abecedou X = {a, b, c}, kde L = {ucv | u,v € {a,b}* & u != v} (tedy nalezněte vzhledem k inkluzi co nejmenší třídu hiererchie, do které jazyk patří). Odpověď dokažte.
-       * Domácí úkol
+       * Podle http://ktiml.mff.cuni.cz/~surynek/teaching/files/Cviceni-09_Automaty-a-gramatiky.pdf 1.f je zjevne bezkontextova (!) dokazat to ale bohuzel neumim
 - Popište kontextové gramatiky & nezkracující gramatiky. Jak spolu kontextové & nezkracující gramatiky souvisejí?
        * Jsou ekvivalentní
        * Kontextové:
