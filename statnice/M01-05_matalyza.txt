@@ -66,7 +66,9 @@
 	- Gradienty funkcí Fi jsou lineárně nezávislé pro bod "a".
 	- Pokud je v bodě "a" lokální extrém f na množině H, tak existují čísla a_1, ..., a_n, že gradient f je skrze tyto koeficienty lineární kombinací gradientů Fi.
 	3. Nalezněte lokální extrémy funkce f (x, y, z) = sin x sin y sin z na množině {(x, y, z) ∈ R^3 : x + y + z = π/2, x, y, z > 0}.
-	- TODO
+	- Funkce nemá v H žádný vnitřní bod, tj. potřeba vyřešit hen hranici skrze LaGrangovi multiplikátory. 
+	- Gradient Fi je (1, 1, 1). Aby byl gradient funkce f jeho lineární kombinací, tak se musí x, y, z rovnat. 
+	- To dává smysl i vzhledem k tomu, že sin je konkávní.
 21. Funkce více proměnných
 	1. Definujte pojem „totální diferenciál“.
 	- Totální diferenciál pro funkci f definovanou na okolí bodu "a" je lineární zobrazení splňující: 
@@ -78,7 +80,11 @@
 	- Pokud je nulový & matice je indeferentní -> nemá extrém
 	- Pokud je nulový & matice je semidefinitní -> nelze nic říct
 	3. Nalezněte lokální a globální extrémy funkce f (x, y) = x + 2y/x + 1/y na množině (0, ∞)^2.
-	- TODO
+	- Derivace podle dx: 1-(2y/x^2), dy: 2/x-1/y^2
+	- Nulová jen v (1, 1/2)
+	- V tomto místě matice druhých derivací ((2, -2), (-2, 16)) pozitivně definitní -> lokální minimum.
+	- Jde o otevřenou množinu, tj. na krajích nemá smysl vyšetřovavat
+	- Nekonečně se přibližuje k +Inf (x->Inf, y-> Inf), i -Inf(x->-Inf, y->Inf), tj. nemá globální minimum / maximum
 
 =============
 = jaro 2016 =
@@ -231,7 +237,7 @@
 	2. Vyslovte nutnou podmı́nku pro lokálnı́ extrém funkce vı́ce proměnných.
 	- viz výše
 	3. Nalezněte lokálnı́ a globálnı́ extrémy funkce f (x, y) = xy + 12/x + 18/y na množině (0, ∞) 2 .
-	- TODO
+	- (2, 3) první derivace 0, ... dále viz výše
 
 =============
 = léto 2014 =
