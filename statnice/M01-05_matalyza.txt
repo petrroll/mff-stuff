@@ -28,40 +28,98 @@
 	- představme si očíslování reálných čísel, vyberme nové číslo, které se od i-tého bude vždy lišit na i-té pozici. Tj. nebude nikde v očíslování. (Použijeme jen podmnožinu z číslic {0, 1})
 18. Newtonův integrál
 	1. Definujte pojem „(určitý) Newtonův integrál“.
+	- Mějme funkci f: (a,b) -> R, a k ní na intervalu primitivní F
+	- Netwonův integrál INT_a_b f(x)dx = LIM_x->b-{F(x)} - LIM_x->a+{F(x)}
 	2. Vyslovte větu o výpočtu určitého integrálu pomocí substituce.
+	- Fi: (a,b)->(x,y), f: (x,y)->R, Fi na (a,b) vlastní první derivace
+	- F je na (x,y) primitivní funkce
+	-> INT{f(Fí)*Fí} = F(Fi) + c
 	3. Spočtěte integrál
-		od 0 do sqrt(pí/2)	z {x* sin(x^2)dx}
+		od 0 do sqrt(pí/2)	z {x* sin(x^2)dx} = 1/2 * INT{2x* sin(x^2)dx} | 2x = fi', x^2 = fi
+		- F (přes substituci): -1/2 cos(x^2) = -1/2 - 0
 22. Taylorův polynom
 	1. Definujte pojem „Taylorův polynom“.
+	- Pokud existují vlastní derivace až n-tého stupně pro funkci f v daném bodě.
+	- Taylorův polynom je polynom T_a_f_n aproximující funkci v bodě "a". 
+	- Jde o jediný polynom stupně nejvíš "n" s vlastností LIM_h->0: f(a + h) - T_a_f_n(a+h) / h^n = 0
+	- T_a_f_n(x) = SUM_i{f^(i)(a)*(x-a)^i / i!}
 	2. Vyslovte některou z vět popisující chybu při aproximaci Taylorovým polynomem.
+	- f(x) - T_a_f_n(x)  = R_a_f_n(x)
+	- existuje takové "c" mezi "a" a "a+h", že: R_a_f_n = f^(i+1)(c)*(x-a)^(i+1) / (i+1)!
 	3. Napište Taylorův polynom pátého stupně pro funkci danou předpisem f (x) = sin x · cos x v okolí bodu 0.
-
+	- Díky derivaci součinu se se bude počet členů vždy zdvojnásobovat a jeho znaménko bude fluktuovat 0, +, 0, -, ... 
+	- Když kladné / záporné, tak nenulových členů polovina.
+	- 2/2 x + 0x^2 - 8/2*3! x^3 + 0x^4 + 32/2*5! x^5 = x - 2/3 x^2 + 2/15 x^5
+	- limita v nekonečnu 0, limita v mínus nekonečnu, nekonečno
+	- globální maximum neexistuje
 =============
 = léto 2016 =
 =============
 20. Funkce více proměnných
 	1. Definujte pojem „parciální derivace“.
+	- Parciální derivace funkce více proměnných je derivace ve směru vektoru kanonické báze.
+	- pro f definované na nějakém okolí bodu "a"
+	- (df/dx_i)(a) = lim{h->0} f(a+h*ei)-f(a) / h
 	2. Vyslovte větu o Lagrangeových multiplikátorech (vázané extrémy).
+	- Mějme funkce F1, ..., Fn, f: U -> R
+	- Množinu H = {x | Fi(x) = 0}
+	- Gradienty funkcí Fi jsou lineárně nezávislé pro bod "a".
+	- Pokud je v bodě "a" lokální extrém f na množině H, tak existují čísla a_1, ..., a_n, že gradient f je skrze tyto koeficienty lineární kombinací gradientů Fi.
 	3. Nalezněte lokální extrémy funkce f (x, y, z) = sin x sin y sin z na množině {(x, y, z) ∈ R^3 : x + y + z = π/2, x, y, z > 0}.
+	- Funkce nemá v H žádný vnitřní bod, tj. potřeba vyřešit hen hranici skrze LaGrangovi multiplikátory. 
+	- Gradient Fi je (1, 1, 1). Aby byl gradient funkce f jeho lineární kombinací, tak se musí x, y, z rovnat. 
+	- To dává smysl i vzhledem k tomu, že sin je konkávní.
 21. Funkce více proměnných
 	1. Definujte pojem „totální diferenciál“.
+	- Totální diferenciál pro funkci f definovanou na okolí bodu "a" je lineární zobrazení splňující: 
+	- lim_h->0 f(a+h) - f(a) - L_a(h) / ||h|| = 0
 	2. Vyslovte větu o nutné podmínce pro lokální extrém funkce více proměnných.
+	- Pro funkci f: X->R, která je definovaná na okolí bodu "a" platí, že v bodě "a" má extrém:
+	- Pokud gradient není nulový -> extrém nemá
+	- Pokud je nulový & matice druhých derivací je positivně definitní / negativní -> má extrém
+	- Pokud je nulový & matice je indeferentní -> nemá extrém
+	- Pokud je nulový & matice je semidefinitní -> nelze nic říct
 	3. Nalezněte lokální a globální extrémy funkce f (x, y) = x + 2y/x + 1/y na množině (0, ∞)^2.
+	- Derivace podle dx: 1-(2y/x^2), dy: 2/x-1/y^2
+	- Nulová jen v (1, 1/2)
+	- V tomto místě matice druhých derivací ((2, -2), (-2, 16)) pozitivně definitní -> lokální minimum.
+	- Jde o otevřenou množinu, tj. na krajích nemá smysl vyšetřovavat
+	- Nekonečně se přibližuje k +Inf (x->Inf, y-> Inf), i -Inf(x->-Inf, y->Inf), tj. nemá globální minimum / maximum
 
 =============
 = jaro 2016 =
 =============
 11. Derivace a extrémy funkce
 	1. Definujte pojem „derivace funkce v bodě“ pro funkci jedné reálné proměnné.
+	- Pro funkci f: U-> R, kde U je okolí nějakého bodu "a" je:
+	- f'(a) = lim_h->0 f(a+h) - f(a) / h
 	2. Rozhodněte o platnosti následujících tvrzení:
 		(a) Pokud f'(a) = 0, tak f nabývá v bodě a maxima nebo minima.
+		- Ne nutně. Rozhodně ale platí, že pokud f'(a) není 0, tak nenabývá.
 		(b) Pokud f nabývá v bodě a maxima nebo minima, tak f'(a) = 0.
+		- Ano, viz výše.
 	3. Najděte extrémy funkce g(x) = x^2e^{−x}.
+	- první derivace nulová 0, 2
+	- všude kladná, jinde nenulová, tj. 0 je globální minimum
+	- druhá derivace v 2 záporná, tj. lokální maximum
+	- 
 12. Limita funkce v bodě
 	1. Definujte pojem „limita funkce“ (jedné reálné proměnné).
+	- f: U-> R, a je hromadný bod (každé jeho okolí má neprázdný průnik s U)
+	- lim_x->a f(x) = K <> Ve Es Vx€U |x - a| < s => |f(x) - K| < e
 	2. Vyslovte větu o limitě složené funkce.
+	- a, A, B € R*
+	- f definovaná na prstencovém okolí A, lim_x->a g(x) = A
+	- g definovaná na prstencovém okolí a, lim_x->A f(x) = B
+	- Je splněna jedna z následujících:
+	  - A, B € R, f definovaná v A, f(A) = B
+	  - E s > 0, g(x) != A Vx€U(a, s)
+	-> lim_x->a f(g(x)) = B
 	3. Rozhodněte, zda existuje následující limita. Pokud ano, spočtěte ji.
 		lim_{x->0} (cos x)^{sin(x)/x^3}
+		- e^(log(cos x)*sin(x)/x^3)
+		- v exponentu l'Hospital
+		- Vede na hrůzu: NEVIM
 
 ===============
 = podzim 2015 =
@@ -99,19 +157,30 @@
 =============
 5. Taylorův polynom
 	1. Definujte Taylorův polynom. Vyslovte některou z vět popisujı́cı́ chybu při aproximaci Taylorovým polynomem.
+	- viz výše
 	2. Napište Taylorův polynom třetı́ho stupně pro funkci odmocnina z (x)  v okolı́ bodu 1. 
+	- 1 + 1/2(x-1) - 1/4*2! * (x-1)^2 + 3/8*3! * (x-1)^3
 
 =============
 = léto 2015 =
 =============
 15. Integrál
 	1. Definujte pojem "Riemannův integrál“.
+	- Mějme funkci f: [a,b] -> R, jeji riemanuv integral na uzavřeném intervalu je I€R: 
+	- Pokud pro Ve > 0 Es > 0: V deleni (C, D): mira(D) < s => |I - R(f, C, D)| < e
+	- R(f, C, D) = SUM_I_i€D: f(Ci) * |Ii|
 	2. Vyslovte větu o výpočtu neurčitého integrálu metodou per partes.
+	- Mějme funkce f, g U-> R a k nim, na interalu primitvní funkce F, G a f, g spojite
+	- FG + c = Integral{fG} + Integral{fG}
 	3. Spočtěte určitý integrál: od 0 do pí z 
 		x^2 sin(x)dx
+	- 2x per partes: -x^2cos(x) + 2xsin(x) + 2cos(x)
+	-> pi^2 - 4
 16. Taylorův polynom
 	1. Definujte Taylorův polynom. Vyslovte některou z vět popisujı́cı́ chybu při aproximaci Taylorovým polynomem.
+	- viz výše
 	2. Napište Taylorův polynom třetı́ho stupně pro funkci log(x) v okolı́ bodu 1.
+	- 0 + 1*(x-1) + (x-1)^2/2 - 2(x-1)^3/3!
 
 ===============
 = podzim 2014 =
@@ -164,49 +233,87 @@
 =============
 7. Parciálnı́ derivace
 	1. Definujte pojem parciálnı́ derivace funkce.
+	- viz výše
 	2. Vyslovte nutnou podmı́nku pro lokálnı́ extrém funkce vı́ce proměnných.
+	- viz výše
 	3. Nalezněte lokálnı́ a globálnı́ extrémy funkce f (x, y) = xy + 12/x + 18/y na množině (0, ∞) 2 .
+	- (2, 3) první derivace 0, ... dále viz výše
 
 =============
 = léto 2014 =
 =============
 7. Derivace a monotonie
 	1. Definujte pojem "derivace funkce“ pro funkci jedné reálné proměnné.
+	- viz výše
 	2. Popište souvislost derivace funkce s tečnou ke grafu funkce.
+	- tečna: y = f(a) + f'(a)*x, derivace je směrnice tečny
 	3. Vyslovte Lagrangeovu větu o střednı́ hodnotě.
+	- Pro funkci f: spojitou na intervalu [a, b], jde na (a,b) má vlastní derivace platí
+	- Ec€(a,b): f'(c) = f(a)-f(b) / a-b
 	4. Vyslovte větu o vztahu znaménka derivace a monotonie funkce. Naznačte postup důkazu alespoň jedné jejı́ větve.
+	- Pro funkci definovanou & spojitou na intervalu [a, b], kde má každý vnitřní bod derivaci, platí, že je:
+	- f'(a) > 0 -> funkce je rostoucí
+	- f'(a) = 0 -> funkce je konstantní
+	- DK: Mějme nějaký úsek, pokud f(a) < f(b) nebo jsou stejné, tak musí dle Lagrange o střední hodnotě existovat c: 
+	- f'(c) = f(a)-f(b) / a-b, pokud jsou ale všechny první derivace kladné / nulové, tak to není možné
 	5. Zjistěte, na kterých intervalech je funkce xe^{−x} rostoucı́ či klesajı́cı́.
+	- f'(x) = (1-x)e^-x
+	- x < 0: rostoucí, první derivace kladná
+	- x€ [0, 1): rostoucí, kladné
+	- x == 1: nerostoucí, neklesající
+	- x > 1: záporné, klesající
 
 ===============
 = podzim 2013 =
 ===============
 11. Integrál
 	1. Definujte pojem (určitý) Newtonův integrál.	
+	- viz výše
 	2. Vyslovte větu o výpočtu určitého integrálu pomocı́ substituce.
+	- fi: (a, b) -> (x, y), f: (x, y) -> R, fi spojite první derivace na (a,b)
+	- f(a) = x, f(b) = y
+	- Integral_a,b f(fi)fi' = Int_f(a),f(b) f = Integral_x,y f
 	3. Spočtěte integrál od 0 do 2 z funkce: xe^{-x^2} dx.
+	- substituce, -1/2 e^{-x^2}
+	-> - 1/2 e^{-4} - (-1/2)
 12. Integrál
 	1. Definujte pojem Riemannův integrál.
+	- viz výše
 	2. Vyslovte větu o výpočtu neurčitého integrálu metodou per partes.
+	- viz výše
 	3. Spočtěte neurčitý integrál funkce x^2e^{-x}dx
+	- per partes, 2x
+	-> e^-x(x^2 + 2x + 2)
 
 =============
 = jaro 2013 =
 =============
 8 Parciálnı́ derivace a totálnı́ diferenciál
 	1. Definujte pojem parciálnı́ derivace funkce.
+	- Viz výše
 	2. Vypočı́tejte totálnı́ diferenciál funkce f(x,y) = xe^{(x^2)+(y^2)} v bodě (0, 0).
+	- dx: e^{(x^2)+(y^2)} * (1+2x^2)
+	- dy: xe^{(x^2)+(y^2)}*2y
+	-> L = x + 0y
 	3. Vysvětlete geometrickou interpretaci totálnı́ho diferenciálu funkce dvou proměnných.
+	- Totální diferenciálk je lineární funkce (lineární zobrazení) popisující, z geometrického hlediska, tečnou nadrovinu (aby byla tečná nadrovina, musíme ji ještě posunout do bodu f(a), tečná nadrovina je totiž lineární afinní funkce).
+	- V případě funkce dvou proměnných jde konkrétně o rovinu v prostoru, která se dotýká bodu f(a) a blízké okolní body aproximuje ze všech lineráních funkcí nejlépe. 
 =============
 = léto 2013 =
 =============
 12. Limita funkce
 	1. Definujte pojem limita funkce.
+	- viz výše
 	2. Rozhodněte zda limita exituje a pokud ano, spočítejte ji
 		lim_{n->nekonečnu} horní celá část z odmocniny z (n) děleno odmocnina z (n)
+		- mezi (n/n) a (n+2/n)
 13. Limita funkce
 	1. Definujte pojem limita funkce.
+	- viz výše
 	2. Rozhodněte zda limita exituje a pokud ano, spočítejte ji
 		lim_{n->nekonečno} (n + odmocnina z n) / (n - odmocnina z n)
+		- zleva vynásobím "n+sqrt(n)"
+		- vyjde nahoře i dole n^2, ... -> limita 1
 14. Zobrazenı́
 	1. Definujte pojmy prostého zobrazenı́ (injektivnı́ho) a zobrazenı́ na (surjektivnı́ho).
 	- prosté zobrazení: Vx,y x!=y: f(x) != f(y)
@@ -220,12 +327,22 @@
 
 14. Derivace, Newtonova metoda
 1. Definujte pojem derivace funkce.
+- viz výše
 2. Zjistěte, na kterých intervalech je funkce xe^(−x^2) rostoucı́ a klesajı́cı́.
+- derivace: e^{-x^2}*(1-2x^2)
+- |x| < sqrt(0.5): rostoucí
+- |x| > sqrt(0.5): klesající
 3. Popište Newtonovu metodu hledánı́ nulového bodu funkce.
+- Stará otázka, netýká se.
 15. Primitivnı́ funkce
 1. Definujte pojem primitivnı́ funkce.
+- Mějme funkci f: M -> R, a funkci F: M -> R, M neprázdný interval
+- Pokud pro celý M platí, F'(a) = f(a), pak F je primitivní funkce k f
+- V krajních bodech jednostrané limity
 2. Vyslovte větu o výpočtu primitivnı́ funkce metodou per partes.
+- viz výše
 3. Najděte primitivnı́ funkci k x*sin(x).
+- per partes sin(x) -x*cos(x)
 
 =============
 = jaro 2012 =
@@ -249,14 +366,23 @@
 =============
 12. Spojitost a derivace
 	1. Definujte pojem spojitost funkce v bodě.
+	- Funkce f je v bodě spojitá, pokud jde o hromadný bod a platí:
+	- Ve > 0, Es > 0: |x - a| < s => |f(a) - f(x)| < e
 	2. Definujte pojem derivace funkce.
+	- viz výše
 	3. Zjistěte, na kterých intervalech je funkce xe −x rostoucı́ a klesajı́cı́.
+	- viz výše
 13. Spojitost a limita funkce v bodě
 	1. Definujte pojem limita funkce.
+	- viz výše
 	2. Definujte pojem spojitost funkce v bodě.
+	- viz výše
 	3. Pokud lim_x→a f(x) = F ∈ R a lim_x→a g(x) = G ∈ R, pak lim_x→a (f (x) + g(x)) = F + G. Dokažte.
+	- Od nějakého n0, jsou oba blíž F, resp. G než nějaké epsylon. Tj. jejich součet, je blíž než dva epsylony. 
 14. Taylorův polynom
 	1. Definujte Taylorův polynom a vyslovte větu o zbytku Taylorova polynomu. Podejte přı́klad praktického využitı́ Taylorova
 	polynomu.
+	- viz výše
 	2. Použijte Taylorovy polynomy stupňů 3, 4 a 5 pro výpočet hodnoty sin(2). Použijte rozvoj v takovém bodě, ve kterém je
 	výpočet numericky dostatečně snadný. Okomentujte vaše výsledky, pokud vı́te, že sin(2) ≈ 0.9092974.
+	- Udělám taylorův v pi/2, dopočítám
