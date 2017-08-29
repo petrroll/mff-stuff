@@ -207,7 +207,7 @@
 		- Je to možné, pro {0} a celé M, jinak ne.
 	3. Jsou následujı́cı́ množiny uzavřené ? Zdůvodněte.
 		(a) (1, ∞)
-		- Ano, je uzavřená, ne omezená ale uzavřená. Stejný argument jako níže.
+		- Nie je uzavrena, jej doplnok (-∞, 1] nie je otvorena, lebo pre 1 neexistuje okolie ktore cele patri do (-∞, 4],
 		(b) {0}
 		- Ano, má jediný prvek. Jeho doplněk je naopak otevřená, protože ke každému bodu existuje epsylonové okolí (hodnot velmi blízkých 0 třeba, když u nuly).
 		(c) ∅
