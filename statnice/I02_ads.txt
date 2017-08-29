@@ -155,13 +155,22 @@ Fourierova transformace
               F(x)i = sum(xk * om^(j*k))
               kde om je pevně zvolená primitivní n-tá odmocnina 1
 2. Vypočtěte Fourierův obraz vektoru (1, 0, −1, 0).
-       (2, -i-1, 0, -i-1)
+	(0,2,0,2)
+	# DS: predtim tu bylo (2, -i-1, 0, -i-1), ale snazil jsem se fakt overit ze to je spatne a ze (0,2,0,2) je spravne
 3. Jakou časovou a paměťovou složitost má algoritmus FFT?
+	Čas: O(n log n)
+	Paměť: O(n)
 4. Jak vypadá inverze DFT?
+	Je to zas jen DFT jen s komplexně sdruženými koeficienty oproti původnímu DFT (snad)
 
 Třı́dy složitosti
 1. Definujte pojmy P, NP, NP-těžký a NP-úplný problém.
+	P -- problémy řešitelné v polynomiálním čase
+	NP -- problémy jejichž řešení lze ověřit v polynomiálním čase (velmi volné vysvětlení)
+	NP-těžký -- lze na něj převést jakýkoliv NP (tedy máme-li řešení nějakého NP-těžkého, máme řešení všech NP)
+	NP-úplný -- průnik NP a NP-těžký
 2. Uved’te tři přı́klady NP-úplných problémů.
+	[3-]SAT, Existence kliky/nez.množiny o k vrcholech, Ham. kružnice, batoh, dva loupežníci...
 
 Hašovánı́
 1. Definujte pojmy hašovacı́ funkce“ a kolize“.
