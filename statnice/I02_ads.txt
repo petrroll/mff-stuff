@@ -11,26 +11,38 @@ Složitost a třídění
 3. Popište třídicí algoritmus, který dosahuje časové složitosti O(n). Které předpoklady věty nesplňuje?
        Bucket sort, radix sort
 4. Co z věty plyne pro časovou složitost operací Insert a ExtractMin v haldě ?
+	Že min(Ω(Insert), Ω(ExtractMin)) = Ω(log n)
+	Případně vezmeme-li v potaz, že umíme postavit haldu v lin. čase, tak přímo Ω(ExtractMin) = Ω(log n)
 
 Přihrádkové třídění
 1. Zapište v pseudokódu algoritmus přihrádkového třídění pro Z záznamů, které obsahují klíč z množiny {1, . . . , U } a hodnotu (libovolné přirozené číslo).
 2. Jakou časovou složitost tento algoritmus má ?
+	O(U+Z)
 3. Popište, jak použít přihrádkové třídění k odstraňování násobných hran z grafu. Vrcholy grafu jsou očíslovány čísly 1 až N ,
 hrany jsou zadány jako M neuspořádaných dvojic čísel vrcholů.
 
 Třı́děnı́ Merge Sort
 1. Napište pseudokód třı́dı́cı́ho algoritmu Merge Sort.
 2. Napište časovou složitost tohoto algoritmu pro n prvků v průměrném a nejhoršı́m přı́padě.
+	obě O(n log n) (snad?)
 3. Je váš algoritmus stabilnı́ ? Proč ?
+	Typicky se implementuje stabilní, ale záleží na konrétní implementaci (stabilní = zachovává vzájemné pořadí prvků se stejným klíčem)
 
 Třı́děnı́ Heap Sort
 1. Napište pseudokód třı́dı́cı́ho algoritmu Heap Sort.
 2. Zdůvodněte, jaká je časová složitost tohoto algoritmu pro n prvků.
+	O(n log n)
 3. Srovnejte časovou složitost tohoto algoritmu s časovou složitostı́ algoritmu Quick Sort.
+	Quick Sort má v nejhorším O(n^2), průměrně O(n log n) -- ale typicky je quicksort o konstantu rychlejší
 
 Třı́děnı́ Quick Sort
 1. Napište pseudokód třı́dı́cı́ho algoritmu Quick Sort.
 2. Zdůvodněte, jaké jsou nejmenšı́ a největšı́ počty kroků a spotřeba paměti tohoto algoritmu pro n prvků.
+	Čas: průměrně O(n log n), nejhůř O(n^2), konkrétněji:
+		každý prvek bude právě jednou pivotem. (tedy n kroků)
+			V nejlepším případě rozdělí pivot danou množinu na polovinu, čili každý prvek přesouváme/porovnáváme log n-krát
+			V nejhorším případě volíme pivota na konci množiny -- každý prvek přesouváme n-krát (tedy... pivot vždy zmenší množinu o 1, čili "jen" (n^2)/2 porovávání/přesunů)
+	Paměť O(n)
 3. Napište průměrnou časovou složitost tohoto algoritmu pro n prvků. Odvozenı́ nenı́ požadováno.
 
 
@@ -39,13 +51,14 @@ Vyhledavacie stromy
 
 Vyhledávací stromy
 1. Definujte „binární vyhledávací strom“.
+	Strom, kde každý prvek v levém podstromu je menší než daný vrchol a každý prvek v pravém podstromu je větší
 2. Definujte „AVL strom“.
        neúplný binární samovyvažující BVS - tž. rozdíl hloubek se liší max o jedna
 3. Spočítejte nejmenší a největší počet vrcholů v obecném binárním vyhledávacím stromu výšky 3 a v AVL stromu téže výšky.
 Nakreslete příklady těchto extrémních stromů. (Výšku stromu definujeme jako maximální počet hran na cestě kořen-list.)
-       největší - úplný binární strom výšky tři [u obou]
-       BVS - cesta je nejmenší
-       AVL - chlupatá cesta je největší
+       největší - úplný binární strom výšky tři [u obou] (15)
+       BVS - cesta je nejmenší (4)
+       AVL - chlupatá cesta je nejmenší (7)
          x
        /   \
        x    x
@@ -54,6 +67,7 @@ Nakreslete příklady těchto extrémních stromů. (Výšku stromu definujeme j
        |
        x
 4. Popište, kde se ve vyhledávacím stromu může nacházet následník daného vrcholu, tedy vrchol s nejmenším klíčem větším než daný.
+	(pravý syn nebo (levý syn (levého syna)* pravého syna)
 
 B-stromy
 1. Definujte B-strom (tedy zejména strukturu uzlů, pravidla pro obsazenı́ uzlů, pravidla pro vyváženı́ stromu).
@@ -79,7 +93,7 @@ Algoritmy na grafoch
 
 Kostra grafu
 1. Napište pseudokód algoritmu pro hledánı́ minimálnı́ kostry ohodnoceného grafu.
-       Broůvka - všeci stromečky pohromadě & v každé iteraci vyberu pro každý stromeček nejmenší hranu vedoucí ven, tu přidám & aktualizuju si stromečky
+       Borůvka - všeci stromečky pohromadě & v každé iteraci vyberu pro každý stromeček nejmenší hranu vedoucí ven, tu přidám & aktualizuju si stromečky (ponz.: požaduje aby neexistovaly dvě hrany se stenou délkou popř. globálně konzistentní funkci, která porovnává dvě stejně dlouhé hrany)
        Jarník - jeden strom & z hran vedoucích ven vyberu nejmenší, tu přidám & aktualizuju si hrany
        Kruskal - beru od nejmenší, dokud spojují dvě různé komponenty
        -v počtu hran
@@ -103,12 +117,12 @@ Minimálnı́ cesta grafem
 1. Definujte pojem minimálnı́ cesty mezi dvěma vrcholy v ohodnoceném neorientovaném grafu.
 2. Zvolte si vhodný algoritmus pro hledánı́ minimálnı́ cesty v grafu ohodnoceném celými čı́sly (kladnými i zápornými) a napište pseudokód algoritmu.
        Floyd-Warshall [mocnění matice]
+       Bellman-Ford
 
 Algoritmus topologického uspořádánı́
 1. Definujte topologické uspořádánı́ na orientovaném grafu.
        v1 .. vn : Ve€E : e=(vi, vj) & vi > vj
 2. Charakterizujte grafy, které lze topologicky uspořádat.
-       lesy - tj. grafy bez cyklů
        DAG
 3. Napište pseudokód pro algoritmus topologického uspořádánı́, který poběžı́ v lineárnı́m čase vzhledem k velikosti grafu.
        DFS na obráceném grafu [tj. otočení]
@@ -116,8 +130,11 @@ Algoritmus topologického uspořádánı́
 Topologické uspořádání
 1. Definujte topologické uspořádání na orientovaném grafu.
 2. Charakterizujte grafy, které lze topologicky uspořádat. Volitelně, pokud topologické uspořádání grafu existuje, je pro daný graf určeno jednoznačně ?
+	není jednoznačné
 3. Jakou má asymptotickou složitost (v nejhorším případě) algoritmus pro určení topologického uspořádání ? Vyjádřete v závislosti na počtu vrcholů N a počtu hran M.
+	O(N+M)
 4. Jakou má asymptotickou složitost (v nejhorším případě) nalezení nejkratších cest z daného vrcholu na topologicky uspořádaném grafu? Popište ideu algoritmu, který dosáhne optimální složitosti.
+	O(M) -- klaciky relaxacni algoritmus, ktery vzdy vybere topologicky nejvetsi vrchol
 
 Text
 ----
@@ -126,6 +143,7 @@ Vyhledávánı́ v textu
 1. Popište strukturu vyhledávacı́ho automatu algoritmu Aho Corasick pro vyhledávánı́ v textu (načrtněte přı́klad pro hledané řetězce he“, she“, her“).
 2. Napište pseudokód algoritmu Aho Corasick pro vyhledávánı́ v textu (pouze vyhledávánı́, nikoliv konstrukci vyhledávacı́ho automatu).
 3. Jaká je časová složitost tohoto algoritmu ?
+O(|W| + suma |J|)
 
 Ine
 ---
@@ -137,13 +155,22 @@ Fourierova transformace
               F(x)i = sum(xk * om^(j*k))
               kde om je pevně zvolená primitivní n-tá odmocnina 1
 2. Vypočtěte Fourierův obraz vektoru (1, 0, −1, 0).
-       (2, -i-1, 0, -i-1)
+	(0,2,0,2)
+	# DS: predtim tu bylo (2, -i-1, 0, -i-1), ale snazil jsem se fakt overit ze to je spatne a ze (0,2,0,2) je spravne
 3. Jakou časovou a paměťovou složitost má algoritmus FFT?
+	Čas: O(n log n)
+	Paměť: O(n)
 4. Jak vypadá inverze DFT?
+	Je to zas jen DFT jen s komplexně sdruženými koeficienty oproti původnímu DFT (snad)
 
 Třı́dy složitosti
 1. Definujte pojmy P, NP, NP-těžký a NP-úplný problém.
+	P -- problémy řešitelné v polynomiálním čase
+	NP -- problémy jejichž řešení lze ověřit v polynomiálním čase (velmi volné vysvětlení)
+	NP-těžký -- lze na něj převést jakýkoliv NP (tedy máme-li řešení nějakého NP-těžkého, máme řešení všech NP)
+	NP-úplný -- průnik NP a NP-těžký
 2. Uved’te tři přı́klady NP-úplných problémů.
+	[3-]SAT, Existence kliky/nez.množiny o k vrcholech, Ham. kružnice, batoh, dva loupežníci...
 
 Hašovánı́
 1. Definujte pojmy hašovacı́ funkce“ a kolize“.
@@ -158,17 +185,22 @@ Hašovánı́
 
 Rozděl a panuj
 1. Jaká je základní myšlenka metody Rozděl a panuj ?
-2. Časová složitost algoritmů typu Rozděl a panuj se obvykle popisuje rekurentní rovnicí typu T (n) = a · T (n/b) + Θ(n c ). Jaký význam mají parametry a, b a c?
+2. Časová složitost algoritmů typu Rozděl a panuj se obvykle popisuje rekurentní rovnicí typu T (n) = a · T(n/b) + O(n^c). Jaký význam mají parametry a, b a c?
        - a #podproblému
        - b zmenšovací poměr vstupu [b=2 znamená, že vždy rozdělím vstup na poloviny & zpracovávám ty]
        - c složitost složení všech podproblémů
 3. Vyřešte rekurentní rovnici T (n) = 2 · T (n/2) + Θ(n) s okrajovou podmínkou T (1) = 1. Pokud jste při řešení použili nějakou větu, uveďte její znění.
-       Master Theorem
+       Master Theorem ("kuchařková" věta)
+		2 / 2^1 = 1
+		T(n) = O(n log n)
 4. Uveďte příklad algoritmu, jehož složitost je touto rekurentní rovnicí popsána.
+	Merge Sort
 
 Halda
 1. Definujte „haldu“ (obyčejnou minimovou binární).
 2. Popište, kde všude se v haldě může nacházet nejmenší a kde největší prvek.
+	nejmenší nahoře, největší v jednom z listů (popř. naopak pokud máme maximovou -- je "defaultní" minimová?)
 3. Zapište pseudokód operace vložení prvku do haldy.
 4. Dokažte, že alespoň jedna z operací vložení prvku a smazání minima v n-prvkové haldě musí mít časovou složitost Ω(log n).
+	Viz 4. otázka v první sadě ^^^
 
