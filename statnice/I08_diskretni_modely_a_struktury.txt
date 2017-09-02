@@ -1,0 +1,18 @@
+TEMNO
+- poznámky Vorner + upravil Ondra Cífka
+KOMBAGRA
+- Barvení grafů, Tutte, Erdös-Ko-Rado: Poznámky z přednášky Jelínek Kombinatorika a grafy II
+- Ramseyovy věty: http://mj.ucw.cz/papers/ramsey.pdf
+- Samoopravné kódy: http://brtnik.eu/mff/samoopravne_kody/kody_kap1.pdf (http://brtnik.eu/mff/samoopravne_kody/) 
+
+Otázky léto 2017
+7.Temno
+  1. Zformulujte axiom výběru.
+  2. Jak souvisí axiom výběru s existencí neměřitelných množin?
+8. Kombagra
+  1. Uvažujte úplný tripartitní graf. Jaké velikosti mohou mít partity, aby měl graf perfektní párování?
+  2. Zformulujte Tutteovu větu o perfektním párování
+  3. Nechť T je storm. Dokažte že T má perfektní párování právě tehdy když T-v
+9. Kombagra
+  1. Formulujte Ramseyovu větu pro úplné grafy s obarvením hran dvěma barvama.
+  2. Dokažte, že v nekonečné posloupnosti různých celých čísel lze vybrat nekonečnou monotonní podposloupnost.

@@ -8,7 +8,9 @@ Složitost a třídění
 1. V porovnávacím modelu nelze třídit rychleji než v čase Ω(n log n). Vyslovte tuto větu precizně, včetně toho, co přesně se myslí porovnávacím modelem.
        lemma: n! > n^(n/2)
 2. Popište třídicí algoritmus, který v porovnávacím modelu dosahuje časové složitosti O(n log n).
+- quick sort
 3. Popište třídicí algoritmus, který dosahuje časové složitosti O(n). Které předpoklady věty nesplňuje?
+- nesplňuje fakt, že umíme prvky jen porovnávat. Vychází z toho, že mají nějakou číselnou hodnotu s omezenou doménou.
        Bucket sort, radix sort
 4. Co z věty plyne pro časovou složitost operací Insert a ExtractMin v haldě ?
 	Že min(Ω(Insert), Ω(ExtractMin)) = Ω(log n)
@@ -20,23 +22,28 @@ Přihrádkové třídění
 	O(U+Z)
 3. Popište, jak použít přihrádkové třídění k odstraňování násobných hran z grafu. Vrcholy grafu jsou očíslovány čísly 1 až N ,
 hrany jsou zadány jako M neuspořádaných dvojic čísel vrcholů.
+- n^2 přihrádek, každá pro jeden pár, když na nějakou narazím dvakrát, tak jí smažu
 
 Třı́děnı́ Merge Sort
 1. Napište pseudokód třı́dı́cı́ho algoritmu Merge Sort.
+- rozdělím na poloviny, každou setřídím, sleju dohromady (slití lineární)
 2. Napište časovou složitost tohoto algoritmu pro n prvků v průměrném a nejhoršı́m přı́padě.
-	obě O(n log n) (snad?)
+	obě O(n log n), vždy
+
 3. Je váš algoritmus stabilnı́ ? Proč ?
 	Typicky se implementuje stabilní, ale záleží na konrétní implementaci (stabilní = zachovává vzájemné pořadí prvků se stejným klíčem)
 
 Třı́děnı́ Heap Sort
 1. Napište pseudokód třı́dı́cı́ho algoritmu Heap Sort.
+- postavím haldu, postupně odebírám nejmenší prvek jeden po druhém
 2. Zdůvodněte, jaká je časová složitost tohoto algoritmu pro n prvků.
-	O(n log n)
+- každé odebrání prvku stojí log(n), tj. celkem	O(n log n)
 3. Srovnejte časovou složitost tohoto algoritmu s časovou složitostı́ algoritmu Quick Sort.
-	Quick Sort má v nejhorším O(n^2), průměrně O(n log n) -- ale typicky je quicksort o konstantu rychlejší
+- Quick Sort má v nejhorším O(n^2), průměrně O(n log n) -- ale typicky je quicksort o konstantu rychlejší
 
 Třı́děnı́ Quick Sort
 1. Napište pseudokód třı́dı́cı́ho algoritmu Quick Sort.
+- vyberu pivot, rozdělím na dvě "poloviny", menší & větší, rekurzivně
 2. Zdůvodněte, jaké jsou nejmenšı́ a největšı́ počty kroků a spotřeba paměti tohoto algoritmu pro n prvků.
 	Čas: průměrně O(n log n), nejhůř O(n^2), konkrétněji:
 		každý prvek bude právě jednou pivotem. (tedy n kroků)
@@ -44,6 +51,7 @@ Třı́děnı́ Quick Sort
 			V nejhorším případě volíme pivota na konci množiny -- každý prvek přesouváme n-krát (tedy... pivot vždy zmenší množinu o 1, čili "jen" (n^2)/2 porovávání/přesunů)
 	Paměť O(n)
 3. Napište průměrnou časovou složitost tohoto algoritmu pro n prvků. Odvozenı́ nenı́ požadováno.
+- nlog(n)
 
 
 Vyhledavacie stromy
@@ -74,9 +82,11 @@ B-stromy
        B-strom je B/2 B Strom [AB-strom s A = ceiling(B/2)]
        B určuje počet synů které má vnitřní uzel [max B min B/2]
 2. Popište algoritmus mazánı́ prvku s vyváženı́m z B-stromu, neuvažujte redundantnı́ prvky.
+- najdu prvek, nahradím následníkem (určitě z hodlní vrstvy). Pokud tamní vrchol najednou moc malý -> sloučím se sousedem. Zpropaguju nový prvek (vzniklý sloučením) nahoru & atd.
 
 Binárnı́ vyhledávacı́ stromy
 1. Definujte AVL strom.
+- viz výše
 2. Napište postup vkládánı́ nového prvku do AVL stromu včetně postupu vyvažovánı́. U vyvažovánı́ nenı́ potřeba psát odděleně symetrické přı́pady rotace.
        DÚ - nedá se zapamatovat
 
@@ -84,9 +94,12 @@ Binárnı́ vyhledávacı́ stromy
 Binárnı́ stromy
 1. Definujte binárnı́ strom a binárnı́ vyhledávacı́ strom, jednak formálně, jednak jako třı́du ve zvoleném programovacı́m jazyce
 (C#, C++, Java, pouze signatury operacı́ a definice atributů, nikoliv implementace).
-2. Napište kdy je binárnı́ strom vyvážený a jaký je vztah mezi výškou a počtem uzlů vyváženého binárnı́ho stromu.
+2. Napište kdy je binárnı́ strom vyvážený a jaký je vztah mezi výškou a počtem uzlů vyváženého binárnı́ho stromu
+- výška je maximálně logaritmická, vyvážený má pro každý podstrom rozdíl výšek dětí max lišící se o 1.
 3. Napište kód operace nalezenı́ prvku v binárnı́m vyhledávacı́m stromu.
+- rekurzivně podle velikosti aktuálního prvku buď do levého nebo do pravého syna
 4. Napište podmı́nku vyváženı́ AVL stromu a vysvětlete, proč se tato varianta stromů uvažuje.
+- viz výše, protože drží maximálně logaritmickou hloubku
 
 Algoritmy na grafoch
 --------------------
@@ -100,11 +113,11 @@ Kostra grafu
 
 Toky v sítích
 1. Definujte problém maximálního toku v síti.
-       Máme Zdroj & Stok, v orietnovaném ohodnoceném grafu,
+       Máme Zdroj & Stok, v orietnovaném ohodnoceném grafu, ceny každé hrany. Hledáme maximální tok, menší než ceny, zachovává kirchofovi zákony.
 2. Zapište v pseudokódu Fordův-Fulkersonův algoritmus na hledání maximálního toku.
-       v každé iteraci najde zlepšujícíc cestu [tj. nenasycená] tak já naplní [tj. pustí po ní minimální rezervu]
+       v každé iteraci najde zlepšujícíc cestu [tj. nenasycená, uvažujeme možnost vzít zpětnou hranu] a naplní ji [tj. pustí po ní minimální rezervu]
 3. Dokažte, že pro libovolnou síť s celočíselnými kapacitami se Fordův-Fulkersonův algoritmus zastaví.
-       pro celá čísla ti každá iterace zvedne tok alespoň o jedna
+       pro celá čísla ti každá iterace zvedne tok alespoň o jedna, jednou narazí na určitě existující maximální tok
 4. Sestrojte síť s nejvýše 10 hranami, na níž Fordův-Fulkersonův algoritmus použije alespoň 10000 zlepšujících cest.
          #
   10000 /|\ 10000
@@ -112,12 +125,16 @@ Toky v sítích
   10000 \V/ 10000
          #
 2. Napište pseudokód algoritmu pro hledánı́ maximálnı́ho toku v sı́ti.
+- Ford Falkenson: Hledání zlepšující cesty
+- Dinic: Zlepšující toky
 
 Minimálnı́ cesta grafem
 1. Definujte pojem minimálnı́ cesty mezi dvěma vrcholy v ohodnoceném neorientovaném grafu.
+- minimální cesta je taková cesta, že žádná jiná cesta nemá menší součet délek
 2. Zvolte si vhodný algoritmus pro hledánı́ minimálnı́ cesty v grafu ohodnoceném celými čı́sly (kladnými i zápornými) a napište pseudokód algoritmu.
        Floyd-Warshall [mocnění matice]
-       Bellman-Ford
+       Bellman-Ford: jedu po vrstvách, tím, že nevybírám minimum mi nevadí záporné hrany
+
 
 Algoritmus topologického uspořádánı́
 1. Definujte topologické uspořádánı́ na orientovaném grafu.
@@ -142,8 +159,10 @@ Text
 Vyhledávánı́ v textu
 1. Popište strukturu vyhledávacı́ho automatu algoritmu Aho Corasick pro vyhledávánı́ v textu (načrtněte přı́klad pro hledané řetězce he“, she“, her“).
 2. Napište pseudokód algoritmu Aho Corasick pro vyhledávánı́ v textu (pouze vyhledávánı́, nikoliv konstrukci vyhledávacı́ho automatu).
+- procházím stavovým automatem, odpovídajícímu jehle
 3. Jaká je časová složitost tohoto algoritmu ?
-O(|W| + suma |J|)
+- O(|W| + suma |J|)
+
 
 Ine
 ---
@@ -161,12 +180,14 @@ Fourierova transformace
 	Čas: O(n log n)
 	Paměť: O(n)
 4. Jak vypadá inverze DFT?
-	Je to zas jen DFT jen s komplexně sdruženými koeficienty oproti původnímu DFT (snad)
+  -	Je to zas jen DFT jen s komplexně sdruženými koeficienty oproti původnímu DFT 
+  - Vycházíme z faktu, že DFT je lineární zobrazení maticí, k té můžeme najít invers -> provádí inverzní zobrazení
 
 Třı́dy složitosti
 1. Definujte pojmy P, NP, NP-těžký a NP-úplný problém.
 	P -- problémy řešitelné v polynomiálním čase
 	NP -- problémy jejichž řešení lze ověřit v polynomiálním čase (velmi volné vysvětlení)
+  - mějme problém L, L € NP <> (Existuje H € P, L(x) = 1 <> E: y, |y| <= pol(|x|) H(x, y) == 1)
 	NP-těžký -- lze na něj převést jakýkoliv NP (tedy máme-li řešení nějakého NP-těžkého, máme řešení všech NP)
 	NP-úplný -- průnik NP a NP-těžký
 2. Uved’te tři přı́klady NP-úplných problémů.
@@ -174,17 +195,18 @@ Třı́dy složitosti
 
 Hašovánı́
 1. Definujte pojmy hašovacı́ funkce“ a kolize“.
-       hash: mapování z jedné množiny do druhé
+       hash: mapování z jedné množiny do druhé, funkce A -> B
        kolize: h(x) = h(y) & x/=y
 2. Jaké vlastnosti by měla mı́t dobrá hašovacı́ funkce ?
-       k-univerzálnosti
-              Vm,n Vx,y P[f(x) = m & f(y) = y] =< 1/|S|^k
-       slabá univerzálnost: Vx,y : x/=y P[f(x) = f(y)] =< 1/|S|
+       měla by býz z třídy k-univerzálních funkcí: 
+             E(přes všechny fce z třídy): Vm,n Vx,y P[f(x) = m & f(y) = y] =< k/|S|^2
+       slabá univerzálnost: Vx,y : x/=y P[f(x) = f(y)] =< k/|S|
        S je to kam mapujeme
 3. Vysvětlete, jak hašovánı́ s odděleně uloženými nesetřı́děnými řetězci řešı́ vkládánı́ prvků v přı́padě kolize. Odhadněte očekávanou délku řetězců a očekávaný počet porovnánı́ při úspěšném vyhledánı́ položky.
 
 Rozděl a panuj
 1. Jaká je základní myšlenka metody Rozděl a panuj ?
+- Rozdělím problém na podproblémy a pak je skládám.
 2. Časová složitost algoritmů typu Rozděl a panuj se obvykle popisuje rekurentní rovnicí typu T (n) = a · T(n/b) + O(n^c). Jaký význam mají parametry a, b a c?
        - a #podproblému
        - b zmenšovací poměr vstupu [b=2 znamená, že vždy rozdělím vstup na poloviny & zpracovávám ty]
@@ -198,9 +220,11 @@ Rozděl a panuj
 
 Halda
 1. Definujte „haldu“ (obyčejnou minimovou binární).
+- zaplněný binární strom, kde prvky v synech jsou vždy větší než otec
 2. Popište, kde všude se v haldě může nacházet nejmenší a kde největší prvek.
 	nejmenší nahoře, největší v jednom z listů (popř. naopak pokud máme maximovou -- je "defaultní" minimová?)
 3. Zapište pseudokód operace vložení prvku do haldy.
+- vložím nakonec, postupně bublám nahoru (když otec větší, nahradím ho, určitě menší i než druhý syn)
 4. Dokažte, že alespoň jedna z operací vložení prvku a smazání minima v n-prvkové haldě musí mít časovou složitost Ω(log n).
 	Viz 4. otázka v první sadě ^^^
 

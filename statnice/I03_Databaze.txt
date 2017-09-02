@@ -26,14 +26,19 @@
        * SELECT w.Name, w.Surname FROM Authors NATURAL JOIN Writer w NATURAL JOIN Book b Where b.Name == "sfda"
 Dodržení přesné syntaxe SQL není předmětem hodnocení, přiměřeně blízký přibližný zápis stačí. Kde je to možné, zápis v syntaxi SQL můžete nahradit zápisem s použitím operací relační algebry
 - Definujte serializovatelný (serializable) rozvrh.
-	* Rozvrh evkvivalentní nějakému sériovému rozvrhu, tj. takovému, kde jdou transakce jedna po druhé.
+       * jednotlivé transakce nejdou provést v sérii - ergo je tam nějaký konflikt napříč transakcemi [W->R, R->W, W->W]
 - Uvažujte transakce T1: R(X)R(Y)W(X) a T2: R(X)R(Y)W(Y) a rozvrh H: R1(X)R2(X)R1(Y)R2(Y)W1(X)W2(Y)C1C2. Je rozvrh H serializovatelný (serializable)? Zdůvodněte a případně navrhněte opravu na serializovatelný rozvrh.
        * Není serializovatelný - nejde opravit, tak aby se zachovala idea transakcí
 - Definujte zotavitelný (recoverable) rozvrh.
 - Uvažujte transakce T1: R(X)W(Y) a T2: R(Y)W(Z) a rozvrh H:R1(X)W1(Y)R2(Y)W2(Z)C2C1. Je rozvrh H zotavitelný (recoverable)? Zdůvodněte a případně navrhněte opravu na zotavitelný rozvrh.
        * Není zotavitelný, ale stačí prohodit commity
 - Vysvětlete rozdíl mezi konceptuálním a fyzickým modelem databáze.
+       * Konceputální model popisuje reálný svět například pomocí ER či UML diagramů. Zachycuje entity a vztahy, které mají být uloženy v databázi.
+       * Fyzický model reší konkrétní implementaci databáze. Jak jsou data uspořádaná v datových souborech, jak vzpadají indexové soubory atd.
+       * Mezi tím je ještě logická vrstva, která popisuje reprezentaci konceptuálních částí v databázi. Tedy například popis pomocí relací, XML, ...
 - Jak převedete ”is-a“ hierarchii do relačního schématu? Předpokládejte, že hierarchie má pouze 2 podtypy (například ”is-a“ hierarchie Osoba s podtypy Zaměstnanec a Zákazník).
+       * ISA hierarchie znamená, že chceme v databázi reprezentovat jakousi dědičnost (typickou pro objěktově orintované programování). Tedy máme entitu Osoba, která má nějaké atributy (id, jméno, číslo, ...) a ty dědí Zaměstnanec a Zákazník.
+       * Pro tento konkréntí příklad lze zapsat hierarchii pomocí vztahů. Osoba bude entita a ta může mít vztah "být zaměstnanec" případně "být zákazník", tento vztah pak na sebe může mít navázané případně další atributy, které jsou spojené se "Zaměstnancem" či "Zákazníkem".
 - Namodelujte (definujte entity a vztahy) pro situaci ”učitel učí několik studentů, student navštěvuje přednášky více učitelů“. Jak vyřešit situaci, kdy chceme zachytit, že tentýž student může mít téhož učitele pro více předmětů?
 - Definujte pojem ”transakce“ a vysvětlete vlastnosti ACID (atomicity, consistency, isolation, durability).
        * skupina operací splňující ACID
@@ -47,7 +52,8 @@ Dodržení přesné syntaxe SQL není předmětem hodnocení, přiměřeně blí
        * dvě proměné se skříženými zámky
 - Vysvětlete, jak může tento deadlock ve vámi zvoleném příkladě konkrétně vzniknout.
 - Vyjmenujte množinové operace relační algebry. Jsou na jejich operandy kladeny nějaké podmínky a proč? Jsou všechny množinové operace nezbytné pro zachování síly jazyka? Pokud ne, které lze vynechat a nahradit zbylými?
-       * sjednocení, selekce, průnik, rozdíl, join, podíl, dělení[domácí úkol], přejmenovat atributy, kartézský součet
+       * sjednocení, průnik, rozdíl, join, podíl, dělení[domácí úkol], přejmenovat atributy, kartézský součet
+       * sjednocení, průnik, rozdíl - musejí mít operandy se stajným relačním schématem (tj. tabulky musí mít stejné sloupečky)
 - Vysvětlete funkci dvoufázového zamykacího protokolu.
 - Uvažujte transakce T1: R(A),W(B) a T2: W(A). Bude rozvrh {S1(A), R1(A), U1(A), S2(A), W2(A), U2(A), X1(B), W1(B), U1(B), COMMIT1, COMMIT2} dvoufázový ? Pokud ne, upravte ho aby byl a přitom se nezměnilo pořadí čtení a zápisů.
        * dvoufázovost je porušena na 1. transakci - nejprve se má všechno zamkonout & pak teprve odemknout
@@ -63,12 +69,19 @@ Dodržení přesné syntaxe SQL není předmětem hodnocení, přiměřeně blí
 - Napište, kdy je relační schéma ve třetí normální formě.
        * domácí úkol
 - Vymyslete příklad univerzální relace, ve které je porušena druhá a třetí normální forma. Použijte atributy IdUčitel, IdŠkola, JménoUčitel, AdresaŠkola, MěstoŠkola.
+       * IdŠkola AdresaŠkola            MěstoŠkola IdUčitel
+         1       V Ulici 3, Praha 6     Praha      2
+         2       Na Zástřelu 21, Vlkov  Vlkov      4
+         3       Brněnská 22, Vlkov     Vlkov      3
+       * z IdŠkola lze odvodit všechny atributy, stejně tak z AdreaŠkola. Jsou to klíče. Protože z IdŠkola -> AdresaŠkola -> MěstoŠkola, je zde tranzitivní závislost neklíčového atributu na klíči => porušení 3.NF. Protože neklíčový atribut MěstoŠkola lze odvodit z AdresaŠkola (což je klíč), je porušena 2.NF. 
 - Vysvětlete pojem „funkční závislosti atributů relace“ v relačním datovém modelu. Bude relace R(K1, K2, A, B), s klíčem (K1, K2), kde F = {K2 -> B} vhodně navržená? Pokud ne, jak by bylo vhodné návrh změnit a proč?
+       * Daná relace porušuje 2.NF (neklíčový atribut závisí na části klíče). Opravit to jde tak, že se to rozdělí do 2 tabulek. R_1(K1, K2, A), R_2(K2,B).
 - Uvažujte transakce T1: R(A)W(B)W(C) a T2: W(A)R(B)W(B). Je rozvrh S: R1(A)W2(A)W1(B)R2(B)W2(B)W1(C) serializovatelný (serializable)? Proč? Pokud ne, jak by bylo potřeba jej opravit?
 - Jak se bude lišit – pokud vůbec – sémantika modelu, pokud je binární vztah reprezentován poprvé relací R(K1, K2) a podruhé relací R(K1, K2)?
 - Popište podmínky nutné pro to, aby relační schéma bylo ve druhé normální formě. Uveďte jednoduchý příklad relace, která v dané normální normě nebude. Jak by bylo potřeba návrh takové relace upravit?
 - Uvažujte transakce T1: R(A)W(B)W(C) a T2: W(A)R(B)W(B). Je rozvrh S: R1(A)W2(A)W1(B)R2(B)W2(B) COMMIT2 W1(C) COMMIT1 zotavitelný (recoverable)? Pokud ano, proč? Pokud ne, jak by bylo potřeba jej upravit, aby zotavitelný byl?
 - Jak lze nahradit – pokud vůbec – operaci sjednocení v relační algebře pomocí ostatních operací, které tento dotazovací jazyk nabízí?
+       * |A ∪ B| = |A| + |B| − |A ∩ B|
 - Navrhněte E–R model pro evidenci "Projektů a jejich Řešitelů". Projekt je identifikovaný názvem a má striktní termín ukončení. Řešitel má jméno a příjmení (nemusí být unikátní) a specializaci. Na každém projektu se může podílet několik
 řešitelů a jeden řešitel může pracovat na více projektech.
 - Převeďte E–R model z předchozího bodu do relačního databázového modelu. V návrhu vyznačte datové typy jednotlivých sloupců tabulek.
@@ -92,4 +105,4 @@ Dodržení přesné syntaxe SQL není předmětem hodnocení, přiměřeně blí
 - Mohou dva konfliktově ekvivalentní rozvrhy operující se stejným počátečním stavem databáze dospět k různým koncovým stavům? Proč?
 - Uvažujte transakce T1: R(X)R(Y)W(X) a T2: R(X)R(Y)W(Y). Je rozvrh R1(X)R2(X)R1(Y)R2(Y)W1(X)W2(Y) serializovatelný a proč?
 - Definujte pojem ”transakce“ a vysvětlete vlastnosti ACID (atomicity, consistency, isolation, durability).
-- Uvažujte transakce T1: R(X)R(Y)W(X) a T2: R(X)R(Y)W(Y). Je rozvrh R1(X)R2(X)R1(Y)R2(Y)W1(X)W2(Y) serializovatelný a proč?
+- Uvažujte transakce T1: R(X)R(Y)W(X) a T2: R(X)R(Y)W(Y). Je rozvrh R1(X)R2(X)R1(Y)R2(Y)W1(X)W2(Y) serializovatelný a proč?s
