@@ -44,11 +44,13 @@ L14: 9. Najděte Jordanovu normální formu matice A.
                     0 0 0 2
 
 - dvě vlastní čísla, 1 a 2. 
-- 1 i 2, dvojnásobná jen algebraicky, tj. mají jen jeden vlastní vektor každé
-- Tj. dvě jordanovi buňky, pro každé jedno
-                    1 1 0 0
-               A =  0 1 0 0
-                    0 0 2 1
+- rank(A - λI) = 2, takže λ=1 má n-2 = 2 vl. vektory, tedy i dvě buňky
+- rank(A -2λI) = 2, takže λ=2 má n-2 = 2 vl. vektory, tedy i dvě buňky
+- Tj. Jordanova normální forma je diagonální matice
+                    1 0 0 0
+               J =  0 1 0 0
+                    0 0 2 0
                     0 0 0 2
+- (http://www.wolframalpha.com/input/?i=jordan+normal+form+calculator+%7B%7B1,0,0,3%7D,%7B0,1,0,0%7D,%7B0,0,2,0%7D,%7B0,0,0,2%7D%7D)
 
 

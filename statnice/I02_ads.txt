@@ -29,6 +29,7 @@ Třı́děnı́ Merge Sort
 - rozdělím na poloviny, každou setřídím, sleju dohromady (slití lineární)
 2. Napište časovou složitost tohoto algoritmu pro n prvků v průměrném a nejhoršı́m přı́padě.
 	obě O(n log n), vždy
+
 3. Je váš algoritmus stabilnı́ ? Proč ?
 	Typicky se implementuje stabilní, ale záleží na konrétní implementaci (stabilní = zachovává vzájemné pořadí prvků se stejným klíčem)
 
@@ -134,6 +135,7 @@ Minimálnı́ cesta grafem
        Floyd-Warshall [mocnění matice]
        Bellman-Ford: jedu po vrstvách, tím, že nevybírám minimum mi nevadí záporné hrany
 
+
 Algoritmus topologického uspořádánı́
 1. Definujte topologické uspořádánı́ na orientovaném grafu.
        v1 .. vn : Ve€E : e=(vi, vj) & vi > vj
@@ -160,6 +162,7 @@ Vyhledávánı́ v textu
 - procházím stavovým automatem, odpovídajícímu jehle
 3. Jaká je časová složitost tohoto algoritmu ?
 - O(|W| + suma |J|)
+
 
 Ine
 ---
