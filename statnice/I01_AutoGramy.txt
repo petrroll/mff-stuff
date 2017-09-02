@@ -26,7 +26,7 @@ Chomského hierarchie, třídy automatů a gramatik, determinismus a nedetermi
 - Ukažte, do jaké třídy v Chomského hierarchii patří jazyk, Ln, pokud je dáno pevné n, vysvětlete proč.
        * regulární jazyk, protože jsme ho dali přes regulární výraz
 - Vysvětlete pumping lemma pro bezkontextové jazyky.
-       * meh...
+    - E m, n, Vx€L: |x| > m, x = uvwxy, |vwx| < n, |vx| > 0, uv^iwx^iy € L
 - Popište lineárně omezený Turingův stroj.
        * naučit definice - je to Turingův stroj s O(n) velkou páskou - kde n je velikost slova
 - Zařaďte do Chomského hierarchie jazyk L = {ww | w € {a,b}*} (tedy nalezněte vzhledem k inkluzi co nejmenší třídu hiererchie, do které jazyk patří). Odpověď dokažte.

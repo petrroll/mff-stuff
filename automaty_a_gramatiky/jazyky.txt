@@ -1,28 +1,28 @@
 1) důsledek Ricovy věty
 2) K
 3) K (bez důkazu kontextivitosti)
-4) BK
+4) BK: nedeterministicky hádám, kde se liší
 5) v prezentaci (spočetně rekurzivní - snad)
 6) BK
 7) K
-8) BK
-9) BK
-10)BK
-11)BK
-12)BK
-13)K
-14)K
-15)R
-16)R
-17)BK
-19)BK
+8) BK, regulární neprojde Mihil nerodovou větou 
+9) BK, regulatirita neprojde pumpováním
+10)BK, regulárně ne kvůli mihil-nerodově větě: nekonečně slov |u| < |v|, alespoň dvě ve stejné třídě, zprava jde prodloužit tak, aby jedno začalo patřit do jazyka a druhé ne.
+11)BK, reguálrně nelze pumpovat
+12)BK, to samé jako 11. nedeterministicky uhádnu
+13)K, nelze bezkontěxtově pumpovat
+14)K, nelze bezkontextově pumpovat
+15)R, jeden stav, přijmu
+16)R, stavy počítám paritu b-ček
+17)BK, lze zásobníkovým, nelze regulárně pumpovat
+19)BK, lze zásobníkovým (nedeterministicky uhádnu jaká platí), nelze regulárně pumpovat
 20)=2)K
-21)K
-22)K
-23)BK
-24)BK
-25)K
-26)K
+21)K nelze regulárně ani bezkontextově pumpovat
+22)K nelze bezkontextově pumpovat (m může být veeelké, přepumpuju / odpumpuju)
+23)BK vždy mohu  pumpovat jenom prostředek, lze zásobníkovým (o prostředek se nestarám)
+24)BK uhádnu nedeterministicky jaká platí a zásobníkovým zjistím, jestli je to pravda, mihil rozbíjí regulárnost
+25)K nelze pumpovat jazyky, kde i není 0, stejné pak jako výše
+26)K nelze bezkontextově pumpovat, podpumpuju / přepunpuju (všechny stejně)
 
 K->Kontextový
 BK->Bezkontextový
