@@ -1,5 +1,6 @@
 ﻿- Mějme následující schéma: Pole(P_Id, Rozloha), Plodina(P_Id, Název), Sklizeň(S_Id, Datum, Pole_Id, Plodina_Id).
        - Definujte základní operace dotazovacího jazyka relační algebry.
+          - sjednocení, kartézský součin, projekce, selekce, průnik
        - Zapište dotaz v relační algebře, který vybere ID plodin, které zatím nebyly pěstovány.
               * Plodina - Plodina(P_Id) \ Sklizeň(Plodina_Id)
        - Zapište dotaz v relační algebře, který určí, na kterých polích s rozlohou větší než jeden hekatar se pěstovala pšenice.
@@ -12,6 +13,7 @@
               * SELECT S_Id from Sklizeň WHERE Datum BETWEEN '1.6.2015' AND '1.8.2015'
        - Zapište dotaz v SQL, který vypíše plodiny sklizené alespoň na deseti polích.
               * SELECT Plodina_Id from Sklizeň GROUP BY Plodina_Id HAVING COUNT(Pole_Id) >= 10
+
 - Navrhněte strukturu tabulek pro uložení informací o autorech a knihách do databáze. U každého autora se bude evidovat jeho jméno a příjmení, které nemusí být unikátní, a knihy, které napsal, u každé knihy pak název, který rovněž nemusí být unikátní, a seznam autorů, kteří knihu napsali. V návrhu vyznačte datové typy jednotlivých sloupců.
        * Writer - IDWriter, Name, Surname
        * Book - IDBook, Name
@@ -25,11 +27,15 @@
 - Napište SQL příkaz, který nad touto strukturou vypíše seznam autorů pro knihu danou názvem.
        * SELECT w.Name, w.Surname FROM Authors NATURAL JOIN Writer w NATURAL JOIN Book b Where b.Name == "sfda"
 Dodržení přesné syntaxe SQL není předmětem hodnocení, přiměřeně blízký přibližný zápis stačí. Kde je to možné, zápis v syntaxi SQL můžete nahradit zápisem s použitím operací relační algebry
+
 - Definujte serializovatelný (serializable) rozvrh.
-       * jednotlivé transakce nejdou provést v sérii - ergo je tam nějaký konflikt napříč transakcemi [W->R, R->W, W->W]
+  - Rozvrch se serializovatelný, pokud jeho výsledek odpovídá nějakému sériovému rozvrhu (tj. takovému, kde jsou transakce jedna po druhé)
 - Uvažujte transakce T1: R(X)R(Y)W(X) a T2: R(X)R(Y)W(Y) a rozvrh H: R1(X)R2(X)R1(Y)R2(Y)W1(X)W2(Y)C1C2. Je rozvrh H serializovatelný (serializable)? Zdůvodněte a případně navrhněte opravu na serializovatelný rozvrh.
-       * Není serializovatelný - nejde opravit, tak aby se zachovala idea transakcí
+       * Není konfliktově serializovatelný - nejde opravit, tak aby se zachovala idea transakcí
+       - Není ani serializovatelný.
 - Definujte zotavitelný (recoverable) rozvrh.
+      - Zotavitelný je rozvrch, ve kterém když (v libovolném bodě) transakce selže (nedojde commitu), tak výsledek bude  pořád konsistentní.
+      - Repsketive, pokud je nějaká precedence kvůli konfliktům, tak ve stejném pořadí jsou i commity. 
 - Uvažujte transakce T1: R(X)W(Y) a T2: R(Y)W(Z) a rozvrh H:R1(X)W1(Y)R2(Y)W2(Z)C2C1. Je rozvrh H zotavitelný (recoverable)? Zdůvodněte a případně navrhněte opravu na zotavitelný rozvrh.
        * Není zotavitelný, ale stačí prohodit commity
 - Vysvětlete rozdíl mezi konceptuálním a fyzickým modelem databáze.
@@ -46,8 +52,11 @@ Dodržení přesné syntaxe SQL není předmětem hodnocení, přiměřeně blí
        * C - vždy validní stav
        * I - jednotlivé transakce "nevidí" to co provádí ostatní
        * D - commitnutých změn už se nezbavíme
+
 - Definujte pravidla, pomocí kterých izoluje transakce dvoufázové zamykání.
-       * == pravidla dvoufázového zamykání
+  - jak se jedno odemkne, tak již nejde nic zakmnout, tj. první zámky pak odemykání
+  - striktní verze odemyká až těsně před commitem
+  - konzervativní verze zamyká hned na začátku
 - Napište příklad dvou transakcí, jejichž současný běh může vést při použití dvoufázového zamykání k uváznutí (deadlock).
        * dvě proměné se skříženými zámky
 - Vysvětlete, jak může tento deadlock ve vámi zvoleném příkladě konkrétně vzniknout.
@@ -55,54 +64,94 @@ Dodržení přesné syntaxe SQL není předmětem hodnocení, přiměřeně blí
        * sjednocení, průnik, rozdíl, join, podíl, dělení[domácí úkol], přejmenovat atributy, kartézský součet
        * sjednocení, průnik, rozdíl - musejí mít operandy se stajným relačním schématem (tj. tabulky musí mít stejné sloupečky)
 - Vysvětlete funkci dvoufázového zamykacího protokolu.
+      - viz výše
 - Uvažujte transakce T1: R(A),W(B) a T2: W(A). Bude rozvrh {S1(A), R1(A), U1(A), S2(A), W2(A), U2(A), X1(B), W1(B), U1(B), COMMIT1, COMMIT2} dvoufázový ? Pokud ne, upravte ho aby byl a přitom se nezměnilo pořadí čtení a zápisů.
        * dvoufázovost je porušena na 1. transakci - nejprve se má všechno zamkonout & pak teprve odemknout
 - Vysvětlete funkci dvoufázového zamykacího protokolu.
+      - viz výše
 - V čem se od něj odlišuje striktní dvoufázový zamykací protokol? Zabraňuje některý z nich více anomáliím? Pokud ano, jakým?
+      - release až před commitem, zajišťuje, že rovrh bude recoverable
 - Uvažujte transakce T1: R(X)R(Y)W(Y) a T2: W(Y)R(Y). Dají rozvrhy S1: R1(X)W2(Y)R1(Y)W1(Y)R2(Z) a S2: W2(Y)R1(X)R1(Y)R2(Z)W1(Y) vždy stejný výsledek a proč?
+    - Oba jsou ekvivalentní sériovému T2, T1
+
 -  Navrhněte strukturu tabulek pro uložení informací o studentech a předmětech do databáze. U každého studenta se bude evidovat jeho jméno a příjmení, které nemusí být unikátní, u každého předmětu pak unikátníı název a seznam zapsaných studentů. V návrhu vyznačte datové typy jednotlivých sloupců.
+    - Student(uid, name, surname)
+    - Subject(sid, name)
+    - Attends(sid, uid)
 - Napište SQL příkaz, který nad touto strukturou vypíše seznam studentů, kteří mají zapsaný alespoň jeden předmět.
+    - SELECT name, surname from Student s where (SELECT count(sid) from Attends where uid == s.uid) >= 1
 - Napište SQL příkaz, který nad touto strukturou vypíše počet zapsaných studentů pro každý předmět.
+    - SELECT count(uid), name FROM Attends LEFTJOIN Subjects on sid GROUPBY sid
 - Napište SQL příkaz, který nad touto strukturou vypíše seznam studentů pro předmět daný názvem.
+    - SELECT name, surname FROM attends left-join Subject left-Join Student where subj.name == <NAME> 
 -  Popište relační datový model (tedy zejména koncept domén a relací, schéma, vztah těchto konceptů s tabulkami a řádky).
+    - Jde o model uchování dat pomocí relací. Realce jsou reprezentované tabulkami, co řádek to jedna relace hodnot v sloupečcích.
+    - Jednotlivé tabulky mohou být provázané a odkazovat se na sebe.
+    - Každý sloupec odpovídá nějaké doméně, z které v ní mohou být hodnoty. 
+    - Relační schéma je popis jak aritní relace z jakých domén existují a jak jsou, případně, popropojované.  
 - Vysvětlete, proč se relační schémata upravují do normálních forem.
+    - Kvůli tomu, aby se neuchovávali redundantní informace, které by potenciálně mohlo být těžké udržovat aktuální atd.
 - Napište, kdy je relační schéma ve třetí normální formě.
-       * domácí úkol
+      - Pokud pro každé závislostní pravidlo platí, že je buď ze superklíče, je triviální a nebo je do superklíče.
 - Vymyslete příklad univerzální relace, ve které je porušena druhá a třetí normální forma. Použijte atributy IdUčitel, IdŠkola, JménoUčitel, AdresaŠkola, MěstoŠkola.
-       * IdŠkola AdresaŠkola            MěstoŠkola IdUčitel
-         1       V Ulici 3, Praha 6     Praha      2
-         2       Na Zástřelu 21, Vlkov  Vlkov      4
-         3       Brněnská 22, Vlkov     Vlkov      3
-       * z IdŠkola lze odvodit všechny atributy, stejně tak z AdreaŠkola. Jsou to klíče. Protože z IdŠkola -> AdresaŠkola -> MěstoŠkola, je zde tranzitivní závislost neklíčového atributu na klíči => porušení 3.NF. Protože neklíčový atribut MěstoŠkola lze odvodit z AdresaŠkola (což je klíč), je porušena 2.NF. 
+       * IdŠkola AdresaŠkola            MěstoŠkola IdUčitel JmenoUčitel
+         1       V Ulici 3, Praha 6     Praha      1          Petr
+         2       Na Zástřelu 21, Vlkov  Vlkov      1          Jan
+         3       Brněnská 22, Vlkov     Vlkov      1          Jirka
+         3       Brněnská 22, Vlkov     Vlkov      2          Jan
+
+       - Město závisí na adrese, která závisí na IDškoly, což je spolu s ID učitele klíč. Tj. transitivní závislost proti 3NF
+       - Jméno učitele závisí jen na části klíče, na Id učitele. Porušení 2NF
+
 - Vysvětlete pojem „funkční závislosti atributů relace“ v relačním datovém modelu. Bude relace R(K1, K2, A, B), s klíčem (K1, K2), kde F = {K2 -> B} vhodně navržená? Pokud ne, jak by bylo vhodné návrh změnit a proč?
        * Daná relace porušuje 2.NF (neklíčový atribut závisí na části klíče). Opravit to jde tak, že se to rozdělí do 2 tabulek. R_1(K1, K2, A), R_2(K2,B).
+       - Funkční závislost znamená to, že jeden atribut jde rozhodnout dle jiného atributu. Tj.  A->B:  pro hodnotu atributu A má atribut B vždy určitou hodnotu.
 - Uvažujte transakce T1: R(A)W(B)W(C) a T2: W(A)R(B)W(B). Je rozvrh S: R1(A)W2(A)W1(B)R2(B)W2(B)W1(C) serializovatelný (serializable)? Proč? Pokud ne, jak by bylo potřeba jej opravit?
+    - První otestuju konfliktní serializovatelnost, pak uvidím.
 - Jak se bude lišit – pokud vůbec – sémantika modelu, pokud je binární vztah reprezentován poprvé relací R(K1, K2) a podruhé relací R(K1, K2)?
 - Popište podmínky nutné pro to, aby relační schéma bylo ve druhé normální formě. Uveďte jednoduchý příklad relace, která v dané normální normě nebude. Jak by bylo potřeba návrh takové relace upravit?
+  - výše příklad, který není v 2.NF, oddělit sloupeček mapování adresy a města na IDškoly. 
+  - V 2NF je tabulka, ve které se neobjevuje závislost na části klíče. Ale vždy na celém klíči / transitivně z klíče.
 - Uvažujte transakce T1: R(A)W(B)W(C) a T2: W(A)R(B)W(B). Je rozvrh S: R1(A)W2(A)W1(B)R2(B)W2(B) COMMIT2 W1(C) COMMIT1 zotavitelný (recoverable)? Pokud ano, proč? Pokud ne, jak by bylo potřeba jej upravit, aby zotavitelný byl?
+  - Udělám graf závislostí, zjistím jestli commity ve stejném pořadí.
 - Jak lze nahradit – pokud vůbec – operaci sjednocení v relační algebře pomocí ostatních operací, které tento dotazovací jazyk nabízí?
        * |A ∪ B| = |A| + |B| − |A ∩ B|
+
 - Navrhněte E–R model pro evidenci "Projektů a jejich Řešitelů". Projekt je identifikovaný názvem a má striktní termín ukončení. Řešitel má jméno a příjmení (nemusí být unikátní) a specializaci. Na každém projektu se může podílet několik
 řešitelů a jeden řešitel může pracovat na více projektech.
 - Převeďte E–R model z předchozího bodu do relačního databázového modelu. V návrhu vyznačte datové typy jednotlivých sloupců tabulek.
 - Nad strukturou tabulek z předchozího bodu napište dotaz, který vypíše seznam projektů, na kterých pracuje alespoň jeden "DB specialista".
+
 - Definujte relaci konfliktové ekvivalence nad transakčními rozvrhy.
-       * DÚ
+    - Dva rozvrhy jsou konfliktově ekvivalentní mají li stejné konflikty. 
 - Jaký je vztah mezi konfliktovou uspořádatelností (conflict–serializability) rozvrhu a serializovatelností (serializability)?
+    - Konfliktová serializovatelnost implikuje obecnou serializovatelnost. 
 - Uvažujte transakce T1: R(A)W(A)W(B) a T2: R(A)W(A)R(B) a rozvrh S: R1(A)W1(A)R2(A)W2(A)R2(B)W1(B)C2C1. Je rozvrh S konfliktově uspořádatelný (conflict–serializable)? Zdůvodněte a případně navrhněte minimální opravu (ve smyslu počtu přesouvaných operací) na konfliktově serializovatelný rozvrh.
 - Definujte zotavitelný (recoverable) rozvrh. Rozhodněte o opraveném rozvrhu z předchozího bodu, zda je, či není zotavitelný.
+    - Viz výše.
 - Definujte pravidla pro izolaci transakcí s použitím dvoufázového zamykání.
+    - Viz výše.
 - Uvažujte transakce T1: R(X)R(Y) a T2: W(X)W(Y). Napište všechny rozvrhy, kterými může tyto transakce plánovat dvoufázové zamykání (vyznačte i operace zamčení a odemčení).
 - Může vést dvoufázové zamykání nad těmito transakcemi k uváznutí a proč?
+    - Nemůže, musely by být prohozené XY u jedné z transakcí. IMO.
 - Popište základní operace relační algebry.
+    - Viz výše.
 - Popište sémantiku následujících SQL příkazů pomocí operací relační algebry.
        - SELECT A,B FROM T WHERE A=1
+          - Selekce podmínkou nad sjednocením A, B
        - SELECT * FROM T1,T2
+          - Selekce všeho nad kartézským součinem
        - SELECT * FROM T1 INNER JOIN T2 ON T1.A=T2.B
+          - Inner join dvou věcí
        - SELECT * FROM T1 LEFT OUTER JOIN T2 ON T1.A=T2.B
+          - Obdobně.
 - Definujte relaci konfliktové ekvivalence nad transakčními rozvrhy.
+    - Viz výše.
 - Mohou existovat konflikty ve správných (serializovatelných) rozvrzích?
+    - Ano, např. to je pointa všech konfliktově serializovatelných rozvrhů. 
 - Mohou dva konfliktově ekvivalentní rozvrhy operující se stejným počátečním stavem databáze dospět k různým koncovým stavům? Proč?
+    - Ne, jsou totiž ekvivalentní stejnému sériovému.
 - Uvažujte transakce T1: R(X)R(Y)W(X) a T2: R(X)R(Y)W(Y). Je rozvrh R1(X)R2(X)R1(Y)R2(Y)W1(X)W2(Y) serializovatelný a proč?
 - Definujte pojem ”transakce“ a vysvětlete vlastnosti ACID (atomicity, consistency, isolation, durability).
+    - Viz výše.
 - Uvažujte transakce T1: R(X)R(Y)W(X) a T2: R(X)R(Y)W(Y). Je rozvrh R1(X)R2(X)R1(Y)R2(Y)W1(X)W2(Y) serializovatelný a proč?s
