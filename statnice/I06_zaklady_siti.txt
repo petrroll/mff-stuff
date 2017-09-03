@@ -51,6 +51,7 @@ IPv4 (4byte) / IPv6 (16 byte) + port (16bit)
 - po oknech paketů (tj. po několika paketech, maximálně po velikosti okna)
 Jak protokol TCP minimalizuje poˇcet datagram˚u pˇren´aˇseny´ch kv˚uli potvrzen´ı ?
 - Existují okna, stačí posílat po několika paketech.
+- ACK se dá posílat součástí paketů, co jdou druhou stranou s nákladem. 
 3. Jak protokol TCP ˇr´ıd´ı tok v situaci, kdy odes´ılatel produkuje data rychleji, neˇz je pˇr´ıjemce schopen je zpracovat ?
 - Přijámač sníží okno, neposílá ACK tak často. Producent musí zastavit a čekat na ACK.
 4. Jak´e internetov´e protokoly jsou vystavˇeny nad protokolem TCP (nejm´enˇe dva pˇr´ıklady) ?
