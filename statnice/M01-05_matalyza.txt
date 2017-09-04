@@ -50,8 +50,6 @@
 	- Díky derivaci součinu se se bude počet členů vždy zdvojnásobovat a jeho znaménko bude fluktuovat 0, +, 0, -, ... 
 	- Když kladné / záporné, tak nenulových členů polovina.
 	- 2/2 x + 0x^2 - 8/2*3! x^3 + 0x^4 + 32/2*5! x^5 = x - 2/3 x^2 + 2/15 x^5
-	- limita v nekonečnu 0, limita v mínus nekonečnu, nekonečno
-	- globální maximum neexistuje
 =============
 = léto 2016 =
 =============
@@ -102,7 +100,6 @@
 	- první derivace nulová 0, 2
 	- všude kladná, jinde nenulová, tj. 0 je globální minimum
 	- druhá derivace v 2 záporná, tj. lokální maximum
-	- 
 12. Limita funkce v bodě
 	1. Definujte pojem „limita funkce“ (jedné reálné proměnné).
 	- f: U-> R, a je hromadný bod (každé jeho okolí má neprázdný průnik s U)
@@ -145,7 +142,7 @@
 	  - d(x,z) <= d(x,y) + d(y,z)
 	2. Označme M = {(x, x) | x ∈ R}, tedy M je „úhlopříčná přímka“ v prostoru R^2 s L_∞-metrikou. Rozhodněte, zda M je
 		(a) uzavřená,
-		- Ne, doplněk je otevřený.
+		- Ano, doplněk je otevřený.
 		(b) otevřená,
 		- Ne, body na přímce nemají koulové okolí.
 		(c) kompaktní.
@@ -246,7 +243,7 @@
 	1. Definujte pojem "derivace funkce“ pro funkci jedné reálné proměnné.
 	- viz výše
 	2. Popište souvislost derivace funkce s tečnou ke grafu funkce.
-	- tečna: y = f(a) + f'(a)*x, derivace je směrnice tečny
+	- tečna: y = f(a) + f'(a)*(x - a), derivace je směrnice tečny
 	3. Vyslovte Lagrangeovu větu o střednı́ hodnotě.
 	- Pro funkci f: spojitou na intervalu [a, b], jde na (a,b) má vlastní derivace platí
 	- Ec€(a,b): f'(c) = f(a)-f(b) / a-b

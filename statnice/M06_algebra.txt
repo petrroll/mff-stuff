@@ -7,7 +7,7 @@ Násobnost kořenů a jejich souvislost s derivacemi mnohočlenu.
 
 J16: 1. Definujte pojem „ireducibilní polynom“.
 P14: 2. Definujte pojem „ireducibilní polynom nad tělesem T“.
-Polynom stupně >= 1 dělitelný pouze nenulovými skaláry & asociovanými polynomi (tj. polynomu které dělí a které jsou jím zároveň děleny)
+- Polynom stupně >= 1 dělitelný pouze nenulovými skaláry & asociovanými polynomy (tj. polynomy které dělí a které jsou jím zároveň děleny)
 
 P12: 3. Ukažte, že každý polynom stupně alespoň 1 má jednoznačný rozklad na součin ireducibilních polynomů.
 - Mějme dvě různé posloupnosti ireducibilních polynomů jejiž součin je p. Vyberme pak jeden z jednoho. Pro toho víme, že dělí-li p, tak dělí nějaký ireduc. z druhé posloupnosti. To je, pro ireducibilní polynom možné jen pro polynom asociovaný. Tj. tyto dva jsou až na asociaci stejné. Můžeme je odebrat a pokračovat indukcí dál.
