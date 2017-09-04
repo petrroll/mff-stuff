@@ -77,8 +77,16 @@ nic
 		Napište predikáty otec/2 a dedecek/2 s následujícím významem:
 		otec (Ot , Di)    % "Ot" j e otcem "Di"
 		dedecek (De , Di) % "De" j e dedeckem "Di"
+	   * otec(Ot,Di) :- muz(Ot), rodic(Ot, Di).
+	   * dedecek(De,Di) :- muz(De), rodic(De,Ot), rodic(Ot,Di).
 
 	2. Jak jsou v Prologu definovány seznamy ?
+	   * Jako datová struktura s předdefinovaným predikátem tečka(zřetězení).
+	   * Prázdný seznam []
+	   * Seznam s prvky [a,b,c]
+	   * .(a,b) je [a,b]
+	   * zápis .(hlava, tělo) jde psát ekvivalentně [hlava | tělo], kde hlava jsou prvek (nebo více oddělené čárkou), tělo je seznam.
+	   
 	3. Mějme predikát concat/3, který spojí dva seznamy:
 		concat ( [ ] , L , L ) .
 		concat ( [ X| T ] , L , [ X| S ] ) : − concat (T, L , S ) .
@@ -87,9 +95,14 @@ nic
 
 		r ([] ,[]).
 		r ( [ X| T ] , L): − r (T, T1 ) , concat ( T1 , [ X] , L ) .
+	    * Zavolání %concat(+S1, +S2, -X). vrátí X = zřetězení S1 s S2.
+	    * Predikát %r(+S1,-X) udělá revers vloženého seznamu.
 	4. Liší se nějak následující Prolog dotazy ?
 		X = 1 + 3.
 		X is 1 + 3.
+	    * První výraz pouze unifikuje X s výrazem "1 + 3", tedy vrátí X = 1 + 3.
+	    * Druhý výraz sečte to co je na pravo a pak to unifukuje s X, tedy vrátí X = 4.
+	    
 12. Rozhraní pro synchronizaci
 	1. Napište rozhraní zámku (mutex) jako objektu pro synchronizaci. Popište sémantiku metod.
 	2. Načrtněte možnou implementaci zámku z předchozího bodu (stačí minimální funkční řešení).
