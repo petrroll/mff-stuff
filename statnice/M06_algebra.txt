@@ -10,7 +10,7 @@ P14: 2. Definujte pojem „ireducibilní polynom nad tělesem T“.
 - Polynom stupně >= 1 dělitelný pouze nenulovými skaláry & asociovanými polynomy (tj. polynomy které dělí a které jsou jím zároveň děleny)
 
 P12: 3. Ukažte, že každý polynom stupně alespoň 1 má jednoznačný rozklad na součin ireducibilních polynomů.
-- Mějme dvě různé posloupnosti ireducibilních polynomů jejiž součin je p. Vyberme pak jeden z jednoho. Pro toho víme, že dělí-li p, tak dělí nějaký ireduc. z druhé posloupnosti. To je, pro ireducibilní polynom možné jen pro polynom asociovaný. Tj. tyto dva jsou až na asociaci stejné. Můžeme je odebrat a pokračovat indukcí dál.
+- Mějme dvě různé posloupnosti ireducibilních polynomů jejiž součin je p. Vyberme pak jeden z jednoho. Pro toho víme, že dělí-li p, tak dělí nějaký ireduc. z druhé posloupnosti. To je, pro ireducibilní polynom, možné jen pro polynom asociovaný. Tj. tyto dva jsou až na asociaci stejné. Můžeme je odebrat a pokračovat indukcí dál.
 
 J16: 4. Najděte rozklad polynomu x⁴-1 na ireducibilní polynomy v Q[x].
 - -1, 1 je kořen, dle věty ale není vícenásobný a dle dělitelnosti žádný jiný v Q není. Tj. (x-1)*(x+1)*(x^2+1)

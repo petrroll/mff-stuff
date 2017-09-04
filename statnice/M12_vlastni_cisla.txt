@@ -6,19 +6,23 @@ L15: 2. Zformulujte, jak charakteristický polynom matice souvisí s jejími vla
 [ λ je vl. číslo <=> Ax = λx, tj. Ax = λIx, x je různé od 0
                      Ax-λIx = o
                     (A -λI)x= o   <=> (A-λI) je singulární, protože x != 0 <=> det(A-λI)=0  <=> λ je kořen p_A ]
+
 L15: 3. Najděte charakteristický polynom matice.
              1 2 0 0
         A =  3 4 0 0
              0 0 0 0
-             0 0 0 0
-- (1-λ)(4-λ)(-λ)(-λ) + (-1)(2)(3)(-λ)(-λ)
+             0 0 0 0            
+-> (1-λ)(4-λ)(-λ)(-λ) + (-1)(2)(3)(-λ)(-λ)
+
 L16: 4. Ukažte, že součin vlastních čísel matice A je roven det(A).
 - det(A) = λ_1 * λ_2 * ... *λ_n
 - [p_A(λ) = det(A-λI) = (-1)^n(λ-λ_1)*...*(λ-λ_n)
  pro λ = 0   det(A) = (-1)^n( -λ_1)* ...*(-λ_n) =  λ_1 * λ_2 * ... *λ_n ]
+
 L16: 5. Najděte reálnou matici řádu 2x2 neobsahující nulu s vlastními čísly λ₁ = 1, λ₂ = 2.
+- (viz podobnost matic, Q ortonormální)
 - k = sqrt(0.5)
- Q = (k  k) A = (1 0)  výsledek  Q * A * Q^T (viz podobnost matic, Q ortonormální)
+ Q = (k  k) A = (1 0)  výsledek  Q * A * Q^T 
      (k -k)     (0 2)
 
 L12: 6. Nechť matice A řádu n má navzájem různá vlastní čísla λ₁, …, λn a jim příslšející vlastní vektory v₁, …, vn. Jaká vlastní čísla a vektory má matice A³?
