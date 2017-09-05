@@ -1,2 +1,4 @@
 7. Optimalizační metody
 Mnohostěny, Minkowského-Weylova věta. Základy lineárního programování, věty o dualitě, metody řešení. Edmondsův algoritmus. Celočíselné programování. 
+
+Pozn.: Ve starých ukázkových otázkách na toto téma není žádná otázka.
