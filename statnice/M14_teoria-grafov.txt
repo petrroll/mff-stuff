@@ -6,7 +6,7 @@ Teoria grafov
 Souvislost grafu
 
 Definujte hranovou (k e (G)) a vrcholovou (k v (G)) souvislost grafu G.
-minimální číslo takové, že existuje hranový/vrhocholový řez velikosti "k" (pro uplny graf je vrcholova zadefinovana jako n-1)
+- minimální číslo takové, že existuje hranový/vrhocholový řez velikosti "k" (pro uplny graf je vrcholova zadefinovana jako n-1)
 
 Pokud δ(G) je minimálnı́ stupeň grafu G, najděte přı́klady grafů, pro které platı́:
 1. δ(G) = k e (G) = k v (G)
@@ -94,7 +94,7 @@ Ukažte, že tento počet nelze snížit. :
 - mengerova věta, k vrcholově souvislých cest -- 125 145 1985 1765
 3. Zformulujte Mengerovu větu o charakterizaci vrcholově k-souvislých grafů. Uveďte hlavní ideu důkazu.
 - Graf je vrcholově k-souvislý existuje li pro každé dva vrcholy k vrhocholově disj. cest.
-- dělení hran (převedení na hranově souvislé) & tok
+- dělení vrcholů (pomocí nové hrany), převedení na hranově souvislé & tok
 
 
 Souvislost grafu
@@ -115,8 +115,8 @@ Souvislost grafu
 2. Jaký je vztah mezi k-souvislostı́ grafu a disjunktnı́mi cestami mezi dvojicemi vrcholů ?
 - Ford-Falkersonova věta / Mengerova věta.
 3. Dokažte, že pokud je 3-regulárnı́ graf (všechny jeho vrcholy majı́ stupeň roven 3) hranově k-souvislý, pak je také vrcholově k-souvislý.
-hranove k-souvisly => k hranove disjunktnich cest => (*) k vrcholove disjunktnich cest => vrcholove k-souvisly
-sporem ukazeme ze zminene hranove disjuktni cesty jsou nutne i vrcholove disjunktni: kdyby ne, existuje bod A, ktery je ve dvou hranove disjunktnich cestach (cesty c, d), c tedy obsahuje usek ...XAY... a d obsahuje ...ZAW..., kde |{X,Y,Z,W}| = 4 (jsou ruzne), cili A ma s4 ruzne sousedy -> spor
+- hranove k-souvisly => k hranove disjunktnich cest => (*) k vrcholove disjunktnich cest => vrcholove k-souvisly
+- sporem ukazeme ze zminene hranove disjuktni cesty jsou nutne i vrcholove disjunktni: kdyby ne, existuje bod A, ktery je ve dvou hranove disjunktnich cestach (cesty c, d), c tedy obsahuje usek ...XAY... a d obsahuje ...ZAW..., kde |{X,Y,Z,W}| = 4 (jsou ruzne), cili A ma s4 ruzne sousedy -> spor
 
 Grafy
 1. Definujte pojem (neorientovaného) stromu v teorii grafů.

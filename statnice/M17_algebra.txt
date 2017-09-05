@@ -5,7 +5,7 @@ P16
 1. Napište deﬁnici pojmů „množina A má nejvýše tak velkou mohutnost jako množina B“ a „množiny A a B mají stejnou mohutnost“. 
 - Existuje prosté zobrazení z množiny A do množiny B. Pokud i inverzně, mají stjenou mohutnost.
 2. Ukažte, že množiny přirozených a celých čísel mají stejnou mohutnost. 
-- Existuje izomorfismus, který přiřazuje 1:1.
+- Existuje izomorfismus, který přiřazuje 1:1.: 0, 1, -1, 2, -2, ...
 3. Ukažte, že množiny přirozených a reálných čísel nemají stejnou mohutnost.
 - Neexistuje izomorfismus. Viz diagonální důkaz (nekonečnost desetiného rozvoje)
 
@@ -15,7 +15,7 @@ P15:
 - f: G(.) -> H(*) takove, ze Va,b f(a) * f(b) = f(a.b) je homomorfismus
 - izomorfismus je bijektivni homomorfismus 
 2. Uveďte příklad dvou konečných komutativních navzájem neizomorfních grup se stejným počtem prvků. Nezapomeňte ověřit, že uvedené grupy nejsou izomorfní.
-- Z4, Z2x2: (1,0) má order 4 v jendé a order 2 v druhé. 
+- Z4, Z2x2: (1,0) jedna je cyklická, druhá není. 
 
 15 Grupa
 1. Deﬁnujte podgrupu grupy. 
@@ -28,6 +28,7 @@ P15:
 J14: 
 1. Deﬁnujte pojem ” grupa“. 
 - Množina G s operací (.) je grupa G(.) pokud:
+  - Na operaci uzavřená
   - Operace je asociativní a(bx) = (ab)x (pologrupa)
   - Existuje neutrální prvek (monoid)
   - Každý prvek má inverzi 
@@ -46,6 +47,7 @@ L13:
 - neutrální prvky Ok, asociativita, komutativita ok
 - 2 není invertabilní vůči "*", tj. není.
 2. Lze na mnoˇzinˇe {0,1,2,3} deﬁnovat operace sˇc´ıt´an´ı a n´asoben´ı tak, aby vy´sledn´a struktura byla tˇelesem ? Zd˚uvodnˇete.
+- Ano, těleso 2^2 existuje neb je to p^k.
 
 L12: 
 1. Deﬁnujte pojem ” tˇeleso“. 

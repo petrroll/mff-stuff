@@ -12,9 +12,15 @@ J14: 3. Uveďte, co je nezávislá formule výrokové teorie T.
 L13: 4. Definujte normální konjunktivní tvar formule.
     Konjunkce disjunkcí.
 P13: 5. Definujte jazyk výrokové logiky.
+- proměnné, logické spojky, závorky
 
 L12: 6. Zformulujte větu o úplnosti výrokové logiky. Uveďte hlavní body jejího důkazu.
+- Co je ve výrokové logice dokazatelné je i pravdivé, vice versa.
+- Důkaz plyne z tablo metody. 
+
 P12: 7. Zformulujte větu o kompaktnosti predikátové logiky. Uveďte hlavní body jejího důkazu.
+- Pokud má každá konečná podmnožina teorie důkaz, má důkaz i daná toerie (byť je nekonečná).
+- DK: Přes tablo metodu, jedna implikace jasná.
 
 L13: 8. Napište formuli v normálním konjunktivním tvaru, která je ekvivalentní formuli A ∧ (B ∨ (C ∧ D)).
     Udělám tabulku & z ní.
