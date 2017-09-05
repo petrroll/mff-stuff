@@ -192,43 +192,338 @@ nic
 =============
 = léto 2015 =
 =============
+11. Objektově orientované programovánı́
+Pro vypracovánı́ otázky si zvolte jeden z jazyků C#, C++, Java. V odpovědi můžete vynechat nepodstatné syntaktické detaily,
+hodnotı́ se zejména použitı́ vhodných nástrojů jazyka. Otázka se týká objektového modelu, očekává se tedy definice rozhranı́
+třı́d (hlavnı́ metody a atributy), nikoliv implementace (těla metod).
+
+Navrhněte objektový model pro jednoduchý vektorový grafický editor umožňujı́cı́ kreslit v rovině kruhy a obdélnı́ky. Tyto objekty
+se mohou překrývat a proto je nutné zachovávat jejich pořadı́ vykreslovánı́ (Z-order). Model by měl umožnit vykreslenı́ scény,
+vyhledánı́ objektu na daných souřadnicı́ch a dále manipulaci s objekty jako přidánı́, odebránı́ a přesun na popředı́ či do pozadı́.
+
+Respektujte zásady modernı́ho objektového programovánı́, řešenı́ by mělo být snadno rozšiřitelné o dalšı́ druhy objektů. V
+odpovědi neřešte efektivitu vykreslovánı́ a vyhledánı́ podle souřadnic.
+
+12. Objektově orientované programovánı́
+Pro vypracovánı́ otázky si zvolte jeden z jazyků C#, C++, Java. V odpovědi můžete vynechat nepodstatné syntaktické detaily,
+hodnotı́ se zejména použitı́ vhodných nástrojů jazyka. Otázka se týká objektového modelu, očekává se tedy definice rozhranı́
+třı́d (hlavnı́ metody a atributy), nikoliv implementace (těla metod).
+
+Navrhněte objektový model pro stromovou reprezentaci matematických výrazů s proměnnými, konstantami, unárnı́mi a binárnı́mi
+operátory. Model by měl umožnit vytištěnı́ výrazu v prefixové notaci a vyhodnocenı́ výrazu pro zadané hodnoty proměnných.
+Respektujte pravidla objektového návrhu a umožněte snadnou rozšiřitelnost o dalšı́ operátory.
 
 =============
 = jaro 2015 =
 =============
+4. Principy implementace objektově orientovaných jazyků
+        Pro následujı́cı́ otázky (a vaše odpovědi) si zvolte jeden z jazyků C#, C++, Java (vaši volbu vyznačte). Pokud otázky požadujı́
+        psanı́ kódu, hodnotı́ se rámcová správnost, nikoliv detailnı́ syntaxe.
+        
+        1. Základnı́mi koncepty vašeho jazyka jsou třı́dy a objekty a jejich metody a atributy. Napište fragment kódu, který tyto
+           koncepty ilustruje (definuje třı́du, vytvářı́ objekty, volá metody, použı́vá atributy).
+        2. Váš jazyk podporuje statické metody a atributy. Napište fragment kódu, který ilustruje jejich použitı́ a vysvětlete, jak se
+           lišı́ od běžných metod a atributů.
+        3. Při objektovém modelovánı́ je často vhodné definovat typ zastřešujı́cı́ společné vlastnosti několika různých třı́d, napřı́klad
+           typ reprezentujı́cı́ libovolnou iterovatelnou kolekci a samotné jednotlivé kolekce. Jak byste tuto situaci zapsali ve vašem
+           jazyce (opět fragment kódu) ?
 
 ===============
 = podzim 2014 =
 ===============
+7. Principy implementace objektově orientovaných jazyků
 
+  1. Vysvětlete rozdı́l mezi předávánı́m parametrů funkce (metody) hodnotou (pass by value) a odkazem (pass by reference).
+V jakých situacı́ch se hodı́ jeden či druhý způsob předávánı́ parametrů ?
+Uvažujte následujı́cı́ kód (z dostupných verzı́ si vyberte jeden programovacı́ jazyk, pozor, verze se nechovajı́ stejně):
+
+Listing 1: Java
+c l a s s Main {
+s t a t i c void f ( I n t e g e r x ) {
+i f ( x > 0 ) { x−−; f ( x ) ; }
+}
+public s t a t i c void main ( S t r i n g [ ] arguments ) {
+int a = 8 ; f ( a ) ;
+System . out . p r i n t l n ( a ) ;
+}
+}
+Listing 2: C++
+#include <i o s t r e a m >
+void f ( int &x ) {
+i f ( x > 0 ) { x−−; f ( x ) ; }
+}
+int main ( ) {
+int a = 8 ; f ( a ) ;
+s t d : : c o u t << a << s t d : : e n d l ;
+return ( 0 ) ;
+}
+Listing 3: C#
+using System ;
+c l a s s Example {
+s t a t i c void f ( r e f int x ) {
+i f ( x > 0 ) { x−−; f ( r e f x ) ; }
+}
+s t a t i c void Main ( string [ ] arguments ) {
+int a = 8 ; f ( r e f a ) ;
+C o n s o l e . WriteLine ( a ) ;
+}
+}
+
+  2. Kolikrát se zavolá funkce f ?
+  3. Jaký výstup napı́še kód při spuštěnı́ ?
+
+8. Principy implementace objektově orientovaných jazyků
+
+  1. Vysvětlete, co je statický atribut třı́dy (static field, static class variable, static member variable).
+  2. Uvažujte třı́du s následujı́cı́m rozhranı́m (z dostupných verzı́ si vyberte jeden programovacı́ jazyk):
+
+Listing 4: Java
+public c l a s s S i n g l e t o n {
+public s t a t i c S i n g l e t o n g e t I n s t a n c e ( ) {
+...
+}
+}
+Listing 5: C++
+class Singleton {
+public :
+s t a t i c S i n g l e t o n& g e t I n s t a n c e ( ) {
+...
+}
+} ;
+Listing 6: C#
+public c l a s s S i n g l e t o n {
+public s t a t i c S i n g l e t o n I n s t a n c e {
+get {
+...
+}
+}
+}
+Doplňte implementaci třı́dy Singleton tak, aby uvedená metoda (getter) vždy vracela referenci na jedinou Singleton instanci,
+a aby se tato instance vytvořila při prvnı́m volánı́ uvedené metody (getteru). Neuvažujte existenci vı́ce vláken.
+
+  3. Jak docı́lı́te toho, aby programátor neměl možnost obejı́t uvedenou metodu (getter) a vytvořit si vı́ce instancı́ třı́dy Singleton
+napřı́klad přı́mo volánı́m new ?
 =============
 = léto 2014 =
 =============
+4. Principy implementace objektově orientovaných jazyků
+
+  1. Předpokládejte následujı́cı́ definice třı́d a jejich použitı́ (z dostupných fragmentů kódu si vyberte jeden programovacı́ jazyk):
+
+Listing 1: Java
+c l a s s A { void M ( ) { System . out . p r i n t l n ( ”A : :M” ) ; } }
+c l a s s B extends A { void M ( ) { System . out . p r i n t l n ( ”B : :M” ) ; } }
+A a = new A ( ) ; B b = new B ( ) ; A ab = new B ( ) ;
+a .M ( ) ; b .M ( ) ; ab .M ( ) ;
+Listing 2: C++
+c l a s s A { public : v i r t u a l void M ( ) { s t d : : c o u t << ”A : :M” << s t d : : e n d l ; } } ;
+c l a s s B : public A { public : v i r t u a l void M ( ) { s t d : : c o u t << ”B : :M” << s t d : : e n d l ; } } ;
+A ∗a = new A ( ) ; B ∗b = new B ( ) ; A ∗ab = new B ( ) ;
+a−> M ( ) ; b−> M ( ) ; ab−> M ( ) ;
+Listing 3: C#
+c l a s s A { public v i r t u a l void M ( ) { C o n s o l e . WriteLine ( ”A : :M” ) ; } } ;
+c l a s s B : A { public override void M ( ) { C o n s o l e . WriteLine ( ”B : :M” ) ; } } ;
+A a = new A ( ) ; B b = new B ( ) ; A ab = new B ( ) ;
+a .M ( ) ; b .M ( ) ; ab .M ( ) ;
+Jaký výstup napı́še fragment kódu při spuštěnı́ ?
+
+  2. Předpokládejte, že v předchozı́ch definicı́ch je navı́c ještě následujı́cı́:
+
+Listing 4: Java
+c l a s s A { A ( ) { System . out . p r i n t l n ( ”A” ) ; } . . .
+c l a s s B extends A { B ( ) { System . out . p r i n t l n ( ”B” ) ; } . . .
+Listing 5: C++
+c l a s s A { public : A ( ) { s t d : : c o u t << ”A” << s t d : : e n d l ; } . . .
+c l a s s B : public A { public : B ( ) { s t d : : c o u t << ”B” << s t d : : e n d l ; } . . .
+Listing 6: C#
+c l a s s A { public A ( ) { C o n s o l e . WriteLine ( ”A” ) ; } . . .
+c l a s s B : A { public B ( ) { C o n s o l e . WriteLine ( ”B” ) ; } . . .
+
+Změnı́ se nějak výstup vypsaný fragmentem kódu z prvnı́ho bodu a pokud ano, jaký bude ?
+
+  3. Předpokládejte, že na konci všech metod přidaných v předchozı́m bodě je navı́c ještě volánı́ M (). Změnı́ se nějak výstup
+vypsaný fragmentem kódu z prvnı́ho bodu a pokud ano, jaký bude ?
+
 
 =============
 = jaro 2014 =
 =============
+5. Objektově orientované programovánı́
+   1. Kdy se v objektově orientovaných jazycı́ch označuje třı́da za abstraktnı́ a k čemu taková třı́da sloužı́ ?
+   2. K čemu v objektově orientovaných jazycı́ch sloužı́ konstruktor a destruktor ?
+   3. Které z výsledků "", "A", "B", "AB" a "BA může vytisknout následujı́cı́ kód ?
+        class A
+        {
+          public A () { System.out.print ("A"); }
+        }
+        class B extends A
+        {
+          public B () { System.out.print ("B"); }
+        }
+
+        Object o = new B ();
+   4. Může konstruktor selhat ?
 
 ===============
 = podzim 2013 =
 ===============
 
+9. Principy implementace objektově orientovaných jazyků
+        1. Předpokládejte existenci datových typů Executable a Printable. Na objektech typu Executable lze volat metodu execute().
+        Na objektech typu Printable lze volat metodu print(). Jak byste definovali typ, který je současně Executable a Printable ?
+        Zvolte si jeden z jazyků Java, C++ nebo C# a definici v něm zapište. Jde o použité typové konstrukce, drobné syntaktické
+        chyby nehrajı́ roli.
+        2. Pro jazyk zvolený v předchozı́m bodě napište, jaké možnosti nastavenı́ přı́stupu k prvkům třı́d (access modifiers, access
+        specifiers) jsou k dispozici (název i funkci).
+        3. V jakých situacı́ch je vhodné použı́t konstruktor s privátnı́m přı́stupem ?
+
+10. Principy implementace objektově orientovaných jazyků
+        1. Vysvětlete rozdı́l mezi běžnými a virtuálnı́mi metodami v C++. Může se rychlost volánı́ běžných a virtuálnı́ch metod lišit ?
+        Proč ?
+        2. Může mı́t třı́da virtuálnı́ konstruktor nebo virtuálnı́ destruktor ? Pokud ano, v jaké situaci se použı́vá ? Pokud ne, proč ?
+        3. Uvažujte následujı́cı́ fragment kódu v C++.
+class A
+{
+public :
+v i r t u a l   v o i d   f ( ) { p r i n t f ( ”A. f \n ” ) ; }
+} ;
+class B : public A
+{
+public :
+v i r t u a l   v o i d   f ( ) { p r i n t f ( ”B . f \n ” ) ; }
+} ;
+int
+{
+main ( v o i d )
+A ∗u = new A ( ) ;
+B ∗v = new B ( ) ;
+C ∗w = new B ( ) ;
+u−>f ( ) ;
+v−>f ( ) ;
+w−>f ( ) ;
+( (A∗ ) w)−> f ( ) ;
+( (A) ( ∗w ) ) . f ( ) ;
+}
+Jaké funkce se zavolajı́ ?
+
 =============
 = léto 2013 =
 =============
+9. Principy implementace objektově orientovaných jazyků
+        1. Vysvětlete použitı́ výjimek jako prostředků pro řı́zenı́ toku programu v OO jazycı́ch. K popisu použijte konkrétnı́ syntaxi
+        jazyka C#, C++ nebo Java.
+        2. Uvažujte následujı́cı́ kód zpracovávajı́cı́ obsah souboru. Předpokládejte, že všechny volané metody mohou házet výjimky.
+        Ošetřete je.
+        Data SomeFunction ()
+        {
+        File f = File.open ("some.file");
+        Data d = f.readall ();
+        f.close ();return (d);
+        }
+        3. Vysvětlete, jak se ošetřenı́ v předchozı́m bodě lišı́ pro jazyky s a bez konstrukce finally.
 
 =============
 = jaro 2013 =
 =============
+2. Synchronizace
+  1. Uvažujte třı́du implementujı́cı́ podmı́nkovou proměnnou s následujı́cı́ signaturou:
+class ConditionVariable
+{
+ConditionVariable (Lock lock);
+void wait ();
+void signal ();
+void broadcast ();
+};
+Popište sémantiku jednotlivých metod.
+
+  2. Uvažujte dvě vlákna přistupujı́cı́ ke sdı́lené proměnné podle následujı́cı́ho náčrtku. Jedno čas od času zapisuje, druhé
+zobrazuje některé zapsané hodnoty. Operace nad sdı́lenou proměnnou jsou atomické.
+void WriterThreadBody ()
+{
+while (true)
+{
+shared_value = DoSomeCalculation ();
+}
+};
+void ReaderThreadBody ()
+{
+int last_value = NONEXISTENT_VALUE;
+while (true)
+{
+while (last_value == shared_value) { };
+DisplayValue (shared_value);
+last_value = shared_value;
+}
+};
+S použitı́m podmı́nkové proměnné a přı́padně dalšı́ch synchronizačnı́ch nástrojů upravte implementaci tak, aby čekala
+pasivně.
+
+4. Principy implementace objektově orientovaných jazyků
+  1. Vysvětlete rozdı́l mezi běžnou a virtuálnı́ dědičnostı́ v jazyce C++.
+  2. Uvažujte následujı́cı́ fragment kódu v C++.
+class A { int a; };
+class B : public A { int b; };
+A *a;
+B *b;
+a = b;
+b = a;
+a = dynamic_cast<A*> (b);
+b = dynamic_cast<B*> (a);
+Která z uvedených přiřazenı́ nelze provést a proč ?
+
+  3. Popište cenu typových konverzı́ z předchozı́ otázky za běhu programu.
+
+
+5. Neprocedurálnı́ programovánı́
+  Uvažujte následujı́cı́ proceduru p/2 v jazyce Prolog.
+    p([X],[X]). 
+    p([X|R],[Y,X|S]) :- p(R,[Y|S]).
+  1. Vysvětlete, jaký bude výsledek volánı́ p(+I,-O), kde +I značı́ zadaný vstup a -O nalezený výstup.
+  2. Je uvažovaná procedura deterministická ? Je to vhodné ?
+
 
 ===============
 = podzim 2012 =
 ===============
+11. Šablony a generika
+template <class A> class B
+{
+public:
+void f (A a) { ... }
+}
+public class B<A>
+{
+public void f (A a) { ... }
+}
+1. Uvedené fragmenty kódu ilustrujı́ šablony a generika. Vysvětlete, jaké typy uvedené fragmenty kódu definujı́.
+2. Ilustrujte použitı́ šablon nebo generik na definici rozhranı́ třı́dy, která implementuje FIFO frontu s metodami vloženı́
+poslednı́ho a vyjmutı́ prvnı́ho prvku.
 
 =============
 = léto 2012 =
 =============
+9. Principy implementace objektově orientovaných jazyků
+  1. Vysvětlete použitı́ výjimek jako prostředků pro řı́zenı́ toku programu v OO jazycı́ch. K popisu použijte konkrétnı́ syntaxi
+jazyka C#, C++ nebo Java.
+  
+  2. Jak ošetřı́te situaci, kdy bez ohledu na to, zda byla nebo nebyla hozena výjimka, potřebujete před opuštěnı́m funkce uvolnit
+přidělený prostředek ? Uvažujte napřı́klad tuto skicu kódu:
+void SomeFunction ()
+{
+File f = open ("some.file");
+FunctionThatCanThrow ();
+f.close ()
+}
 
+  3. Co udělá běhová podpora OO jazyka v přı́padě, že dojde k hozenı́ výjimky, kterou kód programu neošetřuje ?
+  
 =============
 = jaro 2012 =
 =============
+5. Objektově orientované programovánı́
+        1. Co je polymorfismus v objektově orientovaných jazycı́ch ?
+        2. Co jsou to virtuálnı́ metody ?
+        3. Předpokládejte, že máte implementovat třı́du reprezentujı́cı́ setřı́děný seznam objektů a přitom co nejméně typově omezit
+        prvky seznamu. Vaše implementace pochopitelně musı́ být schopna prvky seznamu porovnat, jaký objektově orientovaný
+        mechanismus použijete ? Řešenı́ načrtněte ve vámi zvoleném staticky typovaném objektově orientovaném programovacı́m
+        jazyce (vyžadujı́ se definice typů, nikoliv implementace metod seznamu).
