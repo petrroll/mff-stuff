@@ -11,7 +11,7 @@
 	2. Konverguje řada 1 − 1/2 + 1/3 − 1/4 + 1/5 − . . . ?
 	- ano, ale absolutně. Konverguje kvůli Leibnizově kritériu.
 	3. Je pravda, že když řada a_1 + a_2 + . . . konverguje, potom i řada a_1^2 + a_2^2 + . . . konverguje ?
-	- určitě to platí pro abslutní konvergenci. Pro neabsolutní ne, např. 1/sqrt(n) alternující konverguje. Na druhou ale 1/n nekonverguje.
+	- určitě to platí pro abslutní konvergenci. Pro neabsolutní ne, např. 1/sqrt(n) alternující konverguje díky Leibnizově kritériu. Na druhou ale 1/n nekonverguje neb se tam zruší alternování.
 
 ===============
 = podzim 2016 =
@@ -33,7 +33,7 @@
 	2. Vyslovte větu o výpočtu určitého integrálu pomocí substituce.
 	- Fi: (a,b)->(x,y), f: (x,y)->R, Fi na (a,b) vlastní první derivace
 	- F je na (x,y) primitivní funkce
-	-> INT{f(Fí)*Fí} = F(Fi) + c
+	-> INT{f(Fí)*Fí'} = F(Fi) + c
 	3. Spočtěte integrál
 		od 0 do sqrt(pí/2)	z {x* sin(x^2)dx} = 1/2 * INT{2x* sin(x^2)dx} | 2x = fi', x^2 = fi
 		- F (přes substituci): -1/2 cos(x^2) = -1/2 - 0
@@ -64,7 +64,7 @@
 	- Gradienty funkcí Fi jsou lineárně nezávislé pro bod "a".
 	- Pokud je v bodě "a" lokální extrém f na množině H, tak existují čísla a_1, ..., a_n, že gradient f je skrze tyto koeficienty lineární kombinací gradientů Fi.
 	3. Nalezněte lokální extrémy funkce f (x, y, z) = sin x sin y sin z na množině {(x, y, z) ∈ R^3 : x + y + z = π/2, x, y, z > 0}.
-	- Funkce nemá v H žádný vnitřní bod, tj. potřeba vyřešit hen hranici skrze LaGrangovi multiplikátory. 
+	- Funkce nemá v H žádný vnitřní bod, tj. potřeba vyřešit jen hranici skrze LaGrangovi multiplikátory. 
 	- Gradient Fi je (1, 1, 1). Aby byl gradient funkce f jeho lineární kombinací, tak se musí x, y, z rovnat. 
 	- To dává smysl i vzhledem k tomu, že sin je konkávní.
 21. Funkce více proměnných
@@ -123,7 +123,7 @@
 ===============
 16. Čísla
 	1. Definujte pojem „limita posloupnosti reálných čísel“ (vlastní i nevlastní).
-	- vlastni lim a_n = a <> Ve>0, E:m0, Vm>m0 |a_m0 - a| < e
+	- vlastni lim a_n = a <> Ve>0, E:m0, Vm>m0 |a_m - a| < e
 	- nevlastni: lim_an = +inf <> Vc, Em0, Vm>m0 a_m > c // symetricky pro -inf
 	2. Posloupnost (a_n) je definovaná rekurentním předpisem
 		a_1 = 1
@@ -168,7 +168,7 @@
 	- R(f, C, D) = SUM_I_i€D: f(Ci) * |Ii|
 	2. Vyslovte větu o výpočtu neurčitého integrálu metodou per partes.
 	- Mějme funkce f, g U-> R a k nim, na interalu primitvní funkce F, G a f, g spojite
-	- FG + c = Integral{fG} + Integral{fG}
+	- FG + c = Integral{fG} + Integral{Fg}
 	3. Spočtěte určitý integrál: od 0 do pí z 
 		x^2 sin(x)dx
 	- 2x per partes: -x^2cos(x) + 2xsin(x) + 2cos(x)
@@ -363,7 +363,7 @@
 =============
 12. Spojitost a derivace
 	1. Definujte pojem spojitost funkce v bodě.
-	- Funkce f je v bodě spojitá, pokud jde o hromadný bod a platí:
+	- Funkce f je v bodě spojitá pokud platí:
 	- Ve > 0, Es > 0: |x - a| < s => |f(a) - f(x)| < e
 	2. Definujte pojem derivace funkce.
 	- viz výše
