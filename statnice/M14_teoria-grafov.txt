@@ -36,7 +36,14 @@ Grafy
 ”
 - Podgraf grafu obsahující všechny vrcholy, který je zároveň stromem a je spojitý.
 2. Pro která přirozená čı́sla n existuje graf s právě n různými kostrami ? Ukažte.
-       kružnice délky n
+	Vše krom 2:
+	* 1: libovolný strom
+	* 2: neexistuje - vezmeme 2 kostry K, L, vezmeme lib. hranu e z K - L,
+	  vezmeme cestu c z L spojující koncové vrcholy e, c+e je kružnice
+	  (označme k) Pro každou hranu e' in k platí, že L+e-e' je kostra.
+	  Jelikož k je kružnice (ergo délky alepoň 3, máme alespoň 3 různé
+	  kostry -> spor s tím, že máme právě dvě.
+	* n > 2: kružnice délky n
 
 7
 Grafy
@@ -66,15 +73,6 @@ Graf (s alespoň třemi vrcholy) nazýváme rovinnou triangulací, pokud v libov
 - 4 jde -- "domecek jednim tahem, kde je strecha i uprosted vrchol a navic strechu spojime s dolnimi vrcholy"
 - 5 jde -- nakreslil jsemi, ale je osklivy, hint: podle E <= 3V - 6 potrebujete alespon 12 vrcholu
 - 6 nejde z E <= 3V - 6
-
-6 leto 2016
-Teorie grafů (barvení grafů) (povinné téma vašeho zaměření)
-1. Napište definici barevnosti grafu a určete barevnost následujícího grafu:
-- viz výše
-2. Zformulujte Brooksovu větu o barevnosti grafů maximálního stupně ∆.
-- Nechť je graf k-degenerovaný, barevnost <= k + 1
-3. Dokažte bez použití Brooksovy věty, že obsahuje-li souvislý graf maximálního stupně ∆ vrchol stupně menšího než ∆, pak jeho barevnost je nejvýše ∆.
-- Indukcí, obarvím ten s menším stupňem, odžíznu. Zmenší se něčemu stupeň, ... pokračuju.
 
 Kostra grafu
 1. Definujte co je to kostra souvislého grafu.

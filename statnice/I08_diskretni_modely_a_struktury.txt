@@ -16,3 +16,12 @@ Otázky léto 2017
 9. Kombagra
   1. Formulujte Ramseyovu větu pro úplné grafy s obarvením hran dvěma barvama.
   2. Dokažte, že v nekonečné posloupnosti různých celých čísel lze vybrat nekonečnou monotonní podposloupnost.
+
+6 leto 2016
+Teorie grafů (barvení grafů) (povinné téma vašeho zaměření)
+1. Napište definici barevnosti grafu a určete barevnost následujícího grafu:
+- viz výše
+2. Zformulujte Brooksovu větu o barevnosti grafů maximálního stupně ∆.
+- Nechť je graf k-degenerovaný, barevnost <= k + 1
+3. Dokažte bez použití Brooksovy věty, že obsahuje-li souvislý graf maximálního stupně ∆ vrchol stupně menšího než ∆, pak jeho barevnost je nejvýše ∆.
+- Indukcí, obarvím ten s menším stupňem, odžíznu. Zmenší se něčemu stupeň, ... pokračuju.
