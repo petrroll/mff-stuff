@@ -4,8 +4,8 @@ P12: 1. Dokažte, že elementární úpravy používané v Gausově eliminační
 - prohození dvou řádků: prohození rovnic -> nezmění řešitelnost
 
 P13: 2. Spočítejte Gausovou eliminační metodou řešení soustavy dané touto rozšířenou maticí:
-              1 1 1 1   1 1 1 1  řešení: (-1, 1, 1)
-              1 1 4 4   0 0 3 3
-              1 2 3 4   0 1 2 3
+              1 1 1 | 1   1 1 1 | 1  řešení: (-1, 1, 1)
+              1 1 4 | 4   0 0 3 | 3
+              1 2 3 | 4   0 1 2 | 3
 
 

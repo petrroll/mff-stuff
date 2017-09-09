@@ -34,7 +34,7 @@ Souvislost grafu
 Grafy
 1. Definujte pojem kostra grafu“.
 ”
-- Podgraf grafu obsahující všechny vrcholy, který je zároveň stromem.
+- Podgraf grafu obsahující všechny vrcholy, který je zároveň stromem a je spojitý.
 2. Pro která přirozená čı́sla n existuje graf s právě n různými kostrami ? Ukažte.
        kružnice délky n
 
@@ -137,7 +137,7 @@ Rovinné grafy
   K3,3 + 6 hran
 3. Rovinné nakreslenı́ grafu je triangulace, jestliže je hranice každé stěny trojúhelnı́k. Dokažte, že rovinný graf G = (V, E) s
 alespoň 3 vrcholy je triangulacı́ právě tehdy, když |E| = 3|V | − 6.
-- S / 2 = E / 2, V + E + s = 2
+- S / 3 = E / 2, V - E + s = 2
 - Viz důkazy diskrétka.
 
 20

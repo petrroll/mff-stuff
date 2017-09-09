@@ -4,7 +4,7 @@ Diskretna matematika
 Systém různých reprezentantů
 Definujte systém různých reprezentantů množinového systému (M i , i = 1, 2, . . . , n) a formulujte nutné a postačujı́cı́ podmı́nky pro jeho existenci (Hallova věta).
        S = {s1, s2, ... sn} : si € Mi & |S| = n, Vij: si != sj
-       VJ <= I |UMj| => |J|
+       (V)J <= I : |U Mj| => |J|
 
 Rozhodněte, která z následujı́cı́ch tvrzenı́ jsou pravdivá a odpovědi zdůvodněte.
 1. Má-li množinový
@@ -42,7 +42,7 @@ Systém různých reprezentantů
 1. Definujte systém různých reprezentantů (konečného) množinového systému (M i , i = 1, 2, . . . , n) a vyslovte Hallovu větu.
 - viz výše
 2. Pro celé čı́slo k ≥ 1 ukažte, že každý bipartitnı́ k-regulárnı́ graf (graf, jehož všechny vrcholy majı́ stupeň roven k) má perfektnı́ párovánı́.
-- Hallova věta je splněna. I kdyby všichni do stejných, tak je splněna s rovností.
+- Hallova věta je splněna. I kdyby všichni do stejných, tak je splněna s rovností. Vybrání nutně odpovídá párování neb obě parity musí být stejně velké.
 3. Kolik různých (lišı́cı́ch se alespoň jednou hranou) perfektnı́ch párovánı́ má úplný bipartitnı́ graf K n,n ?
        n! ~ první má n mžstí, druhý už jen n-1, třetí n-2 atd...
 
