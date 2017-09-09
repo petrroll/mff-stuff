@@ -23,9 +23,8 @@ J15: 5. Rozhodněte a zdůvodněte, zda je toto zobrazení na (surjektivní).
 
 J15: 6. Rozhodněte a zdůvodněte, zda je pravdivé tvrzení „každý vektor v ∈ R³ má při zobrazení f žádný nebo alespoň dva vzory“.
 	Tvrzení platí.
-	V kernelu jsou aspoň 2 vektory, takže 0 má alespoň 2 vzory
-	Když se x a z rovnají, tak to je nekonečně vzorů
-	Báze je velikost 2, když budou mít bázické vektory nekonečně vektorů, tak i všechny ostatní. Báze je třeba (1,1,1) a (6,4,8). Oba mají. Pro druhý stačí vyřešit Gausovku a vyjde jeden řádek nulový.
+	Kernel je netriviální -> jakmile mám jeden vzor můžu k němu přičíst jakýkoliv vektro z kernelu (s libovolným násobkem) a dostat stále stejný obraz
+	Každý prvek z obrazu má tedy nekonečně vzorů
 
 Uvažujeme lineární zobrazení f: R³ → R³ zadané jako (a + b, b + c, c + a) → (a − b, b − c, c − a) pro a,b,c ∈ R.
 J14: 7. Rozhodněte a zdůvodněte, zda je f dobře definované na celém R³.
@@ -46,7 +45,7 @@ J14: 7. Rozhodněte a zdůvodněte, zda je f dobře definované na celém R³.
 
 J14: 8. Rozhodněte a zdůvodněte, zda je toto zobrazení na (surjektivní).
 J14: 9. Rozhodněte a zdůvodněte, zda je toto zobrazení prosté (injektivní).
-Řešení od P.P.:
+Řešení od P.P. (ponz. jsou tu numerické chyby, to poslední zobrazení nemá vyjít prosté ani na):
 a+b  = k   1 1 0| k   1 1  0| k
   b+c= l   0 1 1| l ~ 0 1 -1| -m +l
 a  +c= m   1 0 1| m   0 0  2| l + m -k  => c = 1/2(l+m-k)  => b = -m + l +1/2(l+m-k) => a = k-b = 3/2k-3/2l+1/2m
@@ -61,6 +60,13 @@ zobrazením kanonické báze dostaneme
 (0,0,1) -> (1,-1, 0)    máme matici zobrazení f (z kanonické báze do kanonické)
 protože obrazy kanonické báze jsou lineárně nezávislé, generují celý prostor R^3 => f je na
 matice zobrazení je regulární, tedy její kernel je pouze {o}, žádné dva různé vzory nemají stejné obrazy => f je prosté
+
+DS: přidám ještě jedno "bez" počítání
+Vezmeme zobrazení g: (a,b,c) -> (a+b,b+c,c+a)
+Matice zobrazení je regulární, jedná se o bijekci (ergo každé zobraznení z (a+b,b+c,c+a) je dobře definované na celém R^3)
+Jelikož g je bijekce (tedy v podstatě jen změna báze) už budeme uvažovat jen zobrazení (a,b,c) -> (a-b,b-c,c-d)
+Tahle matice už není reg. takže zobrazení není ani prosté ani na
+(např. vektor (1,1,1) je v kernelu a shodou okolností ten samý není ani v Im).
 
 L13: 10. Nechť X = {1, 2, 3} a Y = {1, 2, 3, 4, 5}. Rozhodněte, zda je více prostých zobrazení X do Y nebo zobrazení Y na X.
 	X → Y: 5*4*3 = 60 (alt (5 nad 3) * 3!)
