@@ -13,7 +13,7 @@ Složitost a třídění
 - nesplňuje fakt, že umíme prvky jen porovnávat. Vychází z toho, že mají nějakou číselnou hodnotu s omezenou doménou.
        Bucket sort, radix sort
 4. Co z věty plyne pro časovou složitost operací Insert a ExtractMin v haldě ?
-	Že min(Ω(Insert), Ω(ExtractMin)) = Ω(log n)
+	Že max(Ω(Insert), Ω(ExtractMin)) = Ω(log n)
 	Případně vezmeme-li v potaz, že umíme postavit haldu v lin. čase, tak přímo Ω(ExtractMin) = Ω(log n)
 
 Přihrádkové třídění
@@ -29,6 +29,7 @@ Třı́děnı́ Merge Sort
 - rozdělím na poloviny, každou setřídím, sleju dohromady (slití lineární)
 2. Napište časovou složitost tohoto algoritmu pro n prvků v průměrném a nejhoršı́m přı́padě.
 	obě O(n log n), vždy
+
 3. Je váš algoritmus stabilnı́ ? Proč ?
 	Typicky se implementuje stabilní, ale záleží na konrétní implementaci (stabilní = zachovává vzájemné pořadí prvků se stejným klíčem)
 
@@ -74,7 +75,8 @@ Nakreslete příklady těchto extrémních stromů. (Výšku stromu definujeme j
        |
        x
 4. Popište, kde se ve vyhledávacím stromu může nacházet následník daného vrcholu, tedy vrchol s nejmenším klíčem větším než daný.
-	(pravý syn nebo (levý syn (levého syna)* pravého syna)
+-(pravý syn nebo (levý syn (levého syna)* pravého syna)
+- nebo pokud nemá pravého syna, tak to samé pro prvního pravého syna otce
 
 B-stromy
 1. Definujte B-strom (tedy zejména strukturu uzlů, pravidla pro obsazenı́ uzlů, pravidla pro vyváženı́ stromu).
@@ -134,6 +136,7 @@ Minimálnı́ cesta grafem
        Floyd-Warshall [mocnění matice]
        Bellman-Ford: jedu po vrstvách, tím, že nevybírám minimum mi nevadí záporné hrany
 
+
 Algoritmus topologického uspořádánı́
 1. Definujte topologické uspořádánı́ na orientovaném grafu.
        v1 .. vn : Ve€E : e=(vi, vj) & vi > vj
@@ -160,6 +163,7 @@ Vyhledávánı́ v textu
 - procházím stavovým automatem, odpovídajícímu jehle
 3. Jaká je časová složitost tohoto algoritmu ?
 - O(|W| + suma |J|)
+
 
 Ine
 ---

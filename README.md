@@ -47,10 +47,11 @@ U každého zdroje proto bude v závorce rok, ke kterému se to váže (vždycky
 ##### Státnice:
 - Ve složce státnice řešené otázky z minulých státnich (pre-2017) z jednotlivých okruhů Obecné informatiky
   - Ne všechny okruhy, některé špatně formátované, některé řešené špatně
-  - Velký dík Martinu Šerému, Petře Pelikánové, Janě Bátorové, Katce Zákravské, Dominikovi Smržovi (a mně)
+  - Velký dík Martinu Šerému, Petře Pelikánové, Janě Bátorové, Katce Zákravské, Dominikovi Smržovi, (a mně), a contributorům
 - Poznámky Anety Šťastné k většině okruhů
 - Zahuštěné poznámky k Optimu, Temnu, a úvodu Algebry od Anety Šťastné
 - Seznam definic ke státnicím
+- Sesbírané scany opravených státnic
 
 #### BC:
 ##### Prvácké předměty:

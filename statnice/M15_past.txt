@@ -29,7 +29,7 @@ P16:
 
 2. Uveďte vztahy, které platí pro střední hodnotu součtu a střední hodnotu součinu dvou náhodných reálných veličin a naznačte, jak je lze dokázat. 
 - E(X + Y) = EX + EY (úplná pravděpodobnost)
-- E(X*Y) = EX*EY // pro nezávislé
+- E(X*Y) = EX*EY // pro nezávislé, rozložím díky nezávislosti : úplná pravděpodobnost
 
 3. Maxmilián má v kapse tři dvacetikoruny, jednu desetikorunu, dvě pětikoruny, šest dvoukorun a tři jednokorunové mince (a žádné další). Náhodně ze své kapsy vytáhne trojici mincí. Určete střední hodnotu součtu hodnot těchto tří mincí.
 
@@ -41,6 +41,7 @@ L15:
 - 2*3.5
 
 3. Jak´a je pravdˇepodobnost, ˇze souˇcet je sud´e ˇc´ıslo, pokud na zelen´e kostce padlo m´enˇe neˇz na modr´e 
+- Rozepíšu možnosti:
 - 6/15
 
 L14: 
@@ -75,7 +76,7 @@ L12:
 - Výše, EX = SUM_x(x*P(x))
 
 2. Jak odhadnete stˇredn´ı hodnotu n´ahodn´e veliˇciny s rozdˇelen´ım F, pokud m´ate k dispozici pozorov´an´ı n´ahodn´eho vy´bˇeru s rozdˇelen´ım F ? Dokaˇzte, ˇze je tento odhad nestranny´.
-- Udělám průměr náhodného výběru. Jde o nestraný odhad kvůli slabému zákonu velkých čísel.
+- Udělám průměr náhodného výběru. Jde o nestraný odhad protože střední hodnota z vážných průměrů je střední hodnota.
 
 3. Vysvˇetlete postup statistick´eho testov´an´ı hypot´ez. Ve vaˇsem vysvˇetlen´ı deﬁnujte pojmy
 ” nulov´a hypot´eza“ a

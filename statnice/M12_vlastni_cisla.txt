@@ -6,19 +6,23 @@ L15: 2. Zformulujte, jak charakteristický polynom matice souvisí s jejími vla
 [ λ je vl. číslo <=> Ax = λx, tj. Ax = λIx, x je různé od 0
                      Ax-λIx = o
                     (A -λI)x= o   <=> (A-λI) je singulární, protože x != 0 <=> det(A-λI)=0  <=> λ je kořen p_A ]
+
 L15: 3. Najděte charakteristický polynom matice.
              1 2 0 0
         A =  3 4 0 0
              0 0 0 0
-             0 0 0 0
-- (1-λ)(4-λ)(-λ)(-λ) + (-1)(2)(3)(-λ)(-λ)
+             0 0 0 0            
+-> (1-λ)(4-λ)(-λ)(-λ) + (-1)(2)(3)(-λ)(-λ)
+
 L16: 4. Ukažte, že součin vlastních čísel matice A je roven det(A).
 - det(A) = λ_1 * λ_2 * ... *λ_n
 - [p_A(λ) = det(A-λI) = (-1)^n(λ-λ_1)*...*(λ-λ_n)
  pro λ = 0   det(A) = (-1)^n( -λ_1)* ...*(-λ_n) =  λ_1 * λ_2 * ... *λ_n ]
+
 L16: 5. Najděte reálnou matici řádu 2x2 neobsahující nulu s vlastními čísly λ₁ = 1, λ₂ = 2.
+- (viz podobnost matic, Q ortonormální)
 - k = sqrt(0.5)
- Q = (k  k) A = (1 0)  výsledek  Q * A * Q^T (viz podobnost matic, Q ortonormální)
+ Q = (k  k) A = (1 0)  výsledek  Q * A * Q^T 
      (k -k)     (0 2)
 
 L12: 6. Nechť matice A řádu n má navzájem různá vlastní čísla λ₁, …, λn a jim příslšející vlastní vektory v₁, …, vn. Jaká vlastní čísla a vektory má matice A³?
@@ -44,11 +48,13 @@ L14: 9. Najděte Jordanovu normální formu matice A.
                     0 0 0 2
 
 - dvě vlastní čísla, 1 a 2. 
-- 1 i 2, dvojnásobná jen algebraicky, tj. mají jen jeden vlastní vektor každé
-- Tj. dvě jordanovi buňky, pro každé jedno
-                    1 1 0 0
-               A =  0 1 0 0
-                    0 0 2 1
+- rank(A - λI) = 2, takže λ=1 má n-2 = 2 vl. vektory, tedy i dvě buňky
+- rank(A -2λI) = 2, takže λ=2 má n-2 = 2 vl. vektory, tedy i dvě buňky
+- Tj. Jordanova normální forma je diagonální matice
+                    1 0 0 0
+               J =  0 1 0 0
+                    0 0 2 0
                     0 0 0 2
+- (http://www.wolframalpha.com/input/?i=jordan+normal+form+calculator+%7B%7B1,0,0,3%7D,%7B0,1,0,0%7D,%7B0,0,2,0%7D,%7B0,0,0,2%7D%7D)
 
 

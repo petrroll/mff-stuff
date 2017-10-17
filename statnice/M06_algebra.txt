@@ -7,10 +7,10 @@ Násobnost kořenů a jejich souvislost s derivacemi mnohočlenu.
 
 J16: 1. Definujte pojem „ireducibilní polynom“.
 P14: 2. Definujte pojem „ireducibilní polynom nad tělesem T“.
-Polynom stupně >= 1 dělitelný pouze nenulovými skaláry & asociovanými polynomi (tj. polynomu které dělí a které jsou jím zároveň děleny)
+- Polynom stupně >= 1 dělitelný pouze nenulovými skaláry & asociovanými polynomy (tj. polynomy které dělí a které jsou jím zároveň děleny)
 
 P12: 3. Ukažte, že každý polynom stupně alespoň 1 má jednoznačný rozklad na součin ireducibilních polynomů.
-- Mějme dvě různé posloupnosti ireducibilních polynomů jejiž součin je p. Vyberme pak jeden z jednoho. Pro toho víme, že dělí-li p, tak dělí nějaký ireduc. z druhé posloupnosti. To je, pro ireducibilní polynom možné jen pro polynom asociovaný. Tj. tyto dva jsou až na asociaci stejné. Můžeme je odebrat a pokračovat indukcí dál.
+- Mějme dvě různé posloupnosti ireducibilních polynomů jejiž součin je p. Vyberme pak jeden z jednoho. Pro toho víme, že dělí-li p, tak dělí nějaký ireduc. z druhé posloupnosti. To je, pro ireducibilní polynom, možné jen pro polynom asociovaný. Tj. tyto dva jsou až na asociaci stejné. Můžeme je odebrat a pokračovat indukcí dál.
 
 J16: 4. Najděte rozklad polynomu x⁴-1 na ireducibilní polynomy v Q[x].
 - -1, 1 je kořen, dle věty ale není vícenásobný a dle dělitelnosti žádný jiný v Q není. Tj. (x-1)*(x+1)*(x^2+1)
@@ -35,8 +35,9 @@ P14: 11. Pro která z uvedených těles se polynom x⁴ - 2x³ + 2x² - 2x + 1 r
 - C: Ano
 (x-1)^2*(x^2+1)
 - Q ne: viz výše
-- Z2 ne: viz výše (x^2+1 nemá kořen)
-- Z3 ne: stejně jak Z2
+- Z2 ano:
+- x^2+1 má v Z2 dvojnásobný kořen 1, tj. celkem je 1 čtyřnásobný kořen.
+- Z3 ne: x^2+1 nemá kořen
 
 
 L14: 12. Nechť P(x) je kubický polynom (polynom stupně tři) s reálnými koeficienty. Rozhodněte a náležitě zdůvodněte, která z následujících tvrzení jsou pravdivá.

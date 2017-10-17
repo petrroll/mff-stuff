@@ -29,7 +29,7 @@ L16: 7. V R⁵ určete dimenzi ortogonálního doplňku množiny všech řešen�
                   (1 0 1 0 1) x = (3)
                   (1 0 0 0 1)     (1)
 
-	Vyřeším soustavu -> #nul. řádků je dimenze řešení -> 5 - #nul.řádků , tj. počet nenulových řádků
+	Vyřeším soustavu -> zjistím dimenzi řešení "5 - dimenze span(řešení)" je výsledek (podmnožina + doplňěk = celý prostor).
 
 J12: 8. Zformulujte Cauchy-Schwarzovu nerovnost o vztahu mezi skalárním součinem dvou vektorů a jejich normami.
 - Pro normu indukovanou skalárním součinem platí: 

@@ -6,7 +6,7 @@ Teoria grafov
 Souvislost grafu
 
 Definujte hranovou (k e (G)) a vrcholovou (k v (G)) souvislost grafu G.
-minimální číslo takové, že existuje hranový/vrhocholový řez velikosti "k" (pro uplny graf je vrcholova zadefinovana jako n-1)
+- minimální číslo takové, že existuje hranový/vrhocholový řez velikosti "k" (pro uplny graf je vrcholova zadefinovana jako n-1)
 
 Pokud δ(G) je minimálnı́ stupeň grafu G, najděte přı́klady grafů, pro které platı́:
 1. δ(G) = k e (G) = k v (G)
@@ -34,9 +34,16 @@ Souvislost grafu
 Grafy
 1. Definujte pojem kostra grafu“.
 ”
-- Podgraf grafu obsahující všechny vrcholy, který je zároveň stromem.
+- Podgraf grafu obsahující všechny vrcholy, který je zároveň stromem a je spojitý.
 2. Pro která přirozená čı́sla n existuje graf s právě n různými kostrami ? Ukažte.
-       kružnice délky n
+	Vše krom 2:
+	* 1: libovolný strom
+	* 2: neexistuje - vezmeme 2 kostry K, L, vezmeme lib. hranu e z K - L,
+	  vezmeme cestu c z L spojující koncové vrcholy e, c+e je kružnice
+	  (označme k) Pro každou hranu e' in k platí, že L+e-e' je kostra.
+	  Jelikož k je kružnice (ergo délky alepoň 3, máme alespoň 3 různé
+	  kostry -> spor s tím, že máme právě dvě.
+	* n > 2: kružnice délky n
 
 7
 Grafy
@@ -67,15 +74,6 @@ Graf (s alespoň třemi vrcholy) nazýváme rovinnou triangulací, pokud v libov
 - 5 jde -- nakreslil jsemi, ale je osklivy, hint: podle E <= 3V - 6 potrebujete alespon 12 vrcholu
 - 6 nejde z E <= 3V - 6
 
-6 leto 2016
-Teorie grafů (barvení grafů) (povinné téma vašeho zaměření)
-1. Napište definici barevnosti grafu a určete barevnost následujícího grafu:
-- viz výše
-2. Zformulujte Brooksovu větu o barevnosti grafů maximálního stupně ∆.
-- Nechť je graf k-degenerovaný, barevnost <= k + 1
-3. Dokažte bez použití Brooksovy věty, že obsahuje-li souvislý graf maximálního stupně ∆ vrchol stupně menšího než ∆, pak jeho barevnost je nejvýše ∆.
-- Indukcí, obarvím ten s menším stupňem, odžíznu. Zmenší se něčemu stupeň, ... pokračuju.
-
 Kostra grafu
 1. Definujte co je to kostra souvislého grafu.
 - viz výše
@@ -94,7 +92,7 @@ Ukažte, že tento počet nelze snížit. :
 - mengerova věta, k vrcholově souvislých cest -- 125 145 1985 1765
 3. Zformulujte Mengerovu větu o charakterizaci vrcholově k-souvislých grafů. Uveďte hlavní ideu důkazu.
 - Graf je vrcholově k-souvislý existuje li pro každé dva vrcholy k vrhocholově disj. cest.
-- dělení hran (převedení na hranově souvislé) & tok
+- dělení vrcholů (pomocí nové hrany), převedení na hranově souvislé & tok
 
 
 Souvislost grafu
@@ -115,8 +113,8 @@ Souvislost grafu
 2. Jaký je vztah mezi k-souvislostı́ grafu a disjunktnı́mi cestami mezi dvojicemi vrcholů ?
 - Ford-Falkersonova věta / Mengerova věta.
 3. Dokažte, že pokud je 3-regulárnı́ graf (všechny jeho vrcholy majı́ stupeň roven 3) hranově k-souvislý, pak je také vrcholově k-souvislý.
-hranove k-souvisly => k hranove disjunktnich cest => (*) k vrcholove disjunktnich cest => vrcholove k-souvisly
-sporem ukazeme ze zminene hranove disjuktni cesty jsou nutne i vrcholove disjunktni: kdyby ne, existuje bod A, ktery je ve dvou hranove disjunktnich cestach (cesty c, d), c tedy obsahuje usek ...XAY... a d obsahuje ...ZAW..., kde |{X,Y,Z,W}| = 4 (jsou ruzne), cili A ma s4 ruzne sousedy -> spor
+- hranove k-souvisly => k hranove disjunktnich cest => (*) k vrcholove disjunktnich cest => vrcholove k-souvisly
+- sporem ukazeme ze zminene hranove disjuktni cesty jsou nutne i vrcholove disjunktni: kdyby ne, existuje bod A, ktery je ve dvou hranove disjunktnich cestach (cesty c, d), c tedy obsahuje usek ...XAY... a d obsahuje ...ZAW..., kde |{X,Y,Z,W}| = 4 (jsou ruzne), cili A ma s4 ruzne sousedy -> spor
 
 Grafy
 1. Definujte pojem (neorientovaného) stromu v teorii grafů.
@@ -137,7 +135,7 @@ Rovinné grafy
   K3,3 + 6 hran
 3. Rovinné nakreslenı́ grafu je triangulace, jestliže je hranice každé stěny trojúhelnı́k. Dokažte, že rovinný graf G = (V, E) s
 alespoň 3 vrcholy je triangulacı́ právě tehdy, když |E| = 3|V | − 6.
-- S / 2 = E / 2, V + E + s = 2
+- S / 3 = E / 2, V - E + s = 2
 - Viz důkazy diskrétka.
 
 20

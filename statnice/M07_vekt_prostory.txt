@@ -23,9 +23,8 @@ J15: 5. Rozhodněte a zdůvodněte, zda je toto zobrazení na (surjektivní).
 
 J15: 6. Rozhodněte a zdůvodněte, zda je pravdivé tvrzení „každý vektor v ∈ R³ má při zobrazení f žádný nebo alespoň dva vzory“.
 	Tvrzení platí.
-	V kernelu jsou aspoň 2 vektory, takže 0 má alespoň 2 vzory
-	Když se x a z rovnají, tak to je nekonečně vzorů
-	Báze je velikost 2, když budou mít bázické vektory nekonečně vektorů, tak i všechny ostatní. Báze je třeba (1,1,1) a (6,4,8). Oba mají. Pro druhý stačí vyřešit Gausovku a vyjde jeden řádek nulový.
+	Kernel je netriviální -> jakmile mám jeden vzor můžu k němu přičíst jakýkoliv vektro z kernelu (s libovolným násobkem) a dostat stále stejný obraz
+	Každý prvek z obrazu má tedy nekonečně vzorů
 
 Uvažujeme lineární zobrazení f: R³ → R³ zadané jako (a + b, b + c, c + a) → (a − b, b − c, c − a) pro a,b,c ∈ R.
 J14: 7. Rozhodněte a zdůvodněte, zda je f dobře definované na celém R³.
@@ -46,7 +45,7 @@ J14: 7. Rozhodněte a zdůvodněte, zda je f dobře definované na celém R³.
 
 J14: 8. Rozhodněte a zdůvodněte, zda je toto zobrazení na (surjektivní).
 J14: 9. Rozhodněte a zdůvodněte, zda je toto zobrazení prosté (injektivní).
-Řešení od P.P.:
+Řešení od P.P. (ponz. jsou tu numerické chyby, to poslední zobrazení nemá vyjít prosté ani na):
 a+b  = k   1 1 0| k   1 1  0| k
   b+c= l   0 1 1| l ~ 0 1 -1| -m +l
 a  +c= m   1 0 1| m   0 0  2| l + m -k  => c = 1/2(l+m-k)  => b = -m + l +1/2(l+m-k) => a = k-b = 3/2k-3/2l+1/2m
@@ -62,11 +61,17 @@ zobrazením kanonické báze dostaneme
 protože obrazy kanonické báze jsou lineárně nezávislé, generují celý prostor R^3 => f je na
 matice zobrazení je regulární, tedy její kernel je pouze {o}, žádné dva různé vzory nemají stejné obrazy => f je prosté
 
+DS: přidám ještě jedno "bez" počítání
+Vezmeme zobrazení g: (a,b,c) -> (a+b,b+c,c+a)
+Matice zobrazení je regulární, jedná se o bijekci (ergo každé zobraznení z (a+b,b+c,c+a) je dobře definované na celém R^3)
+Jelikož g je bijekce (tedy v podstatě jen změna báze) už budeme uvažovat jen zobrazení (a,b,c) -> (a-b,b-c,c-d)
+Tahle matice už není reg. takže zobrazení není ani prosté ani na
+(např. vektor (1,1,1) je v kernelu a shodou okolností ten samý není ani v Im).
+
 L13: 10. Nechť X = {1, 2, 3} a Y = {1, 2, 3, 4, 5}. Rozhodněte, zda je více prostých zobrazení X do Y nebo zobrazení Y na X.
 	X → Y: 5*4*3 = 60 (alt (5 nad 3) * 3!)
 PP: Y na X: (5 nad 3)*3!*3*3 (vyberu který 3 budou ty na + zbylé 2 mají 3 a 3 možnosti)
-PH: Y na X: 5^3 (každé z těch 5 mohu nezávisle zobrazit na jedno ze tří)
-DS: ad PH, konstantní zobrazení (vše zobrazím na 1) není "na", čili 5^3 jich neni.
+DS:konstantní zobrazení (vše zobrazím na 1) není "na", čili 5^3 jich neni.
     jinak alternativne bez pocitani: ke kazdemu prostemu zobrazeni f € (X → Y) muzeme vzit inverz, tenhle inverz neni z Y (dva prvky z Y nezobrazuje) cili lze tenhle inverz doplnit dvema ruznymi zpusoby aby to byla funkce z Y na X. Jelikoz uz obraz inverzu pokryva svym obrazem cele X, je i vysledna funkce urcite na X. Takze uz bez pocitani je tech druhych vic
 
 J16: 11. Na vektorovém prostoru reálných polynomů stupně nanejvýš 5 definujme lineární zobrazení f představující druhou derivaci. Určete bázi jádra f a bázi obrazu f.
@@ -75,7 +80,7 @@ J16: 11. Na vektorovém prostoru reálných polynomů stupně nanejvýš 5 defin
 	Báze obrazu: x⁰,…,x³ (resp. 2x⁰, 6x¹, 12x², 20x³ -- přímý převod)
 
 J16: 12. Spočítejte hodnost matice zobrazení f vzhledem k bázi 7, 3 – x, x², x + x³, 2 – x⁴, 2 + 3x − x⁵.
-	6, páč převod mezi bázemi nemění hodnost.
+	4, páč převod mezi bázemi nemění hodnost a kernel má dimenzi 2, tj. 6-2 = 4.
 
 P16: 13. Dokažte jednoznačnost souřadnic vektoru vzhledem k dané bázi.
 - předpokládejme, že existují dvě vyjdáření, odečtu je, 0 vytvořená lineární kombinací netriviálních koeficientů (kdyby všechny 0, tak se vyjádření nelišily): spor s tím, že báze je Lineárně nezávislá množina.
@@ -131,4 +136,4 @@ d zvolíme libovolně, zbytek vyjde, zpětná substituce, určitě má řešení
 
 
 P15: 7. Buď A ∈ T^(n*(n−1)) pevná. Rozhodněte a zdůvodněte, zda zobrazení f ∈ T^n → det(A|f) je lineární.
-	ANO, je totiž určené nějakou maticí a každá matice odpovídá nějakému lineárnímu zobrazení.
+	ANO, díky linearitě přičtení řádku determinantu (transpozice: řádky -> sloupce) a násobení skalárem. Splňuje oba axiomy lineárního zobrazení.

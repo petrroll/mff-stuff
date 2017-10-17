@@ -3,3 +3,4 @@
 - Lingvistika.txt: Linky na gdocs s řešenými otázkami zaměření Počítačová lingvistika
 - poznamky-PP.pdf: Scany státnicových poznámek k jednotlivým okruhům od Anety Šťastné
 - zápisky-AS/: Zhuštěné poznámky k optimalizačním metodám, temnu, a algebře od Anety Šťastné
+- statnice-2017/: Opravené scany státnic z roku 2017 (kdo co poskytl)
