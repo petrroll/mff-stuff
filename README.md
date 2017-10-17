@@ -53,7 +53,7 @@ U každého zdroje proto bude v závorce rok, ke kterému se to váže (vždycky
 - Seznam definic ke státnicím
 - Sesbírané scany opravených státnic
 
-#### BC:
+#### Mgr (AI, přeávážně):
 ##### Prvácké předměty:
 - Opoznámkované slidy Umělé inteligence (2017)
 
