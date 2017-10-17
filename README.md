@@ -12,7 +12,7 @@ U každého zdroje proto bude v závorce rok, ke kterému se to váže (vždycky
 
 #### Co tu je?
 
-
+#### BC:
 ##### Prvácké předměty:
 - Podtrhané & občas opoznámkované zápisky z přednášek Analýzy 1, 2 (2014)
 - Podtrhaná & občas opoznámkovaná skripta z Lineární algebry 1&2 (2014)
@@ -51,6 +51,10 @@ U každého zdroje proto bude v závorce rok, ke kterému se to váže (vždycky
 - Poznámky Anety Šťastné k většině okruhů
 - Zahuštěné poznámky k Optimu, Temnu, a úvodu Algebry od Anety Šťastné
 - Seznam definic ke státnicím
+
+#### BC:
+##### Prvácké předměty:
+- Opoznámkované slidy Umělé inteligence (2017)
 
 
 #### Co tu není, protože to žije jinde?
