@@ -69,3 +69,36 @@ BFS:
 - runs out of memory quickly
 
 Uniform cost:
+- expands nodes with lowest path cost (dijstra, ...)
+- complete if all steps >= e
+- O(b^(1+c/e)), c cost of best solution time and space
+- Can be much worse than BFS (prefers cheap not short)
+  - expands more nodes, but optimal
+
+DFS:
+- O(b^m) time, O(bm) space
+- not complete, not optimal
+- backtracking: modify states, generate only one successor, ... O(1) space complexity
+- we can limit depth : depth-limited search¨
+
+Iterative deepening
+- always increase limit by the one minimal path cost delta that was not taken
+- complete, optimal
+- memory O(bd), time O(d*b^1 + (d-1)b^2 ...) = O(b^d)
+- good for large unknown search spaces
+
+Bidir search:
+- with BFS complete algh, lower memory needed O(b^(d/2))
+- intersection of frontiers through hash table
+
+Backward search:
+- from goal to initial state
+- if multiple goals: dummy goal that connects to all of them, meta-state, ...
+- hard to apply when there's abstract description of goal state (n-queens)
+- need to have a definition of all possible predecessors
+
+Graph vs. tree search:
+- expansion of already visited states, remember closed states
+
+Search types:
+
