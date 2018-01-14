@@ -239,3 +239,96 @@ K-consistency
 
 - global constraints can be good to replace consistency
 - soft constraints (heuristics)
+
+Games:
+- multi-agent, zero-sum, deterministic, perfect info
+- MAX moves first (us), MIN moves second
+  - utility function for MAX
+- optimal strategy : expects perfect opponent
+
+Minimax:
+- MIN selects min, MAX selects MAX, from terminal leaves up (BFS)
+- a,b pruning: eliminating branches that can't influence outcome (remember bounds for each node & root)
+  - stop evaluating min when it's value is worse (smaller) than in its parent (MAX)
+  - a is value of the best (highest) choice we have found along the PATH
+  - does not miss optimum, with perfect ordering the avg. branching factor gets squared
+- end before terminal nodes, compute utility (heuristic)
+  - expected value (based on features of the state)
+  - sum of values of certain features
+- horizont effect: big change can happen after cut-off
+  - don't cut-off before big events (capturing in chess, ...)
+
+Stochastic games
+- add chance nodes, compute expected value over them
+
+Knowledge based agent:
+- TELL, ASK, inference: deriving new info from old
+
+Inference
+- propositional variables describe the properties of the world
+- formulas describe known information about the world
+- Algs
+  - model checking (enumaration of truth table)
+  - inference rules (resolution alg)
+
+  DPLL: 
+  - sound and complete alg for verifying satisfiability of formulas in CNF
+  - DFS with heuristics 
+    - for symbols that has the same sign in all clauses
+    - unit clauses
+  
+WALK-SAT
+- sound but incomplete
+- starts with random assigment
+  - with p flips a random symbol in false clause
+  - else flips the symbol from a false clause that maximizes number of satisfied clauses
+- way faster than DPLL, even DPLL works reasonably well
+
+Resolution:
+- proves unsatisfiability of (KB and !alfa)
+- sound, complete
+
+Horn clauses: 
+- disjunction of literals, at most one positive (implications)
+- forward chaining: 
+  - linear time complexity
+  - sound, complete
+  - keeps list of symbols known to be true, inferns from them
+
+- backward chaining:
+  - query is decomposed via horn clauses into subqueries until facts from KB are obtained
+
+  First order logic
+  - objects and relations
+  - TELL adds axioms, definitions, and theorems (speeds up induction)
+  - reasoning: 
+    - grounding (instantiate with all possible terms)
+    - replace quantifiers with skolemization (E: constant, V: all instances)
+  - full instanciation can lead to infinite number of terms
+    - Herbrand: only finite subset is enough, don't know how large
+
+
+Inference in FOL
+- lifting: do only needed substituions
+- modified Modus ponens with substitution 
+- the most general unifier: most general substitution
+  - build MGU recursively
+  - complex terms must have the same name, unit args
+  - x, f(x) not unifiable (check not done in Prolog)
+- standardizing apart: rename variables so they don't colide 
+
+- Forward chaining: infer all valid sentences through Modus Ponens
+  - sound, complete, does not have to finish if sentence not backed by KB
+  - pattern matching in NP complete problem
+  - incremental: verify only relevant rules (whose body facts were added to KB in previous step)
+  -> dependency network (precomputed)
+  - magic set: keep only relevant constant for our goal (constructed via backward exploration of rules)
+
+- Backward chaining: find for facts supporting our goal, used in logic programming
+  - not complete if implemented as DFS (can cycle)
+
+- resolution
+  - needs CNF first
+  - sound, complete
+  - does not always produce constructive proofs
+
