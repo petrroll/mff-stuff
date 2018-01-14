@@ -209,3 +209,33 @@ LRTA (learning realtime Astar):
 - when the action hasn't been taken yet (no info about what node it leads to), use heuristic for origin node
 
 CSP: 
+- variables, each has domain (finite), constrains
+  - consistent state : assigment (partial) that does not violate any constraint
+  - applicatble actions: search through them
+  - goal always in depth "n" (number of variables)
+- simple backtracking: DFS
+
+Variable ordering:
+- the most restricted first
+- the most constrained first
+
+Value ordering
+- restict least of the other variables
+- problem dependent heuristics
+
+Forward checking:
+- check constraints between (newly) assigned variable and not-yet assigned variables
+- remove values violating constraints
+- (possible) check constraints between future variables
+
+Arc consistency:
+- filter domain X whenever Y changes, repeat until no changes made: AC3 alg
+- keeps queue of constraints that needs to be checked
+- time: ed^3 (e: number of constraints, d size of domains)
+
+K-consistency
+- for any consistent assigment of k-1 variables there's consistent value for one more
+- if a problem is i-consistent for i = n, it's solvable in backtrack-free way
+
+- global constraints can be good to replace consistency
+- soft constraints (heuristics)
