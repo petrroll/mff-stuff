@@ -216,8 +216,8 @@ CSP:
 - simple backtracking: DFS
 
 Variable ordering:
-- the most restricted first
-- the most constrained first
+- the most restricted first: smallest current domain (dom)
+- the most constrained first: most constraints (deg)
 
 Value ordering
 - restict least of the other variables
@@ -331,4 +331,92 @@ Inference in FOL
   - needs CNF first
   - sound, complete
   - does not always produce constructive proofs
+  - unit resolution, input resolution (isn't complete), subsumption (removes more specific clauses)
+
+Knowledge engeneering:
+- identify the task
+- assemble relevant knowledge
+- decide on vocabulary
+- encode general knowledge
+- encode specific problem
+- pose queries
+- debug 
+
+- agents manipulate objects
+- reasoning in the world of categories
+  - MemberOf, SubsetOf
+- taxonomy: hierearchical structure to categorize objects
+
+Planning: 
+- dynamic world
+- in PL we'd need copy of each action for each timestep
+  - we can do better in FO logic
+
+Planning in FO
+- actions are terms
+- sitations are also terms
+- need to reason about sequences of actions
+- fluent a predicate that changes with time (needs situation as last argument : represents time)
+- tasks:
+  - projection task: what's the result of these actions
+  - planning task: what actions do I need to get this state
+- each action described using two axioms
+  - possibility
+  - effect of possibility
+- frame problem: axioms describe what has changed but not that everything not changed is still the same
+  - need it for Fluents and Actions
+
+- successor-state axiom:
+  - one axiom for each fluent with O(AE) literals
+  - Poss(a,s) => (fluentHoldsIn Result(a,s) <> fluent is effect of a) or (fluent holds in s and a does not change it)
+  - beware of implicit effects: ramification problem
+
+  - can be simplified with meta axiom that contains PosEffect and NegEffect axioms
+  
+
+  - closed world assumption: what's not explicitely true is false
+
+Classical representation
+- state is set of inited atoms (no variables)
+- closed world assumption (not included -> does not hold state)
+- o(name, precond:literalsThatMustHoldTrue, effects:onlyFluents)
+- action is fully instantieted operator
+
+- action is applicable if precodn is subset of current state
+  - result is original state - effects- + effects+
+
+- planning domain: (S,A,y)
+  - states, actions, transition function
+- planning problem (E, s, g)
+  - planning domain, initial state, set of gloal literalls
+  - plan is sequence of actions that satisfie goal condition
+
+- forward search: apply actions until reaching goal state
+  - randomly choose
+- backward search (regression): apply actions in revers order from goal
+  - apply only partially applied actions (lifting)
+  - remember regression set ("intermediate goals")
+
+planspace planning:
+- start with empty plan, add actions to satisfy not yet covered goals
+  - initial state is an action with no pre-requisites
+  - goal is an action with no effects
+- partial plan
+  - tuple: partially inited operators, set of constraines, set of causal relations, partial ordering
+- ordering (just order) and causal relation (actions has to be directly after each other)
+- flaws:
+  - open goal: not yet satisfied precondition (binding variables, finding new operator, ...)
+  - threat: action that can't be inbetween a causal relation
+
+- partial plan is solution if no flaws, ordering consistent, and instantiated
+
+
+state space planning
+- search through discrete states
+
+
+
+
+
+
 
