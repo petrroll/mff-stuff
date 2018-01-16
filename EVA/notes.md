@@ -13,7 +13,7 @@ Generic EA:
 
 Genetické algoritmy
 - Holand 1975
-- Binárně zakodování jedinci
+- Binárně zakodovaní jedinci
 - Rulettová selekce (pravděpodobnost výběru fitness jedince / fitness všech)
 - 1point crossover (vezme se bod, první půlka z prvního, druhá z druhého)
 - bitové mutace
@@ -24,7 +24,7 @@ Evoluční programování
 - evoluce konečných automatů
 - smazán rozdíl mezi genotypem a fenotypem
 - důraz na mutace, většinou bez křížení
-- turnajová selekce (vyber dva (čí víc) náhodně, s nějakou pravděpodobnostní vyber lepšího, else horšího)
+- turnajová selekce (vyber dva (čí víc) náhodně, s nějakou pravděpodobností vyber lepšího, else horšího)
 
 Evoluční strategie
 - 1964
@@ -33,7 +33,7 @@ Evoluční strategie
 
 Genetické progrmaování
 - jedinci LISPovské stromy
-- nejen evoluce programů, operátory přížení mutace, inicializace
+- nejen evoluce programů, operátory křížení mutace, inicializace
 - evolving HW, neuroevoluce, ...
 
 GA
@@ -44,12 +44,12 @@ Schémata:
 - definující délka: vzdálenost mezi první a poslední pevnou pozicí
 - fitness schématu: průměrná fitness jedinců v populaci
 - "Krátká nadrpůměrná s malým řádem se v populaci během GA exponenciálně množí"
-  - Schéma ma pravděpodobnost vybrání svojí fitness (nadprůměrná)
+  - Schéma ma pravděpodobnost vybrání úměrné svojí fitness (nadprůměrná)
   - Čím menší definující délka, tím větší pravděpodobnost přežití křížení
-  - Čím menší řád tím, větší pravděpodobnost přežití mutace
-- důlsedky
+  - Čím menší řád, tím větší pravděpodobnost přežití mutace
+- důsledky
   - na zakódování záleží
-  - na vvelikosti záleží
+  - na velikosti záleží
   - předčastná konvergence škodí
 - Implicitní paralelismus
   - GA pracuje s m jedinci, implicitně vyvíjí 2^m až n2^m schémat
@@ -57,7 +57,7 @@ Schémata:
 - GA nesamplují schémata rovnoměrně, ale "z populace". Mohou je odhadnout špatně.
 
 - Explorace: nacházení nových oblastí: nevyužívá předchozí znalosti
-- Exploitace: prohledávání aktuálních oblastí: uvíznutí v lokálních minimech
+- Exploatace: prohledávání aktuálních oblastí: uvíznutí v lokálních minimech
 
 Problémy GA: 
 - pokud populace začne konvergovat přestanou být schémata samplována stejnoměrně
@@ -74,7 +74,7 @@ Kódování:
   - mutace: zatížená (posun od aktuální hodnoty), nezatížená (celý rozsah)
   - uniformní křížení (u každé položky s pravděpodobností vezmeme z rodiče)
 - floating point
-  - aritmetické křízení (průměr, konvexní kombinace, ...)
+  - aritmetické křížení (průměr, konvexní kombinace, ...)
   - zatížená / nezatížená mutace
 - permutace, stromy, matice, ... 
 
@@ -122,7 +122,7 @@ Evoluční strategie:
 - ES cyklus:
   - Náhodně inicializuj populaci M jedinců
   - Ohodnoť jedince pomocí fitness
-  - Vyber R rodirů, zkřit, mutuj, ododnoť nové, vyber M nových
+  - Vyber R rodičů, zkřiž, mutuj, ohodnoť nové, vyber M nových
 
 - ES Mutace: 
   - jedna společná odchylka pro všechny
@@ -139,7 +139,7 @@ ES křížení:
 
 
 Differenciální evoluce: 
-- mutace: posun odle ostatních
+- mutace: posun podle ostatních
 - křížení: uniformní s pojistkou
 - selekce: porovnání & případně nahrazení lepším potomkem
 
@@ -152,7 +152,7 @@ Particle Swarm optimization:
 - jedinec vektor reálných čísel: částice, žádné křížení ani mutace jak ji známe
 
 - init všechny částice
-- spočítej fitness všech, pokud nějaká nejlepší nastav její best jako gBest, pro každou nastal pBest
+- spočítej fitness všech, pokud nějaká nejlepší, nastav její best jako gBest, pro každou nastav pBest
 - spočítej pro každou částici její rychlost, aktualizuj její pozici
 - repeat 2.
 
@@ -176,7 +176,7 @@ Michigan:
 - evoluce nemusí být v generacích
 
 Michigan LCS: 
-- evoluce jen očbas a jen na části populace
+- evoluce jen občas a jen na části populace
 - problém reaktivnosti: pravidla se mohou chainovat, problém jak distribuovat odměnu
 - obecně jen některá pravidla vedou k akci, která je dobrá / špatná
 - pravidla musí dát část své síly, aby byly zahrnuty v cestě k řešení, následně odměněné jen ty zahrnuté
@@ -287,7 +287,7 @@ Genetické programování:
 - John Koza
 - Programy jako syntaktické / sémantické stromy
 - terminály proměnné a konstanty
-- kříežení výměna podstromů, mutace generování podstromu, ...
+- křížení výměna podstromů, mutace generování podstromu, ...
 
 
 
