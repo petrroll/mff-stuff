@@ -214,12 +214,80 @@ Pitt:
   - na úrovni komplexů: zahrnutí negativního příkladu, rozdělen íkomplexu na 1 selektoru, speicalizace
   - operace na selektorech
 
-
 Vícekriteriální optimo: 
+- místo jedné fitness máme vektor funkcí
+- jedinec slabě dominuje jiného, když je lepší/stejný pro všechny fitness funkce
+  - jedinci jsou neporovnatelní, pokud se navzájem nedomuníjí
+- paretova fronta: množina jedinců, které nikdo nedominuje
 
+- agregovaná fitness: jaké koeficienty vážené sumy pro jednotlivé fitness
+- VEGA: utřídím jedince podle každé z účelových fcí, podle každé vyberu N/n jedinců
+  - ty křížím a mutuju
+  - těžko se udržuje diverzita populace
+  - má tendenci kovnergovat k extrémům v jednotlivých fi
+- NSGA (non doominated sorting GA): rozdělený podle dominovaných front, beru nejlepší frontu, pak další, ...
+  - každý jedinec má niching factor: v rámci fronty jak daleko je od ostatních (čím dál tím lépe)
+  - fitness: fitness nejhoršího z předchozí fronty / niching factor
+- NSGAII. 
+  - řeší absenci elitismu a parametru dshare
+  - niching nahrazen crowding distance (součet vzdálenosti k sousedům)
 
+- hypervolume: 
+  - hypervolume populace které dominuje pro porovnání jednotlivých populací (tj. algoritmů, prakticky)
+  - hypervolume jedince: když část sdílí, tak dostane jen tu podílovou část
+- decomposition: rozdělíme prostor na radiální úseky, v každém weigted sum
+
+Kombinatorická optimalizace: 
+- NP těžké úlohy
+  - batoh: jednoduché kódování, problematická fitness (nelegální ale užitečné stavy)
+  - TSP: jednoduchá fitness, těžké operátory & kódování
+
+TSP
+- operátory závislé na reprezentaci
+- reprezentace sousednsoti: město "j" je na pozici "i" vede-li cesta z i do j
+  - každá cesta jen jednu reprezentaci
+  - některé reprezentace nelegální cesta
+  - klasické křížení nefunguje, schémata naopak ano
+- reprezentace bufferem: umožňuje normální 1-bodové křížení
+  - buffer a reprezentace, reprezentace říká jaké je další město v bufferu, z bufferu se po použití mažou
+  - křížení lze, ale neodpovídá moc realitě
+- reprezentace cestou: permutací
+  - nefunguje klasické křížení
+  - PMX (partially mapped crossover): swap middle points, keep what's not in conflict, use partial mapping to fill the rest
+  - OX (order crossover): snaží se zachovat relativní pořadí
+  - CX (cyclic crossover): snaží se zachovat absolutní pozici města v cestě
+- ER: snaha zachovat hrany z rodičů (předchozí tak max 60 %)
+  - každé město má seznam hran
+  - začnu někde, vybírám města s méně hranami, případně náhodně
+  - stavím cestu
+  - vylepšení ER2: Hrany co jsou dvakrát mají prioritu
    
+- důležitá i inicializace
+  - začni náhodným, pokračuj nejbližším
+  - nejbližší město c mimo, najdi k-j, že minimalizuje rozdíl k-c-j a k-j, přivlož do té cesty k-c-j
 
+- mutace Tsp
+  - inverze
+  - vkládání města do cesty, posun podcesty, záměna 2 měst, heuristiky 2-opt, ...
+
+- další přístupy: 
+  - maticová reprezentace
+  - kombinace s lokálními heuristikami
+
+Rozvrhování:
+- kódování maticí přímočaré
+- mutace zamíchej, křížení vyměň učitele předmětů
+- hard omezující podmínky, ..
+
+Job Scheduling: 
+- zakódování je kritické
+- přímá reprezentace lepší než jen permutace pořadí (dekodér pak musí řešit volbu plánů)
+
+Genetické programování: 
+- John Koza
+- Programy jako syntaktické / sémantické stromy
+- terminály proměnné a konstanty
+- kříežení výměna podstromů, mutace generování podstromu, ...
 
 
 
