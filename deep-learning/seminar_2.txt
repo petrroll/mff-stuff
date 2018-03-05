@@ -1,0 +1,24 @@
+op = ts.train.GradientDescent(err, ...).minimize(loss)
+- performs update step
+- returns an operation without output tensors 
+
+session.run(...)
+- accepts operations
+- operations can have a number of output tensors
+- the values of such output tensors are what's returned from the session.run
+
+change learning reate throughout the learning
+- the first epoch should have larger learning rate
+- exponential decay 
+- tf.train.exponential_decay
+- to debug add the learning rate to summaries and check in tensorboard
+- change each epoch 
+
+- for exponential decay we need to know the amount of data 
+
+collections
+- points of model representing inputs and outputs 
+
+
+tips: 
+- minibatches are good
