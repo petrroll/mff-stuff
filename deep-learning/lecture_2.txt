@@ -45,12 +45,13 @@ Machine learning:
 
         - Pokud předpokládáme distribuci dat normální, tak MLE vede na MSE (mean squared error)
 
-- Optimalizace funkce:
+Optimalizace funkce:
     - Gradient descent: posun ve směru gradientu (vektoru parciálních derivací)
 
     - Standardní: počítá gradient na všech testovacích datech najednou, trvá dlouho už se nepoužívá
     - Online (stochastic) GD: odhaduje gradient pomocí jednoho náhodného sample, unbiased, noisy 
     - Minibatch SGD: odhaduje gradient pomocí m náhodných samplů
+    - supr zdroje k funkcím níže: http://ruder.io/optimizing-gradient-descent/
 
 - Backpropagation: 
     - chain rule, viz slajdy
