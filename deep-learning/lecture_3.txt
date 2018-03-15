@@ -1,0 +1,70 @@
+Parametry: 
+- mohlo by se hodit krom vstupů mít u neuronů bias, který se přičte vždy: f(Wh + b)
+- parametry modelu jsou Wi, bi, ...
+
+- dělám derivaci podle každého parametru
+
+Hyperparametry: 
+- nedokáží se trénovat z trénovací množiny
+- např. počet skrýtých vrstev, ...
+- hledání skrz grid searche -> prohledávání celého prostoru
+
+- blbě se přes ně derivuje (diskrétní čísla) -> nedají se moc hledat gradient descentem 
+
+Praktické problémy:
+- chceme tam data cpát po batchích -> režije začátku vyhodnocování (přesunu na GPU, ...) je velká
+- po vrstvách se na síť můžeme dívat jako na maticové / vektorové operace 
+    - váhy se aplikují maticovým násobením
+    - bias je přičtení vektoru
+    - aktivační funkce je per element aplikace aplikační funkce na vektor
+
+    - derivace hledá matice parciálních derivací 
+        - hledání derivace to udělá naplácnutí grafu obráceně s derivovanými operacemi ve vrcholech
+        - stačí to pak projít -> vypadne nám z toho derivace normálním průchodem grafu
+    -> ve skutečnosti je síť "AST" vektorových operací (viz slajd 7)
+
+Derivace soft-maxu
+- derivace softmaxu po správné třídě posílá derivaci, která odpovídá zbytku k 1 (to tam chce)
+- po špatných posílá to co tam je kladné 
+-> -1[isGold] + o(třída) 
+  - -G + o
+  - -CoMáBýt + CoJe 
+
+- jakmile začne model dělat co má, tak v něm přestanou téct velké derivaci 
+- bias softmax nikterak nezmění
+
+Regularizace: 
+- pokud overfittuju (jsem dobrý na trénovacích, ale ne testovacích datech) vyplatí se regularizovat
+
+- můžu se zastavit v momentě, kdy se na testovací množině přestanu zlepšovat (i když se stále zlepšuju na trénovací)
+- L2 regularizace: Modely menšími parametry bývají generičtější 
+    - minimalizujeme Loss(O, X) + lambda*||O||
+    - problém nastavit lambdu: sílu regularizace 
+
+    - v SGD se po derivaci z regularizace stane -2*alfa*lambda*Oi
+    -> v každém kroku každý parametr snížím o nějakou jeho část
+
+    - parametr nezůstane nenulově relevantní aniž by byl relevantní
+    -> pokud bude užitečný jen jednou, tak ho regularizace časem zabije
+
+    - bayesovský pohled: pokud předpokládáme, že malé parametry jsou pravděpodobné, tak vychází z MLE
+        - pokud předpokládáme normální rozdělení parametrů a střední hodnotu v 0
+- L1 regularizace: v neuronových sítích se moc nepoužívá
+    - v každém kroce se neodečítá část toho parametru, ale nějaké konstanta
+
+
+Ensembling:
+- kombinace několika (slabších) modelů 
+- pokud nejsou dokonale korelované, tak vždy dostaneme nějakou informaci navíc 
+
+- vzhledem k komplexnosti neuronových sítí je malá šance, že vícekrát (i se stejnými daty) natrénuju stejný model
+-> natrénuju model vícekrát, pokaždé se naučí něco jiného
+
+- pokud moc drahé, tak můžu vzít snapshoty modelu v průběhu trénování 
+-> od nějaké doby jsou rozumně dobré, pořád získám nějakou informaci navíc
+
+
+
+
+
+
