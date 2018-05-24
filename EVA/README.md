@@ -1,0 +1,1 @@
+- 2017: Výpisky ke zkoušce z Evolučních algoritmů Romana Nerudy na základě slidů (http://ktiml.mff.cuni.cz/~neruda/eva1-16cz.pdf)

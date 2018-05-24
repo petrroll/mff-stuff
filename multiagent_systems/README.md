@@ -1,0 +1,1 @@
+- 2017: Výpisky ke zkoušce z Multiagentní systémy Romana Nerudy na základě slidů (http://ktiml.mff.cuni.cz/~neruda/mas-14.pdf)

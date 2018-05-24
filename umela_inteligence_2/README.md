@@ -1,0 +1,1 @@
+- 2017: Výpisky ke zkoušce na základě slidů Romana Bartáka http://ktiml.mff.cuni.cz/~bartak/ui2/lectures/
