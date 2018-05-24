@@ -56,6 +56,7 @@ U každého zdroje proto bude v závorce rok, ke kterému se to váže (vždycky
 #### Mgr (AI, přeávážně):
 ##### Prvácké předměty:
 - Opoznámkované slidy & výpisky k Umělé inteligenci (2017)
+- Opoznámkované slidy k Pravděpodobnostním metodám (2017)
 - Opoznámkované slidy k Složitost a vyčíslitelnost (2017)
 - Opoznámkované slidy & výpisky k Umělé inteligenci 2 (2017)
 - Podtrhané slidy k Logickému progrmaování 1&2 (2017)
