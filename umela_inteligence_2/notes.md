@@ -69,6 +69,26 @@ Markov Chain Monte Carlo
     - the sampling follows stationary distribution of the variables' values
     - Gibss sampling
 
+# 3
+- situation calculus: view the world as series of snapshots
+    - hidden and observable variables
+    - assume discrete time with uniform steps
+- transition model P(X_t|X_0:t-1)
+    - markov assumption: current state depends only on finite history
+    -> Markov chains 
+    - first order Markov chain: depends only on the previous state
+    - change in the world are caused by the static markov process
+- observation model: how evidence vars depend on hidden variables
+    - markov assumption: only on hidden state vars from the same time
+- could be viewed as unrolled bayessian network
+
+Inference tasks
+- filtering: posterior distribution over the most recent state given evidence to date
+- prediction: posterior distribution over future state given evidence to date
+- smoothing: posterior distro over past tate given evidence to the present
+- most likely expl.: find sequence of sates most likely for seq. of observations
+
+- filtering: 
 
 
 
