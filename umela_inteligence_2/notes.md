@@ -276,7 +276,7 @@ MDP: Markov Decision process
 - policy iteration alghoritm
     - evaluation: given policy pi, calculate U_pi
         - Upi(s) = R(s) + y SUM_s'( P(s'|s, pi(s))Upi(s') )
-        - O(n^3)
+        - O(n*n^2)
     - policy improvement: pi_i+1(s) = argmax_a€A(s) (SUM_s'( P(s'|s,a)Upi(s') ) )
     - iterate as long as we're changing the policy
     - finite number of policies -> always terminates
@@ -311,5 +311,106 @@ MDP: Markov Decision process
         
 
 # 7
+- single move games: players, actions, payoff function
+- pure strategies (deterministic policy), mixed strategies (randomized, distribution for actions)
+
+- s strong dominates s', if outcome of s is better than s' for every opponent's action
+- weak dominates if it's better for at least one opponent's action and not worse for others
+
+- if both have dominant strategy: dominant strategy equilibrium
+- Nash equilibrium: no player can benefit by switching strategies 
+- Pareto optimal: there is no other outcome all other players would prefer
+    - pareto dominated if all players would prefer the outcome
+    - Prisoner's dilema dominant equilibrium (testify, testify) is pareto dominated by (refuse, refuse)
+
+- there can be situations without dominant strategies and with nash equilibria. 
+- choose the pareto optimal nash equilibrium if possible
+
+- there's a method for finding opt. mixed strategy for two-player zero sum games
+    - maximin: lower and higher bound given by minimax after assuming the turns are sequential
+    - for mixed strategies similar approach can be used
+
+- repeated games: repeated prisoners dilema
+    - important to have non-static number of rounds
+    - really good strategy: tit-for-tat
+
+Mechanism design - inverse game theory:
+- design game whose solutions, consisting of each agent pursuing rational strategy, maximize some global utility function
+
+Auctions: 
+- mechanism for selling goods to members of a pool of bidders
+- each bidder i has utility value vi for item v
+    - private value
+    - unknown / estimated common value
+
+- each bidder makes a bid bi, highest bid wins for some price
+- efficient: the bidder that values it the most gets it
+
+- truth-relealing auction: when bidders reveal their vi
+
+- English auction
+    - Starts on some minimum, can bid current + some minimal increment
+    - Highest bidder pays his bid
+    - Ends when nobody wants to bid anymore
+
+    - efficient and revenue maximizing if: sufficient number of bidders, no collusion (cooperation to manipulate prices)
+    - Properties:
+        - Has dominant strategy: keep bidding as long as cost < vi
+        - It's not truth revealing: only reveals the lower bound
+
+        - If there's strong bidder -> no-one will enter -> sold for initial cost 
+        - High communication cost
+
+- Sealed bid auctions
+    - Each makes one secret bid and communicates it
+    - Highest bid wins
+
+    - First price variant:
+        - No simple dominant strategy: best b0 + e if < vi // b0 is expected max of other bids
+    - Second price variant / Vickrey:
+        - Highest bid wins, pays second highest bid
+        - Dominant strategy: bid vi
+
+Tragedy of commons
+- the optimal strategy for everybody is to behave badly -> makes it worse for everyone
+    -> the cummulative effect makes it way worse than if everyone behaved nicely
+
+- soluation: all externalities not recognized in indiv. transactions need to be made explicit
+    - Charging for common resources: taxes
+
+- Vickrey-Clarks-Groves mechanism
+    - Center asks each agent to report its value: bi
+    - Center distributes goods to subset of agents A maximize reported values Sum:a(ba)
+    - Each agent pays a tax equal to wi' - bi' -> what first looser would've payed
+        - wi' = total global utility if i wasn't in the game
+        - bi' = total global utility - bi
+
+    -> all winners pay less then their value
+    - all losers are happy because they value goods less than the required tax
+    - truth revealing -> it's optimal to report your true value
 
 # 8
+Learning: 
+- which component is to be improved
+- what's prior knowledge and its representation
+- what type of feedback
+    - supervised learning: agent observes example input:output pairs
+    - unsupervised learning: no explicit feedback is given
+    - reinforcement learning: rewards & punishments 
+
+- Supervised learning
+    - function h - hypothesis - is selected
+    - consistent hypothesis: h(xi) = yi: accuracy of hypothesis func is measured
+    - regression, classification
+
+    - Ockham's razor: prefer simple hypothesis functions
+        - Prevents overfitting
+
+    - Decision trees:
+        - Sequence of tests on individual input variables
+        - Select most important attribute, divide examples, if sets not pure continue recursively 
+        - Most important attribute: makes the most difference to the classification of examples 
+            - 
+
+
+
