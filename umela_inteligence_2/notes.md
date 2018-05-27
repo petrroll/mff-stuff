@@ -410,7 +410,159 @@ Learning:
         - Sequence of tests on individual input variables
         - Select most important attribute, divide examples, if sets not pure continue recursively 
         - Most important attribute: makes the most difference to the classification of examples 
-            - 
+            - Highest information gain in terms of entropy
+            - Gain = Entropy(X) - E[Entropy(Xk)]
 
+        - Pruning: delete unnecessary nodes that have only leaf children
+            - unnecessary: doesn't pass chi^2 test
+            - don't have to prune if we stop early -> early stopping
+                -> prevents finding a good combination of attributes where no single one was good (e.g. xor)
+        
+        - Problems:
+            - Missing data
+            - Multivalued attributes: split on just one value
+            - Continuos attributes: find split point (in between observed values)
+            - When to start doing regression nodes?
+        -> it's possible to understand the reason for their output
 
+    - Regression:
+        - linear regression have unique solution, usually used L2 loss
+        - non-linear regression: gradient descent for loss optimization
+        - multivariate linear regression: orth. projection to samples space
 
+    - Linear classifiers:
+        - treshold function: logistic treshold function (1/1+e^-z)
+        - hw(x) = Treshold(w.x), hw is compared with 0 / other treshold to classify
+        - updates: wi = wi + alpha * (y-hw(x)) . hw(x) * (1-hw(x)) . xi
+
+    - parametric model: summarizes data with set of fixed size parameters
+    - Non-parametric models: doesn't have bounded number of "parameters"
+        - table lookup, 
+        - (k-)nearest neighbor(s), 
+            - neighbors voting based on distance 
+            - Minkowski distance, Hamming (for booloean attribs.)
+            - Use data normalized with mean and std. dev.
+            - Doesn't work well for high-dimens (distances grow fast)
+            - Kd-tree, hash-table with locally sensitive hash, ...
+        - Nearest neighbors regression (locally weighted via kernel distance func)
+    
+    - Support vector machines
+        - Construct maximum margin separator, create linear separating hyperplanes
+        - Embedding data into higher dimens. space using kernel methods
+        - Non-parametric method
+
+        - maximum margin separator: each datapoint has weight: 1 only for support vectors
+            - only need to keep a few examples that have non-zero
+            - can be solved via quadratic programming optimization
+        
+        - kernel: if examples not linearly separable -> using kernel function instead of dot product
+            - poly: K(kj, xk) = (1+xj.xk)^d
+        
+    - Ensebling: combine a collection of hypothesis
+        - Boosting: weight 1 for all examples, increase weight for misclassified, decrease for correctly classified, repeat, generate K hypothesis, each hypo contributes with the weight of its accuracy
+
+    - Overfitting: more likely as hypothesis space grows, less likely with more training data
+
+# 9
+- taking advantage of prior knowledge represented as logical sentences
+    - attributes become unary predicates
+    - classification becomes goal predicate
+
+- hypothesis: Vx Goal(x) <> Cj(x) : extension of the predicate
+    - e.g. WillWait(r) <> Patrons(r, Some) v (Patons(r, Full) and Hungry(r))...
+
+- learning alg. believes that one hypothesis out of all hypoths is correct -> h1 v h2 v ... hn
+    - hypoths not consistent with examples can be ruled out: false negatives, false positives
+
+- keep one hypothesis -> adjust with new examples to maintain consistency
+    - false negative: generalize
+    - false positive: specialize
+    - current best: iterates over all possible specializations / generalizations -> DFS
+
+- generalization: h1 is generalization of h2: Vx: C2(x) -> C1(x)
+    - if Ci is conjunction of predicates -> dropping conditions / adding disjuncts
+    - specialization has inverse property & can be done by removing dijsuncts / adding conds.
+
+- after each modification we should check all previous examples 
+    - current best can make the hypothesis non-consistent with previous examples
+- we might need to backtrack if there's no simple modification of current hyp possible
+-> solution: least-commitment search
+
+Version space learning:
+    - assume whole hypothesis space as disjunction of all hypothesis
+    - whenever there's hypothesis inconsistent with an example -> remove it
+    - remaining set of hypothesis is called version space
+    -> incremental: no need to ever backtrack 
+
+- representation of version space: 
+    - General bound: consistent with all examples, no more general consistent, init: True
+    - Specific bound: consistent with all examples, no more specific consistent, init: False 
+    -> everything between S and G is guaranteed to be consistent, nothing else is consistent
+
+- Version space update: 
+    - False positive for Si: throw Si out
+    - False negative for Si: replace Si by all its immediate generalizations
+    - Inverse for Gi
+
+    - repeat until: only one hypothesis left, G or S becomes empty, run out of examples
+        - majority vote is possible if they disagree / their disjunction 
+
+- if there's noise in domain / insufficient attributes -> the version space always collapses
+    - no simple solution
+- if we allow unlimited disjunction 
+    - S will contain disjunction of descriptors of positive examples
+    - G will contain negation of disjunction of negative examples' descriptors
+    -> limit forms of disjunction -> generalization hierarchy of more general predicates
+
+Inductive logic programming: 
+- combination of inductive methods and first-order representations
+- top-down: FOIL
+- inductive learning with recursive deduction: PROGOL
+
+- Examples given as prolog fact, known classifications also prolog facts
+- Possible hypothesis specified in first-order
+
+- Top down learning: starts with a clause with an empty body
+    - starts with classifying every example as positive
+    - specialized by adding literalls one at a time to the body
+    -> prefer generalized specializations
+
+    - algorithms:
+        - while non-empty positive examples: add new clause, remove positive examples covered
+        - new clause: target is head, empty body
+            - while examples contain negative ones: 
+                - choose new literal (must contain a variable already in use), append to body
+                - new_examples: extend-example with literal for all previous examples
+        - extend-example: 
+            - if example satisfies literal: return all examples with each possible constant value for each new variable in literal | else empty set
+
+- inverse resolution / deduction 
+    - classical resulution deduces Classification from Background, hypo, and descriptions
+    - run the proof backward and deduce hypothesis given classif, background, and descriptions
+
+# 10
+- learning probability models
+- bayesian learning: calculates probability of each hypothesis given data
+    - prediction using all hypothesis weighted by their probabilities
+    - P(hi|d) = alpha * P(d|hi) * P(hi)
+    - Prediction is made: P(X|d) = SUM_i P(X|d,hi) * P(hi|d)
+
+    - Prior hypothesis: P(hi), Likelyhood of data under each hypo: P(d|hi)
+    - Posterior probability of false hypothesis will eventually vanish
+    - The prediction is optimal no matter the data set size
+
+    - Problem: hypothesis space is either very large or infinite -> prior approx
+
+- MAP learning: making predictions based on most probable hypothesis
+    - optimization problem instead of (infinite) sumation
+
+- Prior probability can penalize complex models -> prevents overfitting
+- When only deterministic Hi present -> P(d|hi) = 0(inconsistent)|1(consistent)
+
+MDL learning: 
+- maximizing P(d|hi)P(hi) = minimizing -log(P(d|hi))-log(P(hi))
+    - P(hi): bits "required to specify the hypothesis"
+    - P(d|hi): additional number of bits to specify data given hypothesis
+    -> MAP provides highest compression -> minimum descriptor length learning method
+
+    
