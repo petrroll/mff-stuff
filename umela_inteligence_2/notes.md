@@ -42,9 +42,16 @@ Bayesian networks: efficient way to represent full joint probability
     - Node is cond. independent of all other nodes given its parents, children, and children's parents
         - https://stackoverflow.com/questions/45851385/why-does-markov-blanket-contain-the-childrens-parents
 - Inference by enum: P(X|e) = alfa * P(X,e) = alfa * SUM_y(P(X,e,y))
-    - Remembering already computed subexpressions
     - Infer in the order that keeps the factors smallest
     - NP (3 SAT convertible to bayesian network) / #P hard
+
+    - summing over hidden variables (variable elimination)
+    - recursive enumeration of not-yet computed variables
+        - pointwise multiplication on the current distrib. factor and enumration of the remaining vars
+        - sumation of variable (elimination) of above in case of hidden variable
+    - remembering already computed subexpressions
+    - sum over variables that will make the next factor smallest (heuristic)
+
 
 - Monte carlo inference
     - sample corresponds to instantiation of random variables
