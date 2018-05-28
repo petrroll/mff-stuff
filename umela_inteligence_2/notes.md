@@ -565,4 +565,118 @@ MDL learning:
     - P(d|hi): additional number of bits to specify data given hypothesis
     -> MAP provides highest compression -> minimum descriptor length learning method
 
+- minimum descriptor length: explicitly tries to minimize binary encoding of hypo + data
+
+- simplification: assume uniform prior -> finding maximum-likelyhood hypothesis (ML): P(d|hi)
+    - problem with small data sets, good approx of bayesian for large datasets
+
+Maximum likelyhood parameter learning:
+- we can try to learn parameters for fixed structure model that maximizes likelyhood
+- maximization through derivative and finding 0 / gradient descent 
+
+- usually used in conjunction with Naive Bayes model: attributes conditionally independent
+    - all attributes are leaf nodes of the class variable (root)
+    - P(C|x1, x2, x3, ...) = alpha * P(C) * TT P(xi | C)
+    - scales linearly, no problems with noisy data, gives probabilistic predictions
+
+- unobservable hidden variables: 
+    - modeling it can drastically reduce the number of parameters required
+    - we don't know values for examples: prentend we know the model's parameters, infer, find using maximum likelyhood, iterate until convergence
+    - EM: calculate expected values of hidden variables (via guessed parameters), then recompute parameters
+        - starts with random guess for parameters
+        - computes P(z|xi) given paramters (i.e. soft-assigns values for hidden variables)
+        - recomputes the parameters given computed soft-assignments
+        - repeats until convergence
+
+        - "soft k-means" -> clusters data through the hidden variable
+
+        - Oi+1 = argmax_O( SUM_z( P(Z=z | x, O)*L(x,Z=z|O) ) )
+        - armgax of expectation of the hidden variable given parameters
+
+
+# 10
+- what if we don't have supervision (gold data) but just feedback (good/bad) 
+-> reinforcement learning
+
+- many possible designs:
+    - utility-based: learns its utility function, must model enviroment: (state, action -> state)
+    - Q-learning: learns action-utility function for each state
+    - reflex agent: learns a policy that maps directly from states to actions
+
+- passive learning: learns utility of states given fixed policy
+- active learning: must explore to learn policy
+
+Passive reinforc. learning
+    - learns how good a policy is
+    - agent doesn't have transition model or reward function
+    - direct utility est: utility of state is expected total reward onward
+        - average for each states if visited multiple times
+        - obeys Bellman equations for a fixed policy
+        - searching a much larger space than it needs to be -> convergence is slow
+
+- adaptive dynamic programming
+    - agent learns transition model & rewards model
+    - utility of states is computed from Bellman equations using modified policy iter.
     
+    - iteratively computes transition & rewards model 
+    - always udpates U to be consistent with updated transition and reward models
+
+    - adjust a state to agree with all of the successors
+    - makes as many adjustments as it needs to restore consistency between estimates
+
+- temporal difference learning:
+    - use observed transitions to adjust utilities of states to agree with equations
+    - utilities of states reachable from current state influence current state
+    - general update: U(s) <- U(s) + alpha * (R(s) + y*U(s') - U(s)) 
+        - y: discount
+        - alpha: learning rate
+
+    - adjust a state to agree with its observed successor
+    - single adjustment per observed transition -> less stable
+
+- active learning: improve (randomly initiated) policy while learning Utility func
+    - while learning choose best actions recommended by current policy
+    - explotation vs exploration
+    - greedy agent doesn't explore enough -> choose random action with some p
+        - p should decrease with time / with increase of policy fitness
+
+    - increasing weight of actions not yet explored 
+    - decreasing those believed to be of low utility
+    -> Monte carlo search
+        - U(s) <- R(s) + y*max_a f(SUM_s'( P(s'|s,a) * U(s') ), N(s,a))
+        - N(s, a): number of times action a has been tried in s
+        - U(s): optimistic estimate of utility
+        - f(u, n) exploration function, defines tradeoff between exploration vs explotation
+
+        - propagates the benefits of exploration back so that paths towards unexplored regions are weighted more highly
+
+    - for active temporal difference learning agent there's a need for transition model 
+        - To select the best action for current state (only have utility func. for state)
+
+- Q learning
+    - Q(s, a) denotes value for doing an action a in a state s
+    - U(s) = max_a(s, a)
+
+    - TD agent learns with Q function doesn't need explicit transition model P(s' |s, a)
+    - At equilibrium: Q(s, a) = R(s) + ySUM_s'( P(s'|s, a) * max_a'Q(s', a') )
+    - Update: Q(s, a) <- Q(s, a) + alpha * ( R(s) + y * max_a'Q(s', a') - Q(s,a) )
+        - whenever action a is executed for state s leading to state s'
+
+- SARSA
+    - close relative to Q-learning
+    - instead of maxing over 'a in update it updates after 2 actions & uses true a, a'
+
+    - for greedy agent it's identical to q-learning
+    - for exploring agents:
+        - Q learning pays no attention to current policy, can learn well even with bad/random exploration policy
+        - SARSA uses current policy to in the estimate of Q (follows it to get the quadrouple, s, a,  s', a') in terms of what would actually happen instead of what we would prefer to happen (SARSA) 
+
+- both SARSA and Q-learning slower than ADP agent, local updates don't force consistency
+- both converge to optimal policy given enough time
+
+- model free methods (e.g. Q-learning) don't need knowledge base for environment modeling
+- for more complex environments knowledge based approach with explicit trainsition model can be better (ADP)
+
+
+
+
