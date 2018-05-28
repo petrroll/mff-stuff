@@ -29,7 +29,7 @@ Naive Bayes:
 #2
 Bayesian networks: efficient way to represent full joint probability
 - specifies conditional independence relationships
-- dag, node X has conditional pribability distrib. P(X|Parents(X))
+- DAG, node X has conditional pribability distrib. P(X|Parents(X))
 - CPT (conditional prob. tables) describe cond. probabilities
 
 - Creation: P(Xi | Parents(Xi)) = P(Xi| Xi-1...X1) & discard cond. indep.
@@ -41,7 +41,7 @@ Bayesian networks: efficient way to represent full joint probability
     - Node is cond. independent of its non-descendats given its parents
     - Node is cond. independent of all other nodes given its parents, children, and children's parents
         - https://stackoverflow.com/questions/45851385/why-does-markov-blanket-contain-the-childrens-parents
-- Inference by enum: P(X|e) = alfa*P(X,e) = alfa*SUM_y(P(X,e,y))
+- Inference by enum: P(X|e) = alfa * P(X,e) = alfa * SUM_y(P(X,e,y))
     - Remembering already computed subexpressions
     - Infer in the order that keeps the factors smallest
     - NP (3 SAT convertible to bayesian network) / #P hard
@@ -57,9 +57,9 @@ Bayesian networks: efficient way to represent full joint probability
     -> problem: rejecting too many samples
     -> generate only consistent evidence, remember weigth of sample (likelihood weighting)
 
-    - P(X|e) = a * N(X,e) * w(X,e) = a * N(X, e) 
-        - w(z, e) = TT_j(ej|parents(ej))
-        - P(z, e) = TT_i(zi|parents(zi))
+    - P(X|e) = a * P(X,e) * w(X,e) 
+        - w(z, e) = TT_j(ej|parents(ej)) ~ weight given by evidence
+        - P(z, e) = TT_i(zi|parents(zi)) ~ probability of obtaining sample
 
 Markov Chain Monte Carlo
 - start with randomly generated sample consistent with e
@@ -85,7 +85,7 @@ Markov Chain Monte Carlo
 Inference tasks
 - filtering: posterior distribution over the most recent state given evidence to date
 - prediction: posterior distribution over future state given evidence to date
-- smoothing: posterior distro over past tate given evidence to the present
+- smoothing: posterior distro over past state given evidence to the present
 - most likely expl.: find sequence of sates most likely for seq. of observations
 
 - filtering: 
@@ -107,7 +107,9 @@ Inference tasks
 - most-likely sequence
     - states depend only on previous state -> there exists a recursive formula
     - viterbi algorithm: maximalizační cesty pro všechny koncové stavy
-    - distribuce pro m1:t+1: P(et+1 | Xt+1) * max_xt( P(Xt+1 | xt) * m:t )
+    - distribuce
+        - m1:t+1: P(et+1 | Xt+1) * max_xt( P(Xt+1 | xt) * m:t ) : vybereme stav, pro který je nejpravděpodobnější že do něj přejdeme z o jedno kratší distribuce
+        - m1:t = max_x1..xt-1 P(x1...xt-1, Xt | e1:t)
 
 Hidden markov models
 - state described by single discrete variable Xt, evidence variable Et
@@ -129,7 +131,7 @@ Dynamic bayesian network
 - variables and links replicated from slice to slice
 
 - hidden markov model is special case of a dynamic Bayesian network
-- dynamic b. n. can be encoded as hidden MaSrkov model (variable that is tupple of values of vars in DBN)
+- dynamic b. n. can be encoded as hidden Markov model (variable that is tupple of values of vars in DBN)
 
 - DBN can be more compact, doesn't have to contain all transitions for independent variables
 - in inference only last slices are neccessary to keep
@@ -140,10 +142,10 @@ Dynamic bayesian network
     - starts with prior distribution
     - next state is generated through transition model probability
     - weighted by likelyhood it assigns to evidence
-    - resample population given their weights
+    - resample population given their weights (sampling with replacement)
     - repeat for next state
 
-Senzor failiures:
+Senzor failures:
 - gaussian error model for noise
 - states for transient and persistent failures
     - transient: regardless of state certain probability for completely incorrect value
@@ -159,7 +161,6 @@ Continuous variables
     - dependence of cont on disc: parameters for each value
     - dependence of disc on cont: soft treshold function
 
-
 Kalman filters: 
 - message passing techinque works if (senzor, transition) models are linear Guassian
 - non-liearity: multiple filters run in parallel, prediction is weighted sum of indiv. results
@@ -167,7 +168,8 @@ Kalman filters:
 Multiple objects: 
 - exact reasoning would require summing over n! mappings
 - approximate methods used instead
-    - maximizing joint probability of current obs. and predicted positions (commits to single best at each step)
+    - maximizing joint probability of current obs. and predicted positions 
+        - commits to single best at each step -> problems
     - particle filtering
     - Markov Chain Monte Carlo
 
@@ -214,8 +216,9 @@ Multiple objects:
 
 - information value theory
     - ValueOfPerfectInfo(Ej) = SUM_k( P(Ej=ejk |E) * EU(alp_jk | e, Ej = ejk) ) - EU(alp|e)
-    - average over all values for the information we might discover
-    - information has value only if ot can change the plan and the new plan would be significantly better
+        - alp_jk: best action given the evidence ejk
+        - average over all values for the information we might discover
+    - inf. has value only if it changes the plan and the new plan would be substantially better
     - VPI >= 0, not additive, order independent
     - ask until VPI(Ej) > cost(Ej)
 
@@ -299,14 +302,14 @@ MDP: Markov Decision process
     - POMDP on physical state space corresponds to MDP on belief-state space
     - MDP techniques can't be used on POMDP due to it having infinite number of states (the belief state space if continuous)
 
-    -> conditional plans: action selected on observations and previous actions
+    - conditional plans: action selected on observations and previous actions (not belief-state)
     - value iteration can be modified to work -> not efficient
     
     -> Dynamic bayesian networks with look-ahead
     - represents transition and sensor models
     - added nodes for actions and rewards 
 
-    - lookahead via expected minimax alg through Tree with belief states>-actions->evidence
+    - lookahead via expected minimax alg. through Tree with belief states>-actions->evidence
         - depth of search determined by discount factor
         
 
@@ -343,17 +346,19 @@ Auctions:
     - private value
     - unknown / estimated common value
 
-- each bidder makes a bid bi, highest bid wins for some price
+- each bidder makes a bid, highest bid wins for some price
 - efficient: the bidder that values it the most gets it
 
-- truth-relealing auction: when bidders reveal their vi
+- truth-relealing auction: when bidders reveal their vi: how much they value
 
 - English auction
-    - Starts on some minimum, can bid current + some minimal increment
+    - Starts on some minimum, reapated bids of current + some minimal increment
     - Highest bidder pays his bid
     - Ends when nobody wants to bid anymore
 
-    - efficient and revenue maximizing if: sufficient number of bidders, no collusion (cooperation to manipulate prices)
+    - efficient and revenue maximizing if: 
+        - sufficient number of bidders 
+        - no collusion (cooperation to manipulate prices)
     - Properties:
         - Has dominant strategy: keep bidding as long as cost < vi
         - It's not truth revealing: only reveals the lower bound
@@ -398,70 +403,69 @@ Learning:
     - unsupervised learning: no explicit feedback is given
     - reinforcement learning: rewards & punishments 
 
-- Supervised learning
-    - function h - hypothesis - is selected
-    - consistent hypothesis: h(xi) = yi: accuracy of hypothesis func is measured
-    - regression, classification
+Supervised learning
+- function h - hypothesis - is selected
+- consistent hypothesis: h(xi) = yi: accuracy of hypothesis func is measured
+- regression, classification
 
-    - Ockham's razor: prefer simple hypothesis functions
-        - Prevents overfitting
+- Ockham's razor: prefer simple hypothesis functions -> prevents overfitting
 
-    - Decision trees:
-        - Sequence of tests on individual input variables
-        - Select most important attribute, divide examples, if sets not pure continue recursively 
-        - Most important attribute: makes the most difference to the classification of examples 
-            - Highest information gain in terms of entropy
-            - Gain = Entropy(X) - E[Entropy(Xk)]
+- Decision trees:
+    - Sequence of tests on individual input variables
+    - Select most important attribute, divide examples, if sets not pure continue recursively 
+    - Most important attribute: makes the most difference to the classification of examples 
+        - Highest information gain in terms of entropy
+        - Gain = Entropy(X) - E[Entropy(Xk)]
 
-        - Pruning: delete unnecessary nodes that have only leaf children
-            - unnecessary: doesn't pass chi^2 test
-            - don't have to prune if we stop early -> early stopping
+    - Pruning: delete unnecessary nodes that have only leaf children
+        - unnecessary: doesn't pass chi^2 test for correlation with goal variable
+        - don't have to prune if we stop early -> early stopping
                 -> prevents finding a good combination of attributes where no single one was good (e.g. xor)
         
-        - Problems:
-            - Missing data
-            - Multivalued attributes: split on just one value
-            - Continuos attributes: find split point (in between observed values)
-            - When to start doing regression nodes?
-        -> it's possible to understand the reason for their output
+    - Problems:
+        - Missing data
+        - Multivalued attributes: split on just one value
+        - Continuos attributes: find split point (in between observed values)
+        - When to start doing regression nodes?
+    - Good: it's possible to understand the reason for their output, verifiable
 
-    - Regression:
-        - linear regression have unique solution, usually used L2 loss
-        - non-linear regression: gradient descent for loss optimization
-        - multivariate linear regression: orth. projection to samples space
+- Regression:
+    - linear regression have unique solution, usually used L2 loss
+    - non-linear regression: gradient descent for loss optimization
+    - multivariate linear regression: orth. projection to samples space
 
-    - Linear classifiers:
-        - treshold function: logistic treshold function (1/1+e^-z)
-        - hw(x) = Treshold(w.x), hw is compared with 0 / other treshold to classify
-        - updates: wi = wi + alpha * (y-hw(x)) . hw(x) * (1-hw(x)) . xi
+- Linear classifiers:
+    - treshold function: logistic treshold function (1/1+e^-z)
+    - hw(x) = Treshold(w.x), hw is compared with 0 / other treshold to classify
+    - updates: wi = wi + alpha * (y-hw(x)) . hw(x) * (1-hw(x)) . xi
 
-    - parametric model: summarizes data with set of fixed size parameters
-    - Non-parametric models: doesn't have bounded number of "parameters"
-        - table lookup, 
-        - (k-)nearest neighbor(s), 
-            - neighbors voting based on distance 
-            - Minkowski distance, Hamming (for booloean attribs.)
-            - Use data normalized with mean and std. dev.
-            - Doesn't work well for high-dimens (distances grow fast)
-            - Kd-tree, hash-table with locally sensitive hash, ...
-        - Nearest neighbors regression (locally weighted via kernel distance func)
+- parametric model: summarizes data with set of fixed size parameters
+- Non-parametric models: doesn't have bounded number of "parameters"
+    - table lookup, 
+    - (k-)nearest neighbor(s), 
+        - neighbors voting based on distance 
+        - Minkowski distance, Hamming (for booloean attribs.)
+        - Use data normalized with mean and std. dev.
+        - Doesn't work well for high-dimens (distances grow fast)
+        - Kd-tree, hash-table with locally sensitive hash, ...
+    - Nearest neighbors regression (locally weighted via kernel distance func)
     
-    - Support vector machines
-        - Construct maximum margin separator, create linear separating hyperplanes
-        - Embedding data into higher dimens. space using kernel methods
-        - Non-parametric method
+- Support vector machines
+    - Construct maximum margin separator, create linear separating hyperplanes
+    - Embedding data into higher dimens. space using kernel methods
+    - Non-parametric method: needs to keep subset of the data for classification (support vectors)
 
-        - maximum margin separator: each datapoint has weight: 1 only for support vectors
-            - only need to keep a few examples that have non-zero
-            - can be solved via quadratic programming optimization
+    - maximum margin separator: each datapoint has weight: 1 only for support vectors
+        - only need to keep a few examples that have non-zero
+        - can be solved via quadratic programming optimization
         
-        - kernel: if examples not linearly separable -> using kernel function instead of dot product
-            - poly: K(kj, xk) = (1+xj.xk)^d
+    - kernel: if examples not linearly separable -> using kernel function instead of dot product
+        - poly: K(kj, xk) = (1+xj.xk)^d
         
-    - Ensebling: combine a collection of hypothesis
-        - Boosting: weight 1 for all examples, increase weight for misclassified, decrease for correctly classified, repeat, generate K hypothesis, each hypo contributes with the weight of its accuracy
+- Ensebling: combine a collection of hypothesis
+    - Boosting: weight 1 for all examples, increase weight for misclassified, decrease for correctly classified, repeat, generate K hypothesis, each hypo contributes with the weight of its accuracy
 
-    - Overfitting: more likely as hypothesis space grows, less likely with more training data
+- Overfitting: more likely as hypothesis space grows, less likely with more training data
 
 # 9
 - taking advantage of prior knowledge represented as logical sentences
@@ -527,18 +531,20 @@ Inductive logic programming:
     - specialized by adding literalls one at a time to the body
     -> prefer generalized specializations
 
+    - builds clauses covering positive examples
     - algorithms:
+        - extended examples: set of examples with values for new variables
         - while non-empty positive examples: add new clause, remove positive examples covered
-        - new clause: target is head, empty body
+        - new clause: target is head, empty body : build goal <- f(parts from extended examples)
             - while examples contain negative ones: 
                 - choose new literal (must contain a variable already in use), append to body
                 - new_examples: extend-example with literal for all previous examples
-        - extend-example: 
+        - extend-example: creates set of all literals that could be use to build current clause 
             - if example satisfies literal: return all examples with each possible constant value for each new variable in literal | else empty set
 
 - inverse resolution / deduction 
     - classical resulution deduces Classification from Background, hypo, and descriptions
-    - run the proof backward and deduce hypothesis given classif, background, and descriptions
+    - run the proof backward and deduce hypothesis given classification, background, and descriptions
 
 # 10
 - learning probability models
@@ -572,7 +578,7 @@ MDL learning:
 
 Maximum likelyhood parameter learning:
 - we can try to learn parameters for fixed structure model that maximizes likelyhood
-- maximization through derivative and finding 0 / gradient descent 
+- maximization through derivative and finding extreme / gradient descent 
 
 - usually used in conjunction with Naive Bayes model: attributes conditionally independent
     - all attributes are leaf nodes of the class variable (root)
@@ -581,8 +587,13 @@ Maximum likelyhood parameter learning:
 
 - unobservable hidden variables: 
     - modeling it can drastically reduce the number of parameters required
-    - we don't know values for examples: prentend we know the model's parameters, infer, find using maximum likelyhood, iterate until convergence
-    - EM: calculate expected values of hidden variables (via guessed parameters), then recompute parameters
+    - we don't know values for examples (idea behind EM): 
+        - prentend we know the model's parameters
+        - infer values for hidden variables given model
+        - find new parameters using maximum likelyhood
+        - iterate until convergence
+
+    - EM:
         - starts with random guess for parameters
         - computes P(z|xi) given paramters (i.e. soft-assigns values for hidden variables)
         - recomputes the parameters given computed soft-assignments
@@ -594,7 +605,7 @@ Maximum likelyhood parameter learning:
         - armgax of expectation of the hidden variable given parameters
 
 
-# 10
+# 11
 - what if we don't have supervision (gold data) but just feedback (good/bad) 
 -> reinforcement learning
 
@@ -618,10 +629,10 @@ Passive reinforc. learning
     - agent learns transition model & rewards model
     - utility of states is computed from Bellman equations using modified policy iter.
     
-    - iteratively computes transition & rewards model 
+    - iteratively computes transition & rewards model (through counting what states it sees)
     - always udpates U to be consistent with updated transition and reward models
 
-    - adjust a state to agree with all of the successors
+    - adjusts state's utility to agree with all of the successors given learned transitions
     - makes as many adjustments as it needs to restore consistency between estimates
 
 - temporal difference learning:
@@ -640,10 +651,11 @@ Passive reinforc. learning
     - greedy agent doesn't explore enough -> choose random action with some p
         - p should decrease with time / with increase of policy fitness
 
-    - increasing weight of actions not yet explored 
-    - decreasing those believed to be of low utility
-    -> Monte carlo search
-        - U(s) <- R(s) + y*max_a f(SUM_s'( P(s'|s,a) * U(s') ), N(s,a))
+    - good ideas:
+        - increasing weight of actions not yet explored 
+        - decreasing those believed to be of low utility
+    
+    - Monte carlo search: U(s) <- R(s) + y*max_a f(SUM_s'( P(s'|s,a) * U(s') ), N(s,a))
         - N(s, a): number of times action a has been tried in s
         - U(s): optimistic estimate of utility
         - f(u, n) exploration function, defines tradeoff between exploration vs explotation
@@ -651,7 +663,8 @@ Passive reinforc. learning
         - propagates the benefits of exploration back so that paths towards unexplored regions are weighted more highly
 
     - for active temporal difference learning agent there's a need for transition model 
-        - To select the best action for current state (only have utility func. for state)
+        - To select the best action for current state (only have utility func. for states)
+        - Needs to learn the transition model as well
 
 - Q learning
     - Q(s, a) denotes value for doing an action a in a state s
