@@ -128,13 +128,13 @@ Hidden markov models
     - we can first run forward pass and then backward with constant memory
     - computing f1:k from f1:k+1 using inverse matrixes for T and O
 
-- fixed lag smoothing> smoothing for fixed number of d steps back in time P(Xt-d | e1:t)
+- fixed lag smoothing: smoothing for a fixed number of d steps back in time P(Xt-d | e1:t)
     - f1:t-d+1 = alpha Ot-d+2 * T^t * f1:t-d
-    - bt-d+2:t+1 = Ot-d+1^-1 * T^-1 * Bt-d+1:t * T * Ot+1
+    - bt-d+2:t+1 = Ot-d+1^-1 * T^-1 * bt-d+1:t * T * Ot+1
 
 # 4
 Dynamic bayesian network
-- bazesian network that represenets a temporal probab. model
+- bayesian network that represenets a temporal probab. model
 - variables and links replicated from slice to slice
 
 - hidden markov model is special case of a dynamic Bayesian network
@@ -241,7 +241,7 @@ Multiple objects:
     - perfrom sensitivity analysis
 
 MDP: Markov Decision process
-- Sequential decision process for 
+- Sequential decision process for:
     - fully obs., stochastic evnironment 
     - Markovian transition model 
     - additive rewards
@@ -273,8 +273,8 @@ MDP: Markov Decision process
 - Iterative approach:
     - start with arbitrary initial values for U(s)
     - Update utility U(s) from utilities of its neighbors (Bellman update)
-    -> converges to one solution of Bellman equations
-    - the function has only one fixed point, gets closer to it with every update
+        - converges to one solution of Bellman equations
+        - the function has only one fixed point, gets closer to it with every update
 
 - Convergence: 
     - |BUi - BU'i| <= y|Ui - U'i| // The probabilities in exp. val for updates and Rewards are the same for U and U'
@@ -294,7 +294,7 @@ MDP: Markov Decision process
 - if the world is only partially observable -> partially observable	Markov decision proces
     - transition model P(s'|s, a), reward function R(s), sensor model P(e|s)
     - current state is potentially uknown -> hard to reccoment action via policy
-    -> belief state, pribability over all possible states
+    -> belief state, probability over all possible states
     -> optimal policy for belief states 
 
     - forwarding belief state works as expected
@@ -303,7 +303,7 @@ MDP: Markov Decision process
     - receive percept e
     - set current belief state b' = FORWARD(b, a, e)
 
-    - if observation is not available sum over all possible given their probability
+    - if observation is not available sum over all possible obs. given their probability
     - reward is expected reward given current belief state
 
     - POMDP on physical state space corresponds to MDP on belief-state space
@@ -338,7 +338,6 @@ MDP: Markov Decision process
 
 - there's a method for finding opt. mixed strategy for two-player zero sum games
     - maximin: lower and higher bound given by minimax after assuming the turns are sequential
-    - for mixed strategies similar approach can be used
 
 - repeated games: repeated prisoners dilema
     - important to have non-static number of rounds
@@ -354,9 +353,9 @@ Auctions:
     - unknown / estimated common value
 
 - each bidder makes a bid, highest bid wins for some price
-- efficient: the bidder that values it the most gets it
 
-- truth-relealing auction: when bidders reveal their vi: how much they value
+- efficient: the bidder that values it the most gets it
+- truth-relealing auction: when bidders reveal their vi: how much they value smth
 
 - English auction
     - Starts on some minimum, reapated bids of current + some minimal increment
@@ -397,7 +396,7 @@ Tragedy of commons
         - wi' = total global utility if i wasn't in the game
         - bi' = total global utility - bi
 
-    -> all winners pay less then their value
+    - all winners pay less then their value
     - all losers are happy because they value goods less than the required tax
     - truth revealing -> it's optimal to report your true value
 
@@ -437,7 +436,7 @@ Supervised learning
     - Good: it's possible to understand the reason for their output, verifiable
 
 - Regression:
-    - linear regression have unique solution, usually used L2 loss
+    - linear regression has unique solution, usually used L2 loss
     - non-linear regression: gradient descent for loss optimization
     - multivariate linear regression: orth. projection to samples space
 
@@ -447,8 +446,8 @@ Supervised learning
     - updates: wi = wi + alpha * (y-hw(x)) . hw(x) * (1-hw(x)) . xi
 
 - parametric model: summarizes data with set of fixed size parameters
-- Non-parametric models: doesn't have bounded number of "parameters"
-    - table lookup, 
+- Non-parametric models: don't have bounded number of "parameters"
+    - table lookup, ...
     - (k-)nearest neighbor(s), 
         - neighbors voting based on distance 
         - Minkowski distance, Hamming (for booloean attribs.)
@@ -470,7 +469,11 @@ Supervised learning
         - poly: K(kj, xk) = (1+xj.xk)^d
         
 - Ensebling: combine a collection of hypothesis
-    - Boosting: weight 1 for all examples, increase weight for misclassified, decrease for correctly classified, repeat, generate K hypothesis, each hypo contributes with the weight of its accuracy
+- Boosting (popular ensembling method): 
+        - weight 1 for all examples
+        - increase weight for misclassified, decrease for correctly classified
+        - repeat
+        - generate K hypothesis, each hypo contributes with the weight of its accuracy
 
 - Overfitting: more likely as hypothesis space grows, less likely with more training data
 
@@ -519,11 +522,11 @@ Version space learning:
         - majority vote is possible if they disagree / their disjunction 
 
 - if there's noise in domain / insufficient attributes -> the version space always collapses
-    - no simple solution
+    - no simple solution known
 - if we allow unlimited disjunction 
     - S will contain disjunction of descriptors of positive examples
     - G will contain negation of disjunction of negative examples' descriptors
-    -> limit forms of disjunction -> generalization hierarchy of more general predicates
+    -> limit forms of disjunction -> generalization through hierarchy of more general predicates
 
 Inductive logic programming: 
 - combination of inductive methods and first-order representations
@@ -668,6 +671,7 @@ Passive reinforc. learning
         - f(u, n) exploration function, defines tradeoff between exploration vs explotation
 
         - propagates the benefits of exploration back so that paths towards unexplored regions are weighted more highly
+            - reason why there's the optimistic estimate of utility on the right side
 
     - for active temporal difference learning agent there's a need for transition model 
         - To select the best action for current state (only have utility func. for states)
@@ -689,7 +693,7 @@ Passive reinforc. learning
     - for greedy agent it's identical to q-learning
     - for exploring agents:
         - Q learning pays no attention to current policy, can learn well even with bad/random exploration policy
-        - SARSA uses current policy to in the estimate of Q (follows it to get the quadrouple, s, a,  s', a') in terms of what would actually happen instead of what we would prefer to happen (SARSA) 
+        - SARSA uses current policy to in the estimate of Q (follows it to get the quadrouple, s, a,  s', a') in terms of what would actually happen instead of what we would prefer to happen (Q learning) 
 
 - both SARSA and Q-learning slower than ADP agent, local updates don't force consistency
 - both converge to optimal policy given enough time
