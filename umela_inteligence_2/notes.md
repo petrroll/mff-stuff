@@ -111,12 +111,14 @@ Inference tasks
     - P(ek+1:t | Xk) = SUM_xk+1 ( P(ek+2:t | xk+1) * P(ek+1|xk+1) * P(xk+1 | xk) )
     - backtracking is basically filtering from the end back
 
-- most-likely sequence
+- most-likely sequence: viterbi algorithm
     - states depend only on previous state -> there exists a recursive formula
-    - viterbi algorithm: maximalizační cesty pro všechny koncové stavy
-    - distribuce
+    - for each state at every time-slice compute its most likely predecessors 
+        - For each timeslice we know the probability that some path will end is any if its states
+        - In the last timeslice select the highest probability -> backtrack trough predecessors -> find most likely Path
+    - distribution
         - m1:t+1: P(et+1 | Xt+1) * max_xt( P(Xt+1 | xt) * m:t ) : vybereme stav, pro který je nejpravděpodobnější že do něj přejdeme z o jedno kratší distribuce
-        - m1:t = max_x1..xt-1 P(x1...xt-1, Xt | e1:t)
+        - m1:t = max_x1..xt-1 P(x1...xt-1, Xt | e1:t) : select the highest probability path
 
 Hidden markov models
 - state described by single discrete variable Xt, evidence variable Et
