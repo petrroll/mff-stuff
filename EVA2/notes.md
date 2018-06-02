@@ -9,6 +9,40 @@ General EVA scheme:
     - Evaluate new individials
     - Environmental selection
 
+No free lunch theorem: optimization black box
+- sample si€S
+- evaluate f(si)
+
+- assumption: never sample the same value twice
+- the alg. can be visualized as finite tree 
+    - nodes sampled si
+    - children are next possible selections
+    - path through the tree is an alghoritm's run
+
+- trace: Ta(f) {<s1, f(s1)>, <s2, f(s2)>, ...}
+- values of trace: Va(f) {f(s1), f(s2), ...}
+
+- assume all alghs sample all values
+
+- optimizatiotion goal: M:{Va(f) : A, alg, f: S->R} -> Real
+    - e.g. minimize the number of steps before reaching optimum in values of trace
+
+Thm: No free lunch:
+- let S, R be finite sets
+- Over all functions f: S->R all black-box algs for R^s make the same number of different steps to achieve an arbitrary optimization goal.
+
+- proof: 
+    - lemma: if Va(f) = Va(g) => f=g (a is deterministic, samples all values, ...)
+    - lemma: |{Va(f) : f€R^S}| = |R^S| (the same argument, mostly)
+
+    - We know: A, B don't resample
+    - |{Va(f): f€R^S}| = |R^S| = |{Vb(f): f€R^S}|
+    - |Va(f)| = |S|
+
+    - Va / Vb are basically just different permutations and among all possible R^S functions all permutations will appear, just for different algs. a, b in different order. 
+
+- Criticism: We don't care about all potential R^S functions but only nice (smooth-ish) ones. And it talks about "over all functions".
+
 Parameter tuning: 
 - static tuning
 - change them via some strategy
@@ -170,6 +204,8 @@ Neuroevolution:
     - slower than specialized gradient descent via backprop
     - can be parallelized heavily, used for reinforcement tasks
 
+    - backprop can be used as a smart mutation
+
 - learning architecture:
     - fitness: build architecture, train (BP / EA, doesn't matter), see accuracy
     - possible encodings:
@@ -178,6 +214,10 @@ Neuroevolution:
 
     - simmulated growth of network of connections: not scalable, attepts for evo. robotics
     - Celuar encoding: GP is a program how to grow a network via ops: add neuron, split, swap synapse, ...
+
+    - other than architecture one can evolve: 
+        - initial weights, activation functions (GP), ...
+    
 
 NEAT
 - K. Stanley 2002 = neuroevolution of augmenting topologies
@@ -191,7 +231,15 @@ NEAT
     -> solves problem that structure changes are required for explor. but disrupt fitness
     -> protects newly created topologies
 
--> HYPERNEAT
+HYPERNEAT
+- neurual network has some sort of topology -> each neuron has place
+- evolve function that takes coordinates of two nerons -> weight of their connection
+- can better capture symetries (good for evo. robotics where inputs are sensors, ...), ...
+
+- neurons / their positions can be fixed or evolved with Coevolution
+- Fw(n1, n2) can also be represented by a nerual network
+
+- usually small, good for HW implementation
 
 Memetic algs:
 - meme: and idea, thought, that survives in human society ~ bio evolution without DNA
@@ -220,6 +268,7 @@ Classical GA with dynamic fitness:
 
 Modifications of EA for dynamic f.l:
 - diploid (two sets of chromozones) representation can an work as long-term memory
+    - hard to actually create a useful diploid representation / operators
     - most EAs work with haploid representation
 
 - f.t. detection based methods: if average fitness in population goes down (-> possible f.l change)
@@ -266,10 +315,20 @@ Co-evolution
 - evolving multiple species at the same time
 - hard to assess individual's fitness if it depends on others in population / other species
 
-
 - e.g.:
     - evolution for multiple strategies (coop / adversarial)
     - sorting networks and evil number sequences ~ analogic to GAN idea 
+
+
+Artificial life:
+- Avida / Tierra
+    - GP, environment 8000 bytes, individuals machine code, init small pogram that copies itself
+    - Copying can introduce random mutations
+    - Death on executing illegial instruction / age
+    - Results: most programs were trojan horses, parasites, 
+- Morphogenetics
+    - Evolving the body of an organism
+    - virtual creatures controlled by NN, composed of blocks with joints
 
 Several search algos:
 
