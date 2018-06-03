@@ -128,7 +128,7 @@ Practical reasoning agent:
     - deliberation: what do we want to achieve
     - means-end reasoning: how to achieve such goal
 
-- BDI architecture 
+BDI architecture 
 
 - [I]ntention: state of the env. agent wants to achieve
     - persists until: are achieved, start seem unachievable, change due to reasons
@@ -264,8 +264,20 @@ Hybrid architectures:
 
 - each layer can have it's own knowledge base with different abstraction level
 
-- E.g.: horizontal modeling layer (models environment, sends goals to planning layer), planning layer (selects preprogrammed plans), reactive layer (immediate, fast, e.g. obstacle avoidance)
-    - similar architecture could work vertically as well (InteRRaP)
+- Touring machines: horizontal 3-layer
+    - modeling: selects goals for planning layer
+    - planning: PRS with preprogrammed subgoals
+    - reactive: e.g. obstacle avoidance, immediate reactions
+
+- interrap: vertical 3-layers
+    - cooperative (interaction w. agents)
+    - local planning
+    - reactive behavior layer
+
+- Stanley
+    - won DARPA challenge
+    - layers: sensors, inputs, planning, control (driving), car interface, UI, global services, ...
+
 
 IDA
 - intelligent distribution agent, complex architecture
@@ -287,7 +299,7 @@ Ontologies:
     - structurela part
     - facts about concrete items
 
-- ongology of ontologies:
+- ongology of ontologies (types of ontologies):
     - dictionary of selected terms
     - glossary: definition of meanings by selected terms: in natural language
     - thesaurus: definition of synonyms, ...
@@ -325,7 +337,7 @@ Ontologies:
         - OWL-QL: specilized to queries in knowledge bases
         - OWL-RL: special form of axiom rules
     
-    - KIF: representation of knowledge in first order logic
+    - KIF: representation of knowledge in first order logic ~ content -> refers to ontologies
     - DAML+OIL: Darpa agent markup language + ontology interchange language, predecessor of OWL
 
 - Description logics: 
@@ -443,7 +455,7 @@ Cooperation of agents:
 - FELINE
     - sharing of knowledge, distribution of sub-tasks
     - each agent is rule-based system: skills (I can prove/contradict), interests (I'm interested if the following is true/false)
-    - communication: hypothesis + speech acts, request, response, inform
+    - communication through messages: hypothesis + speech acts, request, response, inform
 
 Self-interested agents
 - agent doesn't have to be honest about capabilities, doesn't have to finish an assigned task
@@ -573,4 +585,4 @@ Auctions:
     - paying all the bids (lobbing and bribes research, ...), combinatorial (more items, subsets)
     - amsterdam: start english, when two buyers remain switch to Dutch with double the price
     - Tokyo: offers at once, conflicts by scissors-stone-paper
-    
+
