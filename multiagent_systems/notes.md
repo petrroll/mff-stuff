@@ -128,6 +128,8 @@ Practical reasoning agent:
     - deliberation: what do we want to achieve
     - means-end reasoning: how to achieve such goal
 
+- BDI architecture 
+
 - [I]ntention: state of the env. agent wants to achieve
     - persists until: are achieved, start seem unachievable, change due to reasons
     - constrain further deliberation, influence what agent will believe in the future
@@ -173,4 +175,71 @@ Practical reasoning agent:
         - a = hd(p), execute(a), p=[1:] //choose action and execute it
         - v = see(), B = brf(B, v)
         - if reconsider(I, B) then D=options(B, I), I = filter(B, D, I)
-        - if not sound (p, I, B) then p = plan(B, I, Ac) // if curr plan doesn't work for reconsidered intention -> new plan
+        - if not sound (p, I, B) then p = plan(B, I, Ac) // if curr plan doesn't work for reconsidered intention / changed beliefs -> new plan
+
+- commitment of agents: when to abandon goal and reconsider
+    - blind commitment: never reconsider
+    - single minded commitment: follows until achieved / believed to be impossible to achieve
+    - open-minded: follows as long as it's believed to be achievable 
+
+- when should agent stop and reconsider?
+    - deliberation takes time, environment can change during it
+    - too ofter -> busy reconsidering, doesn't do anything; too little -> follows wrong plans
+
+    - before reconsidering ask whether I should recosnider: simpler, faster
+    - good only if reconsider -> I will actually change to plan most of the times
+
+    - bold agents: reconsider only after current intention finishes -> good for static worlds
+    - cautios agent: reconsiders after every action -> good for very dynamic worlds
+
+Procedural reasoning system: PRS
+- implementation of BDI architecture
+- agent has a library of ready plans, representing its procedural knowledge 
+- no full planing, just selecting from the library
+
+- plan: goal, context (preconditions), body (actions to execute)
+    - plan's body doesn't have to linear sequence of actions
+    - can contain sub-goals, achieve f, achieve f or g, keep achieving f until g
+
+- planning in PRS: 
+    - init: beliefs B0, top-level goal
+    - stack of intentions
+        - cotnains current goals in the state of partial completion
+        - takes goal on top, finds a matching plan with consistent context
+
+- deliberation in PRS
+    - original PRS had meta plans that modifiet intentions, too complicated
+    - every plan has certain utility, plan with highest utility is selected
+    - execution of selected plan can add more intentions on the stack
+
+    - if plan fails, choose another intention from options and continue ~ DFS
+
+Reactive and hybrid architectures:
+- symbolic repre and reasoning is problematic 
+
+- emergence: inteligent behavior emerges by interaction of many simple behs.
+- embodiment: inteligent beh. is not just the logic but product of agent and its body
+
+- reactive agent: only reacts on the environment, doesn't do deliberation
+    - simple if then rules, finite automata, ...
+
+Subsumption agenta architecture:
+- probably the most successful reactive approach
+
+- each behavior is simple action selection mechanism
+    - receives perceptions and transforms them into actions
+    - reponsible for some goal
+    - rule like structure
+    - competes with others for control over agent
+    - parallel to other behavior
+    - subsumption hierarchy defines their priorities
+
+- action selection
+    - for each behavior checks if there's applicable with higher priority, if not -> selected
+    - setting priorities can be tricky, otherwise simple & fast implementation
+
+- good for swarm-like behavior (ants, ...)
+
+
+
+
