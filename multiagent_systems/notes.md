@@ -240,6 +240,43 @@ Subsumption agenta architecture:
 
 - good for swarm-like behavior (ants, ...)
 
+Network architecture
+- each agent is set of competence modules (resembling subsumption behaviors)
+    
+- preconditions, postconditions
+- activation treshold (relevance to current situation, priority in selection process)
+- connected in a network based on their condition 
+    - matching pre and post conditions represented as oriented edge
+    - further connections representing time precedence / conflicts, ...
+
+Limitations of reactive approach:
+- do not create model of the world, have to derive everything from environment
+- to remember things, need to change the environment
+
+- short-term view of the world: current state & local information
+
+Hybrid architectures:
+- combines reactive and deliberative components
+- usually in hierarchy, reactive components tend to have precedence
+
+- horizontal: parallel, need mediator function that resolves conflict between layers
+- vertical: one-pass (bottom-up), two-pass (up go perceptions, down go actions)
+
+- each layer can have it's own knowledge base with different abstraction level
+
+- E.g.: horizontal modeling layer (models environment, sends goals to planning layer), planning layer (selects preprogrammed plans), reactive layer (immediate, fast, e.g. obstacle avoidance)
+    - similar architecture could work vertically as well (InteRRaP)
+
+IDA
+- intelligent distribution agent, complex architecture
+- combines many approaches from MAS and AI to achieve complex tasks
+
+- inspired by the idea that mind is a multiagent system created of many simple processes
+    - communication is seldom, usually via shared memory
+    - dynamically create higher-order coalitions
+    - most useful coalition will get command over body (consciousness)
+    - hierarchy of contexts
 
 
+Ontologies: 
 
