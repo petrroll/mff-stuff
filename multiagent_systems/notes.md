@@ -104,3 +104,73 @@ Predicate specification of a task:
 
 
 Deductive reasoning agent
+- symbolic repres. of environment & behaviour
+- syntactic manipulation of such repre -> logical deduction
+
+- deduction: derivation of conclusions that are true based on preconditions
+    - general -> specific
+- induction: if predictions are true, conclusion is more likely true
+    - specific -> general
+
+Agent as theorem prover:
+- agent has inner state DB of first order logic formulas
+- deliberation is done through deduction/derivation rules P
+    - DB |-P f : f can be derived from DB using rules P
+- action selection as proving:
+    - returns action that can be proven via Do(a)
+    - or tries to find an action that isn't in contradiction with DB
+
+- takes a lot of time, hard to convert environment to formulas, temporal representation problem
+- nice semantics, tho
+
+Practical reasoning agent:
+- two phases
+    - deliberation: what do we want to achieve
+    - means-end reasoning: how to achieve such goal
+
+- [I]ntention: state of the env. agent wants to achieve
+    - persists until: are achieved, start seem unachievable, change due to reasons
+    - constrain further deliberation, influence what agent will believe in the future
+
+- [D]esire: one of possible intentions
+- [B]elief: agent's knowledge 
+    - subjective, not necessarily true, can change
+    - might contain inference rules
+
+- Deliberation: 2^B x 2^I -> 2^Des  // intentions & beliefs -> desires
+- Filter: 2^B x 2^D x 2^I -> 2^I    // All I know -> less intentions
+- Belief refresh 2^B x Per -> 2^B
+
+- Means-end reasoning: 
+    - how to reach goal (selected intention) based on possible actions
+    - outputs a plan: sequence of actions that if followed fulfills the goal
+
+    - STRIPS
+        - world is modeled as set of first order logic formulae
+        - set actions: preconditions & effects (add~new true facts, delete~makes facts false)
+        - planning alg: trough actions decrease distance between curr state & goal
+    
+
+- plan: set of actions Ac {a1, a2, ...}
+- descriptor of an action a is [Pa, Da, Aa]
+    - precodnitions, delete effects, add effects
+
+- planning problem is (B0, O, G): 
+    - initial beliefs, O: descriptors of all actions, G: set of formulae representing goal
+
+    - plan (a1, a2, ...) determines a sequence of belief databses B1, B2, ...
+        - Bi+1 = (Bi\Dai u Aai) // add new facts, delete other facts given the action
+    
+    - plan: 2^B x 2^I x 2^Ac -> Plan, 
+    - instead of creating plan from scratch -> use library of plans -> iterate and check
+        - precodnitions correspond to current beliefs
+        - effects correspond to current goal
+
+- generic planning loop
+    - v = see(), B = brf(B, v), D = options(B, I), I = filter(B, D, I)
+    - p = plan(B, I, Ac)
+    - while not (empty(p) or success(I, B) or impossible (I, B)) 
+        - a = hd(p), execute(a), p=[1:] //choose action and execute it
+        - v = see(), B = brf(B, v)
+        - if reconsider(I, B) then D=options(B, I), I = filter(B, D, I)
+        - if not sound (p, I, B) then p = plan(B, I, Ac) // if curr plan doesn't work for reconsidered intention -> new plan
