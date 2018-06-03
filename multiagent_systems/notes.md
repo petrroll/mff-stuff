@@ -279,4 +279,298 @@ IDA
 
 
 Ontologies: 
+- part of philosophy dealing with nature of being
+- in cs: explicit and formalized description of part of reality
+    - glossary: definition of concepts, thesaurus (relations between concepts)
 
+- ontologies in general: classes, instances, properties, relations, ...
+    - structurela part
+    - facts about concrete items
+
+- ongology of ontologies:
+    - dictionary of selected terms
+    - glossary: definition of meanings by selected terms: in natural language
+    - thesaurus: definition of synonyms, ...
+
+    - formal is-a hierarchy: formal classes
+    - clauses with properties
+    - value restrictions
+    - arbitrary logical contrains
+
+    - upper: ultimate ontology 
+        - base for domain ontologies
+        - Wordnet, ideas: not suitable for formal reasoning, machine usage
+    
+- ontological languages
+    - formal declarative languages for knowledge repre
+    - cotain both facts and reasoning rules
+    - based on first order / description logic
+
+    - frames: predecessor of ontologies: visualisation of human reasoning and lang. processing
+
+- examples of ontologies:
+    - xml: not developed for ontology repre.,used sometimes, tag definition:dictionaries
+    - RDF(resourcedefinition framework)
+        - simple, not very expressive, represents triples (subject, predicate, object)
+    - OWL(Web ontology language)
+        - collection of several formalisms to describe ontologies
+        - can use xml, rdf syntax, ...
+        - open world assumption: everything we don't know is undefined 
+
+        - OWL-lite: close to RDF, many axiom contraints to maintain simplicity
+        - OWL-DL: corresponds to DescrLogic, allows class disjunction, complete decidable
+        - OWL-FUll: strongest expressive power, many problems undecidable
+
+        - OWL-EL: polynomial reasoning time complexity
+        - OWL-QL: specilized to queries in knowledge bases
+        - OWL-RL: special form of axiom rules
+    
+    - KIF: representation of knowledge in first order logic
+    - DAML+OIL: Darpa agent markup language + ontology interchange language, predecessor of OWL
+
+- Description logics: 
+    - copcepts (classes), roles (properties, predicates), individuals (objects)
+    - axiom: logical expression about roles/copcepts ~ not about whole class but just properties
+    - possible extensions: hierarchy of roles, transitivity of roles, class disjunction 
+    - limited existential quantifier, contraints, ...
+
+
+Agent communication
+- communication in OOP: calling object methods with parameters
+- agents can't directly communicate -> message passing -> other agents don't have to comply
+
+- Speech act: parts of language with character of actions -> they change the state of the world
+    - verbs as requests, informs, promises, orders, ...
+
+    - what was said 
+    - what was meant (location + performative meaning) 
+    - what really happened (effect of the speech act)
+
+    - can have precoditions: 
+        - hearer must be able to perform action that is the subject of speech act
+        - ...
+
+- searle speech acts categories
+    - oder: request, advice, statement, promise
+    - newer: 
+        - assertives: information
+        - directives: request
+        - comissives: promise by a speaker
+        - expressives: speaker expresses mental state
+        - delcarations: change the state of things
+    
+    - speech acts should have: performative word (request, inform, ...), propositional content 
+
+- planning theory of speech acts:
+    - speech acts can be seen as actions ~ planning systems are applicable
+    
+    - STRIPS: preconditions & postconditions
+    - modal operators: beliefs, abilities, wants
+    - semantics of speech acts is defined by means of precondition delete-add approach from STRIPS
+
+- agent communication languages
+    - KSE: knowledge sharing effort
+        - KQML: knowledge query and manipulation language: 
+            - outer communication: envelope
+            - contains what was meant
+
+            - performative, content, receiver, language, ontology
+            - performatives: achieve, advertise, ask-about, ask-all, forward, ...
+            - parameters: content, force, reply-with, sender, receiver, ...
+
+        - KIF: knowledge interchange format: inner language, propositional contents of message, knowledge repre
+
+    - FIPA ACL: simplification of KQML semantics, better performance, practical implementation in JADE
+        - more expressive pefromatives: proxy, refuse, agree, cancel, propose, ...
+
+
+Cooperation of agents: 
+- agent have different goals, are autonomous
+- work in time, not hard-wired, decisions made at runtime
+
+- sharing tasks, sharing information
+
+- coherence: how the system performs as a whole
+- coordination: how well agents minimize overhead related to sync
+
+- CDPS: cooperative distributed program solving
+    - cooperation of indiv. agents when solving a problem
+    - benevolence: agents implicitely share common goal, no conflicts
+        - agents helps toward common goal even if it is disadvantageous for it
+        - simplifies system design 
+
+    - focus on parallel solving, homogenous and simple processors
+    - differences to MAS
+        - MAS has society of agents with their own goals, not one shared
+        - MAS agents should still cooperate: resolving conflicts, negotiation, bargaining, ...
+
+    - task & results sharing
+        - hierarchial, recursive
+        - new agent for each sub-problem, untill instruction level
+        
+        - agents usually share some information, might need to sync their actions
+        - hierarchical solution synthesis
+
+- CNET: ContractNet
+    - metaphore for task sharing via contract mechanism
+    - agent recognizes it has a problem it can't solve on its own
+        - broadcast annoucnement of problem description & contraints 
+        - other agents bid on the contract, original agent selects a winner and awards contract
+    - can lead to hierarchical cascades of sub-contracting
+
+- BBS - blackboard systems
+    - all agents share a common data structure - blackboard, all can read/write
+    - tasks dynamically appear on BB
+    - when agent can solve some task/part will solve it & write (partial) solution to BB
+
+    - requires mutual exclusion over BB - sync -> bottleneck
+    - can contain implicit hierarchy
+
+    - arbitr: selects experts who can come to BB, reactive or considers plans maximizing exp. utility, higher level problem solving (motivation)
+    - experts: agents that can solve (parts) of problems through cooperation, execute actions when selected
+    - BB: shared memory, information representation is important
+
+    - E.g. wargame: BB with open missions, experts are soldiers that look for attack-location missions, commander transforms larger attack-city to multiple attack-location tasks
+
+    - simple, experts do not need to know about other experts, rewriting tasks on BB (subtasks, ...)
+    - distributed hash-tables for BB can help BB-sync bottleneck
+
+    - Results sharing: can help
+        - confidence: indep. results of similar/idtentical solutions can be compared
+        - completeness: agents share their local views to create global idea of the problem
+        - precision: sharing can improve overall precision of the solution
+
+- FELINE
+    - sharing of knowledge, distribution of sub-tasks
+    - each agent is rule-based system: skills (I can prove/contradict), interests (I'm interested if the following is true/false)
+    - communication: hypothesis + speech acts, request, response, inform
+
+Self-interested agents
+- agent doesn't have to be honest about capabilities, doesn't have to finish an assigned task
+- if possible benevolence is a good strategy
+
+- if system too comples -> common goal can be hard to identify
+- possible conflicts between common goal and goals of individual agents
+
+- sometimes better to consider selfish agents
+
+Selfish agent
+- maximizes expected utility, all other agents want the same
+- suppose me and all other agents act rationaly
+- doesn't have to maximize common utility, is robust
+
+
+Game theory
+- strat is dominant if it provides better/same result than any other strat against all opponent's strats
+- Nash equilibrium: s1 and s2 are in Nash eq: if neither agent would be better off switching strategies
+    - not all games have Nash eq. in pure strategies
+    - some games have multiple
+    - Nash thm: every game with finite number of strategies has Nash eq. in mixed strategies -> ~NP hard
+- pareto opt: no other strategy exists that would improve result without worsening others' results
+    - front of pareto strategies
+
+- agents could maximize common utility: social wellfare: sum of utilities of all agents
+    - useful only in cooperation scenarios 
+
+- prisoner's dilema
+    - DD is Nash eq
+    - DD is the only non pareto-optimal solution
+    - CC maximizes social wellfare
+
+
+Voting mechanisms:
+- plurality: 
+    - each voter submits preferences, 
+    - each candidate gets one point for every preference ranking them first
+    - most points win 
+
+    - for two candidates it's simple majority election
+    - with more winner doesn't have to be preferred candidate
+
+    - leads to tactical voting: voting against some candidate, not following my preferences
+    - condorcet paradox: no matter which outcome we choose, a majority of voters can be unhappy
+        - social wellfare can be cyclic although individual preferences are linear
+        - A > B > C, B > C > A, C > A > B
+
+- sequential majority elections
+    - plurality with pariwise tournament rounds, winner moves further
+    - linear or tree tournaments, order of tournament influences election
+
+- borda count
+    - each voter submits complete preferences
+    - aggregation of of orders of all candidates
+
+- slater system
+     - select a ranking of cadidates to minimize the number of paris of cadidates such that the ranking disagrees with the pairwise majority vote on these two candidates
+     - NP complete
+
+- properties of voting procedures:
+    - pareto property: if everybody's preference is X > Y then X >sw Y
+        - holds for majority and Borda
+        - doesn't hold for sequential majority
+
+    - condorcet winner: candidate that beats opponents in pairwise comparisons should win elections
+        - sounds reasonable, holds true only for sequential majority
+    
+    - independence of irrelevant alternatives: whether X > sw Y should depend only on relative orderings of X and Y
+        - if the orderings of X and Y remain their outcome ordering should also not be affected
+        - different outcomes for other candidates shouldn't affect ordering 
+        - does not hold for majority, sequential majority, nor borda
+
+        - might be too strong, given preferences paper, scisor like relations
+
+    - unrestricted domain or universiality: 
+        - for any set of individual voters preferences the social welfare function should yield unique and complete ranking of societal choices
+        - all preferences of all voters are allowed
+    
+    - dictatorship
+        - social outcome is dtermined by one of the voters - dictator
+        - non-dictatorship: there's no voter that can influence preference betwen all x and y states given all possible orderings 
+
+- arrow's theorem: for 3 and more candidates, no ranked voting electoral system can convert ranked preferences while meeting:
+    - unrestricted domain
+    - non-dictatorship
+    - pareto efficiency
+    - independece of irrelevant alternatives
+
+    - the only voting proc. satisfying pareto cond. and IAA is dictatorship (one voter selects outcome)
+
+
+Auctions:
+- mechanism for resource allocation
+
+- seller: maximizes price
+- buyer: minmizes price, has its own utility function
+
+- protocols: first price x second price, open x sealed, one x more rounds
+
+- First-price sealed bid
+    - one round, closed offers
+    - highest wins, pays its price
+
+    - market price not estimated, others preferences not estimated
+    - dominant strategy is to go epsilon below utility
+
+- Vickrey
+    - sealed bid, one round, second price
+    - dominant strategy is to offer true value
+    - AdWords, stamps, ...
+
+- English
+    - open cry, increasing price, first price
+    - most common, buyers usually overshoot the price
+    - dominant strategy: increase epsilons until utility
+
+- Dutch:
+    - open cry, decreasing price, first price
+    - used for perishable items (flowers, fish)
+
+    - not possible to estimate market price / buyers prereferences
+
+    - dominant strategy: wait until utility minus epsilon is reached
+
+- other posibilities
+    - paying all the bids (lobbing and bribes research, ...), combinatorial (more items, subsets)
+    - amsterdam: start english, when two buyers remain switch to Dutch with double the price
+    - Tokyo: offers at once, conflicts by scissors-stone-paper
+    
