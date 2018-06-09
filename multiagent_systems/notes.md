@@ -128,7 +128,7 @@ Agent as theorem prover:
     - deliberation: what do we want to achieve
     - means-end reasoning: how to achieve such goal
 
-BDI architecture 
+#### BDI architecture 
 
 - [I]ntention: state of the env. agent wants to achieve
     - persists until: are achieved, start seem unachievable, change due to reasons
@@ -192,7 +192,7 @@ BDI architecture
     - bold agents: reconsider only after current intention finishes -> good for static worlds
     - cautios agent: reconsiders after every action -> good for very dynamic worlds
 
-Procedural reasoning system: PRS
+### 6. Procedural reasoning system: PRS
 - implementation of BDI architecture
 - agent has a library of ready plans, representing its procedural knowledge 
 - no full planing, just selecting from the library
@@ -214,7 +214,7 @@ Procedural reasoning system: PRS
 
     - if plan fails, choose another intention from options and continue ~ DFS
 
-Reactive and hybrid architectures:
+### 7. Reactive and hybrid architectures:
 - symbolic repre and reasoning is problematic 
 
 - emergence: inteligent behavior emerges by interaction of many simple behs.
@@ -223,7 +223,7 @@ Reactive and hybrid architectures:
 - reactive agent: only reacts on the environment, doesn't do deliberation
     - simple if then rules, finite automata, ...
 
-Subsumption agenta architecture:
+#### Brooks Subsumption agenta architecture (exam topic):
 - probably the most successful reactive approach
 
 - each behavior is simple action selection mechanism
@@ -240,7 +240,7 @@ Subsumption agenta architecture:
 
 - good for swarm-like behavior (ants, ...)
 
-Network architecture
+#### Network architecture:
 - each agent is set of competence modules (resembling subsumption behaviors)
     
 - preconditions, postconditions
@@ -249,13 +249,13 @@ Network architecture
     - matching pre and post conditions represented as oriented edge
     - further connections representing time precedence / conflicts, ...
 
-Limitations of reactive approach:
+#### Limitations of reactive approach:
 - do not create model of the world, have to derive everything from environment
 - to remember things, need to change the environment
 
 - short-term view of the world: current state & local information
 
-Hybrid architectures:
+#### Hybrid architectures (exam topic):
 - combines reactive and deliberative components
 - usually in hierarchy, reactive components tend to have precedence
 
