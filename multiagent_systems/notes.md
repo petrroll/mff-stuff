@@ -290,7 +290,7 @@ IDA
     - hierarchy of contexts
 
 
-Ontologies: 
+### 8. Ontologies: 
 - part of philosophy dealing with nature of being
 - in cs: explicit and formalized description of part of reality
     - glossary: definition of concepts, thesaurus (relations between concepts)
