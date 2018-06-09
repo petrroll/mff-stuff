@@ -540,10 +540,10 @@ Voting mechanisms:
         - non-dictatorship: there's no voter that can influence preference betwen all x and y states given all possible orderings 
 
 - arrow's theorem: for 3 and more candidates, no ranked voting electoral system can convert ranked preferences while meeting:
-    - unrestricted domain
+    - unrestricted domain = everybody's vote counts, the returned ordering is deterministic, changes in voting change the outcome
     - non-dictatorship
-    - pareto efficiency
-    - independece of irrelevant alternatives
+    - pareto efficiency = if everybody wants A more than B, than A should be ahead of B in the final ordering
+    - independece of irrelevant alternatives = let A>B, if voters switch preferences between other pairs (A<>X, B<>Y, etc.) but not between A and B, the result should still be A>B
 
     - the only voting proc. satisfying pareto cond. and IAA is dictatorship (one voter selects outcome)
 
