@@ -123,12 +123,12 @@ Agent as theorem prover:
 - takes a lot of time, hard to convert environment to formulas, temporal representation problem
 - nice semantics, tho
 
-Practical reasoning agent:
+### 5. Practical reasoning agent:
 - two phases
     - deliberation: what do we want to achieve
     - means-end reasoning: how to achieve such goal
 
-### 5. BDI architecture 
+BDI architecture 
 
 - [I]ntention: state of the env. agent wants to achieve
     - persists until: are achieved, start seem unachievable, change due to reasons
