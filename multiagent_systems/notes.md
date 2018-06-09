@@ -141,7 +141,7 @@ BDI architecture
 
 - Deliberation: 2^B x 2^I -> 2^Des  // intentions & beliefs -> desires
 - Filter: 2^B x 2^D x 2^I -> 2^I    // All I know -> less intentions
-- Belief refresh 2^B x Per -> 2^B
+- brf: (Belief refresh) 2^B x Per -> 2^B
 
 - Means-end reasoning: 
     - how to reach goal (selected intention) based on possible actions
