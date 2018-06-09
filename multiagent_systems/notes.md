@@ -1,11 +1,11 @@
 ### 1. & 2. General
-- agent: system capable to work independently on behalf of its user
-    - autonomus: not everything is defined beforehand
-    - can have their own interrests 
+* agent: system capable to work independently on behalf of its user
+    * autonomus: not everything is defined beforehand
+    * can have their own interrests 
 
-- different views
-    - MAS as part of AI
-    - AI as part of MAS (AI tries to create intelligent agents)
+* different views
+    * MAS as part of AI
+    * AI as part of MAS (AI tries to create intelligent agents)
 
 - main problem
     - distributed communication 
