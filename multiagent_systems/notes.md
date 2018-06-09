@@ -139,8 +139,8 @@ BDI architecture
     - subjective, not necessarily true, can change
     - might contain inference rules
 
-- Deliberation: 2^B x 2^I -> 2^Des  // intentions & beliefs -> desires
-- Filter: 2^B x 2^D x 2^I -> 2^I    // All I know -> less intentions
+- options: (Deliberation) 2^B x 2^I -> 2^Des  // intentions & beliefs -> desires
+- filter: 2^B x 2^D x 2^I -> 2^I    // All I know -> less intentions
 - brf: (Belief refresh) 2^B x Per -> 2^B
 
 - Means-end reasoning: 
