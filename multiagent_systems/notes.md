@@ -1,4 +1,4 @@
-General
+#### 1. & 2. General
 - agent: system capable to work independently on behalf of its user
     - autonomus: not everything is defined beforehand
     - can have their own interrests 
@@ -42,7 +42,7 @@ General
         - Is there intenionality by itself or it only an interpretation?
 
 
-Abstract archs:
+#### 3. Abstract archs:
 - Environment: can be in a finite number of discrete states -> discretize if needed
 - Actions: means of the agent to interact with environment and change it
     - We don't know what environment state will be the result of curr. state and some action
@@ -103,7 +103,7 @@ Predicate specification of a task:
     -> let's compute the probability that agent will be successful: P(F|Ag, Env) = ...
 
 
-Deductive reasoning agent
+#### 4. Deductive reasoning agent
 - symbolic repres. of environment & behaviour
 - syntactic manipulation of such repre -> logical deduction
 
@@ -128,7 +128,7 @@ Practical reasoning agent:
     - deliberation: what do we want to achieve
     - means-end reasoning: how to achieve such goal
 
-BDI architecture 
+#### 5. BDI architecture 
 
 - [I]ntention: state of the env. agent wants to achieve
     - persists until: are achieved, start seem unachievable, change due to reasons
