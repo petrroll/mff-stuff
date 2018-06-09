@@ -347,7 +347,7 @@ IDA
     - limited existential quantifier, contraints, ...
 
 
-Agent communication
+### 9. Agent communication
 - communication in OOP: calling object methods with parameters
 - agents can't directly communicate -> message passing -> other agents don't have to comply
 
@@ -396,7 +396,7 @@ Agent communication
         - more expressive pefromatives: proxy, refuse, agree, cancel, propose, ...
 
 
-Cooperation of agents: 
+### 10. Cooperation of agents: 
 - agent have different goals, are autonomous
 - work in time, not hard-wired, decisions made at runtime
 
