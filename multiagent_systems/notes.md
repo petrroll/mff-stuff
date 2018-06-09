@@ -472,7 +472,7 @@ Selfish agent
 - doesn't have to maximize common utility, is robust
 
 
-Game theory
+### 11. Game theory
 - strat is dominant if it provides better/same result than any other strat against all opponent's strats
 - Nash equilibrium: s1 and s2 are in Nash eq: if neither agent would be better off switching strategies
     - not all games have Nash eq. in pure strategies
@@ -548,7 +548,7 @@ Voting mechanisms:
     - the only voting proc. satisfying pareto cond. and IAA is dictatorship (one voter selects outcome)
 
 
-Auctions:
+### 12. Auctions:
 - mechanism for resource allocation
 
 - seller: maximizes price
