@@ -131,6 +131,7 @@
 	Rozhodněte, zda posloupnost (a_n) má limitu a pokud ano, tak ji spočtěte.
 	- L = sqrt(2L+3)
 	- L^2 - L = 3, kladný kořen
+	- JB: Pozor, to nestačí. Treba ukázať, že skutočne existuje. Viď https://kam.mff.cuni.cz/~sbirka/show_exercise.php?c=89&e=528 	príklad po a)
 20. Metrické prostory
 	1. Definujte pojem „metrický prostor“.
 	- Metrický prostor je dvojice (M, d), 
