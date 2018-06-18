@@ -1,0 +1,288 @@
+# 1
+Information theory
+- independent events should have additive Information
+- less likely events have higher Information
+- should be zero for events with probability 1
+
+- shannon entropy ~ the average number of bits needed to transmit messages with certain disr.
+
+- I(x) = log(1/P(x))
+- H(P) = E_x~P(I(x)) = -SUM_x( P(x) * log(P(x) )
+- Cross entropy & gibbs inequality: 
+    - avg. amount of bits needed to transmit messages Q using codes for P
+    - H(P, Q) = -E_x~P[logQ(x)]
+    - H(P, Q) > H(P)
+    - H(P) = H(P, Q) -> P = Q
+    - KL divergence: Dkl ~ H(P, Q) - H(P) : metric of two distributions (slide:15/50)
+
+Normal distribution:
+- CTL: sum of indep., samely distrib. random vars with limited var converges to norm. distr.
+- maximum entropy principle: for given mean and varience normal distrib. has highest entropy
+
+Machine learning: 
+- supervised: labeled data
+- unsupervised: data without annotations
+- reinforcement: only good/bad signals
+
+History:
+- 1940: electronic brain
+- 1950s: perceptron network with training alg
+- 1970: Xor problem & AI winter
+    - to fix "xor problem" you need hidden network connected to _all_ inputs
+    -> not enough computational power at that time to have fully connected layers
+- 1980s: multi-layered perceptron, backpropagation 
+- 1990s: SVM (simpler, easier to use)
+- 2006: Deep nerual network 
+
+Activation fushion:
+
+ML:
+- linear regression ~ single layer NN with MSE
+- logistic regression: linear regression with sigmoid = 1/1+e^-x
+- softmax for mutiple classes
+
+- maximum entropy model: softmax: e^z1 / SUM_j e^zj
+    -> model that produces the most general distribution over input data
+
+NN:
+- graph (DAG) based computational model
+- universal approximation theorem '89
+    - input, hidden, output layers
+    - non-linear, non-cons, bounded, monoton, cont activation activation function
+    - given enough neurons in one hidden layer any function can be arbitrarily approximated
+
+- activation functions: tanh, ReLU = max(0, x), ...
+- distributed representation: the alg learns features & info about them, not indiv. examples
+
+#2:
+
+ML:
+- learn on training set to minimize errors on not-seen data (test set)
+
+- errors
+    - underfitting: too little specialized
+    - overfitting: model too specialized on training set, can't generalize
+
+- model capacity -> with higher capacity
+    - training error decreases
+    - test error / generalization error
+        - decreases at first (needs to have enough capacity to learn) 
+        - increases later (overfits and remembers the training set instead of generalizing)
+
+- regularization: reducing generalization error
+    - setting correct model capacity
+    - occams razor: the simplest model generalizes the best
+    
+    - early stopping
+    - L1, L2: we don't want high (L2) / non-zero parameters (L1:constant derivative)
+
+- model
+    - parameters: training alg. modifies them
+    - hyperparameters: training alg. doesn't update them
+
+    - we should have separate set for hyperparameters evaluation : validation set
+
+- loss function: how well the model fits data
+    - MeanSquaredError: only one local minimum, also global minimum
+    - MLE: Maximum likelyhood princ.: way of desiging loss functions
+        - parameters so that the probability of our data given the params is highest
+        - O = argmax p_model(X, 0) = argmin E_x~pdata[-log(pmodel(x, 0))] = argmin Dkl(pdata || pmodel(x, 0)) + (H(pdata))
+        -> cross-entropy or Kullback-Leibler divergence
+
+    - If we expect normal distrib. or target var -> MLE for regression leads to MSE
+
+Gradient descent:
+- move parameters in the direction of gradient (vector of partial derivatives)
+    - O <- O - a * grad_O(J)(O)
+
+- gradient descent: compute gradient over all training data
+- online gradient descent: estimate gradient with one randomly sampled example 
+- minibatch SGD: tradeoff, compute gradient given m random samples 
+
+Backprop: 
+- computing gradient given the nerual network 
+- what would be the effect of parameters modifications
+
+- chain-rule & dynamic programming: dJ / dyj = dJ/ dz * dz / dyi 
+- derivation w.r.t to o_i is derivative w.r.t to it * derivative of following nodes
+
+- alg:
+    - run forward prop and compute all u_i (activation of node i)
+    - g_n = 1
+    - for i = n-1, ..., 1:
+        - g_i = SUM_j:i€P(u_j)( g_j * (du_j / du_i) )
+    - return g
+
+SGD variants: http://ruder.io/optimizing-gradient-descent/ 
+- SGD with momentum
+    - remember the velocity of descent
+    - moves in the the direction of actual progress within the loss function space
+    - exponential moving average of the velocity: v <- beta * v - alpha * g
+        - gradients further in history have exp. lower contribution
+
+
+    
+- SGD with nesterov momentum
+    - similar to momentum, update parameters before computing the gradient
+    - the gradient is computed in already better position (one that used the momentum info)
+    - converges faster
+        
+- ADA Grad
+    - in SGD absolute highest wins even if some smaller has "higher signal" given its usual variance 
+    - ADA-grad tries to do adaptive dimension-specific learning rate scaling
+        
+    - estimates second moment (Variance) of each dimension (r <- r + g^2)
+    - updates with gradient scaled by relative signall strength O <- O - a * (g / sqrt(r+e)) 
+        - sqrt(r+e) ~ g: their ratio shows how strong the current gradient signall is for each dimension given their usual variance
+
+    - the r element grows ever larger -> effectively decreases learning rate w.r.t sqrt(t)
+        - problematic for N.N. that train for a large number of steps
+
+- RMS Prop:
+    - similar to ADA Grad, doesn't accumulate r but computes its exponential moving average
+    - scaling factor doesn't increase for ever -> works well even for NN that trains for hours
+
+- ADAM: Adaptive momentum
+    - computes exponential moving average of both first (velocity) and second (variance) moments
+    - essentially RMSProp + Momentum 
+    - update with momentum normalized by second momentum (variance)
+
+    - correction for first x steps of the alg where it doesn't have historical data
+        - makes both momentum estimates larger for first few steps because their historical data are 0
+        - presumes the previous (non-existent) data would have similar distrib. to the currently observed
+        - r <- r/(1-b^t) 
+
+        - essentially scales learning factor: at <- alpha * sqrt(1-bs^t)/(1-br^t)
+        - generally it makes effective LR faster in the beginning because we don't have reliable estimates for s and r
+
+
+# 3
+Parameters: 
+- layer: w(Wh + b)
+- parameters: Wi, bi
+- Derivations w.r.t. all Wi, bi
+
+Hyperparameters:
+- e.g. topology of the network
+- learning rate, dropout, ...
+- can't train it via backprop due to them being discrete
+
+- can use grid search, bayes opt, reinforcement approaches, ...
+
+Practical problems
+- processing data in batches -> overhead for moving data to GPU is significant
+    - the first dimension is usually batch 
+
+- computing the network via vector and matrixes operations
+    - application of weights is matrix multiplication
+    - bias is vector addition 
+    - activation function is per element application of a function on vector
+
+    - derivation is basically adding a reversed graph with derivated original nodes
+    -> graph is DAG AST of vector operations 
+
+High level overview
+Architecture   | Classical '90s | Deep learning
+Architecture   | :::            | ::::::::::::::::
+Activation f.  | tanh, sigmoid  | tanh, ReLU, PReLU, ELU, SELU, Swish
+Output f.      | none, sigmoid  | none, sigmoid, softmax
+Loss f.        | MSE            | NLL (or cross-entropy or KL-convergence)
+Optimization   | SGD, momentum  | SGD, RMSProp, Adam, ...
+Regularization | L2, L1         | L2, Dropout, BatchNorm, LayerNorm, ...
+
+Derivative of soft-max 
+- oi = e^zi / SUM_j e^zj
+- derivation of softmax is 1-<predictedProbability> for the gold class and <predProp> for others
+- as soon as the model starts doing what it should do -> the derivatives start being quite small
+
+- label smoothing: instead of having 0, 0, 0, 1, 0, 0 gold data distrib -> 0.05, 0.05, ... 0.8, 0.05, ...
+    - Doesn't force the model to be perfectly sure, can combat overfitting 
+
+- to combat overflow -> substract minimum value, softmax is invariant to additions / substractions
+
+Regularization: 
+- occam's razor -> prefer simpler models to complex ones -> less overfitting 
+- the smaller the training dataset is the more prone the training is to overfitting
+
+- idea: model capacity ~  training set size 
+    - the more data I have the harder it is for the model to overfit 
+    - the smaller the model's capacity is the harder it is for the model to overfit 
+
+- idea: in the beginning the model learns general rules, moves to more specific one
+    - early stopping when the validation error starts increasing for some period of time
+
+- L2 regularaizaton: models with smaller parameters tend to be more generických
+    - minimize Loss(O, X) + lambda*||O||
+    - it's hard to set lambda: strength of the regularization 
+
+    - Derivation of L2 is -2 * lambda * Oi 
+    - The higher the parameter is the larger (linearly) is it's derivation -> always substract 
+    - Always shrinks the parameter by some fixed percentage 
+
+    - parameter needs to stay relevant to be reasonably high 
+    - if it's used only for one batch -> gets killed by regularization 
+
+    - L2 is based on MAP bayes with prior normal distribution on parameters that has mean 0
+
+- L1 regularizaion: tries to create sparse parameters
+    - always substracts / nulls constant from a parameter
+    - doesn't work well for N.N: N.N can store a lot of information in small numbers 
+        - for N.N. it's not about the absolute value of weights but their relative sizes
+        - substracting constant kills that
+
+- dataset augmentation 
+    - create new train data via small semantic modifications (translations, ...) from the original train dataset 
+    - possible to add noise instead of using semantic modifications
+    -> forces the model to learn general features 
+
+    - label smoothing could be viewed as injecting noise to gold data distribution 
+    - better if similar classes have higher probability in the label smoothing 
+    
+Ensembling: 
+- create combinaton of several (worse) models 
+- if the models aren't perfectly correlated -> gain some information 
+
+- due to N.N. complexity the probability that repeated learning will produce the same model is extremely small
+-> train N.N. multiple times (takes too much time) / take multiple snapshots throughout learning 
+
+- use ensembled models to annotate not-yet-annotated data -> learn new models on them
+-> better training dataset for "free"
+
+- bootstrapping: sample original dataset with replacement 
+    - each model gets different sampled training set 
+    - can sample individual data indivs. / parts of these data individuals 
+
+    -> not necessary for N.N because due to complexity & random init it's easy to train different models with the same data & hyperparameters
+
+- boosting: changing weights of models and data
+    - data we can't classify well have higher weights
+    - models that are better have higher weights
+
+Dropout: 
+- with certain probility we drop a neuron in a layer: multiply its output with 0
+- prevents overfitting -> every neuron / feature can be dropped -> hard to remember data exactly 
+
+- can be viewed as ensembling that trains multiple models with different topologies at the same time
+    - training all models that can be created via deleting some non-output neuron 
+
+- random bit mask for neurons for each minibatch (static probability of dropout)
+- each batch is updated using the bitmask, next minibatch has a new (different mask)
+
+- training essentially minimizes loss across all these masks (exp. many of them)
+- approxed via sampling 
+
+- creates highly correlated models (they share most of the weights) but there're exp. many of them
+- due to the models share (most) weights the other parts have to be robust to work -> "independent modules"  
+- ideal if every minibatch is sampled with replacement 
+
+- alternatively it could be viewed as activation scaling with the factor of 1/(1-p)
+- dropout could theoretically do other things than just 0 multiplication 
+
+- during inference: 
+    - sample different masks: ineffective 
+    - approx the result via one pass trough the full network with activations scaled with 1-p 
+        - scaling needs to be there so that the mean and varience of inputs at each layer is the same as in training
+
+    - for linear regression it's the same as L2 with per input decay rate 
+
+
