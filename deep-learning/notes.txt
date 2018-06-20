@@ -285,4 +285,279 @@ Dropout:
 
     - for linear regression it's the same as L2 with per input decay rate 
 
+# 4: 
+- the graph can have conditional nodes, while nodes, ...
+    - tf.cond: only one branch is evaluated -> slow, hard on GPUs, ...
+    - tf.where: all branches are evaluated -> faster, ...
+- backpropagation understands such nodes, ...
+
+Convergence
+- not used in mathematical sense, but as "trains well" 
+    - converges: learns well
+    - diverges: stays at random guess level of accuracy
+
+- saturating non-linearities
+    - tanh on |x| > 2 has almost zero derivative 
+    - backpropagation trough more layers (multiplication with tanh's derivative) makes gradient disappear 
+
+    - sigmoid has value of 1/2 for 0 -> adds up to 1 very quickly -> saturates -> gradient vanishes 
+
+- gradient exploision 
+    - huge gradient can shoot us to a completely different parameters position
+    - it can be benefitial to have some maximum gradient -> gradient clipping 
+
+    - can be done per parameter -> changes gradient direction if only some are clipped
+    - better to normalize it as a whole -> essentially lowering learning rate so that the update has some max. norm 
+
+- parameter initialization 
+    - want activations to have some reasoanble distribution (mean, varience)
+    - can't initialize with 0 -> all neurons would be identical -> all derivatives would be the same 
+    - generating random weights enables different neurons to learn different things
+
+    - can't initialize from (-1, 1), each neuron has n predecessors -> could explode -> (-1/sqrt(n), 1/sqrt(n))
+    - actually -sqrt(6/(m+n)), sqrt(6/(m+n)) works better sqrt(3) * sqrt(1 / (m+n)/2)
+    - average between inputs and outputs (m+n)/2 -> to be nice for backrop as well
+    - better activation distribution, variance stays the same for futher layers 
+
+    - biases usually initialized to 0
+
+Going deeper: 
+- dense network doesn't utiliize dimensionality structure within the data
+    - can't easily learn position independent feature extraction 
+    - activation for certain neuron should be influenced only by its limited neighbourhood 
+
+- cross-correlation ("convolution") operation across the data's dimensionality
+    - convolution: (x <> w)t = SUM(xi * wt-i)
+    - cross-corellation: moving in the other direction: (x <> w)t = SUM(xt+i * wi) //it's more visible on 2D
+
+- kernel specifies values used in cross-corelation (wi)
+
+- for pictures 2D special, 3rd dimension: not structural, independent information
+    - convolution has kernel for each input channel (all with the same size)
+    - to create multiple output channels -> multiple kernels 
+
+    - kernel is actually 4D tensor for 2D images (2 spacial, 1 input channels, 1 output channels)
+
+- stride: we might want to apply kernel every n pixels, not to each 
+- padding: can't put kernel on the edges of the picture (would overlap) outside of data -> padding schemes
+    - valid: use only valid pixels -> makes picture smaller
+    - same: pad data (picture) with 0s to maintain size
+
+- average pooling / max pooling
+    - convolution with fixed, non learnable kernel 
+    - average, max (doesn't actually have conv. repre)
+
+    - almost alaways done with non-1 stride 
+
+Architecture ~ Alexnet:
+- start with small convolutions, do max pooling, repeat
+- slowly starts producing higher, and higher level (more abstract) features
+    - starts with lines, gradients, ..., then starts recognizing basic shapes, ...
+
+- when the picture is small enough -> e.g. 7x7 add dense classification layer 
+    - it's useful to know if the sun is in the upper / bottom half 
+    - on 7x7 level there are high level features s.a. sunness, dogness, ...
+
+- Alexnet still used bigger convolutions and not only 3x3
+- whenever we do stride, create more output channels (stride 2 -> 2x channels)
+
+- instead of dense layers in the end nowadays global average pooling is used 
+    - there were too many parameters in the last dense layer that did next to nothing
+
+- conv. networks are subset of networks that prefer local local features 
+Problem: 
+- convolutions on differently sized inputs produce differently sized outputs, but work
+- convolution networks with average global pooling can work with any-sized input
+
+# 5: 
+2D convolution: (I * K)i,j,k = SUM_m,n,o [I_i*S+m,j*S+n,o * K_m,n,o,k]
+- S stride, k output channel, o input channel
+
+VGG 2014  
+- conv3, conv3, maxpool with stride 2 and double the number of output channels in following convs
+    - doubling because the complexity of conv is H * W * Ic * Oc -> stays the same
+- in the end do maxpool, a few dense layers (thousands of neurons), softmax 
+    - most of the parameters are actually in the dense part of the network
+
+GoogleNet:
+- each block has parallel 1x1 conv, 3x3 conv, 5x5 conv, 3x3 max pooling & one filter concatenation 
+- use of 1x1 convolutions that reduce the number of channels (creates their linear combination): "bottleneck"
+    - helps with performance substentially 
+    - always decrease the number of input channels before every convolution 
+
+- instead of using fully connected layers in the end -> global average pooling 
+    - looses the information about object positions 
+    - a one dense output layer in the end for classification -> each channel x output_layer -> way smaller
+
+- to improve gradient flow additional classifiers along the way, learn trough them  
+    - forces the network to poduce useful features even in lower layers "regularization"
+
+BatchNormalization 
+- internal covarience shift: 
+    - further layers are trained (expect) certain (input) activations distributions
+    - if lower layers change (due to training) their activations can change rapidally (esp. in the beginning)
+    - that can undo all learning of upper layers 
+
+    - we might want to have more stable layers activations 
+
+- batch normalization: 
+    - compute varience and mean of activations across a batch
+    - normalize current activations using the approxed variance and mean -> produces N(0, 1) distribution
+        - x'i = (xi - E_batch[xi]) / sqrt(var_batch[xi])
+
+    - let the network to learn it's own explicit mean (bi) and variance (sigmi)
+    - the final output just before applying non-linearity is yi = sigmi*x'i + bi
+
+    - no need to have bias, bi creates an explicit bias itself 
+    - due to only approx. the mean and varience of layer -> adds noise -> sort of dropout / regularization 
+
+- during training the network remembers exponential average of bias and varience -> uses them for inference
+    - inference is more stable, doesn't require batches 
+    - inference has these parameters fixed (as are all parameters)
+
+- enables us to use larger learning rate (x10)
+    - activation functions always have reasobale (learned) distributions -> gradients can't explode as easily
+
+- makes initialization non-issue -> layer's output are invariant to linear scaling 
+- activations can be kept around zero with B.N -> prevents saturating non-linearities 
+
+- makes values comparable in absolute sense due to stable activations distributions 
+- B.W. on conv. computes mean and varience for specific channel using all pixels not per pixel 
+
+Inception v2 and v3:
+- one 5x5 conv can be done with two 3x3, but faster 
+- similar blocks to GoogleNet 
+
+ResNet: 2015
+- adding more layers can actually make it worse, even with B.N. when gradients pass fine 
+- it's hard for conv. N.N. to learn identity -> to just copy data 
+    - if it was easy, deeper networks would work at least as good as shallow
+
+- add residual connections: output = F(x) + x
+    - if the networks wants just copy data -> makes weights for F(x) small, x is dominant
+    - doesn't have to skip just one conv., can skip the whole block 
+
+- B.N. after the residual connection joins i.e. per whole block
+
+- to speed up 3x3 convolutions: decreases number of channels before each to 1/4 using 1x1 conv.
+- after the 3x3 conv. increases the number of channels using 1x1 again to original number
+
+Loss function landscape
+- flat minimas are better for generalization
+- loss isn't sensitive to small changes of activations (both weights and inputs)
+
+- SGD that has batchsize one actually generizes fairly well 
+    - updates have quite large varience -> moves erratically through the fitness landscape 
+    - can converge only in flat minimas 
+
+WideNet: 
+- doesn't use bottleneck to reduce number of channels -> smaller number of layers but better
+- actually works with dropout possibly due to a high number of parameters in fat convolutions 
+
+ResNext 
+- opposite of WideNet
+- many parallel exteremely narrow (on reduced number of channels, e.g. 4) convolutions in each block 
+
+NasNet
+- create blocks using RNNs (block is sequence of nodes & operations) trained trough REINFORCE 
+- RNN creates block description, network is constructed, trained, it's accuracy is used to reinforce the RNN 
+
+- produced similar blocks to previous *Nets (including residual connections), better results
+
+Transfer learning: 
+- exp: lower layers capture general features, only (few) top layers are task specific 
+- remove last layer, retrain on different task -> way faster learning
+    - learn only the new classifier a bit, then fine tune the whole network 
+    - otherwise gradients from not-learned classifier can mess up the whole network
+
+Beyond image class: 
+- text processing (1D), speech processing (1D)
+- 3d object recognition (3D), temporal-spacial e.g. video for lip reading (3D)
+
+
+# 6: nothing : easter monday
+
+# 7: 
+
+Object detection & segmentation:
+
+- R-CNN
+    - external program suggests regions where objects could be (thousands of them)
+    - each segment is classified via CNN: is there an object in the region / what object is it
+
+- fast R-CNN
+    - computes features for whole image using pre-trained ImageNet 
+
+    - each region of interrest get represented by fixed sized window 
+    - maxpool r.o.i repre via a window on the features creates by the CNN for whole picture (rol pooling)
+
+    - classify the fixed sized r.o.i representation from the features (can be quite shallow network) 
+    - bounding boxes can be trained for each r.o.i per class as well 
+
+    - bounding box smooth L1 of difference between predicted & gold, parametrized using center & w, h
+        - L2: gradient is proportional to the error -> can cause problems
+        - L2 near 0, then linear -> L2 with gradient clipping 
+
+        - xr, yr, wr, hr: parameters for RoI, xr, yr, wr, hr for bounding box
+        - tx = (x-xr) / wr  //same for center.y 
+        - tw = log(w/wr)    // same for height 
+        - L(class, t, classg, tg) = Lcls(c, c) + lambda * SUM_i€x,y,w,h smooth_L1(ti, tgi)  
+
+    - non-maximum supression: if there's overlap between two regions with objects -> choose the one with higher p
+
+    - evaluation using intersection over union for bounding boxes
+    - evaluation: precision <> recall 
+        - rank results for each class by their prob -> slowly change tresshold between it's there x isn't there
+        - average precision: area under prec<>recall curve 
+
+- faster R-CNN
+    - generate RoIs using CNN 
+    - create features using deep CNN network
+
+    - try all possible positions of reasonable regions (different rations, different size) of the features map
+        - classify each if it's good -> shallow classification 
+    - use rol-allign instead of rol pooling: bilinear interpolation instead of max pooling 
+
+Normalization: 
+- batchnorm: normalization across positions & within batch 
+    - requires decently sized batches 
+- layer norm: normalization across positions and all channels 
+    - makes all channels compete with eatch other 
+    - makes results worse for independent channels 
+- group norm: normalization across positions and some channels 
+    - groups of channels can still be independent
+    - doesn't require large batch size 
+
+    - can't add grouping for fine-tuning to a network trained without it
+
+RNNs: 
+- instead of locality uses sequentiality 
+- the same network copied for each element in sequence -> output of element ith is part of input for i+1th
+
+- with RNN the exploding/vanishing gradient is worse -> problem of long dependencies 
+    - due to the fact that the same network is coppied multiple times -> exponential transformation 
+    - "solved" trough LSTM / GRU cells that handle gradient better 
+
+- in RNNs the state can theoretically remember any historical data -> not just fixed history window 
+- to get fixed sized representation of the whole sequence: use the last output / state 
+
+ - sequence prediction: inputs are selected previous outputs (after argmax)
+    - during training: actually i-1th elements from gold data regardless on what's predicted 
+    - during inference: true predicted previous outuput
+
+- the compute graph should contain the network unrolled 
+    - dynamic: unrolled in the beginning of runtime based on known input size 
+    - static: unrolled on graph creation 
+    
+# 8: 
+
+# 9:
+
+# 10: 
+
+# 11:
+
+# 12:
+
+# 13: 
 
