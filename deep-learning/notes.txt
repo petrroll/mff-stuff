@@ -548,13 +548,313 @@ RNNs:
 - the compute graph should contain the network unrolled 
     - dynamic: unrolled in the beginning of runtime based on known input size 
     - static: unrolled on graph creation 
-    
+
+- for dynamic rnn the network gets unrolled for the longest sequence 
+- most operations can take seq_lengths argument -> shorter senteces are just padded 
+- for GPUs the length of a sequence is more important than how wide a batch is -> len has to be computed sequentialy
+    - backet sentences of similar lenth together to a batch
+
 # 8: 
+Challenge of long-term dependencies
+- if partial derivatives are < 1 -> gradient in RNNs will vanish, > 1 -> it will explode
+- residual connection that just copies the state -> partial derivative of 1
+    - we need mechanism to read & write from this memory
+    
+
+- LSTM cell 
+    - input gate: how much of input should be added to memory
+    - output gate: how much of the state should we output 
+    - forget gate: what parts of the state should be forgotten 
+
+    - network decides what dimensions of the state should be updated / kept the same given input & prev. state
+    - without the forget gate the memory just accumulated information -> problem
+
+    - it <- sigm(Wi*xt + Vi*ht-1 + bi)                        // input gate
+    - ot <- sigm(Wo*xt + Vo*ht-1 + bo)                        // output gate
+    - ft <- sigm(Wf*xt + Vf*ht-1 + bf)                        // forget gate
+    - ct <- ft * ct-1 + it * tanh(Wy * xt + Vy*ht-1 + by)     // state
+    - ht <- ot * tanh(ct)                                     // output
+
+- GRU 
+    - smaller version of LSTM 
+
+    - forgetting and updating tied together: (input: a, forget: 1-a)
+    - no explicit state cell: the state is both state and output 
+
+    - rt <- sigm(Wr*xt + Vr*ht-1 + br)          // remember gate
+    - ut <- sigm(Wu*xt + Vu*ht-1 + bu)          // update
+    - h't <- tanh(Wh*xt + rt * Vh*ht-1 + bh)    // updated state
+    - ht <- ut * ht-1 + (1-ut) * h't            // new state
+
+Word embeddings: 
+- represeting words is hard in nerual network 
+
+- onehot representation: unary representation of word index in vocabulary 
+    - all words are independent to each other in this encoding -> can't transfer knowledge between similar words
+    - too big, problem with words that are not in dictionary 
+
+- distributed representation: 
+    - each word in a fixed siyed vector from R^d: represents a space of underlying notions / meanings 
+    - more similar words have vectors with smaller distance 
+
+    - the newtork doesn't learn rules for words but for underlying features -> distributed knowledge 
+
+- learning distributed representation
+    - start with onehot represetantation 
+    - create a matrix |V| * d -> W*oneHot -> distributed representation 
+    - instead of multiplying the W matrix with onehot use optimized row selection op instead 
+
+    - doesn't help with unknown words
+    - enables us to learn task-specific word embeddings 
+
+- Word2vec - Mikolov 
+    - distribution hypothesis: words used in similar context are usually similar 
+    - CBOW: predict word using its context 
+        - sum embeddings of a word's context -> fully connected -> one hot of the word
+    - skip-gram: predict context given a word
+        - embed word -> fully connected layer -> predict distribution of one-hot words that can be in context 
+        - trained using random words from a word's context as the gold data 
+
+    - classification via softmax can be extremely time consuming: softmax over the whole vocabulary
+    - instead of using softmax we could have "binary search hierarchial softmax"
+    - instead of softmax -> sigmoids for each words : 
+        - hard to select one good word -> the ones most probable -> we don't really need that
+        - teach via positive & negative sampling, select some words from context that are / aren't there
+        - learn the corresponding sigmoids to be 1 (for words from context) and 0 for those that aren't there
+
+        - more negative than positive examples 
+        - sample negative examples with unigram (how often are they in the text) distribution to 3/4 
+        
+    - emeddings are compositional 
+        -  (emb(king) - emb(man)) + emb(woman) = emb(queen)
+
+    - simple architecture -> enables us to process loads of words 
+        - some words can be very infrequent 
+        - being able to process a lot of data is way more important than being powerful 
+
+- it's useful to have both precomputed embedding and learned task specific embedding 
+
+Basic NPL processing
+- start with word embeddings 
+
+- using only left context might not be enough -> we usually have whole sentences ready
+- bidirectional RNN -> two RNNs with opposite directions 
+    - concatenation or addition of the resulting states / outputs
+
+
+Word mbeddings for unkwnon words 
+- recurrent character level embeddings using bidirRNNs on words' characters 
+- convolutional character level WE: several fixed kernels, then global max/avg pooling to get fixed repre 
+
+- works great for unknown words that are similar to ones in training set 
+- both can actually capture certain sementic features of the words 
+
+- character n-grams: 
+    - word embedding is a sum of the word embeddings plus embeddings of its character n-grams
+    - ngram embeddings can be stored in hashtable / oter means -> fast 
+
 
 # 9:
+Highway networks:
+- key ingredient to train deep networks is to have mechanism to copy data
+- pre-resnet, for dense / convo networks 
+
+- highway networks: add residual connections with gating 
+- with highway connections, the network still works even if we switch some layers off 
+
+- without residual connections the network has no reason to keep certain features in their original dimensions 
+- the residual connections force the network to keep the semantic space similar (so that the addition works fine)
+
+- multilayer RNNs need residual connections (anything deeper than 2)
+    - good RNNs have "residual connection" among the time axis but not among the depth axis 
+
+Multitask learning: 
+- reusing a shared parts of networks for multiple tasks 
+- shared embeddings, shared encoders, ...
+
+- traditional stacking: higher level task's backprop. goes only trough the task's specific part
+    - using strong outputs from lower levels as inputs for higher
+    - errors accumulate
+- stack-propagation: always backrop all the way down 
+    - use hidden states of lower levels as inputs -> probability distributions
+    - enables us to backrop all the way down 
+
+    - sort of "additional classifiers" along the way
+    - the additional classifiers "normalize" the network 
+    -> prefers models with hidden states that can do some similar tasks as well 
+
+Regularizing RNNs
+- dropout doesn't work on hidden state path -> exponentially small prop that certain dimension survives
+- dropout works well for inputs and outputs
+
+- variational dropout: the same mask for all timesteps -> solves the expontantially small prop problem 
+- recurrent dropout: dropout only candidate states (only the state update)
+- zoneout: randomly preserve original state instead of update -> probabilistic residual connection 
+
+- batchnorm: doesn't work very well -> exteremely sensitive to proper initialization 
+    - only a small range of game (default variance) doesn't lead to exploding / vanishing gradient
+- layer norm: much more stable 
+
+Another look at embeddings:
+- instead of having A_oh * MatrixInGRU -> factorize into smaller A_oh * Smaller * MatrixInGRU 
+- GRU matrixes can be substentially smaller, only one large, the subsequential one are smaller 
+
+Sequence to sequence architecture 
+
+- Encoder&decoder
+    - encoder: creates fixed sized representation of the sentence: bidir RNN -> state
+    - decoder: creates sequnce seeded with the sentence repre: previous state & last predicted -> element & new state
+
+    - in training the decoder is fed with actual golden characters instead of what was last predicted 
+    - softmax over dictionary on the decoder's output / reverse embeddings lookup 
+
+    - fixed sized vocabulary -> problem 
+    - whole sequence has to be pushed trough the fixed sized representation regardless of its length
+    - softmax / reverse embedding is exteremely costly
+
+- attention mechanism
+    - translate word to the output via looking at some word in the input and it's arbitrary context 
+    - we don't have data for the attention part : we don't know what words & context to use for translation 
+
+    - can't choose discrete words -> not differentiable, must produce distribution of words to attend to 
+    - bidir encoder, concat/sum of their outputs + previous decoder state are used to produce the attention distr.
+        - eij = v * tanh(Vhj, Wsi-1 + b) // si-1: decoder state, j: ecnoder's output for jth input word
+        - attention distrib is softmax_j(e_ij)
+
+    - the embedded inputs are weight-summed according to the attention distribution and fed as input for decoder
+    - decoder is basically the same  
+
+    - attention can actually be used exclusively withou RNNs 
+
+Translation for subword units 
+- BPE: 
+    - greedy algs
+
+    - start with individual letter 
+    - always join two units that are most freq together
+    - stop when dict. small enough 
+
+- wordpieces
+    - similar heuristic for joining neighboring symbols 
+    - maximizes likelyhood under unigram language model 
+
+- usually generate one combined subword units -> unknown words get segmented the same way
+- enables us to translate worlds we haven't seen yet if they are composed of parts we have seen 
 
 # 10: 
+Deep generative models: 
+- generate new imagies from training data distribution using "latent vector" describing features within the dist.
 
+- AutoEncoder: 
+    - input, bottleneck with smaller dimensionaility, output
+    - tries learn do identity trough the bottleneck layer 
+    - bottleneck can be used as a latent vector 
+
+    - second part of the autoencoder can generate new imagies using random latent vectors 
+    - works well only for some good latent vectors that appeared during training, not for all from R^d
+
+    - we need to train the decoder to work with the whole latent vector space
+    -  not only with a few sparse points that correspond to training data inputs 
+
+- VariationalEncoder 
+    - encoder doesn't predict just one z but a (normal) distribution of zs -> a shpere of possible zs 
+    - want the distributions for all training data cover whole latent vector space 
+        - the encoder learns how to work "well" for all possible latent vectors, not just few points 
+    
+    - training: the decoder samples the z-distribution, picks one sample -> uses it to create image 
+    - generation / inference: generate image using one latent vector 
+
+    - loss: 
+        - reconstruction loss: recunstruct the image as best as possible 
+        - latent loss: the distributions to cover the whole latent vec. space / be invariant on input
+            - KL between the distrib. of all sampled l.v. within a batch and N(0, 1) (space I want to cover) 
+
+        - L(O, S, x) = P0(x|z) = E_QS(z|x)[log(PO(x,z))] - log(QS(z|x)) // bayes, 
+                    = logP0(x) - DKL(Qfi(z|x)||Po(z)) <= P0(x)
+                    = E_QS(z|x)[log(PO(x|z))] - DKL(Qfi(z|x)||Po(z)) // reconstruction, latent 
+            - P(x|z) represents the distribution, the generated picture 
+        
+        - both losses needs to be in balance 
+            - too high latent loss weight: all distrs. are N(0, 1) -> model predicts "average of all pictures"
+            - too high reconstruction: collapses to AutoEncoder situation    
+
+        - TODO: Go back to 23 & math behind loss
+
+
+    - to enable the gradient flow trough sampling z: sample N(0, 1), compute mean + var * sampledVal
+        - gradients can flow to both var and mean, i.e. differentiable w.r.t mean and var 
+        - effective sampled distribution is N(mean, var)
+
+    - enables interpolating between latent vectors -> produces "feature-wise" interpolated outputs 
+    - training updates both encoder and decoder using one gradient descent 
+
+    - generated pictures tend to be blury -> hard to fix 
+
+- Generative Adversial Network:
+    - generator: takes latient vector z generates data x
+    - discriminator: takes either data from golden set or from generator, guesses where it comes from 
+
+    - play a game against each other
+        - generator tries to produce output that is indistinguishable from real data
+        - discriminator tries to find errors in the generated data that distinguish them from real data 
+
+    - training: the gradient for generator can flow trough distriminator first 
+        - updates correpond exacatly to changes "so that it's more likely to be flagged as real data" 
+    
+    - two sets of trainings:
+        - generator: loss: cross-entropy for "it's golden data", not updating disriminator, just flow grad. trough it
+        - discriminator: cross-entropy for correct golden/generated output from distriminator, updates only discr.
+
+    - isn't guaranteed to converge, can diverge very quickly 
+        - hard to detect
+        - the network can still look at if it was learning 
+
+    - it's good to have have a batch norm in the discriminator 
+        - computes whether the distribution of data across current batch is similar to gold data
+        - essentially provides information about whole distribution instead of just one sample 
+        - forces the generator to not to produce e.g. for mnist just 1 but be close to original distrib.
+
+        - prevents model collapse 
+
+    - instead of using hand-written loss we use distriminator that produces loss based on REINFORCE signals 
+        
+    - both generator and discriminator can use convolutions 
+        - generaror actually needs inverse of convolutions -> upscale the image from smaller representation 
+        - https://github.com/vdumoulin/conv_arithmetic
+        - many subpixels created using 0-padded input 
+
+    - even GAN embeds structural information to the latent vector 
+        - despite it not being done as explicetely as in VAE
+        - can do embedding arithmetics womanWithGlasses-woman + man -> photo of man with glasses 
+
+
+    - combat divergence: consider historical versions of distriminators & generators 
+        - remember old discriminators, sometimes judge using old ones 
+        - have regularization that prevents updates that would change disrcim. parameters too much from histor. 
+        - label smoothing: if discriminator overfits -> saturated nonlinearities -> problem, smoothing helps 
+
+    - minibatch distrimination
+        - the discriminator gets explicit information about how each image is distant from all other images on input
+        - "explicit" information about current input distribution 
+
+        - compute distances using semi-shallow NN  
+
+    - wasserstein GAN:
+        - uses better metric for minimazing generated and original distributions difference 
+        
+        - instead of generating probability the discriminator produces num: higher -> more likely generated 
+        - discriminator (critique) must be lipschitz function <> weight clipping 
+            - crude, but works 
+        
+        - gradients are more linear in the whole space -> learns way better 
+        - value of their loss supposedly correlates to quality of the generated images 
+
+- Hard to evaluate: 
+    - looking at data and saying what outputs are better 
+    - idea (VAE): better models could have better representation for the latent space 
+        - instead of generating output, generate latent vector, train classifier on it 
+        - the better the generative model, the better the classifier will be 
+        
 # 11:
 
 # 12:
