@@ -856,8 +856,121 @@ Deep generative models:
         - the better the generative model, the better the classifier will be 
         
 # 11:
+Sequence prediction: 
+- predicting the best output at each timestep doesn't have to produce the most probable seq
+    - markov assumption: output is cond. only by its direct predecessor 
+    - it helps to feed previous descrete ouptut as input 
+
+- with softmax:
+    - we don't get the probablity of the whole sequence 
+    - softmax normalizes the probablity after each character to 1 
+    
+- seq2seq beam search decoding: 
+    - don't consider just one output -> remember k-best solutions 
+    - find the best next solution for each of them 
+
+    - we have k best prefixes, 
+    - try to enlarge each of them with k different new outputs
+    - choose the k most probable ones
+
+- conditional random fields: compute unnormalized sequences
+    - probability of the whole sequence: factorizing by subqlicks 
+    - exponential number of them -> solve with help of markov assumption 
+
+    - compute unnormalized probabilities of sequences -> softmax over them in the end
+
+    - s(X, y, 0, A) = SUM_i,N( Ayi-1,yi  + F0(yi|X) ) 
+        - F0(yi|X): output of the decoder, that's the only thing we've used so far
+        - Ayi-1,yi: transition probabilies from previous ones 
+
+    - p(y|X) = softmax_z(s(X, z)) // zs are all possible sequences of labels
+    - log p(y|X) = s(X, y) - logadd_z(s(X, z))
+
+    - the logadd across all zs is the problem 
+        - compute s(..) of each prefix, compute the score of next prefix via them 
+        - dynamic programming 
+
+        - at(k) = logadd_z(S, z) = f0(yt = k|X1:t) + logadd_i(at-1(i) + Ai,k)
+            - probability of all sentecens with t elements ending with k
+
+    - the transition probabilities can be learned from gold data 
+    - sort-of beam search with k = number of tags with markov assumption 
+
+- slot filling: 
+    - tagging subsequences e.g. this part of sentence is name of restaurant
+    - subsequences might be longer than just one word 
+
+    - for each slot: beginning of slot, inside a slot, ...
+
+- connectionist temporal classification 
+    - seq2seq where one sequence has way higher frequency 
+    - e.g. soundwaves to phonemes 
+
+    - higher freq -> lower freq 
+    - new output class: blank, classify into extended labeling 
+        - blank is separator: aaa-a--bb-a -> aaba 
+
+    - we don't know the allignement between gold data end produced extended labelings
+    - one final (gold) labeling has many corresponding extended labeling 
+
+    - compute probability of all extended labelings that correspond to certain gold labels
+    - dynamic programming: extending those that end with blanks or not 
+
+    - for decoding we must use greedy decoding or beam search 
+        - can't argmax over all labelings 
+        - each corresponds to a lot of extended labelings
+
+        - beam search over final labeling not over extended labeling
+
+Reinforcement learning: 
+- S: states, A: actions, P(St+1 = s', Rt+1 = r | St = s, At = a)
+    - probability that action a will lead from state s to s' with reward r 
+    - d € [0, 1] is discount factor 
+
+- Qt(a) estimated value of action a at time t:
+    - sum of rewards when action a is taken / number of times a was taken 
+    - ideally converges so that it's not [t]ime dependent 
+
+- reward: sum / exponentialy decayed sum of all possible future rewards 
+
+- action selection 
+    - greedy: at(a) = argmax_a(Qt(a)), exploit, doesn't explore 
+    - e-greedy: best or random with 1-e probability
+
+- Qn+1 = 1/n SUM1_n+1 Ri = Qn + 1/n (Rn+1 - Qn)
+    - Qn+1 = Qn + a(Rn+1 - Qn) : better for dynamic environment 
+    - see artificial inteligence 2 notes 
+    - slowly converging to stable true information using incremental updates 
+
+- Gt: sum of all rewards from current time onward -> all rewards curr. action leads to
+
+- policies: polici pi(a|s) computes distribution of actions to take given state s 
+- vpi(s) = Epi[Gt | St = s]
+
+- qpi(s, a) = Epi(Gt | St = s, At = a)
+            = Epi(Rt+1 + d*vpi(St+1) | St = s, At = a)) 
+    - expected reward being in state s and choosing action a 
+
+- optimal policy: pi(s) = argmax_a q(s, a)
 
 # 12:
+Monte Carlo Control 
+
+Temporal difference methods 
+
+Q-learning
+
+Sarsa 
+
+Q-learning vs Monte Carlo
+
+Deep Q networks
+
+REINFORCE alg
+
+- baseline 
+
+Actor critic 
 
 # 13: 
 
