@@ -1,0 +1,2 @@
+- 2018: Slidy k Logickému programování (přednáší Jan Hric) od Petra Šťěpánka: http://ktiml.mff.cuni.cz/~hric/vyuka.htm#lambda
+- Ruzne dalsi zdroje, které různé části předmětu vysvětlují víc podrobně
