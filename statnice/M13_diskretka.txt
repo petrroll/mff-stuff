@@ -51,10 +51,11 @@ Uspořádané množiny
 1. Definujte vlastnosti, které musí mít binární relace, aby byla částečným uspořádáním.
        ČUM - tranzitivita
        Ostré - silná antisymetrie - Va,b !(a>b & b>a)
-       NeOstré - slabá antisymetrie - V a,b (a>b & b>a => a=b), (reflexivita?)
+       NeOstré - slabá antisymetrie - V a,b (a>b & b>a => a=b), reflexivita 
+       viz https://mks.mff.cuni.cz/library/CastecnausporadaniMS/CastecnausporadaniMS.pdf => ČUM je reflexivní, slabě antisymetrická a trazitivní relace.
 
 2. Rozhodněte, zda relace R na množině celých čísel definovaná R = {(x, y) ∈ Z 2 : |x| ≤ |y|} je částečným uspořádáním.
-       -1R1 aj 1R-1 tzn je porušena podmínka antisymetrií
+       -1R1 aj 1R-1 tzn je porušena podmínka (silné) antisymetrií, slabá antisymetrie je splněná, je to ČUM
 
 3. V závislosti na n ∈ N určete velikost maximálního řetězce v částečném uspořádání množiny {1, 2, . . . , n} pomocí relace dělitelnosti.
        je to log2 n
@@ -70,7 +71,7 @@ Určete délku nejdelšího řetězce i největšího antiřetězce včetně dů
        řetězcce jsou tvořeny cestičkami +1 v nějaké ose. Tj nejdelší manhatanská vzdálenost v lichoběžníku odpovídá nejdelšímu řetězci
        Antiřetězce jsou neporovnatelné prvky - ergo prvky s absolutní hodnotou
               ty najdeme an úseškách pod 45°
-3. Zformulujte větu o řetězcích a antiřetězcích (větu o dlouhém a širokém) a uveďte hlavní ideu důkazu. Ilustrujte ji načástečném uspořádání z předchozí úlohy.
+3. Zformulujte větu o řetězcích a antiřetězcích (větu o dlouhém a širokém) a uveďte hlavní ideu důkazu. Ilustrujte ji na částečném uspořádání z předchozí úlohy.
        alph(A)omeg(A) > |A|
        Indukcí podle délky jednoho z těch dvou [anti či řetězec]
               alph(A)== 1 ~ poté |A| == omeg(A)
