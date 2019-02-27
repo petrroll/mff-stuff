@@ -1,0 +1,72 @@
+Immitation force    | simplification force  | model params  | training alg  | hyperparams   | decision-making rule  | Pros  | Cons  | Extension
+
+Decision Trees
+- Search for monochrom blcoks in featurespace
+- Stopping criteria (min inf.gain, max depth, min number of instances)
+- Shape of the tree & node tables (edge labels)
+- Recursive dividing with maximization of information gain (topdown induction of decision trees by minimazing avg. Entropy)
+- Stopping criteria, ...
+- Follow the path to leaf node, choose the dominating class 
+- Fast inference, interpretable, 
+- Often not interpretable (sometimes the path doesn't make sense)
+- Random forrests (each tree on slightly different data, random pruning, ...) : prevents overfitting
+
+Naive Bayes
+- P(xi|y)
+- Naivity + prior distribution
+- p(yi), p(yi | xj)
+- max likelyhood
+- smoother
+- y = argmax(P(y)*TTP(xi|y))
+- simple & Fast
+- too naive for real data
+- Bayes networks 
+
+kNN
+- assumes locality dependance (look at nearest datapoints)
+- simple distance metric (invariant to rotation, ...)
+- training data
+- nothing/kd-tree
+- k: number of neighbours (the smaller the higher danger of overfitting), distance metric
+- most frequent klass among neighbours
+- accomodates non-uniform density of data (detailed in some parts of space, rough in others), inefficient prediction (mitigated by precomputing, ...)
+- sensitive to scale <> needs normalization
+- weight neighbours by distance
+
+Naive Bayes
+- Naive: assumes conditional independce of features given target variable
+- Bayes: it's Bayes
+- P(y | x) = P(x & y) / P(x) =(naive)= TT P(xi , y) / P(x) =P(x) is constant= TT P(xi | y) * P(y)
+    - P(y) is prior
+    - Multiplication is problematic: zeros -> smoothing
+    - Multiplicatoin: under&overflows -> sum of logarithms
+
+    - continuous data 
+        -> binning domain ~ divide to intervals
+        -> assume normal distribution (don't get probabilities but something proportional) P(xi | y), xi how far is it from distribution for xi given y
+
+    
+
+Perceptron
+- one layer NN | essentially computes similarity to a vector (weights)
+- training is incremental, update only on errors
+- hyperplane def. boundary
+- w + w0
+- if wrong: w = w + alpha * error * x
+- initialization w, and learning rate
+- if x * w > w0 : y = 1 else y = -1
+- converges if line separated
+- can stop too early
+- DL, other linear models
+
+Rooted Trees
+- Data = {(x, y)}
+    - y € {Class1, Class2, ...}
+    - x = (x1, x2, ...); xi € numerical|categorical
+        - categorical can be one-hot encoded (if not ordered)
+- Each node decides on one/more variables & splits the training set into a number of children sets
+    - Recursively split further and further
+    - Select decision variable e.g. to maximize decrease in entropy of the target variable (we want children sets to be homogenous w.r.t target variable)
+        - weight individual entropies with the size of child-set
+        -> information gain
+
