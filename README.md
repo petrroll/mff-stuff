@@ -63,6 +63,7 @@ U každého zdroje proto bude v závorce rok, ke kterému se to váže (vždycky
 - Slidy a výpisky k Evoluční Algoritmy I (2017)
 - Slidy a výpisky k Evoluční Algoritmy II. (2017)
 - Slidy a výpisky k Multiagentní systémy (2017)
+- Výpisky k deep learningu (2017)
 
 
 
