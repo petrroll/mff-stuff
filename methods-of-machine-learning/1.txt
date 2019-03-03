@@ -1,0 +1,18 @@
+ML taxonomy: 
+
+Supervised
+  classification
+    parametric
+      probabilistic
+        discrim: P(y|x)
+        generative: P(x, y)
+      non-probabilistic
+        DT, RF, SVM, ...
+    non-parametric
+      kNN
+  regression
+    lin. regression
+Unsupervised
+  clustering, MoG, PCA, EM
+Reinforcement
+
