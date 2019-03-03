@@ -1,0 +1,1 @@
+- Poznámky k předmětu Methods of machine learning (2019)

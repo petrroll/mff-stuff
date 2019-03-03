@@ -1,1 +1,1 @@
-http://www.ksi.mff.cuni.cz/lectures/NPRG042/html/index.html#@tab_lectures
+- Opoznámkované slidy k předmětu Programming in parallel environment http://www.ksi.mff.cuni.cz/lectures/NPRG042/html/index.html#@tab_lectures (2019)

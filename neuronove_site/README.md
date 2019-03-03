@@ -1,2 +1,2 @@
-- Jen podtrhane veci, co mi přišly zajímavé z 30-minutového průletu skrze slidy (https://ksvi.mff.cuni.cz/~mraz/nn/)
+- Jen podtrhane veci, co mi přišly zajímavé z 30-minutového průletu skrze slidy (https://ksvi.mff.cuni.cz/~mraz/nn/) 2018
 - Nejde o poznámky ke zkoušce

@@ -1,1 +1,1 @@
-- http://ktiml.mff.cuni.cz/~marta/SU.html (2009)
+- Opoznámkované slidy k Machine Learningu http://ktiml.mff.cuni.cz/~marta/SU.html (2018)

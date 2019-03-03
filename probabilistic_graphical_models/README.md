@@ -1,1 +1,1 @@
-https://dl1.cuni.cz/course/view.php?id=4780
+- Opoznámkované slidy k předmětu Pravděpodobnostní grafické modely (2018) https://dl1.cuni.cz/course/view.php?id=4780 a http://ktiml.mff.cuni.cz/~marta/pgm.html

@@ -1,0 +1,1 @@
+- Výpisky k Deep learningu (2018) z nahrávek: https://slideslive.com/mffuk/ufal-deep-learning

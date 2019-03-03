@@ -1,2 +1,6 @@
-- 2018: Slidy k Logickému programování (přednáší Jan Hric) od Petra Šťěpánka: http://ktiml.mff.cuni.cz/~hric/vyuka.htm#lambda
+- 2018: Slidy k Logickému programování (přednáší Jan Hric) od Petra Šťěpánka (2018): http://ktiml.mff.cuni.cz/~hric/vyuka.htm#lambda
+- Důkaz Church-rosser: https://www.ktiml.mff.cuni.cz/KTIML-13-version1-stepanekpetr_church_rosser_the.pdf
 - Ruzne dalsi zdroje, které různé části předmětu vysvětlují víc podrobně
+    - https://arxiv.org/abs/1503.09060
+    - http://www.cse.chalmers.se/research/group/logic/TypesSS05/Extra/geuvers.pdf
+    - 

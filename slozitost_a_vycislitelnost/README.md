@@ -1,3 +1,4 @@
 - 2017: Opoznámkované slajdy k Vyčíslitelnosti a složitosti Petra Kučery (http://ktiml.mff.cuni.cz/~kucerap/NTIN090/NTIN090-slajdy.pdf)
     - Důkazy převodů & optimality aproximačních schémat jsou velmi dobře popsané u Martina Mareše ADS II.
     - Opoznámkované slidy od Anety Šťastné
+- 2017: Důkaz rekurzivnosti turingově vypočitatelných funkcí (http://www.cogsci.rpi.edu/~heuveb/teaching/Logic/CompLogic/Web/Presentations/Turing-Computable%20Functions%20are%20Recursive.pdf)

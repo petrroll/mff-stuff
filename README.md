@@ -18,6 +18,7 @@ U každého zdroje proto bude v závorce rok, ke kterému se to váže (vždycky
 - Podtrhaná & občas opoznámkovaná skripta z Lineární algebry 1&2 (2014)
 - Cheatsheet k zkoušce z Linuxu (2014)
 - Vypracované hlavičky otázek k Sítím (2014, 2015)
+- Záloha slidů z ADS 1 (2014)
 
 ##### Druhácké předměty:
 - Podtrhané & občas opoznámkované slidy z Logiky (2015)
@@ -34,7 +35,7 @@ U každého zdroje proto bude v závorce rok, ke kterému se to váže (vždycky
 - Podtrhané & občas opoznámkovaná stripta z Algebry (2015)
   - Lidsky přepsané důkazy k Algebře (2015)
   - Vyřešené otázky z Algebry (2015)
-- Mindmapa k architektuře počítačů (2014)
+- Mindmapa k architektuře počítačů (2014), záloha slidů (2018)
 - Nekompletní poznámky k Metodice programovacích jazyků (2014)
 - Nekompletní poznámkovaná skripta Introduction to color science (2016)
   - Poznámky z hodin od Anet Šťastné (2016)
@@ -43,6 +44,9 @@ U každého zdroje proto bude v závorce rok, ke kterému se to váže (vždycky
 - Peterkovy Síťě (2016) + Nějaké řešené otázky (pdf + link na gdocs)
 - Opoznámkovaný úvod do strojového učení (2016)
 - Opoznámkované prezentace a shrnutí od studentů k Úvod do počítačové lingvistiky (2016)
+- Opoznámkované slidy k předmětu Programming in parallel environment (2018)
+- Řešené otázky z Administrace linuxu (2017)
+- Slidy & odkazy na otázky k Počítačovým sítím (2017)
 
 ##### Státnice:
 - Ve složce státnice řešené otázky z minulých státnich (pre-2017) z jednotlivých okruhů Obecné informatiky
@@ -67,9 +71,11 @@ U každého zdroje proto bude v závorce rok, ke kterému se to váže (vždycky
 
 ##### Další
 - Opoznámkované slidy & další k Funkcionálnímu programování a lambda calculu (2018)
-
-
-
+- Opoznámkované slidy k Informatice a kognitivním vědám II (2018).
+- Opoznámkované slidy k Machine learningu (2018)
+- Poznámky z předmětu Methods of machine learning (2018)
+- Opoznámkované slidy k předmětu Pravděpodobnostní grafické modely (2018)
+- Podtrhane zajímavě věci (ne ke zkoušce) z předmětu Neuronové sítě (2018)
 
 #### Co tu není, protože to žije jinde?
 
