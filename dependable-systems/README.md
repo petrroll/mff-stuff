@@ -1,0 +1,1 @@
+- Opoznámkované slidy k předmětu dependable systems (2019)
