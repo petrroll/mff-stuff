@@ -1,1 +1,2 @@
-- Opoznámkované slidy k předmětu dependable systems (2019)
+- Opoznámkované slidy k předmětu [dependable systems](https://d3s.mff.cuni.cz/legacy/teaching/software_engineering_dependable_systems/
+) (2019)
