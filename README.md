@@ -23,6 +23,7 @@ U každého zdroje proto bude v závorce rok, ke kterému se to váže (vždycky
 ##### Druhácké předměty:
 - Podtrhané & občas opoznámkované slidy z Logiky (2015)
 - Naprosto nekompletní poznámky k Cpp (2015)
+- Zkouška z Kombinatoriky a grafů I. (2014)
 - Podtrhaná & občas opoznámkovaná skripta z ADS 2 (2015)
 - Podtrhaná & občas opoznámkovaná skripta z Autůmatů a gramatik (2015)
 - Podtrhaná & občas opoznámkovaná skripta z Databázových systémů + řešené písemky od Šťěpána Hojdara (2015) 
@@ -35,7 +36,7 @@ U každého zdroje proto bude v závorce rok, ke kterému se to váže (vždycky
 - Podtrhané & občas opoznámkovaná stripta z Algebry (2015)
   - Lidsky přepsané důkazy k Algebře (2015)
   - Vyřešené otázky z Algebry (2015)
-- Mindmapa k architektuře počítačů (2014), záloha slidů (2018)
+- Mindmapa k architektuře počítačů (2014), záloha slidů (2018), řešená písemka (2014)
 - Nekompletní poznámky k Metodice programovacích jazyků (2014)
 - Nekompletní poznámkovaná skripta Introduction to color science (2016)
   - Poznámky z hodin od Anet Šťastné (2016)
