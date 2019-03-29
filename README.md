@@ -77,6 +77,7 @@ U každého zdroje proto bude v závorce rok, ke kterému se to váže (vždycky
 - Poznámky z předmětu Methods of machine learning (2018)
 - Opoznámkované slidy k předmětu Pravděpodobnostní grafické modely (2018)
 - Podtrhane zajímavě věci (ne ke zkoušce) z předmětu Neuronové sítě (2018)
+- Slidy k Machine learning and reasoning (2018)
 
 #### Co tu není, protože to žije jinde?
 
