@@ -74,7 +74,7 @@ U každého zdroje proto bude v závorce rok, ke kterému se to váže (vždycky
 - Opoznámkované slidy & další k Funkcionálnímu programování a lambda calculu (2018)
 - Opoznámkované slidy k Informatice a kognitivním vědám II (2018).
 - Opoznámkované slidy k Machine learningu (2018)
-- Poznámky z předmětu Methods of machine learning (2018)
+- Poznámky + řešené zkouškové příklady z předmětu Methods of machine learning (2018)
 - Opoznámkované slidy k předmětu Pravděpodobnostní grafické modely (2018)
 - Podtrhane zajímavě věci (ne ke zkoušce) z předmětu Neuronové sítě (2018)
 - Slidy k Machine learning and reasoning (2018)
