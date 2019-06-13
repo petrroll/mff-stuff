@@ -114,9 +114,11 @@
 	-> lim_x->a f(g(x)) = B
 	3. Rozhodněte, zda existuje následující limita. Pokud ano, spočtěte ji.
 		lim_{x->0} (cos x)^{sin(x)/x^3}
-		- e^(log(cos x)*sin(x)/x^3)
-		- v exponentu l'Hospital
-		- Vede na hrůzu: NEVIM
+		- e^(log(cos x)*sin(x)/x^3) = e^((sin(x)/x) * (log(cos(x))/x^2)) nyní
+            (sin(x)/x) -> 1. log(cos(x))/x^2 rozsirime pomoci (cos(x)-1)/(cos(x)-1)
+            a pouzijeme vzorecek log(y)/(y-1) pro y -> 1 jde k jedné. Nyni zbyva,
+            e^((cos(x)-1))/x^2, kde exponent pomoci l'Hopitala zlimitime k -1/2.
+            Vysledna limita je tedy e^(-1/2).
 
 ===============
 = podzim 2015 =
