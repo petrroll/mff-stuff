@@ -8,3 +8,4 @@
     - Rozcestník na gdocs (nejen) pro softwarové inženýrství: http://forum.matfyz.info/viewtopic.php?f=419&t=11390&sid=658aee9b680bbc7d0c871063a51c690e
 
 - Otázky vypsané z fora od roku \[2017+, 2020\], zatříděné moje okruhy, zbytek v unsorted.txt
+    - ?Odkdy platí současná akreditace a jak moc víc zpátky je safe jít? 
