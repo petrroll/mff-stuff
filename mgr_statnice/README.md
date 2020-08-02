@@ -1,0 +1,3 @@
+- Zdroje okruhů: 
+    - https://www.mff.cuni.cz/data/web/obsah-puvodni/fakulta/tiskoviny/or_k1819.pdf
+    - https://www.mff.cuni.cz/cs/studenti/bc-a-mgr-studium/studijni-plany/2018-2019/studijni-program-informatika/b-navazujici-magisterske-studium/zahajeni-studia-v-roce-2015-nebo-pozdeji/umela-inteligence

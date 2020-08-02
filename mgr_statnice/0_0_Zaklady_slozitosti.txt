@@ -1,0 +1,10 @@
+- Základy složitosti a vyčíslitelnosti (NTIN090)
+    - Výpočetní modely (Turingovy stroje, RAM).
+    - Rozhodnutelné a částečně rozhodnutelné problémy
+    - Algoritmicky nerozhodnutelné problémy (halting problem)
+    - Nedeterministický výpočetní model
+    - Základní třídy složitosti a jejich vztahy
+    - Věty o hierarchii
+    - Úplné problémy pro třídu NP, Cook-Levinova věta
+    - Pseudopolynomiální algoritmy, silná NP-úplnost
+    - Aproximační algoritmy a schémata

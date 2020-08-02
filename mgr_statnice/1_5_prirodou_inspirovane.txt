@@ -1,0 +1,9 @@
+- Evoluční algoritmy I (NAIL025)
+    - Genetické algoritmy, genetické a evoluční programování
+    - Teorie schémat, pravděpodobnostní modely jednoduchého genetického algoritmu
+    - Evoluční strategie, diferenciální evoluce, koevoluce, otevřená evoluce
+- Evoluční algoritmy II	(NAIL086)
+    - Rojové optimalizační algoritmy
+    - Memetické algoritmy, hill climbing, simulované žíhání
+- Evoluční robotika	(NAIL065)
+    - Aplikace evolučních algoritmů (evoluce expertních systému, neuroevoluce, řešení kombinatorických úloh, vícekriteriální optimalizace)

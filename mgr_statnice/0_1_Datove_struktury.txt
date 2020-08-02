@@ -1,0 +1,6 @@
+- Datové struktury I (NTIN066)
+    - Vyhledávací stromy ((a,b)-stromy, Splay stromy)
+    - Haldy (regulární, binomiální).
+    - Hašování, řešení kolizí, univerzální hašování, výběr hašovací funkce
+    - Analýza nejhoršího, amortizovaného a očekávaného chování datových struktur
+    - Chování a analýza datových struktur na systémech s paměťovou hierarchií.
