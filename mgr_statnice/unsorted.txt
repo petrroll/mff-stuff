@@ -1,0 +1,136 @@
+Neuronky [Pilat]
+Kohonenky. Pisal som o motivacii, nejaky nacrt, ako to vyzera, klobucikovu funkciu (tu sa ma pytal, ako ju vytvorit - dozvedel som sa, ze rozdielom Gausov) a cca nacrt dokazu. Este som mu nanutil zaklad Ojovho alg, ale to ho uz moc nezaujmalo.
+
+
+Strojovko [Pilat]
+Povedal, ze by to chcelo nejaku zabavu, tak mi dal zpetnovazobne. Este potom dodal, ze dufa, ze viem :) Spisal som tam cca to, co je v Bartakovych slidoch. Islo mu hlavne o to, aby som popisal vzorceky updatov a myslienku a potom sa ma pytal, ci tomu rozumiem.
+
+
+3. [Kopecky] Distribuované systémy (VS) - Komunikace a koordinace v distribuovanom prostredi.
+Tu som si vobec nebol isty co vlastne ta tema pokryva... Ku komunikacii som napisal co je to distribuovany system (zo slajdov PDS), ze pocitace si posielaju spravy a popisal som ako funguje RPC. SKusajuci sa pytal co je to ta sprava, povedal som ze je to informacia ktoru jeden pocitac posiela druhemu. To sa mu nepacilo, tak som sa opravil ze si to posielaju procesy. Pytal sa ci je nejaky rozdiel medzi tym ked komunikuju 2 procesy na tom istom pocitaci a na rozdielnych pocitacoch.
+
+Ku koordinacii som popisal co je to koordinator/leader a uviedol som bully algoritmus a jeden z kruhovych algoritmov. Skusajuci sa pytal co je to vlastne ta koordinacia, dostali sme sa k tomu ze je to dobre na kriticke sekcie, tak som popisal centralizovane riesenie (kazdy proces si od koordinatora pyta povolenie na vstup) ako najjednoduchsie riesenie a maekawa algoritmus.
+
+4. Programování paralelních aplikací - paralelní řešení nehomogenních úloh [Yaghob]
+Yaghob mi uz cez pocas zadavania povedal, ze je to co chce je load balancing. Popisal som task paralelizmus, ze potom potrebujeme scheduling, task stealing. Ku task stealingu sa pytal na problem toho ked vela threadov chce kradnut, ze to "kradnutie" zozerie viac vykonu ako samotna praca - thready budu hladat co by ukradli iba obcas. Pytal sa aj na to ako sa riesi ked mame nejake tasky, ale ich pocet nie je delitelny poctom threadov takze na konci by niektore thready nic nerobili - na konci mozme zmensit velkost tasku.
+
+5. Systémové aspekty počítačů (VS) - Hierarchie paměti. [Krulis]
+Nakreslil som architekturu moderneho pc, registre, cache, ram, cache associativity. Padli otazky co su to tie registre, a ako sa lisia od cachce, nespomenul som cache line. Potom sa pytal ci ta RAM ma tiez nejaku strukturu, spomenul som NUMA, rec bola aj o cache coherency - MESI protokol.
+
+Celkovo za 2, ciastkove znamky nepoznam.
+kolko
+ 
+
+3. Analýza a architektury software - UML a jeho vyuzitie pri analyze a architekture SW [Klimek]
+Blabotanie o UML. V akych castiach vyvoja SW sa pouziva ako (napr. use case diagramy pri analyze, class diagramy pri architekture...). Trochu o do mna chceli vediet MDD.
+
+4. Rozšířené programování - Traits & mixins [Hnetinka]
+Co su to? Na co su dobre? V akych jazykoch su? V akych nie su? Ked nie su, ako by sa dali nahradit?
+
+5. Softwarové technologie - Sprava pamate [Hnetinka]
+Opisal som to od vrchu. Zacal som virtualnou pamatou procesu, cez stranky az po strankovacie tabulky ku fyzickej pamati. Spomenul som TLB, cache procesoru.
+AdamS
+ 
+
+Systemove aspekty pocitacov [Yaghob] - Real-time planovanie
+* definicie, prehlad algoritmov pre aperiodicke/periodicke tasky
+* doplnujuce otazky k rozdeleniu RT systemov (hard-RT, firm-RT, soft-RT...)
+
+Paralelne a distribuovane systemy [Zavoral] - Konsenzus v distribuovanych systemoch
+* co to je, priklady problemov (o 2 armadach, o byzantskych generaloch)
+* jeden protokol popisat detailnejsie (popisoval som PAXOS)
+
+Formalne metody [Parizek] - Abstrakcie, CEGAR
+* co to je, co to riesi, priklady abstrakcii
+* popisat CEGAR loop (initial abstraction, model checking, counter-example analysis, abstraction refinement)
+
+
+Strojove uceni[Vomlelova] - Reinforcement learning
+* definice ulohy
+* pasivni vs. aktivni agent
+* ADP, TD
+* SARSA, Q-learning
+
+Neuronové sítě[Mrazova] - Učení s učitelem
+* učení perceptronem
+* dukaz konvergence u perceptronu
+* backprop
+* odvozeni vah pro vystupni vrstvu
+* generalizace a regularice
+
+Neuronove siete [Pilat M.] - Spatna propagacia, strategie pre urychlenie ucenia
+Ukazal som ako funguje algoritmus spatnej propagacie aj s odvodenim vzorcov na upravu vah, zo strategii som spomenul vhodne zvolenie vah, uciace konstanty, momentum
+
+Strojove ucenie [Vomlelova M.] - Spatnovazebne ucenie
+Tuto otazku som nevedel... Trochu sme sa snazili najst spravnu odpoved ale viac menej marne.
+
+
+ML (Fink + Mrázová): Aplikace evolučních algoritmů v ML
+Rovnou jsem Finkovi říkal když mi to zadával, jestli není blbý, že mám evu jako zvlášť obor, ale prý to nevadí a otázku mi nechal. Sepsal jsem high level pár použití, jako neuroevoluce (váhy/architektura, NEAT), hyperparametry, architecture search, LCS (michigan/pitt), kombinatorická optimalizace, apod, ale ústní pak bylo spíš jenom taková high level diskuse. Řešily se věci jako fitess, kdy jakou použiju, kdy nastane problém. Nic záludného.
+
+Neuronky (Mrázová + Fink + ostatní občas): Samoorganizace, Kohonenovy mapy, Učení bez učitele
+Tady trochu začala sranda, protože jsem neuronky neudělal, tak jsem znal akorát základy jak Kohonen mapy fungují (ani jsem si nevzpomenul na hierarchické, ale nevadilo), tak jsem popsal jak to funguje, jak se to trénuje, podmínky pro SGD konvergenci, a pak nějaké obecné u unsupervised (PCA, Apriori, clustering). Zkoušení bylo docela detailní, řešilo se hlavně high level jak to funguje, co když tam mám a nemám laterální spoje, co když se mi ta dečka zamotá do sebe (motýl), čemu to vadí, proč to nechceme, apod. Taky docela důraz na dimenze, kde co je jak velký a proč (žádná záludnost, jen věci typu <a,b> musí mít oboje stejně velké apod).
+
+
+Řešení úloh a plánování - Pilát - Prohledávací algoritmy
+Zmínil jsem všechny běžné (DFS, BFS, Iterative deepening, greedy best-first search, A*, IDA*, hill climbing a simulované žíhání). Ptal se mě na příklady heuristik.
+
+
+3. Systémové aspekty počítačů (Pavel Ježek) - Je objektový návrh aplikací vhodný pro high-performance výpočty?
+Ukázal jsem, že procházení pole a procházení spojového seznamu je jiná věc a proč (cache, prefetcher), řekl jsem, že pokud máme pole tříd, tak může být výhodnější reprezentace jako třída polí (tedy vlastně layout v paměti transponujeme, kdo chodil na High-Perf computing od Bednárka, tak ví) a naznačil jsem, že se tam může podařit využít vektorové instrukce.
+
+Zkoušejicí se mě ptal co to je ten prefetcher a co to jsou ty vektorové instrukce, pak mi dal příklad
+
+abstract class Entity { abstract void update(); }
+class Wolf : Entity { ... }
+class Bear : Entity { ... }
+
+a ptal se jestli to je efektivní. Řekl jsem že ne kvůli dispatchi virtuálních funkcí a řekl, že se to dá zlepšit tak, že si první uložíme Vlky a pak medvědy. Zkoušející se pak ptal na nějaké drobnosti a spokojen odešel.
+
+4. Paralelní a distribuované systémy - Kauzalita zpráv (doručování + jak to funguje u překrývajících se skupin; Martin Kruliš)
+Popsal jsem k čemu to je a že se to řeší vektorovýma hodinama, popsal jsem co to jsou logické hodiny a jak se používají ty vektorové. Řekl jsem, že u skupin se to řeší vektorem vektorových hodin (maticové hodiny), ale algoritmus jsem nepopisoval.
+
+Zkoušející se dost vrtal v tom co to jsou ty logické hodiny a proč nejdou použít fyzické, pak chtěl detailně vysvětlit ten algoritmus + jednoduchý příklad (dal jsem to, co je na slidech z přednášky k PDS). Ptal se jak se to řeší u těch skupin, řekl jsem že nevím. Pak se ptal co to jsou Lamportovy hodiny a jak se od vektorových liší (chyták, je to to samé). Pak říkal, že je škoda, že jsem nevěděl ty skupiny, ale jinak OK.
+
+5. Moderní koncepty programování - Aspekty (Petr Hnětynka)
+Popsal jsem co to jsou ty apsekty, proč se to používá a kde se to používá (logování, cache), ukázal takový pseudo-example z AspectJ. Popsal jsem jak je to implementované (instrumetace/weaving)
+
+Se zkoušejícím jsme se více méně bavili o detailech a dalších možnostech použití (transakce u enterprise systémů jsem nevěděl, ale vymyslel).
+
+
+Systémové aspekty počítačů (Bulej)
+synchronizace (obecné povídání, proč, kdy, jak)
+naimplementovat v pseudokódu spin lock
+naimplementovat v pseudokódu producer-consumer
+řeč byla i o bariérách, condition variables a cache ping pongu
+
+Paralelní a distribuované systémy (Zavoral)
+RPC (popsat obecně)
+uvést co možná nejvíce příkladů konkrétních technologií a porovnat je
+vzpomněl jsem si na ORB, RMI, EJB, .NET remoting, web services a zmínil jsem i OpenMPI - to stačilo
+
+Moderní koncepty programování (Hnětynka)
+generika v objektově orientovaných jazycích
+porovnat generiku v C# / C++ / Javě
+byl jsem tázán, zda umím Scalu nebo Kotlin - když jsem řekl, že jsem to viděl, ale jen jsem si s tím hrál, nebylo to vnímáno jako špatná odpověď
+povídání o kovarianci, kontravarianci (důležité bylo vzpomenout si na to, co je přesně co)
+velká část zkoušení byla o generice v Javě (omezující podmínky, otazníček a jeho chování)
+
+
+Strojové učení (Vomlelová) - Učení s učitelem. Po otázce co konkrétněji by si tak představovala bylo upřesněno na rozhodovací stromy a prořezávání. Zjistil jsem, že GINI index se nepoužívá jako míra chyby, ale jako alternativa ke Gainu, tj. pro výběr atributu ke štěpení. Taky jsem zjistil, že Cost complexity prunning a CART nejsou dva různé algoritmy prořezávání, nýbrž jeden a ten samý. Nicméně i přesto jsem prošel na výbornou, Vomlelová byla nadšená už jen z toho, když spatřila vzorec pro Cost complexity prunning (a náladu jí zjevně nezkazilo ani to, že jsem to celé vlastně chápal úplně blbě).
+
+Neuronové sítě (Mrázová) - Perceptron (včetně důkazu konvergence učení). Mám pocit, že tedy nějak zafungovalo asociační učení a Mrázová si můj ksicht spojila s tématem perceptronového učení. Tohle bylo totiž potřetí (a naposledy :D ) za mé studium na matfyzu, co jsem u ní zodpovídal tuhle otázku (data mining, neuronky, státnice).
+
+
+Neuronové sítě - Božovský - Hledání suboptimálních řešení: Tady vlastně nevím, co jsem měl říct, protože hledání subopt. řešení se chceme typicky vyhnout. Takže jsem ukázal, že backprop se může zaseknout v lokálním minimu a že momentum tomu může zabránit (tady chtěl vzorečky na gradient descent s momentem, ale ne vlastní backprop natož jeho odvození). Dál jsem zmínil nějaké augmentace trénovacích dat a náhodné perturbace vah neuronů. Dál jsem zmínil problém lokálních optim u hopfielda a že se to dá řešit pomocí simulated annealing (tady byl potřeba vzoreček a vysvětlení jak funguje) -> Boltzman machine (zmínka o RBF, ale jen malá). Nakonec jsem zmínil SOM a problém mrtvého neuronu, načež se mě zeptal, jak to řešit a jak inhibiční funkce a velikost okolí ovlivňuje mrtvé neurony. Trochu jsme se v tom patlali, ale nakonec v poho.
+
+Machine learning - Vomlelová - Teoretické aspekty ML: nejdřív se mě zeptala, co si pod tou otázkou představuju (k-fold crossval, train/test split, bias-variance) a pak doplnila svoje (overfitting, prokletí dimenzionality). Ke každému jsem něco krátce neformálně řekl nebo nakreslil a padlo pár dotazů. Např. proč se chyba nedá dekomponovat jenom na bias a variance (chybí ještě šum) nebo proč k-fold crossval může dávat špatné výsledky. Proč je nutné mít train/valid/test split, jak je to s časovo náročností třeba u LOOCV atd.
+
+
+Strojové učení - Vomlelová - Pravděpodobnostní přístupy v ML: Musel jsem se doptat, co chtěla paní Vomlelová pod touto otázkou slyšet, na což mi bylo řečeno že chce MAP a maximum likelihood napsat vzorečky. A potom že si mám připravit něco z klasického supervised learningu, protože si myslí, že to nebude stačit. Zkoušení bylo vcelku důkladné a vydalo se směrem do hloubky pochopení látky (např. které se používá, zda MAP nebo maximum likelihood a podobné otázky), přes to jsme se ale nakonec probourali k supervised learningu, kde jsem mluvil o bias-variance trade-off, také parametrické a neparametrické metody (tady chtěla slyšet příklady z obou skupin metod). Připravil jsem si i odvození naive bayes, které zkoušející prošla bez větších komentářů - usuzuji, že to nebylo to, na co se chtěla při zkoušení zaměřit. I když zkoušející vypadala, že by nejradši ještě něco slyšela, nakonec to stačilo. (Celková známka byla 1, takže to stačilo nejspíš velmi dostatečně).
+
+Neuronové Sítě - Božovský - Backprop: Poslední mé zkoušení a jedno z posledních toho dne, zkoušející mi zadal tuhle otázku a při zkoušení jsme se bavili hlavně o principu, jak funguje backprop, proč děláme derivaci, rozdíly mezi lokální a globální chybou, proč může error růst při učení apod. Při přípravě jsem napsal error funkci, ta se sešla, a také nějaké odvození vah, ale to ho vůbec nezajímalo, šel spíše po principu a pochopení.
+
+
+Mareš: Plánování a navigace -- Základní plánovací algoritmy
+- říkal jsem dopředné plánování, A*, bavili jsme se o heuristikách a kontextu prohledávání grafů

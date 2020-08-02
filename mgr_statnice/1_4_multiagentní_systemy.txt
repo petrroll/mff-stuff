@@ -10,3 +10,8 @@
     - Metodologie návrhu, jazyky a prostředí multiagentních systémů
 - Umělé bytosti (NAIL068)
 
+Multiagentné systémy : Spätnoväzobné učenie. (Barták)
+Pri tomto som sa úplne zabudol naučiť veci podrobnejšie a na začiatku som nevedel ani rozdiel medzi pasívnym a aktícnym učením, mal som spísané len Q-learning, Temporal Difference a nejaké všeobecné kecy. Barták ma dokopal k veľa veciam, napríklad dať dokopy Bellmanove rovnice, ktoré som nevidel asi 3 roky. :D Z mojej strany katastrofa, ale Barták veľmi pomohol, aj keď sa na to mohol vykašľať už po chvíli.
+
+Neruda: Řídící systémy -- Řídící systém robota
+- deliberate, reaktivní, hybridní přístup. docela důraz byl na subsumption architekturu. která je vhodná na nějaké učení?

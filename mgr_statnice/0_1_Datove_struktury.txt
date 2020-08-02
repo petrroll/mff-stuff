@@ -4,3 +4,74 @@
     - Hašování, řešení kolizí, univerzální hašování, výběr hašovací funkce
     - Analýza nejhoršího, amortizovaného a očekávaného chování datových struktur
     - Chování a analýza datových struktur na systémech s paměťovou hierarchií.
+
+
+Datovky [Gregor]
+Hesovanie. Chcel univerzalne a prehlad metod (mal som kukackove, separovane a linerne pridavanie). Dost sa v tom rypal, hlavne definicie, odhady casov a systemy funkcii na take odhady potrebne. Zistoval, ci tomu rozumiem a kladol pomerne neprijemne otazky, ale cely cas navadzal a daval priklady, kde sa to dalo celkom fajn vysvetlit. Hodne som sa trapil, odchadzal vsak so slovami, ze je spokojny.
+
+1. [Petr Kucera] Haldy, zamerat sa na binomialne
+Popisal som co je to halda, ze existuju d-regularne, binomialne, fibbonacciho. Popisal som strukturu binomialnej haldy, ako sa robia operacie, napisal som ich casove zlozitosti. Potom som popisal linou binomialnu haldu, aky je rozdiel. Skusajuci sa pytal na najhorsie a amortizovane zlozitosti operacii, najma preto, ze som to tam nemal napisane velmi prehladne. Viac do hlbky sa pytal ako presne sa robia jednotlive operacie, padla aj otazka co je amortizovana zlozitost a naznak dokazu ze insert ma amortizovanu zlozitost log n. Spomenul som len paralelu s binarnym citacom a skusajuci vyzeral spokojne.
+
+2. Datove struktury - Vyhladavacie stromy [Majerech]
+Pytal sa na interface (operacie nad VS), okrem INSERT a DELETE su dolezite aj FIND a NEXT a moznost klast intervalove dotazy.
+Pytal sa este na vyvazovacie, opisal som BB-alpha.
+
+Datove struktury [Kucera] - Haldy (zamerat sa na binomialne)
+* definicie, operacie,
+* amortizovana zlozitost
+
+Datové struktury[Hric] - (a,b)-stromy
+* definice
+* fungovani a slozitost pro INSERT, FIND, DELETE
+* kdy je chceme pouzivat
+* naznak amortizace pro n insertu a delete
+
+Datove struktury [Kucera P.] - Splay stromy
+Definoval som strom, rotacie, ukazal dokazy amortizovanej zlozitosti jednotlivych rotacii a aj celej splayovania do korena. Skusajuci nemal ziadne dalsie otazky.
+
+Datovky (Majerech + Fink): Splay stromy
+Měl jsem si vybrat číslo od 1 do 5, tím se zaindexovalo do náhodné permutace, která zaindexovala do témat (ale nevím přesně, jestli to byly ty, co jsou na webu, nebo jestli nějaký subset. Otázka zněla přímo splay stromy, přičemž rovnou mi bylo řečeno, ať jestli vím nějaké aplikace, ať si je připravím.
+Sepsal jsem jaké jsou operace, že splay je amort O(log n), že všechny op. musí dělat splay, protože mu to pak můžeme naúčtovat, zadefinoval potenciál, popsal rotace/dvojrotace, že u těch jedno nevýjde teleskopická suma, nějak jsem spatlal dynamickou optimalitu (znění high level), atd., prostě standardní věci. Za pár minut jsme to prošli hodně high level, technické detaily se neřešily, i když možná proto, že jsem radši proaktivně rovnou říkal věci jako že u ty L/R je ten protipříklad s nudlí apod, takže do toho moc nerejpali. Pak ale byla diskuse o tom, v čem je to lepší než hashovací tabulka, což jsem samozřejmě cucal z prstu (věci jako succ/pred), no a po nějaké době mne navedli na to, že intervalové dotazy (a že to je hlavní duvod, proč vůbec BVS chceme používat).
+Vyčíslitelnost (Kučera): NP úplné problémy + Cook-Levinova věta
+Otázku jsem dostal rovnou. Připravil jsem si důkaz přes kachlíky a převod kachlíků na SAT (nijak detailně, jen obrázek a pár poznámek načmáraných za 30s). Kučera asi trochu nabyl dojmu, že jsem si to akorát zapamatoval (taky jsem u něj stejnou otázku měl u zkoušky, heh), takže mi rovnou řekl, že sice pěkný, ale že spíš chtěl definice. Tak jsme pak dalších pár minut řešili hlavně co je NP, NP-úplný, polynomiální převoditelnost, co je certifikát, verifikátor, proč je poly certifikát, co kdyby nebyl, co kdyby verifikátor měl víc času, atd.
+Nakonec padla otázka, jestli znám i nějaké jiné NP-úplné problémy, tak jsem začal že traveling-gender-neutral-person, hamiltonská kružnice atd, a padla otázka "a co nějaké z AI?" (imho mě chtěl trochu rozhodit a vyhnout se tomu, abych tam papouškoval skripta) ... tak jsem pružně řekl, že trénování neuronek je NP-úplné, že to dokážu lehce přes SAT, hodím váhy jako proměnné blabla, a tím bylo zkoušení ukončeno (celkem asi 5min, fakt turbo).
+
+Datové struktury - Božovský - Haldy
+Vysvětlil jsem d-regulární, binomiální a línou binomiální haldu. Popsal jak se tam provádí insert, delete-min a decrease key, a uvedl složitosti bez důkazu. Pak jsem se ještě zmínil, že existuje Fibonacciho halda.
+
+1. Datové struktury: Splay stromy (Vladan Majerech)
+Řekl jsem motivaci (manipulace s podmnožinou prvků v BST), přístup k řešení (offline - staticky opt. strom ; online - právě splay stromy), ukázal jsem co to je Splay (zig, zig-zig, zig-zag) a kde se to v tom stromě používá. Oznámil jsem, že se dá ukázat, že splay má amortizovaně logaritmickou složitost, vzhledem k velikosti podmnožiny.
+~Průběh zkoušky:
+Zk: Jaké jsou operace v BST
+Já: find, insert, delete
+Zk: Tak strukturu s takovým interfacem bych si od vás nekoupil, nemáte tam ještě něco?
+Já: ? (pak po dlouhé diskusi obecně o stromech a datových strukturách a směrování ke správné odpovědi)
+Já: prvek.next()
+Zk: Super, škoda, že se to neinzeruje i na přednášce
+...
+Zk: Kdybych vás mučil, řeknete mi myšlenku důkazu analýzu složitosti.
+Já: Mučit mě nemusíte (a jen slovně jsem naznačil, že uděláme analýzu jednotlivých rotací, pak analýzu i kroků a že se to tam někde teleskopicky odečte)
+Zk: Tak nějak
+...
+Zk: Proč se (v zig-zig stepu) tahle rotace dělá tak divně?
+Já: Abych se přiznal, tak přesně nevím, ale existuje na to protipříklad, kde se to rozbije
+(Zk se mi snažil vysvětlit proč a pak odešel, spokojen s mým výkonem)
+
+Datové struktury (?)
+líné a zbrklé binomiální haldy
+jejich definice
+k čemu se používají
+operace a jejich worst case a amortizovaná složitost
+ukázat příklad na nějaké malé posloupnosti operací
+
+Dátovky : Univerzálne hashovanie a výber hashovacej funkcie. (Fink)
+Spísal som nejaké základné veci o hashovaní, základné spôsoby hashovania, definíciu univerzálnosti a nezávislosti, príklad univerzálneho hashovania, perfektné hashovanie a konštrukciu perfektného hashovania. Fink sa zo mňa snažil vymlátiť nejaké dôkazy - neúspešne, dal mi jeden ľahký príklad hashovacej množiny {h_a(x) = a | a patrí 1..m} a chcel aby som zanalyzoval jeho univerzálnosť a nezávislosť. V tomto som sa neskutočne zamotával na to, aké to je ľahké, ale nakoniec som to s jeho pomocou nejak doklepal. Jeho komentár k mojej skúške: "Máte to naučené, ale veľmi tomu nerozumiete, každopádne výsledná známka bude závisieť aj na ostatných častiach."
+
+Datové struktury (Hladík) - Binomiální haldy. Včetně amortizované analýzy. Hladík si to poslechl, pak se zeptal v čem je to lepší než regulární (insert v O(1)) a to bylo tak všechno.
+
+Datovky - Hladík - Binomiální haldy: co to je, jak to funguje, jaké operace máme, jak je to rychlé + líná varianta, amort. odhady. K čemu se haldy vlastně používají a jestli znám nějakou lepší (fib.) a krátce jak funguje, ale žádné detaily.
+
+Datové struktury - Majerech - Haldy: Zkoušející si po "hození kostkou" mnou navrhnutým číslem přečetl dané zadání z papíru, znělo Haldy, závorka regulární a binomiální, a ty přesně chtěl. Zkoušení bylo nečekaně netechnické, stačily idei všech výpočtů hloubek. Např. u linearity konstrukce d-regulární haldy jsem řekl, jak by se počítala (suma hloubky a počtu vrcholů na dané úrovni stromu), pan Majerech se chvíli zamyslel, řekl že tomu věří pro d=2 a víc není potřeba. Chtěl jsem více mluvit o líných bin. haldách, ale nebylo potřeba.
+
+Fink: Datové struktury -- Hashování
+- chtěl obecný úvod a pak nějakou sofistikovanější metodu (v mém případě univerzální hashování). Občas jsem se v tom zamotal a zkoušející mě v tom docela drsně máchal. Byly tam potřeba i délky řetězců a počty porovnávání s odvozením, mohl jsem si ale víceméně vybrat, o čem chci mluvit.

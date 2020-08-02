@@ -7,3 +7,28 @@
     - Memetické algoritmy, hill climbing, simulované žíhání
 - Evoluční robotika	(NAIL065)
     - Aplikace evolučních algoritmů (evoluce expertních systému, neuroevoluce, řešení kombinatorických úloh, vícekriteriální optimalizace)
+
+Prirodou inspirovane [Neruda]
+VoS a JJGA. VoS som rozpisal pomerne detailne, pytal sa na motivaciu a kritiku. JJGA chcel viac-menej princip naco a preco a rozdiel medzi konecnymi a nekonecnymi populaciami. Pohoda.
+
+Přírodou inspirované počítání[Fink] - Aplikace evolučních algoritmů
+* přehled pro Neuroevoluci, Expertní systémy, řešení kombinatorických úloh, vícekriteriální optimalizaci
+* více rozepsat lib. z témat
+
+Prirodou inspirovane pocitanie [Fink J.] - Aplikacie evolucnych algoritmov
+Spomenul som v podstate vsetky mnou zname aplikacie - evolucia neuronovych sieti (neat, hyperneat), evolucia programov/stromov, optimalizacia funkcii, roboty (evolucia rozneho chovania - od pohybu, rozpoznavania obrazu, ...). Nakoniec sme este pozreli na optimalizacne problemy, konkretne batoh
+
+Přírodou inspirované computering (Hric + různí ostatní): Genetické a evoluční programování
+Tady jsem si napřed pochrochtával, že jsem dostal ez otázku, ale když jsem jí začal sepisovat, tak mi došlo, že vlastně o EP vůbec nic nevím. U GP jsem sepsal evoluci syntax stromů, ADF, že křížení swapuje podstormy, apod. Občas jsem něco detailně nevěděl, např. jak se to inicializuje, tak jsem řekl že prostě nevím, že buď je to od prázdných a nebo od random, popsal co si myslím o obou, a nějak asi moc nevadilo, že vlastně nevím co konkrétně to má být. U EP jsem ale akorát napsal "evoluce na konečných automatech", a pak se snažil si obhájit, že klidně můžu dělat 1-pt crossover na tabulkách přechodové fce, a podobný věci co jsem si cucal z prstu, no a sám jsem si trochu podkopl nohy tím, že jsem napsal "automat predikuje další znak", ale nebyl schopen vymyslet co to vlastně znamená (jenom jsem si to pamatoval), a Hric se na to samozřejmě ptal, tak jsem prostě řekl že nevím, že si to jenom pamatuju, a že EP jsem se neučil. Na to mi řekl že teda OK, že u GP jsem to měl dobrý, a odešel.
+
+Přírodou inspirované počítání - Kruliš - Genetické algoritmy
+Popsal jsem základní GA a jako příklad použití jsem uvedl Batoh, což se mu moc nelíbilo. Zeptal se jak bych pomocí GA řešil klasifikaci ručně psaných číslic, ale nic rozumného jsem nevymyslel.
+
+Prírodou inšpirované počítanie : Genetické programovanie + Evolučné programovanie. (Pilát)
+Toto bol chill, Pilátovi stačili úplne základy, čo je jedinec v jednotlivých prípadoch, operátory a automaticky definované funkcie.
+
+Přírodou inspirované algoritmy (Božovský) - Genetické algoritmy. Otázka zněla skutečně jen GA, i když jsem se výslovně ptal, jestli nemám dojít třeba i k VoS, prý ne. No takže celkově jsem popsal jedinou A4 a to jsem roztahoval, nicméně to stačilo. Zkoušení na pár minut. Jen jsme se chvíli zasekli u turnajové selekce, kde se mu nezdála moje varianta (vybírám náhodně dva jedince, provedu turnaj, vítěze zkopíruju do nové, pak opakuju) -- vadilo mu, že se poražený vrací zpátky do populace.
+
+Přírodou insp. počítání - Neruda - Genetické programování: Tady chtěl hlavně co to je, jednotlivé operátory, proč stromy bobtnají a jak s tím bojovat (omezení hloubky/velikosti, regularizace pomocí termu ve fittness, ...) a potom jak fungují ADF a jak na nich definovat operátory. Nakonec bonusová otázka jak na primárních stormech a ADF pouštět koevoluci (ale to už jsem cítil, že se zeptal jenom proto, že nebylo koho jiného zatím zkoušet) - to byla spíš taková diskuze jako co by mě tak napadlo.
+
+Přírodou inspirované počítání - Neruda - NEAT: Dostal jsem za úkol nejdříve popsat obecně neuroevoluci, jak se k tomuto tématu přistupuje a jaké problémy se řeší (např. obtížné křížení), a potom jsme se dostali k NEATu. Zkoušení bylo víceméně formou diskuze, ale dostali jsme se celkem do hloubky (např. jak by se dal modifikovat NEAT aby ještě trochu lépe řešil tagy hran). Zmínil jsem i HyperNEAT, z čeho měl zkoušející zřejmě radost.

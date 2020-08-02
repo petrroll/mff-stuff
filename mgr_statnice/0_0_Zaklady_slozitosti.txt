@@ -8,3 +8,49 @@
     - Úplné problémy pro třídu NP, Cook-Levinova věta
     - Pseudopolynomiální algoritmy, silná NP-úplnost
     - Aproximační algoritmy a schémata
+
+Zlozitost [A. Kucera]
+Zakladne triedy zlozitosti. Zacal som pisat, dostal som sa po inkluziu TIME NTIME SPACE NSPACE. Tam uz za mnou prisiel, rychlo si prebehol, co tam mam. Spytal sa ma este na myslienku Savichovej vety a potom sme riesili (ne)NP problemy. Slovne som mu spomenul kachlikovanie, SAT a potom sa ma pytal, ze ako je to s 1...k-SAT. Spomenul som mu 2-SAT a implikacny graf. Trochu sme sa o tom bavili, celkovo pekne rozpravanie.
+
+2. [Petr Kucera] Algoritmicky nerozhodnutelné problémy (halting problem)
+Popisal som turingov stroj, a (ciastocnu) rozhodnutelnost. Definoval som halting problem a pokusil sa o naznak dokazu. Skusajuci so mnou presiel ten dokaz a zistili sme ze argumentaciu dokazu nepoznam :cry:. Isli sme teda dalej, pytal sa na nejake prakticke problemy. Tu som spravil chybu, ked som spomenul Riceovu vetu, ale nerozumel som jej az tak dobre :D. Snazil sa ma na to naviest, ale vobec mi to neslo, navela sme sa k tomu aspon priblizili. Na konci sa opytal poslednu otazku, ze ako by som dokazal o nejakom probleme ze je nerozhodnutelny (pomocou prevoditelnosti, nie z definicie). To som nastastie vedel, asi sa chcel uistit ze aspon na trojku tomu rozumiem.
+
+1. Zlozitost a vycislitelnost - Rozhodnutelne, ciastocne rozhodnutelne a nerozhodnutelne jazyky [Majerech]
+Definoval som turingac, co znamena ze turingac prijima jazyk (detailne). Definicia terminov a priklady ku kazdemu.
+
+Zaklady zlozitosti a vycislitelnosti [Hladik] - Pseudopolynomialne algoritmy a silna NP-uplnost
+* definicie a pseudopolynomialny algoritmus pre batoh
+* priklady silno a slabo NP-uplnych problemov
+
+Základy složitosti a vyčíslitelnosti[Gregor] - Pseudopolynomiální algoritmy a silná np-úplnost
+* definice: Pseudopolynomiální alg., číselný problém, restrikce problému, silná np-úplnost
+* pseudo. alg. pro batoh
+* silná NP-úplnost pro TSP
+
+Zlozitost a vycislitelnost [Kucera A.] - Nerozhodnutelne problemy
+Definoval som rozhodnutelne, nerozhodnutelne problemy, ukazal jazyk DIAG a dokazal ze k nemu neexistuje TS
+
+Složitost - Mlček - Cook-Levinova věta
+Definoval jsem potřebné pojmy (NP, převoditelnost, NP-těžkost a úplnost), Kachlíkování a dokazoval jsem jeho NP-úplnost. Přišel dřív, než jsem to dokončil, takže důkaz byl jen náznakem. Pak se mě ještě ptal jak to je se SAT, 3-SAT a 2-SAT. A nakonec se mě ptal, jestli neznám obdobu pro #P-úplnost, což už jsem nevědel, ale spíš to byla už otázka navíc.
+
+2. Základy složitosti a vyčíslitelnosti - Algoritmicky nerozhodnutelné problémy (Martin Klazar)
+Připoměl jsem značení pro zastavení se nad vstupem, zacyklení se, řekl jsem něco o univerzálním TS a jazyku, pak o převoditelnosti s vlastnostmi, pak ukázal co to je HALT a že je částečně rozhodnutelný, pak převod Lu <= HALT a z toho implikaci, že HALT je nerozhodnutelný.
+Zkoušející se mě ptal, jestli znám ještě nějaké další nerozhodnutelné problémy, tak jsem mu řekl, že třeba ten Lu, nebo DIAG a pak ukázal, že existují jazyky, které nejsou ani částečně rozhodnutelné, tudíž ani rozhodnutelné. Zajímal se, jestli neznám nějaký příklad z teorie čísel. Nevzpomněl jsem si na Diofantické rovnice (má polynom celočíselné kořeny?).
+
+Základy složitosti a vyčíslitelnosti (MJ)
+popsat základní třídy složitosti a vztahy mezi nimi
+z vět jsem si (kromě triviálních inkluzí) vzpomněl na Saviče, deterministickou časovou/prostorovou hierarchii a otevřenost shora v obou případech (u většiny jsem důkazy znal, nebyl ale prostor o nich povídat)
+celkově velice příjemné zkoušení
+
+Zložitosť a Vyčísliteľnosť : Algoritmicky nerozhodnuteľné problémy. (neznámy skúšajúci)
+Definoval som jazyk, čiastočnú rozhodnuteľnosť, rozhodnuteľnosť a napísal som diagonalizačný, univerzálny a halting jazyk. Pre všetky 3 som mal dôkazy (myšlienky dôkazu), či sú čiastočne rozhodnuteľné, resp. rozhodnuteľné. Skúšajúci sa pýtal, či poznám nejaké ďalšie, praktické jazyky, nejaké som poznal, ale neboli veľmi praktické, on sám mi o nejakých povedal. Každopádne, s tým čo som mal napísané vyzeral spokojný a netrápil ma.
+
+Základy složitosti a vyčíslitelnosti (Martin Mareš) - Aproximační algoritmy a schémata. Napsal jsem definice, Bin Packing (FF a FFD), myšlenku ÚPAS pro Batoh, neaproximovatelnost TSP (s důkazem). Mareš si to přečetl, občas měl nějakou poznámku (ale spíš to znělo jako že mi chce říct nějakou zajímavost, než že by mi tam něco chybělo). U Batohu stačila myšlenka a pokus o tu škálovací konstantu (důkaz fakt nechtěl). Ptal se na nějaké další aproximační alogirtmy kromě FF pro Bin Packing. Na žádný jsem si nevzpomněl, načež nadhodil TSP, načež jsem reagoval že to je neaproximovatelné. Správně, a co varianta s trojúhelníkovou nerovností? Je tam prý nějaký 2aproximační s použítím minimální kostry, na který jsem si taky nevzpomněl.
+
+Slož. & vyčísl - Majerech - Algoritmicky nerozhodnutelné jazyky + Halting problem: řekl jsem co je to jazyk, (ne)rozhodnutelný jazyk, Postovu větu, existenci nerozhodnutelného jazyka (L_DIAG). Ke každé větě padla otázka, která byla poměrně lehká, ale měla prozkoumat, že tomu fakt rozumim (např. proč je teda spočetně mnoho TS nebo jak TS zakódovat do binární abecedy). Pak jsem šel k halting problemu a důkazu jeho m-úplnosti a tam už stačilo jenom říct, že je m-úplný a pan Majerech řekl, že to umim a že už je to ztráta času :D
+
+Základy složitosti a vyčíslitelnosti - Hladík - Polynomiální algoritmy a silná NP-úplnost: V přípravě jsem vypsal definice silné NP úplnosti, restrikce problému a pseudopoly algoritmu, vypsal jsem myslím všechny definice které byly potřeba. Načrtnul jsem si pseudopoly alg. pro Baťoh a důkaz že TSP je silně NP-úplné (převod z Hamiltonské kružnice). Pak přišel zkoušející a začali jsme to procházet - z toho co jsem napsané neměl chtěl slyšet příklady silně a nesilně NP-úplných problémů, důkaz že TSP je silně NP úplné mu stačil slovně, co ale chtěl pořádněji byl pseudopoly alg pro Batoh. Nejdřív tedy zadefinovat ten problém (pak přišel Majerech s tím, že potřebuju rozhodovací problém aby vše bylo košér, takže úprava optimalizační verze), potom načrtnout tabulku a popsat co a jak se přepisuje na co. V tom jsme se trochu zahrabali, ale nakonec to nebyl takový problém.
+
+Mlček: Základy složitosti a vyčíslitelnosti -- Rekurzivní a rekurzivně spočetné množiny
+- byl docela problém, že se to na přednášce nedělá, tak jsem musel hodně přesvědčovat, že to odpovídá jazykům a mluvil pak o nich. Rozhodnutelnost, nerozhodnutelnost, halting problém s důkazem, uzavřenost na doplněk.
+
