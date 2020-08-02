@@ -1,11 +1,11 @@
-General
-- agent: system capable to work independently on behalf of its user
-    - autonomus: not everything is defined beforehand
-    - can have their own interrests 
+### 1. & 2. General
+* agent: system capable to work independently on behalf of its user
+    * autonomus: not everything is defined beforehand
+    * can have their own interrests 
 
-- different views
-    - MAS as part of AI
-    - AI as part of MAS (AI tries to create intelligent agents)
+* different views
+    * MAS as part of AI
+    * AI as part of MAS (AI tries to create intelligent agents)
 
 - main problem
     - distributed communication 
@@ -42,7 +42,7 @@ General
         - Is there intenionality by itself or it only an interpretation?
 
 
-Abstract archs:
+### 3. Abstract archs:
 - Environment: can be in a finite number of discrete states -> discretize if needed
 - Actions: means of the agent to interact with environment and change it
     - We don't know what environment state will be the result of curr. state and some action
@@ -103,7 +103,7 @@ Predicate specification of a task:
     -> let's compute the probability that agent will be successful: P(F|Ag, Env) = ...
 
 
-Deductive reasoning agent
+### 4. Deductive reasoning agent
 - symbolic repres. of environment & behaviour
 - syntactic manipulation of such repre -> logical deduction
 
@@ -123,12 +123,12 @@ Agent as theorem prover:
 - takes a lot of time, hard to convert environment to formulas, temporal representation problem
 - nice semantics, tho
 
-Practical reasoning agent:
+### 5. Practical reasoning agent:
 - two phases
     - deliberation: what do we want to achieve
     - means-end reasoning: how to achieve such goal
 
-BDI architecture 
+#### BDI architecture 
 
 - [I]ntention: state of the env. agent wants to achieve
     - persists until: are achieved, start seem unachievable, change due to reasons
@@ -139,9 +139,9 @@ BDI architecture
     - subjective, not necessarily true, can change
     - might contain inference rules
 
-- Deliberation: 2^B x 2^I -> 2^Des  // intentions & beliefs -> desires
-- Filter: 2^B x 2^D x 2^I -> 2^I    // All I know -> less intentions
-- Belief refresh 2^B x Per -> 2^B
+- options: (Deliberation) 2^B x 2^I -> 2^Des  // intentions & beliefs -> desires
+- filter: 2^B x 2^D x 2^I -> 2^I    // All I know -> less intentions
+- brf: (Belief refresh) 2^B x Per -> 2^B
 
 - Means-end reasoning: 
     - how to reach goal (selected intention) based on possible actions
@@ -192,7 +192,7 @@ BDI architecture
     - bold agents: reconsider only after current intention finishes -> good for static worlds
     - cautios agent: reconsiders after every action -> good for very dynamic worlds
 
-Procedural reasoning system: PRS
+### 6. Procedural reasoning system: PRS
 - implementation of BDI architecture
 - agent has a library of ready plans, representing its procedural knowledge 
 - no full planing, just selecting from the library
@@ -214,7 +214,7 @@ Procedural reasoning system: PRS
 
     - if plan fails, choose another intention from options and continue ~ DFS
 
-Reactive and hybrid architectures:
+### 7. Reactive and hybrid architectures:
 - symbolic repre and reasoning is problematic 
 
 - emergence: inteligent behavior emerges by interaction of many simple behs.
@@ -223,7 +223,7 @@ Reactive and hybrid architectures:
 - reactive agent: only reacts on the environment, doesn't do deliberation
     - simple if then rules, finite automata, ...
 
-Subsumption agenta architecture:
+#### Brooks Subsumption agenta architecture (exam topic):
 - probably the most successful reactive approach
 
 - each behavior is simple action selection mechanism
@@ -240,7 +240,7 @@ Subsumption agenta architecture:
 
 - good for swarm-like behavior (ants, ...)
 
-Network architecture
+#### Network architecture:
 - each agent is set of competence modules (resembling subsumption behaviors)
     
 - preconditions, postconditions
@@ -249,13 +249,13 @@ Network architecture
     - matching pre and post conditions represented as oriented edge
     - further connections representing time precedence / conflicts, ...
 
-Limitations of reactive approach:
+#### Limitations of reactive approach:
 - do not create model of the world, have to derive everything from environment
 - to remember things, need to change the environment
 
 - short-term view of the world: current state & local information
 
-Hybrid architectures:
+#### Hybrid architectures (exam topic):
 - combines reactive and deliberative components
 - usually in hierarchy, reactive components tend to have precedence
 
@@ -290,7 +290,7 @@ IDA
     - hierarchy of contexts
 
 
-Ontologies: 
+### 8. Ontologies: 
 - part of philosophy dealing with nature of being
 - in cs: explicit and formalized description of part of reality
     - glossary: definition of concepts, thesaurus (relations between concepts)
@@ -347,7 +347,7 @@ Ontologies:
     - limited existential quantifier, contraints, ...
 
 
-Agent communication
+### 9. Agent communication
 - communication in OOP: calling object methods with parameters
 - agents can't directly communicate -> message passing -> other agents don't have to comply
 
@@ -396,7 +396,7 @@ Agent communication
         - more expressive pefromatives: proxy, refuse, agree, cancel, propose, ...
 
 
-Cooperation of agents: 
+### 10. Cooperation of agents: 
 - agent have different goals, are autonomous
 - work in time, not hard-wired, decisions made at runtime
 
@@ -472,7 +472,7 @@ Selfish agent
 - doesn't have to maximize common utility, is robust
 
 
-Game theory
+### 11. Game theory
 - strat is dominant if it provides better/same result than any other strat against all opponent's strats
 - Nash equilibrium: s1 and s2 are in Nash eq: if neither agent would be better off switching strategies
     - not all games have Nash eq. in pure strategies
@@ -540,15 +540,15 @@ Voting mechanisms:
         - non-dictatorship: there's no voter that can influence preference betwen all x and y states given all possible orderings 
 
 - arrow's theorem: for 3 and more candidates, no ranked voting electoral system can convert ranked preferences while meeting:
-    - unrestricted domain
+    - unrestricted domain = everybody's vote counts, the returned ordering is deterministic, changes in voting change the outcome
     - non-dictatorship
-    - pareto efficiency
-    - independece of irrelevant alternatives
+    - pareto efficiency = if everybody wants A more than B, than A should be ahead of B in the final ordering
+    - independece of irrelevant alternatives = let A>B, if voters switch preferences between other pairs (A<>X, B<>Y, etc.) but not between A and B, the result should still be A>B
 
     - the only voting proc. satisfying pareto cond. and IAA is dictatorship (one voter selects outcome)
 
 
-Auctions:
+### 12. Auctions:
 - mechanism for resource allocation
 
 - seller: maximizes price
