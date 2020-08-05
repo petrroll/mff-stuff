@@ -12,8 +12,8 @@ General
     - individual action selection 
 
 - agent:
-    - he who has ability for autonomus execution vs. he who performs domain orient. reasoning
-    - anything that perceives thourgh sensors and acts upon that
+    - he who has ability for autonomous execution vs. he who performs domain orient. reasoning
+    - anything that perceives through sensors and acts upon that
     - persistent routine with its own agenda and special purpose
     - ...
 
@@ -21,7 +21,7 @@ General
     - observability
     - static/dynamic
     - determinism
-    - discrete/continuios
+    - discrete/continuos
 
 - notes
     - autonomy: needs to be able to choose autonomously, choose and follow subgoals, ...
@@ -34,11 +34,11 @@ General
     - I.s of first order, second order (beliefs about beliefs), ...
 
 - intentional stance
-    - physical statence: understand the complete laws of the system
+    - physical stance: understand the complete laws of the system
     - design stance: understand reasons why and how it works, what's the purpose, not the underlying physical laws (teleological expl.)
     - intentional stance: use intentional system view for prediction
-        - physical design / descr might not be available / practical
-        - can be very sipmle, though sometimes too simplifying
+        - physical design / descr. might not be available / practical
+        - can be very simple, though sometimes too simplifying
         - Is there intenionality by itself or it only an interpretation?
 
 

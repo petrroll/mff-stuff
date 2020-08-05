@@ -1,14 +1,18 @@
 - Multiagentní systémy (NAIL106)
     - Architektura autonomního agenta; percepce, mechanismus výběru akcí, paměť; psychologické inspirace
     - Metody pro řízení agentů; symbolické a konekcionistické reaktivní plánování, hybridní přístupy
-    - Problém hledání cesty; navigační pravidla, reprezentace terénu
     - Komunikace a znalosti v multiagentních systémech, ontologie, řečové akty, FIPA-ACL, protokoly
     - Distribuované řešení problémů, kooperace
     - Nashova ekvilibria, Paretova efektivita, alokace zdrojů, aukce
+
+    - `../multiagent_systems/notes.md`
+- Umělé bytosti (NAIL068)
+    - Problém hledání cesty; navigační pravidla, reprezentace terénu
     - Etologické motivace, modely populační dynamiky
     - Metody pro učení agentů; zpětnovazební učení, základní formy učení zvířat
     - Metodologie návrhu, jazyky a prostředí multiagentních systémů
-- Umělé bytosti (NAIL068)
+
+    - https://gamedev.cuni.cz/study/courses-history/courses-2018-2019/human-like-artificial-agents-summer-201819/
 
 Multiagentné systémy : Spätnoväzobné učenie. (Barták)
 Pri tomto som sa úplne zabudol naučiť veci podrobnejšie a na začiatku som nevedel ani rozdiel medzi pasívnym a aktícnym učením, mal som spísané len Q-learning, Temporal Difference a nejaké všeobecné kecy. Barták ma dokopal k veľa veciam, napríklad dať dokopy Bellmanove rovnice, ktoré som nevidel asi 3 roky. :D Z mojej strany katastrofa, ale Barták veľmi pomohol, aj keď sa na to mohol vykašľať už po chvíli.
