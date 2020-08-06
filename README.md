@@ -78,6 +78,10 @@ U každého zdroje proto bude v závorce rok, ke kterému se to váže (vždycky
 - Opoznámkované slidy k předmětu Pravděpodobnostní grafické modely (2018)
 - Podtrhane zajímavě věci (ne ke zkoušce) z předmětu Neuronové sítě (2018)
 - Slidy k Machine learning and reasoning (2018)
+- Poznámky k HLAA (2018)
+
+##### Mgr. Státnice:
+- Ve složce `mgr_statnice` relevantní materiály zejména (ale nejen) k AI
 
 #### Co tu není, protože to žije jinde?
 

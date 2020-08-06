@@ -1,0 +1,2 @@
+- notes from [slides 2018](https://gamedev.cuni.cz/study/courses-history/courses-2018-2019/human-like-artificial-agents-summer-201819/) for msc finals
+    - low quality, done very quickly during first-pass slides reading

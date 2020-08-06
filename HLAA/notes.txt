@@ -1,0 +1,306 @@
+https://drive.google.com/file/d/1YjVO9EfQZTRDTEH0jZHpYDYupvCLlAng/view
+- reactive planning: chooses immediate next action based on the current context
+    - usually hierarchical (more in MAS)
+    - subgoals, ...
+
+- cognitive architecture
+    - sensors -> current-situation->reasoning->effectors
+    - shortcircuit sensors->effectors for reflexes (reactive planning)
+
+https://drive.google.com/file/d/1TopoI2XbRaJtQ5TQVw4u8zlyTHEq5QHA/view
+- agent:
+    - embodied intelligent autonomous entity
+    - reactive, proactive, social
+- intelligent virtual agent:
+    - wholly and movably embodied within virtual environment
+- Environments
+    - fully vs partially obs, episodic vs sequential, static vs dynamic, ...
+
+- AI for 2player perf-inf games
+    - reasoning tree, heuristic scoring, minimax, alpha,beta pruning
+
+- AI for modern "games"
+    - extreme branching factor, ~continuos-ish, extreme depth of game-tree (cont. in time as well)
+
+- IVA 
+    - [E]nvironment state, [P]erception, [S]tate, [A]ction
+    - p: E->P, f: PxS -> AxS, s: An x E -> E
+    - one cycle: Ei+1 = s([f1(p1(Ei), S1), f2(p2(Ei), S2)])
+
+- Reactive planning
+    - Fast (O(n)), rule base, transparent
+    - Action selection: f: PxS -> AxS
+    - Techniques
+        - Flat, hierarchical, fuzzy rules, ...
+        - Finite state machines
+        - Behavior trees, ...
+
+    - ASM: 
+        - Intepreretr for data encoding rules
+        - f = ASM + data (can be code as well)
+    - Behavior
+        - sequence of percepts and actions
+
+    - SHRP: Simple hierarchical reactive planning
+        - Essentially a behaviour tree
+        - Goals, subgoals, ...
+
+    - Multiple rules
+        - parallel: evaluate and execute all relevant
+        - prioritized: only top relevant one
+        - floating priority: same but dynamic priority
+    - Multiple goals:
+        - schedule + interrupts
+        - Planning 
+        - ...
+
+    - perceptual aliasing
+        - going only by perception -> can seem the same even if it isn't (robot blocking its own camera, ...)
+        - memory is important
+
+https://drive.google.com/file/d/1CIiy4v1kP4pparhcbRuBOb0pvW_-MayJ/view
+- hFSM: Hierarchical finite state machines 
+    - state is transparently tracked within agent's memory
+- hsFSM: Hierarchical sequential finite state machines
+    - transition: c: condition; s: target state fSM; a: on transition activity
+    - go through all transitions, take the one that has true condition
+    - can be hierarchical
+    - usually higher level decisions
+- hFSM and hsFSM functionally equivalent
+    - many variants (fuzzy, ...)
+    - priority list and parallel actions hard to do
+
+- Behavior oriented design (BOD) :: scripting
+    - decompose in top-down fashion, implement in bottom up
+    - hard to do sequences
+
+https://drive.google.com/file/d/1oFpFgOBdkYOPMVy6cR8j9t_WTAC8i-q-/view
+- behavior trees
+    - root starts evaluation, nodes sequences or checks, leaves actions 
+        - nodes have their own memory (for sequence, alternative, ...)
+        - if action running, continue with it next time as well (passive)
+    - reusable, almost equivalent to FSM 
+        - sub-behaviors are reporting results to parents, FSM doesn't have that
+        - need for backlinks, 
+    - hFSM equivalency
+        - need to wrap children of every alternative nodes
+    - passive beh. trees lack switching 
+    - interactive BT: always traversed from root -> nodes may decide to terminate
+    - still a tree -> not a graph -> limitation against FSM
+    - can do parallel execution (seq. in the same frame)
+    - can't do mixed rules evaluation properly
+
+- decision latching: can't change our mind all the time, when we commit we should commit at least a bit
+- transition behaviors: simple termination might not be enough 
+
+Decision space: 
+- FSM and scripting seems to be complimentary
+- sFSM with replace support, replaces current state rather than move to 
+    - if-then ruleset modeled by sFSM state function, similarly parallelism 
+    - when decision points to a different child, it doesn't terminate the running one but signals it
+- rooted directed acyclic graph / rooted graph
+
+Implicit decision space (IDC)
+- D (decision points, select functions), O (options), Options(d) -> O*, Outcome(d, o) DxO->D, Cost(d, o)->R
+
+POSH: Parallel ordered slip-stack hierarchy
+- http://www.cs.bath.ac.uk/~jjb/web/posh.html
+- goal: posh expression
+- drive collection:  this is the root of the POSH hierarchy, and on every POSH action-selection cycle, this reconsiders which goal the agent should be working on.  This is how a BOD agent can respond rapidly to changes in the environment.
+- competences: these are basic reactive plans.  They allow a BOD agent to complete a task robustly and opportunistically.
+- action patterns: or simple sequences.  These are a basic kind of plan aggregate which turn out to be useful in quite a lot of situations, despite their lack of flexibility.  They reduce the combinatorial complexity of the agent when a full competence is not really necessary. 
+
+- unless goal satisfied
+    - goes through drives, executes the one with correct trigger & not exceeded freq
+        - executes drive's stack
+            - reset on success, failures, or timeouts, not on switch 
+            - competence elements can't interrupt each other 
+- selects a goal, tries its stack of competences, each can contain set of action patterns
+
+- pros:
+    - separation of decision making from behavior primitives similar to BTs / FSMs
+    - rule prioritization 
+    - action patterns modeled as sequence of actions 
+
+cons: 
+    - condition conj. of sensors only
+    - hard to model durative actions (no running state), hard to do interactive unless blocking 
+    - switching between branches on top-level only, drives cannot be referenced 
+    - drive stack is passive, only top revisited every tick
+
+Goal: 
+- prolog with if-then rules 
+- actions have pre, poss conditions, post are automatically applied
+- event module executed every tick as the first
+- main has linear execution, only the first applicable executed (also, linearall, random, ... options)
+
+- pros:
+    - unification makes us to code faster, prolog good for reasoning, rule prioritization
+- cons: 
+    - hard to model durative actions- no action sequence, same as SHRP 
+
+http://artemis.ms.mff.cuni.cz/main/download/hagents/H-likeAgents3_Brom060314.zip
+
+norms: 
+- artificial 2,5D world, each controlled by NN with ~1000 neurons
+- speak verb-obj sentences 
+- have bodies: hunger, thirst; breed through sex. reproduction 
+
+- env, senzor, long-term memory, ling. module, active beh. reasoning, scripts library
+- 128 input, 640 hidden, 16 decision lobe
+
+EVO: 
+- population, generations, operators, ... more in EVA I, II.
+- evo programming
+    - evolving nn, including weights 
+- genetic programming
+    - strings that encode possible programs
+    - usually no/little mutation
+    - parse trees 
+
+NN: 
+- (extremely) simplified version of biological neuron, 
+    - function of input vector
+    - weight + bias, non-linearity 
+- layered, recurrent; hoppfield (associative memory, hebbian learning), self-organizing maps, ...
+
+Norn's brain: (a lot hand wavy)
+- closer to actual neurons, internal  potential, rest state, treshold, SVRule, gain, ...
+- brain organized into lobes
+    - the hidden layer not fully connected, 1-4 between perception to hidden (concept) 
+    - decision lobe not fully connected 128 inh., and 128 exc. connections
+
+- two lobes:
+    - perception -> concept lobe (640): action decision 
+    - stimulus + nouns -> attention lobe (40): what to focus on
+
+- perc. layer contains neurons for heard words 
+- action selection vs attention selection 
+
+- short-term-weights, vs long-term weights
+
+Reinforcement learning: 
+- strengthens/weakens connections that fired depending on reward/punishment (note: inh, exc)
+- if str is zero, can migrate to different input
+
+- norm model enables generalization
+
+http://diana.ms.mff.cuni.cz/pogamut_files/lectures/2015-2016/05.2-BDI-H-likeAgents7_Brom_060424_BDI.pdf
+- BDI: more in MAS
+- BDI interpreter: 
+    - generate options based on events 
+    - deliberate selected options, add them to current intentions 
+    - execute intentions
+- typically use plans and an intentional stack 
+    - preconditions, postconditions, ...
+
+https://drive.google.com/file/d/1lTx_FIZtuqaAkSR-pYV-Mth3j6iBJuij/view
+- spatial awareness
+    - floors, walls, pits, visibility, items (w.r.t to env)
+
+- terrain
+    - high map, walls, ...
+    - BSP tree: divides space into 2 parts, always recursively
+
+- raycasting: answers visibility questions between two points
+    - can I dodge, can I fire a rocket, ...
+    - what about holes?
+    - needs multiple rays for volume
+    - expensive, can't be used for e.g. pathfinding 
+
+- abstractions for path finding:
+    - navigation meshes/graph, convex 3-polytops 
+    - navgraph with area info
+    - additional info might be needed, e.g. jump links
+
+
+- navmesh vs navgraph
+    - has implicit area information
+    - better floor representation, suitable for steering, ...
+    - slower for path-finding, needs navgraph for off-mesh links
+
+
+- automatic navmesh generation
+    - flooding, triangulation w. holes, dual graph of that
+
+- navigation in navmesh
+    - orthocenters not good, middlepoints of edges works-ish but also not ideal, funnel alg (hugs the walls)
+
+- visibility abstraction
+    - precomputed visibility matrix
+    - useful for finding cover, ...
+
+https://docs.google.com/presentation/d/1DWOl9Dn9dnIjpjVf2HcQZYgjJmoZTnWIvFTuvGoZpgA/edit#slide=id.p
+LUA
+- procedural, dynamically typed, garbage collected
+
+http://artemis.ms.mff.cuni.cz/main/download/hagents/H-likeAgents5_Brom060515.zip
+- ethology: study of animal behavior within dynamic env.
+    - innate behavior vs learned behavior  
+    
+    - fixed action pattern: highly heritable, reflexes, vary little within specie 
+    - appetitive behavior: directed towards attractive object (get food) 
+    - consummatory behavior: eating food, directly achieves something
+
+- Tyrell's models:
+    - error prone perception, orientation, forgetting memory, ~10 internal drives
+    - predator avoidance, reproduction, food, ...
+    - action selection needs to handle: 
+        - external vs internal stimulus
+        - periodic vs non-periodic- degree of urgency
+        - perspective vs. prospective 
+    - Free flow "tree-like" hierarchy of sensors, memory, and actions, ...
+    - parametrization is hard, penalties temporal, uncertain, introduces reactive planning priorities in a way 
+    
+    - Tyrel ASM (vs. reactive)
+        - allows compromise choice
+        - avoids winner take all at every layer (computational cost)
+
+http://artemis.ms.mff.cuni.cz/main/download/hagents/10_3a_H-likeAgentsEtologie_100318.pdf
+
+https://drive.google.com/open?id=1Q_H-Re2ktQ2FU9OcI-49OEj4dYp_nY_k
+Steering behaviors 
+- framework for controlling lows level movement
+- works with forces adjusted on every frame 
+- local technique, does not plan, forsee, ...
+
+- different low level implementations: wander, avoid, arrive (slows down before target, ...), ...
+
+Flocking model of boids:
+- do not get too closer
+- try to move with the same speed as others nearby
+- prefer to be at the center of the local flockmates 
+
+- leader following, path following (project future position, if too far from path, steer towards it)
+- collision avoidance: lookahead, steer away, does not assume cooperation 
+
+https://drive.google.com/open?id=1TswkrGcB5p9jXZhlulyq88dY-gvee2da
+AI for modern games
+- divide et impera
+    - strategic (army, base, ...)
+    - tactical 
+    - reactive unit level 
+
+- strategic: 
+    - partial observability 
+    - hard to learn (not enough data)
+    - baseline: hardcoded build orders, ...
+
+- tactical layer:
+    - decompose map into regions and chokepoints
+    - tree isn't super-big, search manageable during early/mid game
+
+- reactive: 
+    - micro actions, very simple reactive layer 
+    - attack closest, lower HP, highest value, ...
+    - instead of actions, condense them to scripts -> script space way smaller (one script packs heuristic over actions)
+
+- tactical ABCD: Alpha-Beta Considering Durations
+    - not sure how that works exactly from slides
+
+- Monte carlo considering duration:
+    - monte carlo search with duration consideration (not sure how that works)
+
+- portfolio greedy search: 
+    - let them fight, iterating best assignment of scripts, estimate outcome
+    - essentially (if I understand correctly) simulate it, take the best
