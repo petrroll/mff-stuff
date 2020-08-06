@@ -257,6 +257,14 @@ http://artemis.ms.mff.cuni.cz/main/download/hagents/H-likeAgents5_Brom060515.zip
         - avoids winner take all at every layer (computational cost)
 
 http://artemis.ms.mff.cuni.cz/main/download/hagents/10_3a_H-likeAgentsEtologie_100318.pdf
+- elogical models 
+- almost needs to be simulated, hard to come up with analytical solutions 
+    - analytical solutions: too abstract, easy to analyse 
+    - simulations: usually a lot of parameters, can be hard to design them properly
+
+- populational models: 
+    - analytical model: set of differential equations: e.g.: delta = logistic growh - probability that they'll meet
+    - 
 
 https://drive.google.com/open?id=1Q_H-Re2ktQ2FU9OcI-49OEj4dYp_nY_k
 Steering behaviors 
