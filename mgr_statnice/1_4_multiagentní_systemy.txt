@@ -2,8 +2,7 @@
     - Architektura autonomního agenta; percepce, mechanismus výběru akcí, paměť; psychologické inspirace
     - Metody pro řízení agentů; symbolické a konekcionistické reaktivní plánování, hybridní přístupy
     - Komunikace a znalosti v multiagentních systémech, ontologie, řečové akty, FIPA-ACL, protokoly
-    - Distribuované řešení problémů, kooperace
-    - Nashova ekvilibria, Paretova efektivita, alokace zdrojů, aukce
+    - Distribuované řešení problémů, kooperace, Nashova ekvilibria, Paretova efektivita, alokace zdrojů, aukce
 
     - `../multiagent_systems/notes.md`
 - Umělé bytosti (NAIL068)

@@ -315,7 +315,7 @@ IDA
     
 - ontological languages
     - formal declarative languages for knowledge repre
-    - cotain both facts and reasoning rules
+    - contains both facts and reasoning rules
     - based on first order / description logic
 
     - frames: predecessor of ontologies: visualisation of human reasoning and lang. processing
@@ -461,7 +461,7 @@ Self-interested agents
 - agent doesn't have to be honest about capabilities, doesn't have to finish an assigned task
 - if possible benevolence is a good strategy
 
-- if system too comples -> common goal can be hard to identify
+- if system too complex -> common goal can be hard to identify
 - possible conflicts between common goal and goals of individual agents
 
 - sometimes better to consider selfish agents

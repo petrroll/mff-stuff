@@ -1,0 +1,227 @@
+
+Architektura autonomního agenta: percepce, mechanismus výběru akcí, paměť, psychologická inspirace
+- není jedna konkrétní definice
+- racionálně rozhodující se entita v prostředí, vnímaném skrze senzory
+- alternativně musí být proaktivní (nejen reaktivní)
+
+- abstraktní architektura agenta 
+    - S: množina stavů
+    - A: množina akcí 
+    - agent: S* -> A 
+
+    - typycky: see: S->p, action: P*->A
+- výběr akcí: 
+    - proaktivní: plánování dosažení cíle, ...
+    - reaktivní: reakce na immedate změny v prostředí 
+    - víc v metodách řízení 
+- paměť: 
+    - implicitní v případě reprezentace např. stavovým automatem (stav)
+    - explicitní skrze nějaký knowledge base, různé reprezantace, záleží na použité ontologii, může být i generická 1st order logic-like 
+    - reaktivní agent nemá paměť, proaktivní ji potřebuje (impl, nebo explicitní)
+
+    - hard (pamatuju si tvrdá fakta) vs fuzzy (např. short term spoje neuronů) o online učených agentů (zvířata simulace) (~patterny)
+- psychologická inspirace: 
+    - člověk: high level conscious kognice: plánování; low level lizard brain reflexy
+    - fuzzy patern based paměť + explicitní na tvrdá akta 
+    - assumption nějakého plánování, racionality, komunikace, ...
+
+Metody pro řízení agentů; symbolické a konekcionistické reaktivní plánování, hybridní přístupy
+- reaktivní vs. plánovací vs. hybridní (BDI, soar)
+- čistě reaktivní agent: 
+    - přechodová funkce S->A, závisí čistě na aktuálních vjemech
+    - alternativně může mít agent stav (stavový automat), stav součástí stavu světa -> zanáší paměť
+
+    - if/then pravidla 
+    - hierarchický/fuzzy/... FSM (finite state machine)
+    - do veké míry decision tree (static (only running), dynamic (reevaluate whole path to node))
+
+- čisté plánování/deductive reasoning:
+    - agent se stává efektivně dokazovačem -> 
+        - hledá důkaz/cestu od výchozích podmínek, skrze odvozovací pravidla (akce~implikace) k cíli 
+        - primárně zkoušet dokozatelné akce, sekundárně ty, které nejsou contradicting aktuálnímu stavu  
+
+- praktický reasoning 
+    - deliberace: čeho chceme dosáhnout 
+    - means-end reasoning: jak toho chceme dosáhnout 
+
+- BDI 
+    - Beliefs: domělý stav světa
+    - intentions: state of env. agent might want to to achieve 
+    - desire: one of possible intention 
+
+    - má intention stack aktuálních intentions, která se snaží zpracovat; přijímám subintentions delibareted plánů
+
+    - options: (Deliberation) 2^B x 2^I -> 2^Des  // intentions & beliefs -> desires
+    - filter: 2^B x 2^D x 2^I -> 2^I    // All I know -> less intentions
+    - brf: (Belief refresh) 2^B x Per -> 2^B
+
+    - generic planning loop
+        - v = see(), B = brf(B, v), D = options(B, I), I = filter(B, D, I)
+        - p = plan(B, I, Ac)
+        - while not (empty(p) or success(I, B) or impossible (I, B)) 
+            - a = hd(p), execute(a), p=[1:] //choose action and execute it
+            - v = see(), B = brf(B, v)
+            - if reconsider(I, B) then D=options(B, I), I = filter(B, D, I)
+            - if not sound (p, I, B) then p = plan(B, I, Ac) // if curr plan doesn't work for reconsidered intention / changed beliefs ->   new plan
+
+    - např. PRS 
+        - goals can have subgoals 
+        - není plné plánování, pouze z databáze plánů 
+        - stack of intentions: postupně přibívají sub-intentions 
+        ~ DFS 
+
+- plánování 
+    - plan většinou z databáze plánů
+    - občas je třeba reconsider: open-minded (dokud se věří, že lze) vs. single-minded (dokud se nevěří, že nelze)
+    - sort of exploration vs expotation (when to reconsider)
+
+- STRIPS: 
+    - svět jako first order logic 
+    - akce jako preconditions a effects 
+    - planning alg: nalezení nejkratší cesty mezi curr-state a goal 
+
+- subsumpční architektura: 
+    - čistě reaktivní architektura 
+    - agenti mají tělesnost, jsou vrstevnatí, žádná explicitní representace znalostí
+    - inteligence vzniká emergentně
+    
+    - rule-like structure, parallelní run několika behaviors
+    - subsumpční hierarchie pravidel dodává prioritu
+    - vybere se aplikovatelné behavior s nejvyšší prioritou 
+
+- Hybridní reasoning: 
+    - high level planning, low level reakční architektura 
+    - horizontální stacking: každá vrstva samostantně, těžko mít koherentní jednání 
+    - vertikální: dolní vstvy poskytují vjemy nahoru, horní vsrvy příkazy dolů
+
+- Symbolické a konekcionistické reaktivní plánování: 
+    - SOAR: State operator, and result  
+    - higher level procesy se dají rozložit do malých primitivních (a rychlých) operatorů nad daty
+    - pouze jeden operátor at the same time (bottleneck), selection process je parallení§
+    - rekurzivní řešení subgoals, ... 
+
+    - konekcionistické reaktivní plánování
+        - zpětně-vazební učení, multiple lobes 
+        - 128 perc -1:4-> 640 concept -128inh,128exc-> 16 decision
+        - posilněné pozitivní, zeslabené negativní
+        - když 0, tak se může přepojit 
+        ~ fully connected se silnou regularizací
+
+
+- klasické plánování: 
+    - vyžaduje plně pozorovatelný svět, povětšinou statický 
+
+Komunikace a znalosti v multiagentních systémech, ontologie, řečové akty, FIPA-ACL, protokoly
+- komunikace znalostí
+    - message passing, shared blackboard (úzké hrdlo, ...)
+
+- styl komunikace / kódování: 
+    - různé ontologie: systémy representace informací 
+    - strukturované: classes, instances, properties, relations, ...
+    
+    - ontologie ontologií: 
+        - dictionary: slovník termínů
+        - gloassary: vysvětlení skrze NL
+        - formální is-a hierarchie 
+        - properties, value restrictions, ... 
+        - arbitrární logické constrains 
+
+- ontologické jazyky: 
+    - formální declarativní jazyky pro representaci znalostí 
+    - mohou obsahovat jak fakta, tak reasoning rules 
+    - většinou first order logic / description logic 
+
+    - xml: nebylo zamýšleno ale funguje (hierarchie, properties, ...)
+    - RDF: jednoduchý, expresivní, representace vztahů přes triples (subject, predicate, object)
+    - OWL(Web ontolgoy language)
+        - mnoho verzí různé síly (od polynomiálně reasoning po arbitrary mostly undecidable)
+    - KIF: First order logic 
+
+- Description logics: 
+    - conpcepts (classes), roles (properties, predicates), individuals (objects)
+    - limitované kvantifikátory, ... 
+
+- Řečové akty
+    - ovlivnění světa skrze řečový akt 
+    - rozdíl mezi: co bylo řečeno, co bylo myšleno, jaký to mělo efekt 
+    - mohou mít preconditions 
+
+    - různé kategorie (např.:)
+        - assertives: informace 
+        - directives: requests
+        - comissives: promise
+        - ... 
+
+    - performative word (definuje typ) + content 
+
+    - mohou být vnímány jako akce -> lze skrze ne plánovat 
+        - e.g. strips (pre/pos conditions)
+
+- FIPA-ACL 
+    - performative, content, receiver, language, ontology
+    - performatives: achieve, advertise, ask-about, ask-all, forward, ...
+    - parameters: content, force, reply-with, sender, receiver, ...
+
+    - simpliifkace KQML semantics, implementace řečových aktů v JADE 
+    - mnoho různých performatives 
+
+- Protokoly: 
+    - Request: 
+        - Initiator posiela REQUEST performatív, Responder buď vykoná akciu alebo pošle AGREE, že to spraví, po dokončení pošle INFORM s výsledkom alebo DONE ak akciu vykoná bez výsledku
+    - Contract-Net: 
+        - Initiator posiela CFP (Call for Proposal) viacerým agentom, oni odpovedajú PROPOSE s podmienkami alebo REFUSE, potom zas Initiator posiela ACCEPT_PROPOSAL alebo REJECT_PROPOSAL.
+    - CDPS - benevolencia 
+        - všetci majú rovnaký cieľ. 
+        - Dekompozícia problému -> Riešenie subproblémov -> Syntéza riešenia.
+    - BlackBoard 
+        - Arbiter prideľuje expertom úlohy -> vyvoláva ich k tabuli, Experti reagujú na ciele na tabuli,  Tabuľa je zdieľaná pamäť.
+        - problemém formátu sdílených informací, shared datastructure (úzké hrdlo)
+        - rewriting problems to subproblems, ... 
+    - FELINE 
+        - sdílení znalostí / subtasků
+        - každý agent má rule-based systém: umím tohle dokázat/vyvrtit, chtěl bych tohle nechat dokázat/vyvrátit 
+        - komunikace skrze zprávy: hypotézy+speech acts, ... 
+
+Distribuované řešení problémů, kooperace, Nashova ekvilibria, Paretova efektivita, alokace zdrojů, aukce
+- distribuované řešení viz protokoly nahoře
+- kooperace: 
+    - agenti nemusí být upřímní okolo svých capabilities, ...
+    - maximalizace self vs common utility
+
+- problém více agentů -> teorie her
+    - čistá (jedna akce) vs smíšená strategie (expected return)
+    - dominující strategie: lepší vůči všem možným variantám soupeře než ostatní mé strategie
+    - Nash equilibrium s1 x s2: ani jeden agent si sám o sobě nepolepší když změní strategii, 
+        - ne vždy existuje v pure strategies, vždy v mixed 
+        - ~NP hard to find mixed 
+    - pareto opt: neexistuje jiná strategie, kde bych si polepšil aniž bych si já pohoršil
+        - front of pareto strategies 
+
+    - prisoners dilema 
+        - DD is nash eq 
+        - DD je jedine non-pareto-optimal 
+        - CC maximizes social wellfare 
+
+- Voting 
+    - condorcetov paradox
+        - může se stát, že výsledek nebude optimalní pro většinu kandidátů
+        - A>B>C, B>C>A, C>B>A, není ideální vítěz 
+
+    - sekvenčně pluralitní: turnaj po dvojicích
+    - bordov: každý dá pořadí, agregují se body podle ranku
+    - slatov: optimalizační strategie nejmíň dvojic co jsou špatně: NP úplné
+    - scotish smth: každej dá jeden bod nejlepšímu + pořadí, přenáší se na další když vypadne
+
+    - arrow theorem: 
+        - žádný volební systém založený na úplném pořadí nemůže z indiv. preferencí (úplné a transitiv) vytvořit uspořádání za:
+            - neomezená doména: všechny možné užitky jsou brané v úvahu
+            - ne-diktátorství: nevybere se jeden člověk, co to rozhodne
+            - pareto-opt: nelze zvíšit užitek pro jednoho volícího bez snížení užitku ostatních
+            - nezávislost irelevantnich alternativ: pořadí X, Y závisí jen na jejich ohodnocení
+    
+
+- Aukce: 
+    - obálková metoda (true-eps)
+    - Vickry: obálka + cena 2. nejvyšší (true)
+    - anglická: otevřená zvyšující (as long as <= true-eps)
+    - holandská: snižuje (until <= true-eps)
