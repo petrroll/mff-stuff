@@ -312,3 +312,91 @@ AI for modern games
 - portfolio greedy search: 
     - let them fight, iterating best assignment of scripts, estimate outcome
     - essentially (if I understand correctly) simulate it, take the best
+
+https://drive.google.com/file/d/1oiHI_BUeSNmKUxvQT0eo8iS9iJr1hXHh/view
+- a good path: fast, not looking mechanical, takes items, ...
+- environment abstractions:
+    - no abstraction
+    - rect. discretization (~voxels) / tiles ~ easy 
+        - regular distances, problem, weighted graph solutions
+            - in nodes/on edges 
+        - open fields problem (solved by quad-tree tiles)
+        - works with funnel smoothing
+    - navigation graph
+    - navmesh 
+    - quad-tree-tiles 
+        - works with funnel smoothing 
+        - version of framed-quadtree ~ frame of nodes around wach tile -> smoother
+    - potential fields
+        - obstacles are repulsors, goals attractors 
+        - ~steering
+        - may get stuck in local optima
+
+- pathfinding 
+    - random walks, wall following, robust wall-following (hug wall until you cross line between orig. stuck and goal) ...
+        - local, fast, works in open-space
+    - BFS / dijkstra
+        - expands a lot of nodes
+        - no assumption about topolgy
+    - best first search
+        - requires heuristic, not guaranteed shortest path 
+        - select nodes that seems to be closest
+    - A*: 
+        - guaranteed optimal if heuristic admissible
+        - select the one that's most promising (current dist + exp. remain distance)
+        - Expands a lot of nodes on obstacle hit -> sol: use non-admissable heur. 
+    - JPS(+):
+        - jump lookaheads 
+        - disregard symetric paths, sidesteps, only watch for obstacles 
+        - identify jump spots, path-find between them
+        - can be improved through baking 8-way distances to walls
+    - JPS+Goal bounding
+        - do not open nodes that lead outside your goal
+        - map must be static 
+        - for each oriented edge, store bounding box of the are that contains all nodes that are part of all opt. paths leading through that edge
+        - fast checking, not so expensive pre-compute, approx to ~floyd-warshall 
+
+https://drive.google.com/file/d/1Wdg9ih9wyf12NXPD-eNLcp6-f6tQ5fmh/view
+- bidirectional search
+    - search from both ends until they meet 
+    - does not have to find shortest path at first (p:9), needs better stopping criteria 
+        - when you find shortest path, continue alg. until the two shortest_b, shortest_e >= shortest_together 
+- BA*
+    - can be guaranteed optimal, heuristics as expected, stopping topf+topr >= u+pr(target)
+    - pr(x)=1/2*(hr(x) - hf(x))+hf(start)/2 # h: being original unidirectional heuristic 
+- P/NBA*
+    - solves the need to evaluate 2 heuristics per pr, pf and probe way after finding path of BA*
+    - share path=distance values of nodes expanded by both paths
+    - P: version adapt alg. so both searches can run in parallel 
+
+- A* PRA*
+    - make hierarchy of environment, find path in coarse abstraction, inform searches on finer level 
+    - doable over normal graphs as well, look for cliques and connected orphans, ... 
+
+    - requires pre-computation or recomputation of higher levels
+    - can be complex to implement 
+
+- D*
+    - sometimes environment is not known in advance / not static
+    - cannot guarantee shortest path, guarantees shortest path available
+    - start with optimist map, adjust as necessary
+
+- D* lite
+    - incremental version of A*, adapts to changes without recomputing expansions of all previously expanded nodes 
+
+- Lifelong A*
+    - recomputing shortest path based on changes in edges 
+    - update only patches that changed 
+        - might add vertex to open-list, recompute part of graph again (some parts are already computed, faster)
+    - more in slides
+
+- MPAA*
+    - more complex, expands more nodes on initial run, recomputation on changes faster
+    - more in slides 
+
+- RRT rapidly exploring random trees
+    - when we don't have a graph
+    - randomly create tree-like graph ad-hoc
+    - throw a point, find nearest exit point of RRT, make step from exit point towards the new point, if no obstacle add edge to the tree
+    - RRT* rewrite the tree around new point to be more optimal
+        - do not connect to the closest exit point but to a point with min-path-cost, then rewrite edges around (both check for obstacles)
