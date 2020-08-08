@@ -39,11 +39,14 @@ Problém hledání cesty; navigační pravidla, reprezentace terénu
     - lookahead a steer away, problém u více agentů (sami mohou změnit kurz, ...)
 
 - pathfinding algs
+    - iterative deepening 
+        - DFS s max depth, neotevře zas o tolik nodů víc než třeba, když stačí good enough cesta, může být dobré 
     - random walks
         - random, wall hugging, robust wall-hugging (než crossnes line mezi origin a cílem)
     - BFS / dijstra: otevírají se ty, co mají nejkratší cestu
     - Best first search: negarantuje, otevírají se ty, co se zdají nejblíž
     - A*: Ty co mají nejkratší cesta + permissible (menší než real) heuristika od cíle 
+        - memory bound variace (drop worst node, backup value to parent)
     - JSP+
         - Heuristika skrz pre-computed jump aheads  
     - Goal bounding: 
@@ -160,6 +163,9 @@ Metody pro učení agentů; zpětnovazební učení, základní formy učení zv
             - TD agent learns with Q function doesn't need explicit transition model P(s' |s, a)
             - At equilibrium: Q(s, a) = R(s) + ySUM_s'( P(s'|s, a) * max_a'Q(s', a') )
                 - Bellman: Q(st, at) = E[Rt+1 + y*Rt+2 + y^2*Rt+3... | st, at], leads to ^^
+                - Convergence: 
+                    - |BUi - BU'i| <= y|Ui - U'i| // The probabilities in exp. val for updates and Rewards are the same for U and U'
+                    - |BUi - U| <= y|Ui - U| // U: vector of true utilities -> fixed point
             - Update: Q(s, a) <- Q(s, a) + alpha * ( R(s) + y * max_a'Q(s', a') - Q(s,a) )
                 - whenever action a is executed for state s leading to state s'
         - SARSA

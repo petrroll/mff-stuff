@@ -44,6 +44,33 @@ Metody pro řízení agentů; symbolické a konekcionistické reaktivní plánov
     - deliberace: čeho chceme dosáhnout 
     - means-end reasoning: jak toho chceme dosáhnout 
 
+    - inference: DPLL (DFS s heuristikami), WalkSAT (random assignment, nahodne / maximalizace satisfied claus. flipuje in false clause)
+    - FO logic: grounding (instanciace všech termů, může bý nekonečně), skolemizace (E: constant, V: all instances)
+
+- plánování v FO 
+    - akce jsou termy 
+    - situace / state jsou termy 
+
+    - preconds/post-effects 
+    - forward search: apply actions until reach goal: randomly
+    - backward search: apply only partially applied actions (lifting)
+    - remember intermediate goals 
+
+
+    - planspace planning:
+        - start with empty plan, add actions to satisfy not yet covered goals
+          - initial state is an action with no pre-requisites
+          - goal is an action with no effects
+        - partial plan
+          - tuple: partially inited operators, set of constraines, set of causal relations, partial ordering
+        - ordering (just order) and causal relation (actions has to be directly after each other)
+        - flaws:
+          - open goal: not yet satisfied precondition (binding variables, finding new operator, ...)
+          - threat: action that can't be inbetween a causal relation
+
+        - partial plan is solution if no flaws, ordering consistent, and instantiated
+
+
 - BDI 
     - Beliefs: domělý stav světa
     - intentions: state of env. agent might want to to achieve 

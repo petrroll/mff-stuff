@@ -5,7 +5,7 @@
 - Doing to right things
 
 Building rational agents
-- perceivies enviroment through sensors and acts through actutors
+- perceives environment through sensors and acts through actutors
 - agent function V*->A
 - rational one selects action that is expected to maximize its performance measure
 
@@ -28,13 +28,13 @@ Types:
 - goal based (search, planning)
 - utility based (internalization of the performance measure)
 
-Representation of enviroment:
+Representation of environment:
 - atomic: states are indivisible black-boxes : search, ...
 - factored: states are fixed sets of variables : propositional logic
-- structured: states are sets of objects with relationshipts, ... : first order logic
+- structured: states are sets of objects with relationships, ... : first order logic
 
 General learning agent: 
-- can operate in uknown enviroment
+- can operate in unknown environment
 - problem generator (generates actions that lead to learning), critic, mechanism for making improvements (changes performance element), performance element (initial structure that selects actions)
 
 Problem solving:
@@ -58,18 +58,18 @@ Search space
 - fringe (frontier) set of not-yet expanded nodes
 
 Measures:
-- completeness (guaranteed to find a soulution if it exists)
+- completeness (guaranteed to find a solution if it exists)
 - optimality
 - time and space complexity
 
 BFS:
-- finds shallowest goal, not necesserily the optimal
+- finds shallowest goal, not necessarily the optimal
 - complete (provided finite branching factor)
 - O(b^(d+1)) for time and space
 - runs out of memory quickly
 
 Uniform cost:
-- expands nodes with lowest path cost (dijstra, ...)
+- expands nodes with lowest path cost (dijkstra, ...)
 - complete if all steps >= e
 - O(b^(1+c/e)), c cost of best solution time and space
 - Can be much worse than BFS (prefers cheap not short)
@@ -354,7 +354,7 @@ Planning:
 
 Planning in FO
 - actions are terms
-- sitations are also terms
+- situations are also terms
 - need to reason about sequences of actions
 - fluent a predicate that changes with time (needs situation as last argument : represents time)
 - tasks:
