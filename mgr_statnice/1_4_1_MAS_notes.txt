@@ -70,6 +70,11 @@ Metody pro řízení agentů; symbolické a konekcionistické reaktivní plánov
         - stack of intentions: postupně přibívají sub-intentions 
         ~ DFS 
 
+    - BDI interpreter: 
+        - generate options based on events 
+        - deliberate selected options, add them to current intentions 
+        - execute intentions
+
 - plánování 
     - plan většinou z databáze plánů
     - občas je třeba reconsider: open-minded (dokud se věří, že lze) vs. single-minded (dokud se nevěří, že nelze)
@@ -93,6 +98,11 @@ Metody pro řízení agentů; symbolické a konekcionistické reaktivní plánov
     - high level planning, low level reakční architektura 
     - horizontální stacking: každá vrstva samostantně, těžko mít koherentní jednání 
     - vertikální: dolní vstvy poskytují vjemy nahoru, horní vsrvy příkazy dolů
+
+    - touring machines 
+        - modelovací vrstva (cíle, konflikty, ...)
+        - modelovací vrstvavztváří plán, proaktivní chování
+        - reaktivní vrstva
 
 - Symbolické a konekcionistické reaktivní plánování: 
     - SOAR: State operator, and result  
@@ -156,6 +166,9 @@ Komunikace a znalosti v multiagentních systémech, ontologie, řečové akty, F
 
     - mohou být vnímány jako akce -> lze skrze ne plánovat 
         - e.g. strips (pre/pos conditions)
+
+- otevřený (co není explicitně true nevíme) vs uzavřený svět (co není explicitně true je false)
+    - representace negativních znalostí, ekvivalence v logickém programování
 
 - FIPA-ACL 
     - performative, content, receiver, language, ontology
@@ -225,3 +238,36 @@ Distribuované řešení problémů, kooperace, Nashova ekvilibria, Paretova efe
     - Vickry: obálka + cena 2. nejvyšší (true)
     - anglická: otevřená zvyšující (as long as <= true-eps)
     - holandská: snižuje (until <= true-eps)
+
+    Metodologie návrhu, jazyky a prostředí multiagentních systémů
+- architektury viz výše 
+- jazyky:
+    - DARPA: KQML: knowledge query and manipulation language (obálka), KIF: reprezentace znalostí (obsah)
+    - FIPA ACL: Implementované v JADE, ...
+    - Jade (JAVA), task execution, communication (p2p, yellow pages)
+
+- role: 
+    - permissions & resource access: záleží jestli kooperující / selfish 
+    - responsibility 
+- interactions: 
+    - relations and dependencies between roles 
+    - typy komunikačních protokolů (hetero/homogenní prostředí)
+- organization rules: 
+    - constrains on roles and protocols 
+    - liveness: roli může agent dostat jen za nějakých podmínek, ...
+    - safety: stejně jako v počítačové bezpečnosti 
+
+    
+- Gaia Metodologie
+    - https://www.cs.ox.ac.uk/people/michael.wooldridge/pubs/jaamas2000b.pdf
+    - Metodologie jak přistoupit k návrhu MAS systému "a methodology for agent-oriented analysis and design"
+    - Inspirováno object oriented design
+    - requirements statement
+        ANALYSIS
+        - roles model (systems, =interactions, roles, =permission, responsibilities, = liveness properties, safety properties)
+        - interactions model 
+    
+            DESIGN
+            - agent model (types, instances)
+            - services model (function of an agent, in OO terms: methods)
+            - acquaintance model (communication links between agent types, not detailed how msgs work, just they exist; identify bottlenecks)

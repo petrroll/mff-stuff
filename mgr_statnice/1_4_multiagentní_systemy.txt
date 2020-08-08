@@ -3,13 +3,13 @@
     - Metody pro řízení agentů; symbolické a konekcionistické reaktivní plánování, hybridní přístupy
     - Komunikace a znalosti v multiagentních systémech, ontologie, řečové akty, FIPA-ACL, protokoly
     - Distribuované řešení problémů, kooperace, Nashova ekvilibria, Paretova efektivita, alokace zdrojů, aukce
+    - Metodologie návrhu, jazyky a prostředí multiagentních systémů
 
     - `../multiagent_systems/notes.md`
 - Umělé bytosti (NAIL068)
     - Problém hledání cesty; navigační pravidla, reprezentace terénu
     - Etologické motivace, modely populační dynamiky
     - Metody pro učení agentů; zpětnovazební učení, základní formy učení zvířat
-    - Metodologie návrhu, jazyky a prostředí multiagentních systémů
 
     - https://gamedev.cuni.cz/study/courses-history/courses-2018-2019/human-like-artificial-agents-summer-201819/
 

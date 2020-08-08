@@ -1,0 +1,199 @@
+Problém hledání cesty; navigační pravidla, reprezentace terénu
+- pokud neznáme prostředí: 
+    - nějak náhodně, např. mars rovers (skrze reaktivní programování)
+        - jdi náhodně, pokladej radioaktivni blbost, pokladej radioaktivni smeti, když narazíš na radioaktivni smeti jdi jinam, ... 
+    - bug algoritmy: označ hitpoint a leavepoint, objížděj pokud narazíš na překážku, dokud nenarazíš na průsečík přímky leavepoint<>hitpoint
+
+- reprezentace terénu: 
+    - visibility matrix
+    - height map 
+
+    - navmesh
+        - má objemy, lepší steering 
+        - musí být coupled with navmesh 
+    - navgraph 
+    - uniform tiles 
+        - problém velkých otevřených prostor, pomalé
+    - quad-tree tiles
+        - divné cesty, vyžaduje smoothing (funnel)
+        - zlepšení skzre frame of small nodes around each tile 
+
+- prebaked waypointing
+    - najdeme přímou cestu k nejbližšímu waypointu, A* v grafu 
+    - waypointy mohou být too coarse
+    - generičtější navmesh může být lepší 
+
+- Steering: 
+    - kontrolování low-level pohybu 
+    - čistě lokální, pracuje se sílamy měnícími se každý frame 
+    - wander, avoid, arrive (slows before target), ... 
+
+- Steering může být skzre flocking 
+    - ne moc blízko ostatním
+    - stejně rychle jako okolí 
+    - cca ve středu okolí 
+
+    - leader following, path following, ... 
+
+- collision avoidance: 
+    - lookahead a steer away, problém u více agentů (sami mohou změnit kurz, ...)
+
+- pathfinding algs
+    - random walks
+        - random, wall hugging, robust wall-hugging (než crossnes line mezi origin a cílem)
+    - BFS / dijstra: otevírají se ty, co mají nejkratší cestu
+    - Best first search: negarantuje, otevírají se ty, co se zdají nejblíž
+    - A*: Ty co mají nejkratší cesta + permissible (menší než real) heuristika od cíle 
+    - JSP+
+        - Heuristika skrz pre-computed jump aheads  
+    - Goal bounding: 
+        - neotevírat nodes skrz které nevede nejkratší cesta do finálního regionu (každá hrana má bounding box)
+        - pouze statický environments, může být dost fast v maze-like prostředí 
+    - bidirectional search
+        - musí být smart zastavovací pravidlo (až po nalezení shortest_a+shortest_b > shortest_tog)
+    - s chytrou heuristikou BA* 
+        - alternativně paralelně 
+    - D*: dynamický environent 
+        - negarantuje nejkratší cestu
+        - začíná s optimistickou mapou, pomalu upravuje as necessary 
+    - Lifelong A*
+        - při změně se přepočítají změněné cesty, otevřou relevantní vrcholy a pokračuje se 
+    - RRT:
+        - postupné vytváření tree-like representace neznámé mapy
+        - random point, najde se nejbližší node, zkusí se z něj cesta, pokud existuje, tak se připojí
+        - vylepšení: lokální okolí se přeskládá pro nejkratší možné cesty z source pokud cesty possible
+
+Etologické motivace, modely populační dynamiky
+- virtualní agenti: uvěřitelnost, hry, empatie
+- animati: hlavně výpočet, musí být plausibilní datově, ...
+
+- analytické modely
+    - na základě empirických dat, zkoumání např. populací živých organismů
+    - zpravidla diferenciální rovnice
+    - většinou příliš obecné 
+
+    - např: N(t+dt) = N(t) + b*N(t)*dt - d*N(t)*dt // d: deaths, b: births 
+    - složitější modely predátor kořist, hostitel parazit, ... 
+    
+    - predátor x kořist
+        - dx = ax - bxy | ax: kořist se množí, -bxy je zabíjena predátorem
+        - dy = -cy + dxy | -cy: umírají, +dxy: množení když je dost jídla
+    - populační křivky: cykly populačního grafu (množství x, y bude cyklovat; stabilně nebo ne)
+
+- simulační modely
+    - hodně parametrů, ...
+
+- hydraulic model: 
+    - https://www.youtube.com/watch?v=AnXydNDVlss
+    - Lorenze's model of motivation
+
+    - fixed action pattern: all members within species, clockwork 
+        - aktivují se při přítomnosti external stimuli: releaser 
+        - větší interní motivace -> spíš reakce na slabší releaser 
+
+    - motivational energy: action specific energy: akumulace vody v rezervoáru
+    - innate releasing mechanism: podle velikosti externího stimulu se vypustí množství vody dostatečné na naplnění druhého semi-rezerováru
+        - dle úrovně hladiny se spustí jedna z několika možstvích akcí :: fixed action pattern
+    - behavioral quitness: po aktivaci fixed action pattern chvíli trvá, než stejný stimulus způsobí stejnou akci (naplní se rezervoár)
+
+    - male: has fixed patterns
+    - female: releser for male's courtship fixed action pattern  
+
+    - the more motivated we are, the more responsive we are to stimuli 
+    - hromadí se energie, ta časem spustí akci 
+
+- free flow hierarchy
+    - http://www.dgp.toronto.edu/~tu/thesis/node165.html
+    - node hierarchie, all nodes express preference for set of motor action, finální roznodnutí weighted sum 
+    - propagace takovéto hierarchie skze několik vrstev, nakonec se vybere akce argmax 
+    - no focus attention
+    - hierarchie senzorických inputů / vnitřních drivů, ...
+    - těžko správně nastavit/naučit váhy, hodně parametrů
+
+    - ~podobné dnešním DNN
+
+Metody pro učení agentů; zpětnovazební učení, základní formy učení zvířat
+- s učitelem: máme (xk, yk) pro k=0..N, chceme f(xi) = f(yi)
+- bez učitele: máme xk, chceme P(X=xi) (clustering, anonimaly detection, EM algoritmus, ...)
+- semisupervised: máme část labled, část ne
+- zpětně-vazební: máme s0a1s1a2, po epizodě dostaneme signál, chceme sadu pravidel pro maximalizaci odměn 
+
+- supervised learning: 
+    - Trénovací, testovací množina
+    - Mnoho různých způsobů učení podle domény dat 
+
+- reinfrorcement learning (AI2 notes :: #11): 
+    - explorace vs. explotace: zkoušení nových strategií vs. zlepšování slušných již nalezených
+        - s určitou p vyber náhodnou akci regardless learned stuff 
+        - vybírej vždycky argmax / podle distribuce (při učení) 
+
+    - pasivní učení: pevně daná strategie, učí se ohodnocení jednotlivych stavů, učí se utility func: U(s)
+        - většinou se musíš aktivně učit U(s)->R, a přechodovou funkci T(s)->s (frekvenční tabulka)
+        - ADP (adaptive dynamic programming)
+            - iteratively learns transition & rewards model 
+            - adjust state's utility to agree with all of the successors given transition 
+            - U(s) = U(s) + a(R(s) + y~U(s') - U(s)) | ~U(s') střední hodnota successorů skrze learned transition 
+        - Temporal difference: 
+            - neučí se transition model 
+            - U(s) = U(s) + a(R(s) + yU(s') - U(s)) | U(s') ten konkrétní vybranej transition, faster 
+            - 
+    - aktivní učení: učí se policy: Pi(s, a)
+        - Monte carlo search: U(s) <- R(s) + y*max_a f(SUM_s'( P(s'|s,a) * U(s') ), N(s,a))
+            - passive agent and using value or policy iteration to learn optimal choices 
+                - exploration function f makes it an active agent  
+
+            - N(s, a): number of times action a has been tried in s
+            - U(s): optimistic estimate of utility
+            - f(u, n) exploration function, defines tradeoff between exploration vs explotation, bigger with higher u, lower with higher n
+
+            - propagates the benefits of exploration back so that paths towards unexplored regions are weighted more highly
+                - reason why there's the optimistic estimate of utility on the right side
+    
+        - for active temporal difference learning agent there's a need for transition model 
+            - To select the best action for current state (only have utility func. for states)
+            - Needs to learn the transition model as well
+
+        - Q learning
+            - Q(s, a) denotes value for doing an action a in a state s
+            - U(s) = max_a(s, a)
+
+            - TD agent learns with Q function doesn't need explicit transition model P(s' |s, a)
+            - At equilibrium: Q(s, a) = R(s) + ySUM_s'( P(s'|s, a) * max_a'Q(s', a') )
+                - Bellman: Q(st, at) = E[Rt+1 + y*Rt+2 + y^2*Rt+3... | st, at], leads to ^^
+            - Update: Q(s, a) <- Q(s, a) + alpha * ( R(s) + y * max_a'Q(s', a') - Q(s,a) )
+                - whenever action a is executed for state s leading to state s'
+        - SARSA
+            - similar to Q-learning 
+            - instead of maxing over 'a in update it updates after 2 actions & uses true a, a'
+
+        - both SARSA and Q-learning slower than ADP agent, local updates don't force consistency
+        - both converge to optimal policy given enough time
+
+        - model free methods (e.g. Q-learning) don't need knowledge base for environment modeling
+        - for more complex environments knowledge based approach with explicit trainsition model can be better (ADP)
+
+
+    - REINFORC algoritmus
+        - Nuronová síť implementuje policy (state->action), podle odměny připočteme/odečteme gradient pro vybranou akci  
+
+- Formy učení zvířat: 
+    - Habituace 
+        - úbytek reakce na opakování téhož podnětu (přitom je reakce na jiné podněty zachována - nejde tedy o únavu) 
+        - když na chování je reakce co má minimální dopad na zvíře, tak to chování vymizí (třeba zvířata co si zvyknou, že lidi nejsou predátoři)
+    - Senzitizace 
+        - nárůst reakce na určitý podnět (opak habituace) 
+        - když zvíře má silný zážitek, tak si s chováním asociuje tuhle emoci (ať už špatnou nebo dobrou)
+    - Imprinting 
+        - proces učení vázaný k určité fázi vývoje jedince, který vede k trvalým a nezvratným změnám chování (kachny a Konrad Lorenz) 
+        - první věc co právě narozené zvíře vidí si imprintuje jako matku
+    - Klasické podmiňování 
+        - Pavlov a jeho psi. 
+        - Nepodmíněný podnět - sám vyvolává reakci, 
+        - podmíněný podnět - vyvolává reakci až když je spojen s nepodmíněným podnětem. 
+        - Když psi dostávají jídlo a zároveň zvoníme zvonkem, časem si asociujou, že když zvoníme zvonkem tak dostanou jídlo.
+    - Operantní podmiňování 
+        - Chování zvířete upevňujeme nebo oslabujeme za pomocí stimulací jako následků jeho chování. 
+        - Zároveň používáme stimulus jako předchůdce chování - trigger pro chování (povel sedni). Typy následků: pozitivní a negativní posilování (reinforcement) a tresty. 
+        - Pozitivní posilování chování je nejtypičtější - jednodušše odměníme zvíře když dělá to co chceme. 
+        - Negativní posilování funguje tak, že v prostředí je konstantně nějaký nepříjemný vjem a když zvíře dělá to co chceme tak se vjem odstraní. Rozdíl oproti trestu je jasný, trest zvířeti dá nový negativní vjem, chování oslabuje. Pozn. Chaining - učíme sled chování, jakože psa chceme naučit, aby sedl, lehl, zatancoval a zaštěkal. 
+        - Princip je ten, že psovi dáváme sérii povelů a odměňujeme ho až nakonec. (reinforcement learning)
