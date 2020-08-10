@@ -168,6 +168,10 @@ Metody pro učení agentů; zpětnovazební učení, základní formy učení zv
                     - |BUi - U| <= y|Ui - U| // U: vector of true utilities -> fixed point
             - Update: Q(s, a) <- Q(s, a) + alpha * ( R(s) + y * max_a'Q(s', a') - Q(s,a) )
                 - whenever action a is executed for state s leading to state s'
+
+            - Deep learning verze:
+                - baseline network implementující U(s), pro lepší rozlišení stavů
+                - experience buffer 
         - SARSA
             - similar to Q-learning 
             - instead of maxing over 'a in update it updates after 2 actions & uses true a, a'
@@ -178,9 +182,15 @@ Metody pro učení agentů; zpětnovazební učení, základní formy učení zv
         - model free methods (e.g. Q-learning) don't need knowledge base for environment modeling
         - for more complex environments knowledge based approach with explicit trainsition model can be better (ADP)
 
-
     - REINFORC algoritmus
         - Nuronová síť implementuje policy (state->action), podle odměny připočteme/odečteme gradient pro vybranou akci  
+        - střídání dvou sítí, jedna se učí, druhá pro aktuální policy, experience buffer, ...
+
+    - MAS setting:
+        - beru je jako jeden meta-agent, učím přímo Q funkci pro tuple stavů a akcí 
+        - self-play, každej agent se učí separátně, všichni ale mohou být instance jednoho 
+        - 
+    
 
 - Formy učení zvířat: 
     - Habituace 

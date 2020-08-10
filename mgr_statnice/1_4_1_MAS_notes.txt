@@ -175,8 +175,13 @@ Komunikace a znalosti v multiagentních systémech, ontologie, řečové akty, F
     - KIF: First order logic 
 
 - Description logics: 
+    - knowledge base 
+        - ABox: třídy, vztahy, ...
+        - TBox: instance, vztahy instancí 
+
+    - jazyk pro specifikaci ontologií, queries, ...
     - conpcepts (classes), roles (properties, predicates), individuals (objects)
-    - limitované kvantifikátory, ... 
+    - extension proporitional logic, ne tak strong jako FO, většinou rozhodnutelné
 
 - Řečové akty
     - ovlivnění světa skrze řečový akt 
@@ -198,6 +203,9 @@ Komunikace a znalosti v multiagentních systémech, ontologie, řečové akty, F
     - representace negativních znalostí, ekvivalence v logickém programování
 
 - FIPA-ACL 
+    - protocol FIPA (foundation for inteligent physical agents)
+        - specifikuje zprávu (obálku) i jak je encoded obsah 
+
     - performative, content, receiver, language, ontology
     - performatives: achieve, advertise, ask-about, ask-all, forward, ...
     - parameters: content, force, reply-with, sender, receiver, ...
@@ -205,11 +213,37 @@ Komunikace a znalosti v multiagentních systémech, ontologie, řečové akty, F
     - simpliifkace KQML semantics, implementace řečových aktů v JADE 
     - mnoho různých performatives 
 
+- FIPA SL: content language
+    - specifikuje obsah zpráv, syntax cca FO logic 
+
+- Modální logika
+    - https://www.martinpilat.com/en/multiagent-systems/modal-logics
+    - extenze predikátové logiky: necessity, possibility 
+
+    - set of possible Worlds, R: relation jestli je R(w, u) w accessible z u
+        - pravdivost vždy vůči světu a světech dostupných
+
+        - necessity: P je true ve všech možných acessible worlds 
+        - possibilitz: p je true v některých accessible worlds
+
+    - multimodalita, Ri i€[0...n]
+
+    - epistemic modal logic 
+        - relevantní pro MAS 
+        - Více modalit Ki: agent i něco ví 
+    - rozšíření o čas, ...
+
+
 - Protokoly: 
+    - https://www.martinpilat.com/en/multiagent-systems/communication-protocols
+
     - Request: 
         - Initiator posiela REQUEST performatív, Responder buď vykoná akciu alebo pošle AGREE, že to spraví, po dokončení pošle INFORM s výsledkom alebo DONE ak akciu vykoná bez výsledku
+        - FIPA protocol (používá FIPA-ACP a FIPA SL)
     - Contract-Net: 
         - Initiator posiela CFP (Call for Proposal) viacerým agentom, oni odpovedajú PROPOSE s podmienkami alebo REFUSE, potom zas Initiator posiela ACCEPT_PROPOSAL alebo REJECT_PROPOSAL.
+        - FIPA protocol (používá FIPA-ACP a FIPA SL)
+
     - CDPS - benevolencia 
         - všetci majú rovnaký cieľ. 
         - Dekompozícia problému -> Riešenie subproblémov -> Syntéza riešenia.
