@@ -1,5 +1,145 @@
+https://drive.google.com/drive/folders/10q-akLIsi_54HAsD3vnMDM8uzVy3Zf2l :: p77+
+
 Genetické algoritmy, genetické a evoluční programování
+- evoluční algoritmy: generické označení pro výpočetní metody inspirované evolucí
+    - GA: Genetické algoritmy - původně integer based, parametry evoluce externí 
+    - ES: Evoluční strategie - self adapting (učí se hyperparametry), původně real-valued
+    - EP: Evoluční programování - generování programů 
+
+    -> dnes mix, těžko zařadit pod jedno či druhé 
+- populační stochastiké prohledávající algoritmy, spíš metaalgoritmus/rodina algoritmů 
+- základní struktura
+    - vytvoř náhodnou populaci, ohodnoť
+    - dokud není splněna ukončovací podmínka (fitness, čas)
+        - křížení, mutace -> noví jedinci 
+        - ohodnocení nových jedinců
+        - selekce nové populuce z původní a nových jedinců na základě fitness
+
+- GA: 
+    - SGA (Holland)
+    - binární řetězce
+    - ruletová selekce, pouze rodičovská selekce (rodiče nové populace)
+    - 1 bodové křížení, bitové mutace, původně inverze (odebráno)
+
+    - alternativy: 
+        - SUS selekce (ruleta, po vybrání se posuneme o 1/n, lépe garantuje poměry)
+        - turnajová selekce  
+
+- GP: 
+    - generování programů
+    - původně na syntaktických stromech
+        - křížení: výměna subtrees 
+        - mutace: výměna nodes, musí se zachovat arita 
+        - ADF: dvojúrovňové, místo low-level nodes používám komplexnější ADF podstromy (předdefinované, co-evolved, ...)
+    - může být i lineárně (bytecode)
+        - větší problém s generování nevalidních programů, tree structure funguje jako regularizace
+    - problémy: 
+        - bloat: třeba nějak omezit velikost stromů: část fitness, chytré operátory, ...
+        - konstanty: local search, ...
+    - dnešní neuroevoluce (zejména architektur) je in a way pokračování 
+
+- EP: Evoluční programování 
+    - Lawrence 
+    - Snaha vytvoři umělou inteligenci, agent representovanán konečným automatem, prostředí sekvence symbolů 
+    
+    - populace: konečné automaty se vstupy, fitness: úspěšnost predikce výstupu 
+    - různé mutace (nové stavy, změna stavu, přechodu, ...)
+    - žádné křížení 
+
+    - turnajová selekce 
+    
+    - vs GA:
+        - teoreticky víc universální, žádné omezení na kódování jedince 
+        - velká škála mutací (od malých po velké), žádné křížení ~ není křížení jen metamutace? headless chicken (95)
+            - křížení funguje u problémů, kde jsou explicitní building blocky, jinak moc ne; respektive ne líp než metamutace
+    - vs ES: 
+        - EP turnajová selekce naproti deterministickému odstranění nejhorších, ...
+ 
+- ES: Evoluční strategie
+    - viz téma níže 
+
 Teorie schémat, pravděpodobnostní modely jednoduchého genetického algoritmu
+- schéma: 
+    - analýza subpopulací v GA
+    - 0, 1, *: libovolný symbol 
+
+    - schéma s r *: 2^r možných jedinců 
+    - jedinec délky "m" representován: 2^m schématy
+    - existuje 3^m schémat délky m 
+    - v pupulaci délky m o velikosti n je 2^m až n*2^m schémat (každá pozice může být konk. pevný bod / *)
+
+    - řád schématu o(S): počet pevných pozice
+    - definující délka d(S): vzdálenost mezi první a poslední pevnou pozicí 
+    - fitness F(S): průměrná fitness odpovídících jedinců _v populaci_ 
+
+    - Věta o schématech: Krátká schémata s nadprůměrnou fitness a malým řádem se v populaci během GA exponenciálně množí. 
+        - P(t): populace v čase t 
+        - n velikost populace, m délka jedinců 
+        - C(S, t): počet jedinců schéma v populaci; odhad P(S, t + 1)
+
+        - Selekce (ruleta): 
+            - p_s(S) = F(S) / sum_u€P(t)(F(u)) -> C(S, t+1) = C(S, t) * n * p_s(S)
+            - schéma má nadprůměrnou fitness (o eps) C(S, t) * n * p_s(S) = C(S, t) * F(S)/F_avg(t) -> C(S, t+1) = C(S, t) * (1+e)
+
+        - křížení (one-point):
+            - pravděpodobnost, že schéma nepřežije křížení: d(S)/m-1 // trefí se do pevných pozic -> nejspíš se změní -> už nebude odpovídat 
+            - p_surv(S) >= 1 - pc*(d(S)/m-1) // nerovnost: bod křížení se může trefit dovnitř schématu a obě části stále odpovídají
+        - mutace: 
+            - p_surv = (1-pm)^o(S)
+            - p_surv ~= +-pm * o(S) // funguje pro pm << 1 
+
+        -> C(S, t+1) >= C(S, t) * F(S)/F_avg(t) * (1- pc * (d(S)/m-1) - pm*o(S))
+
+    - hypotéza o stavebních blocích: GA hledá suboptimální řešení problému rekombinací krátkých, nadprůměrných, s malých řádem schémat (building blocks)
+    - důskedky VoS 
+        - GA pracuje s n jedinci, ale současně implicitně s 2^m až n*2^m schématy 
+        - Holland tvrdí, že počet schémat, kterým se v GA dostávám exp. růstu je úměrný až n^3
+        
+        - automaticky řeší explorace vs expoitace: skrze exponenc. lepší alokaci nadějným schématům odpovídá analytickému řešení 
+            - myslelo se že hraje ~3 rukého banditu, actually více her kde se soutěží o pevné pozice
+            - schémata řádu k soutěží o k pozic skrze 2^k rukého bandity -> až na to, že GA nesampluje schémata rovnoměrně 
+
+        - problém oshadu fitness schémat
+            - např. F(111*) = 2, F(0*) = 1, F(x) = 0, tak F(1*)=1/2 a F(0*)=+, jenže GA odhadne F(1*) ~ 2, protože 111* v populaci převáží 
+            - kolaterální konvergence -> jakmile začneme konvergovat, tak jsou všechny samply schémat biased a nejsou samplované rovnoměrně 
+
+- pravděpodobnostní modely
+    - snahy o analytické popsání GA, alespoń SGA 
+    - nejjednodušší JJGA:
+        - inicializuj náhodně populaci binárních řětězců x délky l 
+        - dokud nenajdeš dost dobré x
+            - dokud nenaplníš novou populaci
+                - vyber selekcí 2 jedince, zkříž je z s pc, jendoho potomka zahoď 
+                - mutuj každý bit nového řetězce s pm 
+                - vlož do populace 
+
+        - každého jedince jde brát jako binárně zapsané číslo 
+
+    - analýza 
+        - p_i(t) = kolik procent populace zabírá číslo i 
+        - s_i(t) = pravděpodobnost selekce řetězce i 
+        - F, F(i, i) = f(i) | else 0, f(i): fitness jedince 
+        
+        - s(t) = F*p(t) / sum_j=0..2^l-1{F(j, j) * p_j(t)} // předpokládáme turnajovou selekci 
+        - chceme definovat matici G, která realizuje krok JJGA: p(t+1) = G@p(t)
+            - G = F @ M // fitness, mutace-křížení 
+
+        - G=F nemáme žádnou mutaci, G=F, tak: E[p(t+1)] = s(t); E[s(t+1)] ~= F * s(t)
+            - problém samplingu konečných populací, čím větší, tím víc přesné
+        - G=M 
+            - r(i, j, k) = z i a j vytvoříme k 
+            - E[pk(t+1)] = SUM_iSUM_j..2^l-1 si(t)*sj(t)*r(i,j,k) : lze analyticky spočíst 
+        
+        - neznáme obecné fixed points (nemění distribuci stavů) 
+    
+    - konečné populace: 
+        - populaci lze definovat jako stav markovovského řětězce 
+        - pravděpodobnost přechodu jen na předchozím stavu, ... 
+        
+        - jeden stav: konkrétní populace -> populací o n jedincích délky l: n+2^l-1 over 2^l-1, matice přechodů ^2, absolutně intracable 
+            - n=l=8 -> 10^28 
+       
+
 Evoluční strategie, diferenciální evoluce, koevoluce, otevřená evoluce
 Rojové optimalizační algoritmy
 Memetické algoritmy, hill climbing, simulované žíhání

@@ -5,8 +5,8 @@
 - Evoluční algoritmy II	(NAIL086)
     - Rojové optimalizační algoritmy
     - Memetické algoritmy, hill climbing, simulované žíhání
-- Evoluční robotika	(NAIL065)
     - Aplikace evolučních algoritmů (evoluce expertních systému, neuroevoluce, řešení kombinatorických úloh, vícekriteriální optimalizace)
+- Evoluční robotika	(NAIL065)
 
 Prirodou inspirovane [Neruda]
 VoS a JJGA. VoS som rozpisal pomerne detailne, pytal sa na motivaciu a kritiku. JJGA chcel viac-menej princip naco a preco a rozdiel medzi konecnymi a nekonecnymi populaciami. Pohoda.
