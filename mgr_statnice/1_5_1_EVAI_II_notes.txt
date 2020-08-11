@@ -267,7 +267,38 @@ Rojové optimalizační algoritmy
             - p: parametr vypařování, suma: přidání feromonů pokud byla hrana na cestě nějakého mravence k 
         
 Memetické algoritmy, hill climbing, simulované žíhání
+- memetické algoritmy: obohacení EA o lokální prohledávání uvnitř cyklu 
+- inspirováno meme: ideje/myšlenky/... šířící se ve společnosti 
 
+- dva přístupy: 
+    - lamarkismus: skrze lokální hledání lepší jedinec je navrácený do populace, změna genotypu skrze fenotyp
+        - není korektní w.r.t to darwinismus, biologická motivace
+    - baldwinismus: z lepšího jedince vezmu jen fitness pro přežití jeho nezlepšeného genotypu, hledání potenciálu
+
+- Hill climbing 
+    - nejjednodušší forma prohledávání prostoru 
+    - vygeneruji náhodný bod v okolí, jdu na něj pokud je to zlepšení w.r.t to fitness funkce 
+    - varianty
+        - steepest ascent (gradient descent)
+        - stochastic HC: vyberu směr ruletou podle toho jak jsou strmé 
+        - random restart: náhodné restarty 
+        - first choice (první lepší směr)
+        - ...
+
+- Simulated annealing 
+    - lokální prohledávání kombinující HC a náhodnou procházku
+    - alg. náhodně zvolí stav a vydá se do něj pokud 
+        - je lepší než aktuální stav 
+        - je horší než aktuální stav, ale jen s pravděpodobností úměrnou od toho jak je špatný a aktuální teploty
+            - výšší teplota -> vyšší šance jít do špatného stavu 
+            - teplota se postupně snižuje, když se zaseknu -> zvýšit 
+            - e^deltaE/T //deltaE: o kolik je stav horší
+
+- taboo search 
+    - any search, pamatuje si past navštívené lokace -> jde od nich -> dobré pro exploraci 
+        - pamatuje si posledních X, posledních X nejlepších, etc. 
+    - scatter search: víc paralelních searchů 
+    - reference set: pamatující si nejlepší různé řešení ~ v podstatě niching 
 
 Aplikace evolučních algoritmů (evoluce expertních systému, neuroevoluce, řešení kombinatorických úloh, vícekriteriální optimalizace)
 
