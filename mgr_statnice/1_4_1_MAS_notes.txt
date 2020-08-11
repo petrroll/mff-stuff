@@ -300,12 +300,46 @@ Distribuované řešení problémů, kooperace, Nashova ekvilibria, Paretova efe
     - anglická: otevřená zvyšující (as long as <= true-eps)
     - holandská: snižuje (until <= true-eps)
 
-    Metodologie návrhu, jazyky a prostředí multiagentních systémů
+
+Metodologie návrhu, jazyky a prostředí multiagentních systémů
 - architektury viz výše 
 - jazyky:
     - DARPA: KQML: knowledge query and manipulation language (obálka), KIF: reprezentace znalostí (obsah)
     - FIPA ACL: Implementované v JADE, ...
     - Jade (JAVA), task execution, communication (p2p, yellow pages)
+
+- JADE: https://drive.google.com/drive/folders/1r5ROOEOkSCGFsl8Qt7-AmTPS6mDkbcBr
+    - JAVA environment 
+    - ~actor model 
+
+    - message passing, ontologie, yellow pages, ... 
+    - agent má několik behaviours, náhodně jdou po sobě, agent single threaded (nesmí sám sebe blokovat)
+    - behaviours posílají a zpracovávají messages 
+        - komunikační protokoly viz výše: Request, contract net 
+        - zprávy mají performative (na základě nich lze např. filtrovat)
+        - multiplatfromní obsah zpráv na základě definvoané ontologie (jinak lze i prostě serializované java objects, ale...)
+            - action (request akce), predicate (otázka), concept )other
+
+
+- agentspeak: https://drive.google.com/drive/folders/1r5ROOEOkSCGFsl8Qt7-AmTPS6mDkbcBr
+    - prolog like
+    - zejména BDI architektura 
+
+    - beliefs & rules on beliefs
+    - plans: 
+        - trigger: predikáty, říkající jestli by plán měl začít po přidání/ubrání konkrétních beliefs 
+        - context: podmínka jestli může začít
+        - body: akce, které by měl agent vykonat
+
+    - possible to have separate custom agent architecture e.g. in Java that maintains its own representation of env. etc. 
+
+- intentional stance
+    - physical stance: understand the complete laws of the system
+    - design stance: understand reasons why and how it works, what's the purpose, not the underlying physical laws (teleological expl.)
+    - intentional stance: use intentional system view for prediction
+        - physical design / descr. might not be available / practical
+        - can be very simple, though sometimes too simplifying
+        - Is there intenionality by itself or it only an interpretation?
 
 - role: 
     - permissions & resource access: záleží jestli kooperující / selfish 
@@ -317,18 +351,31 @@ Distribuované řešení problémů, kooperace, Nashova ekvilibria, Paretova efe
     - constrains on roles and protocols 
     - liveness: roli může agent dostat jen za nějakých podmínek, ...
     - safety: stejně jako v počítačové bezpečnosti 
-
     
 - Gaia Metodologie
+    - https://drive.google.com/drive/folders/1r5ROOEOkSCGFsl8Qt7-AmTPS6mDkbcBr
     - https://www.cs.ox.ac.uk/people/michael.wooldridge/pubs/jaamas2000b.pdf
     - Metodologie jak přistoupit k návrhu MAS systému "a methodology for agent-oriented analysis and design"
+        - concurrent, distributed, always on, interact in dynamic environment
+
     - Inspirováno object oriented design
-    - requirements statement
-        ANALYSIS
-        - roles model (systems, =interactions, roles, =permission, responsibilities, = liveness properties, safety properties)
-        - interactions model 
-    
-            DESIGN
-            - agent model (types, instances)
-            - services model (function of an agent, in OO terms: methods)
-            - acquaintance model (communication links between agent types, not detailed how msgs work, just they exist; identify bottlenecks)
+
+    - abstractions
+        - individual level: beliefs, goals, plans, sense/reason, reactive/proactive
+        - multi-agent level: roles, norms, speech-acts, env (closed/open, ...)
+
+    - org abstractions
+        - env: identify entities and resources 
+        - roles and interactions: functionalities, activities, responsibilities, ...
+        - org rules: constrains on rules, relationships between roles, ...
+        - org structures and patterns: topology, control regime (efficienty, robustness, ...)
+
+    - analysis
+        - suborganizations: requirements, subgoals, interakce, nutn0 skilly 
+        - enviroment model: abstraktní resources, vztahy mezi zdroji, dynamics prostředí 
+        - preliminary role model: identifikace basic skills (permissions, responsibilities)
+        - preliminatory interaction model: vztahy a závislosti mezi rolemi, interakce jako abstraktní protokoly (kdo, initiator, partneři, output, ...)
+        - organization rules: constrains na rolích a protokolech (liveness, safety)
+    - design 
+        - architectural design: organizační struktura, role a interakce 
+        - detailed design: agent model a service model 

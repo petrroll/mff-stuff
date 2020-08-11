@@ -1,0 +1,6 @@
+Genetické algoritmy, genetické a evoluční programování
+Teorie schémat, pravděpodobnostní modely jednoduchého genetického algoritmu
+Evoluční strategie, diferenciální evoluce, koevoluce, otevřená evoluce
+Rojové optimalizační algoritmy
+Memetické algoritmy, hill climbing, simulované žíhání
+Aplikace evolučních algoritmů (evoluce expertních systému, neuroevoluce, řešení kombinatorických úloh, vícekriteriální optimalizace)
