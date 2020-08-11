@@ -141,6 +141,100 @@ Teorie schémat, pravděpodobnostní modely jednoduchého genetického algoritmu
        
 
 Evoluční strategie, diferenciální evoluce, koevoluce, otevřená evoluce
+- původně primárně pro optimalizaci reálných funkcí 
+- jako první přišla s self-adaptation, součást jedince jsou evoluční parametry 
+
+- notace
+    - M: počet jedinců 
+    - L: počet nových potomků
+    - R: počet rodičů každého nového jedince 
+
+    - (M+L): M jedinců do nové populace z M+L nových i starých
+    - (M, L): M nových jedinců z L nových potomků (robustnější proti lok. extrémům)
+
+    - jedinec tvaru: C(i) = [Gn(i), Sk(i)] | první část hodnota, druhá část standardní odchylka, k = 1 | n | 2n
+        - k=1: společná odchylka pro všechny parametry 
+        - k=n: nekorelované mutace gemetricky se mutuje po elipse rovnoběžné s osami 
+        - k=2n: korelovan0 matice, geometricky mutuje podle n-rozměrného normálního zobrazení. Elipsa + natočení. ??? není třeba plná covariační matice?
+
+- populační cyklus: 
+    - n=0, randomly init P(n) of size M 
+    - evaluate fitness in P(n)
+    - while not good enough: 
+        - repeat l times: 
+            - choose R parents 
+            - crossover, mutate, eva new indiv 
+        - choose new population (by the type of OS), n++
+
+- selekce enviromentální
+    - nový jedinec akceptován jen když je lepší 
+- mutace: 
+    - genotyp nahrazen přičtením náhodného norm. rozd. čísla s patřičnou odchylkou 
+    - odchylka změněná tak, aby mutace měla úspěšnost on avg. 20pct 
+- křížení: 
+    - uniformní (avg) / diskrétní (hodnotu jednoho vybraného rodiče)
+
+- CMA-ES: correlation matrix adaptation ES 
+    - mean vybírání je vážený průměr úspěšných jedinců z minulé generace (větší váha lepším)
+    - udržuje se korelační matice pomocí iterativního EM, efektivně PCA se zachováním všech dimenzí
+    - dynamický stepsize podle úspěšnosti 
+
+- difirenciální evuluce: 
+    - každý jedinec projde mutací, křížením, selekcí
+    - mutace a křížení v podstatě jeden step, v mutaci se vytvoří donor, který je pak v křížení použit; není to tak, že každý krok vytváří separátní změnu
+
+    - mutace: posun podle ostatních
+        - zvolíme 3 další jedince: xa, xb, xc
+        - donor: v = xa + alpha * (xb - xc) pro f(xb) > f(xc)
+    - křížení: uniformní s pojistkou 
+        - křížení původního jedince s donorem
+        - ve výsledku zajištěn alespoň jeden prvek z donora, zbytek náhodně s určitou pravděpodobností
+    - selekce: porovnání / nahrazení lepším potomkem 
+
+- koevoluce: 
+    - více druhů se vyvíjí nezávisle na sobě 
+    - těžko postihnout fitness jednotlivých jedinců pokud závisí na dalším druhu 
+
+    - např. CoDeepNeat: 
+        - evoluce subnetworks & topologií/zapojení subnetworks at the same time 
+        - teoreticky by 3. úroveň mohla evolvovat váhy vrstev v subnetworks
+    
+    - kooperace vs. predator-prey 
+        - predator pray: skoro takový GAN v kontextu evoluce
+    - příklady: 
+        - sorting networks vs. evil number sequences
+        - iterated PD hráči 
+        - hráči tic-tac-toe 
+    
+    - sledován fitness:
+        - změna jednoho hráče vede ke změně fitness landscape ostatních 
+        - nejlepšího nechávám soupeřit s nejlepšími soupeři ze všech generací, odbobně jako v learningu MAS 
+
+    - zacyklení strategií:
+        - může dojít k zacyklení, podobně jako u GAN 
+        - pamatovat si n-posledních, vyhodnocovat proti sobě, ... 
+
+- otevřená evoluce: 
+    - evoluce bez konce, neexistuje ukončovací podmínka 
+    - fitness funkce je dynamická, může být do jisté míry i kódování jedince 
+
+    - velké změny: nic nebude fungovat (no free lunch theorem)
+    - různé typy změn: 
+        - malé změny
+        - velké morfologické změny: vznikají nové extrémy, ...
+        - cyklické změny 
+        - katastrofické změny
+
+    - řešení: 
+        - udržovat si nehomogenní populaci, nejen nejlepšího
+            - niching: fitness je relativní species, species identifikované skrze podobnost, ... 
+            - dynamické druhy: evoluce jen uvnitř, explicitní niching v podstatě
+
+    - GA většinou lepší: 
+        - ?nejspíš kvůli tomu, že evo. parametry (součástí evoluce v ES) nejsou konvergované pro jeden konkrétní landscape
+
+
 Rojové optimalizační algoritmy
+- 
 Memetické algoritmy, hill climbing, simulované žíhání
 Aplikace evolučních algoritmů (evoluce expertních systému, neuroevoluce, řešení kombinatorických úloh, vícekriteriální optimalizace)
