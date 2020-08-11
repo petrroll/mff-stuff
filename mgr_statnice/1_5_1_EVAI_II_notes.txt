@@ -235,6 +235,39 @@ Evoluční strategie, diferenciální evoluce, koevoluce, otevřená evoluce
 
 
 Rojové optimalizační algoritmy
-- 
+- optimalizační metody inspirované přírodou, např. hejny ptáků, ryb, ...
+- algoritmus: 
+    - init each particle 
+    - while not done: 
+        gBest = max(p.pBest for each p in Particles)
+        foreach p in Particles: 
+            p.v = p.v + c1 * rand(0, 1) * (gBest - p.Pos) + c2 * rand(0, 1) * (p.Best - p.Pos)
+        p.pBest = max_p{f(p)}
+
+    - každá částice má rychlostní vektor, aktualizuje se podle nejlepšího umístnění částice p v historii a podle nejlepší částice obecně
+
+- podobné jako GA
+    - výměna informací jen od nějlepších částic k ostatním 
+    - částice mají omezenou paměť (nejlepší pozici)
+
+- swarm inteligence (SI)
+    - sebeorganizace a dělba práce 
+    - PSO, ant colony optimization, ... 
+    - metaphor based alghorithms: inspirované reálnou skutečností ~ kritika jestli by bez ní byly dost dobré, aby byly zajímavé 
+
+- Ant colony optimization: 
+    - inspirované chováním mravenců při hledání potravy -> hledání cesty v grafu skrze feromony 
+    - p_ij(t) = t_ij(t)^a * n_ij^b / sum_n€Jk t_in(t)^a * n_in^b
+        - p_ij(t): pravděpododobnost přechodu z i, do j v čase t 
+        - Jk: uzly kam mravenec může aktuálně jít 
+        - t_ij: množství nevypařeného fermononu 
+        - n_ij: viditelnost mezi i a j 
+
+        - umístění feromonů: Q/Lk: Q: konstanta, Lk: cena cesty, časem se vypařují t_ij(t+1) = (1-p)*t_ij(t) + sum_k=1..m delta t_k_ij(t)
+            - p: parametr vypařování, suma: přidání feromonů pokud byla hrana na cestě nějakého mravence k 
+        
 Memetické algoritmy, hill climbing, simulované žíhání
+
+
 Aplikace evolučních algoritmů (evoluce expertních systému, neuroevoluce, řešení kombinatorických úloh, vícekriteriální optimalizace)
+
