@@ -301,4 +301,219 @@ Memetické algoritmy, hill climbing, simulované žíhání
     - reference set: pamatující si nejlepší různé řešení ~ v podstatě niching 
 
 Aplikace evolučních algoritmů (evoluce expertních systému, neuroevoluce, řešení kombinatorických úloh, vícekriteriální optimalizace)
+- expertní systémy: if: then rules 
+    - formální logika, by default not fuzzy (ale může být)
+    - learning classifier systems: evolvované expertní systémy 
 
+    - michiganský přístup: jedinec je pravidlo 
+    - pittsburský přístup: jedinec je množina pravidel 
+
+    - většinou klasifikační úlohy 
+    - instance mají pevnou strukturu featur (nominální, diskrétní, spojité, ...)
+
+    - pittsburský přístup: 
+        - nejbližší klasickému GA 
+        - jedinec je množina pravidel řešící problém, různě velká (problém variabilních jedinců)
+        - problém více matchujících pravidel: voting, priorita, ... 
+
+        - operátory jsou komplikované: na úrovni množin X na úrovni pravidel 
+        - fitness: vezme se první matchující pravidlo, klasifikuje -> např. podíl správně klasifikovaných 
+
+        - příklad: systém GABIL 
+            - nominální atributy, binární klasifikace (3 třídy)
+            - pravidla (komplexy) ve formátu predikát -> třída; predikát v CNF 
+            - 1100|0010|1001|1 : první atribut 1. nebo 2. hodnota, druhý 3. hodnota, třetí 1. nebo 4. pak patří do třídy 1
+            - snadné genetické operace 
+                - jedinec: výměna pravidel, kopírování pravidel, generalizace pravidel, smazání, ... 
+                - komplex: rozdělení komplexu na selektoru, generalizace, specializace, ...
+                - mutace: mutace 0<>1, rozšíření, zužení, ... 
+
+    - michiganský přístup 
+        - jedinec v populaci je pravidlo, IF-THEN; 1, 0, žolík 
+        - jde proti klasické evoluci, kde celá populace konverguje k jednomu řešení (nechceme)
+            - šlo by řešit skrze: Iterative rule learning: iterativně spouštíme GA
+                - najdeme pravidlo, uložíme pravidlo, 
+                - smažeme z trénování všechny dobře klasifikované jedince
+                - spustíme GA znovu a najdeme další pravidlo, ...
+
+        - na klasifikaci se podílí celá populace 
+            - evoluce není po generacích, ale jen občas a po částech populace 
+            - fáze: 
+                - objevování nových pravidel (GA)
+                - učení odměna/penalizace jedinců podle toho, jak si vedou při klasifikaci 
+
+            - původně měl systém podporu pro posílání zpráv (správy součástí pravidel, fronta, ...)
+            - klasifikace a odměny skrze kredity za které soutěžili o řešení, těžkopádný systém 
+
+        -> zero classifier system 
+            – Pravidla, která neodpovídají dané situaci, tak nic
+            – Pravidla, která odpovídají vstupu, ale mají jiný výstup: síla se zmenší násobením konstantou 0<T<1 
+            – Všemp ravidlům se zmenší síla o maloučást B 
+                – Tahle síla se rozdělí rovnoměrně mezi pravidla, která minule odpověděla správně, zmenšená o faktor 0<G<1 
+            – Nakonec, odpověď od systému se zmenší o B a rozdělí rovnoměrně mezi pravidla, která teď odpověděla správně
+
+        - inovace: cover operator
+            - pokud žádné pravidlo neodpovídá: vytvoří se nové pravidlo pro daný vstup 
+        - XCS: 
+            - zakládá fitness pravidla na přesnosti nikoli výdělku: dává šanci prosadit se pravidlům která vedou k akcím s malou odměnou 
+
+- neuroevoluce: 
+    - evoluce neuronových sítí 
+    - tradičně dnes: pevná architektura, váhy skrze backprop. 
+
+    - evoluce lze použít and/or: 
+        - architektura 
+        - váhy 
+        - různé kombinace jednoho/druhého/obojího s jinými přístupy
+
+        - v obou případech jde v podstatě o reinforcement learning 
+
+    - učení vah 
+        - v podstatě učení floating point GA optimalizace funkce 
+        - mnoho parametrů, mnoho funkčně ekvivalentních jedinců
+
+        - jiné formy optimalizace (backprop) fungují téměř vždy rychleji/lépe 
+            - možná kombinace: lokální search skrze backprop, evoluce sdílení např. různých konvolučních filtrů; těžko zabezpečit, že se nezmění význam vrstev a nerozpadne učení 
+    - učení struktury
+        - prostor architektur je obtížně diferencovatelný: gradientní metody moc nefungují 
+        - různé možnosti kódování: 
+            - přímé kódování: binární matice synapsí / podbloků 
+            - gramatické kódování: skrze gramatiky 
+            - celuární kódování: genetické programování -> automat vytvoří síť (přidej neuron, uber, rozděl, ...)
+
+    - SANE 
+        - evoluce částečné sítě 
+        - struktura pevná, jedna skrytá vrstva, jedinci v evoluci neurony 
+        - ohodnocení: vybere se pevný počet neuronů, postaví se síť, vyhodnotí se, garance výběru neuronů, fitness neuronů průměrná sítí kterých se účastnil 
+    - ESP
+        - podobný princip, každá lokace neuronu má vlastní populaci
+        - větší tlak na diverzitu, redundanci, ... 
+
+    - NEAT 
+        - evoluce topologie společně s vahami 
+        - smysluplné křížení pomocí historických značek 
+        - ochrana inovací pomocí druhů 
+
+        - operace: 
+            - přidání odebrání synapse, přidání/odebrání neuronu
+            - spíš růst sítí než zmenšování 
+
+        - každý neuron má historickou značku, značka se dědí
+            - křížení: pokud je uzel (dle značky) jen v jednom rodiči, automaticky je zkopírován; pokud v obou, náhodně se vybere 
+
+        - drží se populace druhů, soutěž pouze uvnitř druhů  
+
+    - HYPERNEAT: 
+        - vyvýjíme síť, která postaví naší wanted síť, pomocná síť CPPN
+            - různé nelinearity, nejen sigmoid, ... 
+            - vstup: 2D souřadnice dvou neuronů; výstup váha 
+
+        - umožňuje explicitně zachytit geometrické závislosti problému
+            - dobré pro malou robotiku, ... 
+            - neškáluje na velké sítě 
+
+    - CO/DEEP/NEAT 
+        - evoluce stavebních bloků (několik málo vrstev) a blueprintů pro stavby velkých bloků 
+        - spojené s backprop optimalizací vah bloků, evoluce toho jaké váhy se mají sharovat, ... 
+    
+    - další: 
+        - evoluce RNN cells 
+        - evoluce transformer bloků
+        ...
+
+- Řešení kombinatorických úloh 
+    - batoh: kapacita CMAX, snaha maximální cenu aby váha < CMAX 
+        - kódování: jedinci délky n: bitmapa 
+        - klasické operátory křížení, mutace, ... 
+        - fitness: problém -> dva členy
+            - max SUMi v(i)
+            - min CMAX - SUM c(i)
+
+        - problém: mnoho jedinců není validní řešení 
+        - -> změna kódování na: 1 znamená dej do batohu, pokud se nepřeplní -> všechno jsou přípustná řešení 
+    
+    - TSP
+        - fitness: délka cesty 
+        - kódování: různé problémy 
+            - sousednost: město j je na pozici i vede-li cesta z i do j 
+                - nefunguje křížení, fungují schémata (*3* značí všechny cesty s hranou 2->3)
+            - buffer: pořadí města v bufferu, postupně se mažou buffer: 123456 a repre 1121 kóduje 1-2-4-3
+                - lze použít jednobodové křížení 
+            - permutace 
+                - nefunguje křížení, lze použít speciální operátory 
+                
+                - partially mapped crossover: 
+                    - vybereme náhodný podřetězec z jednoho rodiče, podíváme se na tytéz pozice v druhém rodiči 
+                    - pokud nejsou v potomkovi: budeme pro ně hledat umístění, ... (viz https://drive.google.com/drive/folders/10q-akLIsi_54HAsD3vnMDM8uzVy3Zf2l)
+                - OX: order crossover
+                    - beze změny zkopírujeme náhodný interval z rodiče1 
+                    - vezmeme nepoužité hodnoty z rodiče2 a počínaje pravým koncem je dokopírujeme do potomka 
+
+                - CX: cyclic crossover 
+                    - identifikujeme cykly mezi dvěma rodiči, do nového jedince kopírujeme po těchto cyklech
+                - edge recombination 
+                    - pro každé město seznam hram které do/z něj vedou a jsou puožity v nějakém z rodičů 
+                    - začnu náhodným městem, připojím další, vždy vybírám město s nejméně zbývajícími hranami (odeberu)
+                    - jen málokdy selže ~1 pct 
+                    - vylepšení: přednost dvojnásobným hranám (v obou rodičích)
+
+                - binární maticové (křížení: průnik, and, sjednocení, ...)
+        - úspěšnost hodně závisí na inicializaci: 
+            - nejbližší sousedi: hladová inicializace 
+            - vkládání hran: na začátku náhodná hrana, přidej k cestě T nejbližší město mimo cestu T. Najdi hranu k-j v T, že minimalizuje rozdíl mezi k-c-j a k-j. Nahraď je. 
+
+        - mutace: 
+            - inverze !
+            - vkládání města do cesty 
+            - posun podcesty 
+            - záměna 2 měst 
+            - záměna podcest 
+            - Lokální zlepšení 2-opt, 3-opt, ...
+            - inicializace skrz aprox. algoritmy, ... 
+
+    - rozvrhování 
+        - matice: řádky učitelé, sloupce předměty 
+        - zamýchej předměty, samýchej učitele, vyměň lepší řádky jedinců 
+
+        - nutno respektovat hard constrains v operátorech
+
+    - plánování
+        - kódování je (zas) kritické 
+            - permutace: plán je permutace pořadí výrobků (nutné dekódování do plánu, těžko designovat operátory ~ lze špatně použít TSP operátory)
+            - přímá reprezentace: jedinec jako plán (speciální operátory)
+
+- vícekriteriární optimalizace: 
+    - potřeba optimalizovat víc fitness funkcí najednou 
+    - x slabě dominuje řešení y pokud je ve všech kritériích f_i(x) >= f_i(y)
+    - x silně dominuje y: slabě dominuje + E j: f_j(x) > f_j(y)
+    - řešení jsou nesrovnatelná: ani jedno demoninuje druhé 
+
+    - pareto optimální fronta: fronta řešení, které nejsou dominována jiným jedincem  
+
+    - řešení: 
+        - agregace fitness do jednoho skaláru: obvious problémy 
+        - VEGA: 
+            - populaci N jedinců utřídím podle každé z n fitness funkcí 
+            - pro každé i vyberu N/n nejlepších jedinců dle f_i, na ty aplikuju křížení, mutaci, ... 
+            - obtížné udržení diverzity, snadná konvergence k extrémům v jednotlivých f_i 
+
+        - NSGA
+            - fitness se počítá podle dominance, diverzitu zaručuje explicitní niching 
+            - populace rozdělená na fronty F1, F2, .... 
+            - pro každého jedince i ve frontě Fk se spočte niching faktor: sh(i) = sum_j€Fk sh(i, j) | sh(i, j) = 1-(d(i, j)/d_share)^2 pro d(i, j) < dshare, else 0
+                - vyjadřuje jak blízko je ostatním jedincům v populaci, 1: hodně blízkých sousedů, 0 samotný 
+            - F1 mají dummy fitness dělenou niching faktorem, F2 dummy fitness menší než je fitness nejhoršího z F2 dělenou jejich niching factorem, ... 
+
+        - NSGA II. 
+            - místo nutnosti dělit dshare crowding distance: součet přes všechna kritéria of vzdálenost nejbližšího horšího a nejbližšího lepšího jedince (v každém kritériu)
+            - namísto explicitního počítání fitness turnej: prvně podle fronty (menší lepší), druhak podle crowding distance (větší lepší)
+            - explicitní elitismus: do nové generace se postupně kopírují fronty dokud se již nevejde celá, pak podle turnajového systému výše 
+
+        - porovnání algoritmů: 
+            - IGD: Inverted generational distance: 
+                - https://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&arnumber=8314455
+                - průměrnou vzdálenost každého řešení na skutečné pareto opt. frontě k nejbližšímu řešení ve výsledné frontě 
+                - různé možnosti jak získat refereční pointy "skutečné pareto opt. fronty"
+                    - např. všechny nedominované řešení ze všech runů, uniformní sampling z téhož, ... 
+            - hyperobjem: 
+                - objem prostoru dominovaného danou množinou, pro 2D plocha "nad" body (omezené referenčním bodem společném pro všechny pro zabránění nekonečnosti) 
