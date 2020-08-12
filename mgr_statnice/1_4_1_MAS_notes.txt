@@ -412,6 +412,14 @@ Distribuované řešení problémů, kooperace, Nashova ekvilibria, Paretova efe
 
 
 Metodologie návrhu, jazyky a prostředí multiagentních systémů
+- leccos dle Wooldridge knihy nalezené na internetu 
+
+- motodologie
+    - models + set of guidlines 
+    - víceméně dvě skupiny
+        - OOP inspired (např. Gaia)
+        - knowledge engineering inspired (např. DESIRE) 
+
 - architektury viz výše 
 - jazyky:
     - DARPA: KQML: knowledge query and manipulation language (obálka), KIF: reprezentace znalostí (obsah)
@@ -442,6 +450,7 @@ Metodologie návrhu, jazyky a prostředí multiagentních systémů
         - body: akce, které by měl agent vykonat
 
     - possible to have separate custom agent architecture e.g. in Java that maintains its own representation of env. etc. 
+        - custom actions, custom event selection, custom beliefs, ...
 
 - intentional stance
     - physical stance: understand the complete laws of the system
@@ -462,6 +471,19 @@ Metodologie návrhu, jazyky a prostředí multiagentních systémů
     - liveness: roli může agent dostat jen za nějakých podmínek, ...
     - safety: stejně jako v počítačové bezpečnosti 
     
+- AAI Metodologie
+    - internal models: interní chování jednotlivých agentů 
+        - odpovídá PRS architektuře
+    - external models: system level view, angenti a jejich vztahy 
+        - agent class vs instance model 
+        - agenti mají BDI atributy 
+
+    - summary 
+        - identifikuj role, aplikační doménu, vytvoř hierarchii 
+        - responsibilites jednotlivých rolí, cíle, ...
+        - pro každý goal vytvoř plán(y)
+        - information requirements, ...
+
 - Gaia Metodologie
     - https://drive.google.com/drive/folders/1r5ROOEOkSCGFsl8Qt7-AmTPS6mDkbcBr
     - https://www.cs.ox.ac.uk/people/michael.wooldridge/pubs/jaamas2000b.pdf
@@ -469,6 +491,7 @@ Metodologie návrhu, jazyky a prostředí multiagentních systémů
         - concurrent, distributed, always on, interact in dynamic environment
 
     - Inspirováno object oriented design
+    - skrze organizational design 
 
     - abstractions
         - individual level: beliefs, goals, plans, sense/reason, reactive/proactive
