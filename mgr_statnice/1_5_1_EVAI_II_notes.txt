@@ -19,11 +19,15 @@ Genetické algoritmy, genetické a evoluční programování
     - SGA (Holland)
     - binární řetězce
     - ruletová selekce, pouze rodičovská selekce (rodiče nové populace)
+        - může být přeškálovaná
+        - podle pořadí a ne podle hodnoty fitness 
+        - ...
+
     - 1 bodové křížení, bitové mutace, původně inverze (odebráno)
 
     - alternativy: 
         - SUS selekce (ruleta, po vybrání se posuneme o 1/n, lépe garantuje poměry)
-        - turnajová selekce  
+        - turnajová selekce: prohraný se nevrací zpátky do selekce
 
 - GP: 
     - generování programů
@@ -57,6 +61,9 @@ Genetické algoritmy, genetické a evoluční programování
  
 - ES: Evoluční strategie
     - viz téma níže 
+
+- genotyp: soubor vlastností geneticky udržovaných v populaci 
+- fenotyp: konkrétní projev genotypu v jedinci závislý na konkrétním prostředí 
 
 Teorie schémat, pravděpodobnostní modely jednoduchého genetického algoritmu
 - schéma: 
@@ -93,7 +100,7 @@ Teorie schémat, pravděpodobnostní modely jednoduchého genetického algoritmu
     - hypotéza o stavebních blocích: GA hledá suboptimální řešení problému rekombinací krátkých, nadprůměrných, s malých řádem schémat (building blocks)
     - důskedky VoS 
         - GA pracuje s n jedinci, ale současně implicitně s 2^m až n*2^m schématy 
-        - Holland tvrdí, že počet schémat, kterým se v GA dostávám exp. růstu je úměrný až n^3
+        - Holland tvrdí, že počet schémat, která GA v jednom kroku zpracuje je až n^3
         
         - automaticky řeší explorace vs expoitace: skrze exponenc. lepší alokaci nadějným schématům odpovídá analytickému řešení 
             - myslelo se že hraje ~3 rukého banditu, actually více her kde se soutěží o pevné pozice
@@ -233,6 +240,12 @@ Evoluční strategie, diferenciální evoluce, koevoluce, otevřená evoluce
     - GA většinou lepší: 
         - ?nejspíš kvůli tomu, že evo. parametry (součástí evoluce v ES) nejsou konvergované pro jeden konkrétní landscape
 
+    - bootstrap problem: 
+        - na začátku všechna řešení nulová fitness -> komplexní úkol
+        - začnu lehčím úkolem -> postupně měním na komplexnější a komplexnější
+
+        - implicitně skrze GAN~like koevoluci 
+
 
 Rojové optimalizační algoritmy
 - optimalizační metody inspirované přírodou, např. hejny ptáků, ryb, ...
@@ -266,6 +279,17 @@ Rojové optimalizační algoritmy
         - umístění feromonů: Q/Lk: Q: konstanta, Lk: cena cesty, časem se vypařují t_ij(t+1) = (1-p)*t_ij(t) + sum_k=1..m delta t_k_ij(t)
             - p: parametr vypařování, suma: přidání feromonů pokud byla hrana na cestě nějakého mravence k 
         
+    - feromonova robotika: 
+        - s: startovací pozice
+        - s': sousední uzel s minimální hodnotou u(s)
+        - s(s)++ 
+            - varianty: u(s)++ //exp čas pokrytí 
+            - u(s) = u(s') + 1 // poly 
+            - if (u(s)) < u(s') then u(s)++
+            - ...
+        - přesuň se na s', repeat 2...
+
+
 Memetické algoritmy, hill climbing, simulované žíhání
 - memetické algoritmy: obohacení EA o lokální prohledávání uvnitř cyklu 
 - inspirováno meme: ideje/myšlenky/... šířící se ve společnosti 
@@ -380,6 +404,11 @@ Aplikace evolučních algoritmů (evoluce expertních systému, neuroevoluce, ř
             - přímé kódování: binární matice synapsí / podbloků 
             - gramatické kódování: skrze gramatiky 
             - celuární kódování: genetické programování -> automat vytvoří síť (přidej neuron, uber, rozděl, ...)
+
+        - operace 
+            - růst
+            - prořezávání (než se nezhorší fitness)
+            - dekompozice (podsítě, moduly, ...)
 
     - SANE 
         - evoluce částečné sítě 
