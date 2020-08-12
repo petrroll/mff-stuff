@@ -324,6 +324,11 @@ Memetické algoritmy, hill climbing, simulované žíhání
     - scatter search: víc paralelních searchů 
     - reference set: pamatující si nejlepší různé řešení ~ v podstatě niching 
 
+- relativně hodně v neuroevoluci: backrop
+- hledání jehly v kupce sena s nápovědou, kde by cirka mohla být (okolí, které lokálně prohledám)
+
+- otázka efektivity: není lepší výkon/čas dát evoluci?
+
 Aplikace evolučních algoritmů (evoluce expertních systému, neuroevoluce, řešení kombinatorických úloh, vícekriteriální optimalizace)
 - expertní systémy: if: then rules 
     - formální logika, by default not fuzzy (ale může být)
