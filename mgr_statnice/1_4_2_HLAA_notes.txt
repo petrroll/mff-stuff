@@ -28,11 +28,6 @@ Problém hledání cesty; navigační pravidla, reprezentace terénu
             - třeba přidat relevantní hrany: jumpoints, ...
 
         - těžko odhadnout jak má být jemný: 
-    - uniform tiles 
-        - problém velkých otevřených prostor, pomalé
-    - quad-tree tiles
-        - divné cesty, vyžaduje smoothing (funnel)
-        - zlepšení skzre frame of small nodes around each tile 
     - voxel navigace: 
         - plně 3D
 
@@ -126,7 +121,27 @@ Problém hledání cesty; navigační pravidla, reprezentace terénu
     - v případě více agentů může vést k oscilujícím chováním (head-on trajektorije, ...)
         - řešení: RVO: předpokládá kooperaci, idea: každý agent si vyřeší svojí polovinu kolize, pokud oba úspěšně -> collision free 
 
+- pathfinding
+    - omezení: ne všechno se umí otočit na místě, ... 
+    - různé start/end: 1:1, 1:N (jaký předmět), N:M (optimalizace)
+    - těžko definovat co je dobrá cesta (krátká, bezpečná, vypadá přirozeně, ...) -> multi. optimalizace 
 
+    - un/known environment, static/dynamic, ...
+
+- pathdinding representace:
+    - uniform tiles 
+        - problém velkých otevřených prostor, pomalé
+        - walkable/non-walkable tiles
+        - smooth with funnel alg. 
+
+        - zlepšeno skrze costs 
+    - quad-tree tiles: 
+        - navigace skrze středy 
+        - divné cesty, vyžaduje smoothing (funnel)
+        - zlepšení skzre frame of small nodes around each tile 
+    - flow-fields 
+        - obstacles: repulsors 
+        - cíle: attractors 
 
 - pathfinding algs
     - iterative deepening 
@@ -137,11 +152,23 @@ Problém hledání cesty; navigační pravidla, reprezentace terénu
     - Best first search: negarantuje, otevírají se ty, co se zdají nejblíž
     - A*: Ty co mají nejkratší cesta + permissible (menší než real) heuristika od cíle 
         - memory bound variace (drop worst node, backup value to parent)
+        - u překážek otevře hodně nodes, jde řešit přes non-admissible heuristiku
+        - hledání musí skončit před prvním krokem (není online), těžko funguje pro víc agentů 
+    - JSP (jump point search)
+        - funguje na regulárním gridu 
+        - ignoruje symetrické cesty (sidesteps)
     - JSP+
-        - Heuristika skrz pre-computed jump aheads  
+        - Heuristika skrz pre-computed jump aheads prebaked (8-way vzdálenosti ke stěnám + jump points)
+        - podrobně ve slidech https://drive.google.com/file/d/1oiHI_BUeSNmKUxvQT0eo8iS9iJr1hXHh/view
     - Goal bounding: 
         - neotevírat nodes skrz které nevede nejkratší cesta do finálního regionu (každá hrana má bounding box)
-        - pouze statický environments, může být dost fast v maze-like prostředí 
+        - pouze statický environments, může být dost fast v maze-like prostředí
+        - precomputation:
+            - pro given node spust dijstra ve fill mode, mark each node reach z první edge 
+            - spočítej bounding box -> result pro tu jednu hranu
+        - approx floyd washall 4*edge instead of nodes^2
+
+- adv pathfinding (ne u státnic)
     - bidirectional search
         - musí být smart zastavovací pravidlo (až po nalezení shortest_a+shortest_b > shortest_tog)
     - s chytrou heuristikou BA* 
