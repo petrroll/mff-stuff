@@ -10,20 +10,40 @@ Architektura autonomního agenta: percepce, mechanismus výběru akcí, paměť,
     - agent: S* -> A 
 
     - typycky: see: S->p, action: P*->A
+
 - výběr akcí: 
     - proaktivní: plánování dosažení cíle, ...
     - reaktivní: reakce na immedate změny v prostředí 
     - víc v metodách řízení 
+
 - paměť: 
     - implicitní v případě reprezentace např. stavovým automatem (stav)
     - explicitní skrze nějaký knowledge base, různé reprezantace, záleží na použité ontologii, může být i generická 1st order logic-like 
     - reaktivní agent nemá paměť, proaktivní ji potřebuje (impl, nebo explicitní)
 
     - hard (pamatuju si tvrdá fakta) vs fuzzy (např. short term spoje neuronů) o online učených agentů (zvířata simulace) (~patterny)
-- psychologická inspirace: 
+
+- neuronové sítě: skrz maximalizaci ohodnocení (reinforcement learning) / napřímo vybírá akci 
+
+- namísto tvrdých pravidel: fuzzy pravidla 
+    - [0, 1] namísto true/false 
+    - fuzzy rules: specifikují potřebnou míru -> projektují míru předpokladu do míry výsledku
+    - fuzzy FSM: fuzzy pravidla, fuzzy přechody 
+
+- psychologická inspirace Human-li artificial creatures: 
     - člověk: high level conscious kognice: plánování; low level lizard brain reflexy
     - fuzzy patern based paměť + explicitní na tvrdá akta 
     - assumption nějakého plánování, racionality, komunikace, ...
+
+    - what to do: delibaration 
+    - how to do it: means-ends reasoning 
+    -> BDI architecture 
+
+    - intentions: present directed / future-directed / policy based ...
+        - adopted / commited desires 
+        - musí být reevaluated občas 
+        - drive means-end reasoning 
+        - ovlivnují beliefs 
 
 Metody pro řízení agentů; symbolické a konekcionistické reaktivní plánování, hybridní přístupy
 - reaktivní vs. plánovací vs. hybridní (BDI, soar)
@@ -34,6 +54,22 @@ Metody pro řízení agentů; symbolické a konekcionistické reaktivní plánov
     - if/then pravidla 
     - hierarchický/fuzzy/... FSM (finite state machine)
     - do veké míry decision tree (static (only running), dynamic (reevaluate whole path to node))
+
+    - v případě víc pravidel: 
+        - evaluate and execute all relevant
+        - podle statické priority
+        - náhodné 
+        - floating priority
+
+    - SHRP: Simple hierarchical reactive planning
+        - if-then rules, priorities 
+        - může explicitně mít state příznaky, ale je to tedious a error prone 
+        - Essentially a behaviour tree
+        - Goals, subgoals, ...
+
+        - dobré pro prioritizaci quick buheviours
+        - bez paměti perceptual aliasing: stejná věc vypadá jinak (nemám explicitní stav)
+
 
 - čisté plánování/deductive reasoning:
     - agent se stává efektivně dokazovačem -> 
@@ -70,6 +106,76 @@ Metody pro řízení agentů; symbolické a konekcionistické reaktivní plánov
 
         - partial plan is solution if no flaws, ordering consistent, and instantiated
 
+- hFSM:   
+    - hierarchické finite state machines 
+        - stav je transparentně trackován skrze state machine 
+        - většinou nějaká ontransition activity, ... 
+    - snadnější alternativy než u čistých if-then rules (SHRP), teoreticky ekvivalentně silné
+
+    - různé varianty: 
+        - pFSM: probabilistic, sFSM: sequential 
+
+- scripting 
+    - důkaz na behavior oriented design 
+    - decompose v top-down, implementuj bottom-up 
+
+    - těžké udržovat sequence: problém s blocking actions, reevaluace, ...
+    - snadné alternativy a paralelní akce (naopak těžké v FSM)
+
+- behavior trees 
+    - evaluace začne v root node, postupně pokračuje dál
+    - každá node má vlastní paměť, running until done 
+
+    - hFSM ekvivalence (potřeba řešit wrapping children nodes u alternativ z FSM->beh. trees)
+    - passive vs. active:
+        - active: alawys reevaluate whole path from root -> lze přerušit nejen leaf currently running node 
+        - passive: running node je jediná aktivní 
+
+    - still a tree -> not a graph -> limitation against FSM (nutná velká duplikace, ...)
+    - can do parallel execution (seq. in the same frame workaround, znovu duplikace kódu oproti např. scriptingu)
+    - can't do mixed rules evaluation properly
+    - dobře zvládají looping
+
+- decision space: 
+    - FSM a scripting seems complimentary 
+    - mix xFSM a if-then rules, které vybírají použítý FSM (select function vybírá / replacement, ...)
+
+
+- POSH: Parallel ordered slip-stack hierarchy
+    - http://www.cs.bath.ac.uk/~jjb/web/posh.html
+    - goal: posh expression
+    - drive collection:  this is the root of the POSH hierarchy, and on every POSH action-selection cycle, this reconsiders which goal the agent should be working on.  This is how a BOD agent can respond rapidly to changes in the environment.
+    - competences: these are basic reactive plans.  They allow a BOD agent to complete a task robustly and opportunistically.
+    - action patterns: or simple sequences.  These are a basic kind of plan aggregate which turn out to be useful in quite a lot of situations, despite their lack of flexibility.  They reduce the combinatorial complexity of the agent when a full competence is not really necessary. 
+
+    - unless goal satisfied
+        - goes through drives, executes the one with correct trigger & not exceeded freq
+            - executes drive's stack
+                - reset on success, failures, or timeouts, not on switch 
+                - competence elements can't interrupt each other 
+    - selects a goal, tries its stack of competences, each can contain set of action patterns
+
+    - pros:
+        - separation of decision making from behavior primitives similar to BTs / FSMs
+        - rule prioritization 
+        - action patterns modeled as sequence of actions 
+
+    - cons: 
+        - condition conj. of sensors only
+        - hard to model durative actions (no running state), hard to do interactive unless blocking 
+        - switching between branches on top-level only, drives cannot be referenced 
+        - drive stack is passive, only top revisited every tick
+
+- Goal: 
+    - prolog with if-then rules 
+    - actions have pre, poss conditions, post are automatically applied
+    - event module executed every tick as the first
+    - main has linear execution, only the first applicable executed (also, linearall, random, ... options)
+
+    - pros:
+        - unification makes us to code faster, prolog good for reasoning, rule prioritization
+    - cons: 
+        - hard to model durative actions- no action sequence, same as SHRP 
 
 - BDI 
     - Beliefs: domělý stav světa
@@ -143,6 +249,10 @@ Metody pro řízení agentů; symbolické a konekcionistické reaktivní plánov
         - posilněné pozitivní, zeslabené negativní
         - když 0, tak se může přepojit 
         ~ fully connected se silnou regularizací
+
+- reactive planning: 
+    - v podstatě hledání cesty 
+    - States, Actions, Actions(s), Result(s, a), Cost(s, a)
 
 
 - klasické plánování: 

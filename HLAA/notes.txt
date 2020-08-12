@@ -122,7 +122,7 @@ POSH: Parallel ordered slip-stack hierarchy
     - rule prioritization 
     - action patterns modeled as sequence of actions 
 
-cons: 
+- cons: 
     - condition conj. of sensors only
     - hard to model durative actions (no running state), hard to do interactive unless blocking 
     - switching between branches on top-level only, drives cannot be referenced 

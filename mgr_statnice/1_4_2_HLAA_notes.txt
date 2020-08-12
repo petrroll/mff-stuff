@@ -1,4 +1,8 @@
 Problém hledání cesty; navigační pravidla, reprezentace terénu
+- obecný termín pro schopnost chápat, reason about, ... prostředí ve kterém se agent nachází 
+    - navigace, vztahy objektů, ...
+    - odpovídá na mnoho otázek: kde jsem, jak uhnout raketě, kudy se dostat k X, ...
+
 - pokud neznáme prostředí: 
     - nějak náhodně, např. mars rovers (skrze reaktivní programování)
         - jdi náhodně, pokladej radioaktivni blbost, pokladej radioaktivni smeti, když narazíš na radioaktivni smeti jdi jinam, ... 
@@ -7,36 +11,122 @@ Problém hledání cesty; navigační pravidla, reprezentace terénu
 - reprezentace terénu: 
     - visibility matrix
     - height map 
+    - plná 3D polygon reprezentace
+        - moc jemné na jekékoliv počítání 
+        - užitečné na fine raycasting pro např. "mohu vidět XYZ pokud vím, že bych nejspíš mohl"
+        - může být optimalizované skrze BSP tree (axis aligned splitting, ...)
 
+    - navgraph 
+        - navigation points, edges 
+        - spoustu informací se ztratí -> přádání area informace (pro steering) -> skoro navmesh
     - navmesh
         - má objemy, lepší steering 
         - musí být coupled with navmesh 
-    - navgraph 
+        - získat contour, triangularizace, odstranit stěny, 
+            - duální graf je ~funkční navgraph
+            - většinou třeba ručně přidat relevantní navpointy (hiding spots, ...)
+            - třeba přidat relevantní hrany: jumpoints, ...
+
+        - těžko odhadnout jak má být jemný: 
     - uniform tiles 
         - problém velkých otevřených prostor, pomalé
     - quad-tree tiles
         - divné cesty, vyžaduje smoothing (funnel)
         - zlepšení skzre frame of small nodes around each tile 
+    - voxel navigace: 
+        - plně 3D
+
+    - navmesh navigace  
+        - různé polygony různě velké -> může vést k špatně vygenerovanému navgraphu -> vybereš delší cestu kvůli chybějící duální konektivítě 
+            - https://drive.google.com/file/d/12VNtbCh9h8Dm6IbfJln8TbFEFob6g-by/view
+        - refining 
+            - použití středů polygonů nefunguje 
+            - středů crossed-hran-mezi-polygony: funguje ale ne optimální 
+            - funnel algoritmus. Jede po úhlopříčkách, najde docela pěknou krátkou cestu 
 
 - prebaked waypointing
     - najdeme přímou cestu k nejbližšímu waypointu, A* v grafu 
     - waypointy mohou být too coarse
     - generičtější navmesh může být lepší 
 
+
+- navigace velkých skupin jednotek  
+    - proper pathfinding pro leadera skupiny, zbytek steering okolo něj
+        - do not overlap units
+        - start fast 
+        - maintain coherence of the group 
+        - solve dynamic obstacles 
+        -> těžké 
+
+    - různá řešení 
+        - relaxace do grid based: jeden cell - jedna jednotka, žádná větší jednotka, kolize by swapping 
+        - neřešit koherenci, jednotky následující jednu cestu, vede k lining behavior 
+        - počkat jednotkami, které se právě nemohou pohnout, případně ignoruj lokální kolize  
+
+    - lokální řešení: steering skzre flocking behavior:
+        - ne moc blízko ostatním
+        - stejně rychle jako okolí, stejný směr jako okolí
+        - cca ve středu okolí 
+
+        - attractors: leader / střed / ...
+        - repuslors: obstacles (globální look ahead), ...
+
+        - emergentní: hard to debug 
+
 - Steering: 
+    - https://drive.google.com/file/d/1qmLmmIuYG4xGezSPfQfyMQE_8YiTs9Nc/view
     - kontrolování low-level pohybu 
     - čistě lokální, pracuje se sílamy měnícími se každý frame 
     - wander, avoid, arrive (slows before target), ... 
 
-- Steering může být skzre flocking 
-    - ne moc blízko ostatním
-    - stejně rychle jako okolí 
-    - cca ve středu okolí 
+    - obecný algoritmus:
+        - f = calc_f(...)
+        - a = f/m 
+        - a = clamp(a, maxAcc)
+        - v += a * td 
+        - p += v * td 
+        - s = v.len 
+        - look_dir = v.norm
 
-    - leader following, path following, ... 
+        - position can be used for next-target-to-reach for anim. controller, speed for switching animations, ...
+    - list of reynold steerings: 
+        - seek and flee: steer to/from static target
+            - to_target = target_pos - my_pos 
+            - des_vel = normalize(to_target) * max_speed
+            - steering = des_vel - velocity
+        - pursue and evade 
+        - wander: random steering
+            -  at each step, random offset added to wander direction, offset constrained to be in cone/circle in front of the subject 
+            - 
+            - 
+        - arrival: as seek but slow down as you approach it 
+            - ramped_speed = max_speed * (distance / slowing_distance)
+            - clipped_speed = min(ramped_speed, max_speed) 
+            - des_vel = to_target * (clipped_speed / distance)
+        - pursue & evade: seek and flee but target is dynamic
+            - agent predicts location of the target next tick, the close the smaller lookahead 
+        - ...
+
+    - leader following, ... 
+        - arrival with target slightly in front of/behind (záleží co chceme) leader + separation (kolize s ostatními)
+
+    - path following: agent předpoví kde bude v dalším ticku dle dosavadní rychlosti, najde z toho bodu nejbližší bod cesty, steer k němu/ne pokud within margin 
 
 - collision avoidance: 
-    - lookahead a steer away, problém u více agentů (sami mohou změnit kurz, ...)
+    - lookahead + test na vzdálenost od středu obstacle pro rychlou implmentaci -> avoidance force od překážky 
+        - problém více nebezpečí, pouze nejbližší je considered 
+
+    - lookahead a steer away, problém u více agentů (sami mohou změnit kurz, ...), lepší nepředpokládat kooperaci (jinak velmi komplexní systém)
+
+    - velocity obstracles: 
+        - uhýbání dynamickým překážkám
+        - pokud agent A ví o agentu B (lokace, velocity), můžeme detekovat velocity obstacle pro A: velocities které způsobí srážku 
+        - analytické řešení 
+
+    - v případě více agentů může vést k oscilujícím chováním (head-on trajektorije, ...)
+        - řešení: RVO: předpokládá kooperaci, idea: každý agent si vyřeší svojí polovinu kolize, pokud oba úspěšně -> collision free 
+
+
 
 - pathfinding algs
     - iterative deepening 
