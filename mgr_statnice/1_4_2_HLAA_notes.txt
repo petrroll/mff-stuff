@@ -328,7 +328,6 @@ Metody pro učení agentů; zpětnovazební učení, základní formy učení zv
             - differential: nesmím ocenit všechno 
             - approximations: postupně zvyšuju cíle, ... 
 
-
     - Habituace 
         - úbytek reakce na opakování téhož podnětu (přitom je reakce na jiné podněty zachována - nejde tedy o únavu) 
         - když na chování je reakce co má minimální dopad na zvíře, tak to chování vymizí (třeba zvířata co si zvyknou, že lidi nejsou predátoři)
