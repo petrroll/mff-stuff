@@ -29,5 +29,3 @@ Reprezentace znalostí - Barták - Bayesovské sítě
 Reprezentáce znalostí : Bayesovské siete. (Barták)
 Téma mi sadla, napísal som čo to je, ako sa v tom počíta, Bartáka zaujímalo aj ako sa to konštruuje a 1000 ďalších vecí, ale celkovo som z toho mal dobrý pocit, chce toho veľa, ale dáva nápovedy a je pre neho dôležité, že to človek pochopí.
 
-Vomlelová: Lokalizace a mapování -- částicové filtry
-- obecná teorie, MCL, jak interpretovat pstní rozložení

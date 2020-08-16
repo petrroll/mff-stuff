@@ -7,5 +7,7 @@
     - Složka se zdroji k AI: https://drive.google.com/drive/folders/10q-akLIsi_54HAsD3vnMDM8uzVy3Zf2l, http://forum.matfyz.info/viewtopic.php?f=419&t=11737&sid=658aee9b680bbc7d0c871063a51c690e
     - Rozcestník na gdocs (nejen) pro softwarové inženýrství: http://forum.matfyz.info/viewtopic.php?f=419&t=11390&sid=658aee9b680bbc7d0c871063a51c690e
 
-- Otázky vypsané z fora od roku \[2017+, 2020\], zatříděné moje okruhy, zbytek v unsorted.txt
+- Otázky vypsané z fora od roku \[2016+, 2020\], zatříděné moje okruhy, zbytek v unsorted.txt
     - ?Odkdy platí současná akreditace a jak moc víc zpátky je safe jít? 
+    - http://forum.matfyz.info/viewforum.php?f=419
+    - poslední (už nevytřízené téma): http://forum.matfyz.info/viewtopic.php?f=419&t=10956

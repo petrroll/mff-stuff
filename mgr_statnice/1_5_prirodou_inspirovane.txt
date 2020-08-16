@@ -32,3 +32,7 @@ Přírodou inspirované algoritmy (Božovský) - Genetické algoritmy. Otázka z
 Přírodou insp. počítání - Neruda - Genetické programování: Tady chtěl hlavně co to je, jednotlivé operátory, proč stromy bobtnají a jak s tím bojovat (omezení hloubky/velikosti, regularizace pomocí termu ve fittness, ...) a potom jak fungují ADF a jak na nich definovat operátory. Nakonec bonusová otázka jak na primárních stormech a ADF pouštět koevoluci (ale to už jsem cítil, že se zeptal jenom proto, že nebylo koho jiného zatím zkoušet) - to byla spíš taková diskuze jako co by mě tak napadlo.
 
 Přírodou inspirované počítání - Neruda - NEAT: Dostal jsem za úkol nejdříve popsat obecně neuroevoluci, jak se k tomuto tématu přistupuje a jaké problémy se řeší (např. obtížné křížení), a potom jsme se dostali k NEATu. Zkoušení bylo víceméně formou diskuze, ale dostali jsme se celkem do hloubky (např. jak by se dal modifikovat NEAT aby ještě trochu lépe řešil tagy hran). Zmínil jsem i HyperNEAT, z čeho měl zkoušející zřejmě radost.
+
+5) Přírodou inspirované počítání
+Hill climbing a simulované žíhání (Hric)
+Tady nebylo moc co vymyslet (vymýšlet?), docela jednoduchá otázka; asi Hric původně moc nevěděl, na co se zeptat. Ale bylo to asi nejpříjemnější zkoušení na závěr včetně dvou vtípků (populace horolezců a fakt, že teplota je proměnná konstanta) :)

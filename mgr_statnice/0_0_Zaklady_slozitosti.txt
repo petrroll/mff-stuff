@@ -54,3 +54,25 @@ Základy složitosti a vyčíslitelnosti - Hladík - Polynomiální algoritmy a 
 Mlček: Základy složitosti a vyčíslitelnosti -- Rekurzivní a rekurzivně spočetné množiny
 - byl docela problém, že se to na přednášce nedělá, tak jsem musel hodně přesvědčovat, že to odpovídá jazykům a mluvil pak o nich. Rozhodnutelnost, nerozhodnutelnost, halting problém s důkazem, uzavřenost na doplněk.
 
+Vyčíslitelnost (Kučera): NP úplné problémy + Cook-Levinova věta
+Otázku jsem dostal rovnou. Připravil jsem si důkaz přes kachlíky a převod kachlíků na SAT (nijak detailně, jen obrázek a pár poznámek načmáraných za 30s). Kučera asi trochu nabyl dojmu, že jsem si to akorát zapamatoval (taky jsem u něj stejnou otázku měl u zkoušky, heh), takže mi rovnou řekl, že sice pěkný, ale že spíš chtěl definice. Tak jsme pak dalších pár minut řešili hlavně co je NP, NP-úplný, polynomiální převoditelnost, co je certifikát, verifikátor, proč je poly certifikát, co kdyby nebyl, co kdyby verifikátor měl víc času, atd.
+Nakonec padla otázka, jestli znám i nějaké jiné NP-úplné problémy, tak jsem začal že traveling-gender-neutral-person, hamiltonská kružnice atd, a padla otázka "a co nějaké z AI?" (imho mě chtěl trochu rozhodit a vyhnout se tomu, abych tam papouškoval skripta) ... tak jsem pružně řekl, že trénování neuronek je NP-úplné, že to dokážu lehce přes SAT, hodím váhy jako proměnné blabla, a tím bylo zkoušení ukončeno (celkem asi 5min, fakt turbo).
+
+1) Základy složitosti a vyčíslitelnosti
+Základní třídy složitosti a jejich vztahy (Kučera)
+V Kučerových skriptech bohužel nejsou důkazy tý hlavní věty (inkluze jednotlivých tříd). Takže ty, který nejsou zřejmý (zřejmý jsou XTIME vs. XSPACE a NX vs. (D)X), jsem nevěděl. Asi bych to vymyslel, ale ne na místě do minuty (a když už mlčíte minutu, začne to vypadat divně, přestože přemejšlíte). Napsal jsem znění a náznak důkazu Savičovy věty a byl jsem tázán na odhad maximálního počtu konfigurací TS a pak na něco ohledně vět o časové a prostorové hierarchii (ty ve skriptech zatím taky chybí...). Pokud něco nevíte, jde se prostě dál (nebo asi alespoň pokud to není nějaká elementární neznalost). Jo a vtipná byla otázka na to, jestli víme, zda jsou nějaké konkrétní inkluze ostré. Když jsem o jedný prohlásil, že nevím, Kučera se smál, že to nevím dobře, protože to neví nikdo :)
+Jinak tady je obecně problém, že skripta ze ZSV nejsou aktuální pro nový studijní plány, ale snad se to časem změní...
+
+2) Složitost a vyčíslitelnost – dynamické programování (<unknown>) – na jaké problémy se metoda používá (tzn. chtěl slyšet o překrývajících se řešeních menších instancích a jejich skládání do řešení větší instance (pozor, optimální řešení větší instance se nutně nemusí skládat z optimálních řešení menších instancí), příklad použití (uvedl jsem Fibonnaciho, ale to mu bylo málo (protože ta čísla lze podle vzorečku spočítat v O(1), pokud umíme mocnit v O(1), tak jsem uvedl Levensteina).
+
+2) Hashovani (Klazar) - stacil prehled vsech.
+
+1) ZSV - Mareš - Rekurzivní a rekurzivně spočetné množiny, vlastnosti, věty a principy důkazů vět.
+Definoval jsem to odspoda - PRF, ORF, ČRF, PRP, RSP, ČRP a od toho RM a RSM. Postova věta, (ne)uzavřenost na operace, a pak ty vlastnost že RSM jsou oborem hodnot nějaké [rostoucí] ČRF. Doptal se mě na jiné matematické modely algoritmů, řekl jsem TS a ekvivalence RJ s RM a RSJ s RSM.
+Za 1.
+
+1. Pseudopolynomiální algoritmy a silná NP-úplnost (Hladík)
+"Dobrej" začátek. Vzal jsem to obecně - zadefinoval třídu NP, problém, úlohu, NTS, co je to číselný problém, NP-těžkost a NP-úplnost. Pak jsem vyložil algoritmus pro Batoh (podle Kučery) a prohlásil, že je pseudopolynomiální. Pak už jen zbytek, co je to silná a slabá NP-úplnost. Přišla otázka, jestli může být problém, co není ani silně ani slabě NP-úplný. Řekl jsem, že jo (někde jsem to četl, myslím, že u Kučery, ale jistý si tím nejsem). Pak následovaly otázky na další číselné NP-úplné problémy, na nečíselné a na silně NP-úplné problémy (stačilo jenom slovně popsat zadání a otázku problému). Řekl bych, že doktor Hladík odešel celkem spokojen - za 1.
+
+Rekurzivní a rekurzivně spočetné množiny (Hric)
+Nejvíce chtěl definice a generování. Důkazy stačily popisem ("pustím dva stroje a čekám...", generování RS je složitější). Je potřeba to chápat, formální vzorec čistě nepomůže.

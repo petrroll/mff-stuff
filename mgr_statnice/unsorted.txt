@@ -134,3 +134,67 @@ Neuronové Sítě - Božovský - Backprop: Poslední mé zkoušení a jedno z po
 
 Mareš: Plánování a navigace -- Základní plánovací algoritmy
 - říkal jsem dopředné plánování, A*, bavili jsme se o heuristikách a kontextu prohledávání grafů
+
+
+Vomlelová: Lokalizace a mapování -- částicové filtry
+- obecná teorie, MCL, jak interpretovat pstní rozložení
+
+
+3) Strojové učení
+Evoluční algoritmy a věta o schématech (Mrázová)
+
+Tak tady mě celkem překvapilo, že jsem dostal otázku z EVY, když jsem na ní měl i zaměření (5)). Ale vlastně tam byl nějakej zmatek ohledně novýho oboru a původně jsem měl ve složce ze studijního uvedený špatný okruhy, tak možná proto.
+Každopádně mě tohle zkoušení trošku zklamalo, zamotali jsme se totiž do nějakých technikálií ohledně elitismu (jestli po okopírování elitních jedinců generovat jen tolik nových jedinců, aby byla populace pořád stejně velká, nebo jestli jich generovat víc a pak nějakým způsobem odstraňovat pár přebytečných). Každopádně to byly věci, který se u Nerudy vůbec neřešily a nevím, jestli mi to nesnížilo známku u triviální otázky...
+
+4) Neuronové sítě
+Asociativní paměti a její stochastické modely (Mrázová)
+
+Nejdřív jsem si nebyl jistej, co se zadáním myslí, ale šlo (kromě AM obecně) zejména o popsání Hopfielda a jeho stochastických variant (varianta se sigmoidou, Boltzmannův stroj (to je varianta se sigmoidou s náhodnou aktivací na základě pravděpodobnosti místo využití pravděpodobnosti samotný), simulované žíhání). Prostě prakticky přesně podle ppt, případně pdf prezentace :)
+
+
+1) Architektury počítačů a sítí – sběrnice (Obdržálek) – co to je, jak se přes to komunikuje, synchronní, asynchronní, bus mastering (trochu přesah do přístupových metod), DMA, I2C: jak přesně probíhá komunikace až na úrovni signálů (za to si můžu sám, protože jsem I2C uvedl jako příklad... ale možná je to štěstí :) ).
+
+2) Složitost a vyčíslitelnost – dynamické programování (<unknown>) – na jaké problémy se metoda používá (tzn. chtěl slyšet o překrývajících se řešeních menších instancích a jejich skládání do řešení větší instance (pozor, optimální řešení větší instance se nutně nemusí skládat z optimálních řešení menších instancí), příklad použití (uvedl jsem Fibonnaciho, ale to mu bylo málo (protože ta čísla lze podle vzorečku spočítat v O(1), pokud umíme mocnit v O(1), tak jsem uvedl Levensteina).
+
+3) Operační systémy – synchronizace (asi Hnětynka) – kritická sekce, atomické operace, TSL, spinlocky, mutexy, semafory, producer-consumer (a proč to nejde jedním semaforem – lze to v případě, pokud naše datová struktura nemá horní omezení na počet prvků). Nejsem si úplně jistý, jak moc to po mně četl, protože se mě hlavně ptal, kdy se používají spinlocky a zda jsem nějaké synch. primitivum implementoval.
+
+
+3) Distribuovany konesnsus (okruh z distribuovanych systemu - Zavoral) - vrtal se v podminkach kauzalniho dorucovani, tzn proc musi platit, ze local_clock[i] = recieved[i] + 1 atd
+4) UML - specialne popsat use case diagram (Knapp) hodne v pohode, uplne obecny obrazky tak nejak vsech diagramu a pak jsme se bavili, jeslti jsem se setkal s use case v praxi
+5) Navrhove vzory (Bednarek) - co to je, proc se pouzivaji a dat 3 priklady ruznych, ptal se, jeslti lze udelat knihovnu s navrhovyma vzorama a proc to nema smysl, nerekl bych, ze nejak dusi, jen se snazi zjistit, jeslti clovek rozumi
+
+
+2) ANMSS - Knap - Requirements engineering
+Zasadil jsem do kontextu celého cyklu vývoje SW (analýza -> návrh -> ...), rozdělil na feasibility study, req elicitation, req analysis. Zmínil requirements tracability matrix. Nějaké povídání kolem, např. zkušenosti se systémy typu JIRA.
+Za 1.
+
+3) VSS - Kruliš - Testování
+V - model, black/grey/white box testování, unit/integrační/systémové testy a pak vypsané různé nástroje (frameworky, podpora v IDE, Continuous Integration)
+Za 1.
+
+5) PDS - Zavoral - modely doručování (sekvenční, kauzální), doručovací protokoly
+Uvedení problému (nemáme synchronizovatelný fyzický čas), definice logických hodin (skalární, vektorové, maticové), rozdělení algoritmů podle toho, co všechno řeší (sekvenční pořadí zpráv - total-order, kauzální pořadí zpráv - vektorové hodiny, pořadí zpráv + ztrácející se zprávy - trans, pořadí zpráv + ztrácející se zprávy + umírající uzly - transis). Trochu jsem neměl pořádek v tom, jaký timestamp zapíše do potvrzení zprávy uzel v total-orderu.
+Za 2.
+
+
+3. Vyhodnocování a optimalizace dotazů (Pokorný)
+Prošel jsem ve zkratce to, co je ve slajdech na dotazovací jazyky -takže nějaké schéma DB stroje, převod do stromové podoby, algebraickou optimalizaci, statistickou, syntaktickou... Hodně povídání kolem, ale nic záludného. Mluvil jsem o indexech, o pořadí relací ve spojení, co se může stát a tak. Celkem docela pohoda, wiki a slajdy by měly stačit (žádné šílené počítání přístupů nebo porovnávání plánů by snad nemělo být potřeba). Ptal se mě, jestli znám nějaký dotazovací jazyk, kde výsledkem není relace, ale celá databáze ... - ... Datalog :-). Řekl bych tak 1, nejhůř 1-2.
+
+4. Sémantika SQL (Vojtáš)
+Málem zase padla kosa na kámen - už když jsem zjistil, že prof. Vojtáš bude zkoušet (asi poprvé?), tak mi bylo hodně ouvej (ačkoli ho mám rád a cestou na státnice jsme si povídali v tramvaji :-)), protože učí témata, na která se dost špatně připravuje (oproti jiným). Takže přišel a zeptal se mě, jestli bych mu řekl něco o preferencích, nebo jestli bych raději něco jiného. Na preference jsem nechodil, tak jsem řekl, že něco bych dohromady dal, ale raději něco jiného. Když dlouho vybíral, tak jsem napověděl, že něco s SQL by mi udělalo radost :-). No a vyšlo to (skvělý přístup!) :-). Kolega dostal tu samou otázku, jako alternativu tableaux a když se i na to netvářil, tak větu o tranzitivním uzávěru. Nicméně prof. Vojtáš pak musel odejít a zkoušel mě zase prof. Pokorný. Na tuhle otázku jsem se ho ptal týden předem na konzultaci - očekává tam víceméně všechno ohledně SQL, nejvíc pak asi, jak se dají některé části vyjádřit v relační algebře a tak. Pak chtěl vědět, jak funguje vyhodnocení GROUP BY a nakonec se mě ptal na operátor CUBE (ale tuším, že to už je hodně nad standardní level). Celkem pohoda.
+
+5. Kompresní algoritmy (Kopecký)
+Začal jsem tak, jak je to ve slajdech nebo na wiki - popis problému, kódování, prefixovost, ... Pak se vrhl na Fibonacciho a Eliasovy kódy, pak na statického Huffmana. Ještě, než jsem to měl, tak dr. Kopecký přišel, že už mu můžu alespoň něco říct. Tak jsem to celé prošel a dokončil statického Huffmana. Ptal se, co je důležité na prefixovosti oproti třeba suffixovému kódu - můžeme dekódovat, aniž bychom museli čekat na celou zprávu. Po dopovězení statického Huffmana jsem se zeptal, jestli mám pokračovat dál, že bych mohl popsat adaptivního Huf., LZ77, LZW a BSTW. Ale řekl, že mu to stačí, že to vypadá, že tomu rozumím.
+
+
+Hodnocení ve vyhledávání informací - evaluace experimentů, postojová analýza (Hána)
+Potřeba začít obecně a pak probírat jednotlivé body (zlatá data, co se dá použít abych nemusel vše ručně tagovat, postoj není jen sentiment ale i emoce).
+
+Jazykové modelování, noisy channel, vyhlazování, specifika morfologicky bohatých jazyků (Bojar)
+Zpracovaná otázka, nevěděl jsem "řetízkové pravidlo" ale alespoň podobnou markovovskou vlastnost. Většinu jsme se točili kolem bayese.
+
+Systém rovin popisu jazyka (Lopatková)
+Přesně jsem nevěděl co se otázkou myslí, jde o různé pohledy na zkoumání jazyka. Potřeba vědět rozdíl mezi FGD a jeho implementací v PDT (vybrat jedno a to popisovat). Tektogramatická rovina je sice nejhlubší, ale i nejvyšší (oblíbené funkce vs. forma "vyšší rovina je funkcí nižší"). Popsat i jiné, minimálně HPSG. Otázka mi zpětně přijde jako pěkný přechod mezi teorií a implementací.
+
+
+
