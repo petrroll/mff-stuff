@@ -1,27 +1,19 @@
 - Výroková a predikátová logika (NAIL062)
-    - Formální systémy
-    - logika 1. řádu, jazyky, axiomy
-    - odvozovací pravidla
-    - Výroková logika
-    - sémantika
-    - tautologie a splnitelnost, dokazatelnost
-    - Normální tvary formulí
-    - Strojové dokazování vět, model checking
-    - dopředné a zpětné řetězení, rezoluční metoda a unifikace
+    - Formální systémy, logika 1. řádu, jazyk, axiomy, odvozovací pravidla.
+    - Výroková logika, sémantika, tautologie a splnitelnost, dokazatelnost
+    - Normální tvary formulí.
+    - Strojové dokazování vět, model checking, dopředné a zpětné řetězení, rezoluční metoda
+a unifikace
 - Pravděpodobnostní metody (NMAI060)
-    - markovské rozhodovací procesy
     - podmíněná markovská pole
+    - částečně pozorovatelné markovské rozhodovací procesy, podmíněná markovská
+pole.
 - Umělá inteligence I (NAIL069)
-    - Podmíněná nezávislost
 - Umělá inteligence II (NAIL070)
-    - Bayesovské sítě
     - zpětnovazebné učení
 - Pravděpodobnostní grafické modely (NAIL104)
-    - výpočet v Bayesovské síti
-    - naivní Bayesovský klasifikátor
-    - rozhodovací grafy
-    - částečně pozorovatelné markovské rozhodovací procesy
-
+    - Podmíněná nezávislost, Bayesovské sítě, výpočet v Bayesovské síti, naivní Bayesovský klasifikátor, rozhodovací grafy
+    - markovské rozhodovací procesy,
 
 Reprezentace znalostí - Barták - Bayesovské sítě
 Řekl jsem mu vpodstatě všechno co k nim měl na přednášce - co to je, jak se sestrojují, a jak se v tom počítá (marginalizace, variable elimination, aproximační metody).
