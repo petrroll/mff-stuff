@@ -1,0 +1,100 @@
+Vyhledávací stromy ((a,b)-stromy, Splay stromy)
+- BVS: 
+    - každý uzel nanejvýš dva potomky
+    - každý uzel má klíč, podle něj uspořádány
+    - levý podstrom uzlu obsahuje klíče menší než uzel, pravý větší 
+
+    - Nemodifikující: Find, MIN, MAX, Prec, Succ
+    - Modifikující: Insert, delete 
+    
+    - Delete 
+        - Pokud dva potomky, najdu max v levém/min v pravém podstromě, vyměním (prec X) a smažu
+    - Strom může zdegenerovat, třeba vyvažovat -> O(log(n)) hloubka 
+
+- (a, b) stromy 
+    - a >= 2, b >= 2a-1
+    - každý vnitřní vrchol má alespon [a, b] synů
+    - kořen má [2, b] synů
+    - všechny cesty z kořene do listu jsou stejně dlouhé 
+
+    - hodnoty (většinou) pouze v listech, vnitřní vrcholy jen ukazatele na lower nodes 
+    - pro (a, b) strom o hloubce h platí: a2^h-1 < #leaves < b^h
+        - různé hodnoty a,b: (2, 3), velikost cache, disk bloku, ... 
+
+    - FIND(x): prohledej od začátku vrať 
+    - INSERT(x): najdi vrchol v pod který patří x, 
+        - pokud má <b potomků, přidej hotovo 
+        - pokud má b potomků, rozštěp v, vytvoř nové v' pro prvních b+1/2 dětí, vlož do parent(v) rekurzivně
+    - Delete(x): najdi vrchol v pod kterým je x
+        - pokud má >a potomků, smaž 
+        - pokud má v společné s levým/pravým sousedem >2a potomků, přesuň jednoho potomka zleva/zprava 
+        - otherwise: smaž x, spojen se s levým/pravým sousedem (smaž v otci, rekurzivně dál)
+    - ORD(i): vrátí i-tý nejmenší prvek, O(log(n)) pokud si udržuju počty v podstromech v každém nodu
+
+
+    - paralelní verze: 
+        - b>=2a 
+        - při insert a delete provádím změny už cestou dolů (štěpím dolů při insert u b potomků, slučuju při delete a)
+        - mohu rovnou odemykat navštívené vrcholy, jistota že se nebudu muset vracet 
+    
+    - analýza: 
+        - počet štěpení / slučování vrcholů při "m" insertech, "l" deletech je O(m + l + log(n)), amortizovaně O(1) štěpení/sloučení za operaci
+            - ~v podstatě dynamické pole kind of důkaz TODO 
+    
+    - a-sort 
+        - z prvků nedříve sestrojí a,b strom 
+        - při vkládání hledáme pozici pro aktuální klíč od poslední pozice, počet kroků: 
+            - menší: nahoru (a analogicky dolů) max log_1(|{j | j < i; xi+1 < xj}|)
+            - větší: nahoru (a analogicky dolů) max log_1(|{j | j < i; x < xj}|)
+        - předpoklad: štěpení amortizovaně O(1)
+        -> O(n*log(F/n)), F je počet inverzí 
+
+    - b-stromy: disky/databáze, b velké, a=b/2
+        - b+: data pouze v listech, sousední listy spojeny ukazateli 
+        - b*: plnější vrcholy, dolní limit není 1/2 maxima, ale třeba 2/3 maxima, při zaplnění se sdílí klíče se sousedem, až u zaplnění obou se rozpadnou ze 3 na 2
+
+    - červeno-černé: v podstatě odpovídají 2, 4 stromům, implementačně BVS 
+        - listy černé, červené vrcholu pouze syny černých vrcholů, všechny cesty z x do listu stejný počet černých vrcholů 
+        - vyvažování rotacemi 
+        - One way to see this equivalence is to "move up" the red nodes in a graphical representation of the red–black tree, so that they align horizontally with their parent black node, by creating together a horizontal cluster. In the B-tree, or in the modified graphical representation of the red–black tree, all leaf nodes are at the same depth.
+
+- splay tree 
+    - adaptivní binární vyhledávací strom, udržuje často používané prvky blízko u kořene 
+    - cena za operaci až O(n), amortizovaně za k operací O(klogn + nlogn)
+
+    - splay operace: přesuneme prvek x do kořene pomocí násl. rotací 
+        - zig-zag: LL -> RR 
+        - zig-zag: LR -> balanced tree 
+        - zig: L -> R 
+
+        - pokud to lze používají se dvojrotace
+
+    - FIND: normální BVS + splay 
+    - Insert: normální BVS + splay 
+    - delete: delete v BVS + splay 
+
+    - analýza: 
+        - potenciálová metoda: t = a + p(T') - p(T) | a: skutečný čas operace, p(T): potenciál stromu 
+            - p(T): sum_x€T(r(x)) | r(x): log(2(s(x))) | s(x): počet vrcholů pod x 
+            - r(x): rank uzlu, maximálně log(n), tj. p(T) maximalne n*log(n), čím nižší tím vyváženější 
+
+            - amortizovaný čas m operací: t1 + t2 + t3 ... + tm = sum_i..m a_i + p(Ti) - p(Ti-1) = 
+                                                                = sum_i..m a_i + p(Tm) - p(T0)
+            - reálný čas se od amortizováného liší maximálně o p(Tm) - p(T0), tj. o n*log(n)
+        
+        - operace splay(x) zabere amertizovaný čas <= 3(r'(x) - r(x)) + 1 // +1 pouze u zig a to jen u kořene
+            - při rotacích se mění pouze rank x, parent, grandparent 
+            - skrze odhad na změnu r(x) máme amortizovanou cenu operace splay: O(log(n))
+            - celková složitost je tedy O(mlogn + nlogn): amortizované splay + maximální změna potenciálu
+
+
+    - v optimálním binárním vyhledávajícím stromě, kde k prvku xi přistupujeme s pi je očekávaná cena úspěšné vyhl. operace ~ entropie pi rozdělení
+        - splay trees jsou jen o konstantu horší než optimální statické stromy
+
+    - working set theorem: pokud provedeme nlogn úspěšných vyhl. operací -> amortizovaná cena jedné O(1+logt), t: počet operací od předchozího přístupu k prvku 
+    - sequential access theorem: pokud vyhledáme všech n prvků ve vzestupném pořadí: O(1)
+    
+Haldy (regulární, binomiální).
+Hašování, řešení kolizí, univerzální hašování, výběr hašovací funkce
+Analýza nejhoršího, amortizovaného a očekávaného chování datových struktur
+Chování a analýza datových struktur na systémech s paměťovou hierarchií.
