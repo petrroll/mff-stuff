@@ -69,9 +69,10 @@ Vyhledávací stromy ((a,b)-stromy, Splay stromy)
 
         - pokud to lze používají se dvojrotace
 
-    - FIND: normální BVS + splay 
+    - FIND: normální BVS + splay, pokud neexistuje Splay na posledním touched
     - Insert: normální BVS + splay 
-    - delete: delete v BVS + splay 
+        - zvýší potenciál, zvýšený rank odhadnu rankem vrcholu výše -> teleskopicky -> jen o log(n)
+    - delete: splay do kořene, delete, splay maximum v left (max. v kořeni, nemá pravého syna), připojíme R pod L doprava
 
     - analýza: 
         - potenciálová metoda: t = a + p(T') - p(T) | a: skutečný čas operace, p(T): potenciál stromu 
@@ -82,18 +83,23 @@ Vyhledávací stromy ((a,b)-stromy, Splay stromy)
                                                                 = sum_i..m a_i + p(Tm) - p(T0)
             - reálný čas se od amortizováného liší maximálně o p(Tm) - p(T0), tj. o n*log(n)
         
-        - operace splay(x) zabere amertizovaný čas <= 3(r'(x) - r(x)) + 1 // +1 pouze u zig a to jen u kořene
+        - operace splay(x) zabere amertizovaný čas <= 3(r'(x) - r(x)) + 1 // +1 pouze u zig a to jen u kořene, v splay nastane jen jednou 
             - při rotacích se mění pouze rank x, parent, grandparent 
             - skrze odhad na změnu r(x) máme amortizovanou cenu operace splay: O(log(n))
             - celková složitost je tedy O(mlogn + nlogn): amortizované splay + maximální změna potenciálu
 
+            - +1 jenom u kořene je důležitá, jinak se teleskopicky neposčítá -> vyšlo by to at least lineárně s hloubkou stromu -> problém 
+
 
     - v optimálním binárním vyhledávajícím stromě, kde k prvku xi přistupujeme s pi je očekávaná cena úspěšné vyhl. operace ~ entropie pi rozdělení
-        - splay trees jsou jen o konstantu horší než optimální statické stromy
+        - splay trees jsou jen o konstantu horší než optimální statické stromy (static optimality)
+        - hypotéza: to samé platí i o dynamických strukturách (splay je dynamicky optimální)
+
+        - dokazuje se přes váhy
 
     - working set theorem: pokud provedeme nlogn úspěšných vyhl. operací -> amortizovaná cena jedné O(1+logt), t: počet operací od předchozího přístupu k prvku 
     - sequential access theorem: pokud vyhledáme všech n prvků ve vzestupném pořadí: O(1)
-    
+
 Haldy (regulární, binomiální).
 Hašování, řešení kolizí, univerzální hašování, výběr hašovací funkce
 Analýza nejhoršího, amortizovaného a očekávaného chování datových struktur
