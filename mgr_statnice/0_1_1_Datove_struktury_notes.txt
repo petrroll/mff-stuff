@@ -101,6 +101,88 @@ Vyhledávací stromy ((a,b)-stromy, Splay stromy)
     - sequential access theorem: pokud vyhledáme všech n prvků ve vzestupném pořadí: O(1)
 
 Haldy (regulární, binomiální).
+- stromová strkutura splňující, že potomci jsou vždy větší (minimální) než rodič 
+- Dolů: O(logd(n)), nahoru d*logd(n)
+- k-regulární halda 
+    - každý vrchol má k synů 
+    - pro 2: snadno reprezentovatelné v poli 
+    
+    - heapify od zdola je O(n): 
+        - nandám do pole, od posledních prvků upravuju skrze bubble down 
+        - počet bublání: sum_i:0..h 2^(h-i) -> 2^h * sum_i:0..h i/2^i -> 2^h*C[neb konverguje] -> O(n) vůči počtu prvků 
+        - většina prvků nemusí migrovat z dolních (největších) pater 
+
+    - Insert: přidám na konec, heap-up 
+    - Delete-min: smažu vrchol, na jeho místo dám poslední prvek, heap-down 
+    - increase: bublani dolu by trvalo log^2n, protože až log(n) synů 
+    
+
+- binomiální halda: 
+    - rychlejší insert (líná)
+    - snadný/rychlý (logn) merge dvou hald 
+
+    - halda je množina více haldových stromů, každý velikost 2^k pro nějaké k, ve spojovém seznamu
+    - pamatujeme si, kde leží nejmenší prvek 
+
+    - binomiální strom
+        - rekurzivní: pokud je řád k==0 -> T jenom kořen
+        - T má právě k synů, tito sznové jsou kořeny podstromů 0...k-1
+
+        - alternativně: bk = bk-1 + pod kořenem další bk-1
+        - 2^k vrcholů v k hladinách 
+
+- zbrklá bin-halda
+    - insert: O(logn), amortizovaně za určitých podmínek O(1), vložení n prvků za sebou je O(n)
+        - přidám nový haldový strom velikosti 1, opravím strukturu, projdu stromy a když dva stejné velikosti, tak spojím ~ binární sčítání 
+        - slití stromů velikosti 2^i proběhne práve n/2^i krát 
+    - min: O(1), easy 
+    - delete-min: O(logn)
+        - smaže kořen stromu s minimálním prvkem, zbytek stromu rozpadneme, fixup jako u insertu 
+
+- liná varianta: 
+    - insert: O(1) přidám nový strom, neupravuju, fixnu pointer na nejmenší prvek 
+    - delete-min: O(n), O(logn) amortizovaně
+        - smažu kořen stromu s min prvkem 
+        - opravím haldu (vytvořím pole délky log(n)), prvky (stromečky) postupně insertuju, při kolizi sloučím 
+
+    - analýza: 
+        - T: C * |T| // konstanta * počet stromů v haldě
+        - Insert: C + T' - T = C + 1 = O(1) // přibyl jeden strom
+        - Min: C + 0 = O(1) // nic se nezměnilo
+        - Delete-min: C * |T| + T' - T = C * |T| + o(logn) - C * |T| = O(logn) // počet stromů po sloučení max logn
+
+- fibonacciho halda 
+    - chceme přidat operaci decrease key (např. pro dijkstru), chceme O(1) namísto O(logn)
+    - jinak binomiální halda 
+
+    - každý vrchol si udržuje své potomky ve spojovém seznamu, jejich počet, zda o nějakého už přišel (označení)
+    - extract: stejně jako u líné, řád: počet synů vrcholu (pamatuje si každej vrchol)
+    - decrease key: 
+        - snížím hodnotu, pokud haldovitost ok, nic jinak
+        - odtrhni podstrom v, zařaď do seznamu stromů 
+            - pokud byl označen, odznač 
+            - pokud rodič není označen, označ jej 
+            - pokud rodič je označen (již o nějakého potomka přišel), rekurzivně otrhni rodiče 
+        -> každý rodič může přijít o max jednoho potomka než je odtržen, vyjma kořene
+
+        - časová složitost O(1) amortizovaně (worst case může nastat kaskáda)
+            - skrze potenciál: C * |T| + 2 * #označených vrcholů
+            - Dec-key: O(1)
+            
+                - pokud provede k řezů: 
+                    - odznačí k vrcholů -2Ck 
+                    - přidá k stromů do haldy: + Ck 
+                    - označí jeden nový: +2c 
+
+                -> C*k - 2C*k + C*k + 2c = O(1)
+
+            - delete min: O(logn) 
+                - řád stromu: počet potomků kořene 
+                - na rozdíl od binom nemusí být 2^k, má ale nejméně Fk+2 vrcholů -> exp. 
+
+    - existují i varianty, které garantují worst case always operace, velké konstanty 
+    - pairing heap: podobně amort, rychlejší v praxi: odtran strom zakoreneny v danem prvku, dec, merge in zbytku haldy odstranene stromky 
+
 Hašování, řešení kolizí, univerzální hašování, výběr hašovací funkce
 Analýza nejhoršího, amortizovaného a očekávaného chování datových struktur
 Chování a analýza datových struktur na systémech s paměťovou hierarchií.
