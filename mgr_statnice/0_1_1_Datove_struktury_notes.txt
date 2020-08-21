@@ -1,3 +1,5 @@
+https://mj.ucw.cz/vyuka/dsnotes/
+
 Vyhledávací stromy ((a,b)-stromy, Splay stromy)
 - BVS: 
     - každý uzel nanejvýš dva potomky
@@ -184,5 +186,178 @@ Haldy (regulární, binomiální).
     - pairing heap: podobně amort, rychlejší v praxi: odtran strom zakoreneny v danem prvku, dec, merge in zbytku haldy odstranene stromky 
 
 Hašování, řešení kolizí, univerzální hašování, výběr hašovací funkce
+- motivace: slovníkový problém : chceme reprezentovat množinu z nějakého universa 
+- operace:
+    - member 
+    - insert 
+    - delete 
+
+- hashovací funkce: h: U -> [m], tabulkou o velikosti m 
+    - kolize x != y && h(x) == h(y)
+
+- notace: 
+    - n = |S|
+    - N = |U|
+    - m: velikost hashovaci tabulky  
+    - a: n/m faktor zaplnění 
+
+- řešení kolizí: řetězení ve spojových seznamech
+    - předpoklady
+        - hashovací funkce h rozděluje data rovnoměrně 
+        - množina S je náhodný výběr U s náhodným rozdělením 
+
+    - očekávaná délka řetězců: P(l(i) = l) = n over l * 1/m^l * (1-1/m)^n-l 
+        - aproximace pro nakonečné universum a seznamů 
+    -> střední hodnota je n/m, rozptyl n/m*(1-1/m)
+    -> očekávaná délka nejdelšího log(n)/loglog(n) ??? where is m ???
+
+    - očekávaný počet testů: 
+        - úspěšné: 1 + alpha/2 (1 + polovina délky)
+        - neúspěšné: odpovídá délce průměrného řetězce + situace když je prázdný: e^-a + a
+            - e^-a :: (1 - 1/m)^n :: šance, že je řetězec prázdný 
+
+    - nevýhody: 
+        - spojové seznamy jsou cache insensitive, v reálu ne úplně rychlé 
+        - nutné alokovat dodatečnou paměť, také problém 
+
+- řešení kolizí: přemístování/přesuny 
+    - zavedeme do hashovací tabulky pomocné ukazatele, vše ukládáme do ní 
+    - dopředné a zpětné odkazy v rámci stringu prvků 
+
+    - insert: pokud už na místě je jiný prvek, přehodíme ho na další volné místo, vložíme aktuální na jeho místo, upravím pre/pos pointery
+        - a, b -> 1, jdou na 1, 2
+        - c -> 2, přesune b na 3, aktualizuje a-next na 3, dá c na 2 
+    - delete: při odstranění prvního prvku na jeho místo musíme přesunout druhý, ... 
+    - stejná analýza jako u spojových seznamů delete/insert pomalejší: copy vs test 
+
+- hashování se dvěma ukazateli 
+    - podobné jako ^^, ale pouze namísto next/previous jen next+begin 
+    - rětězec nemusí začínat na své pozici, (c se dá rovnou na 3, na 2 se dá begin pointer na 3.)
+
+    - počet testů o něco vyšší 
+
+- srůstající hash: 
+    - pouze next, vkládám do libov. řetězce co h(x) prochází 
+    - verze s pomocnou/nepomocnou pamětí 
+
+    - problém s operací DELETE 
+        - možné jen označit prvek jako deleted, zpomaluje vyhledávání 
+    - na konec řetězce (LICH), za první prvek (EICH), ...
+
+    - s pomocnou pamětí 
+        - dvě pamětí:
+            - přímo adresovatelná hash funkcí 
+            - pomocná část 
+
+        - při kolizích nejprve ukládáme do sklepa, teprve pak do adresovatelné, oddalujeme srůstání řetězců
+            - do určitého momentu podobné separovaným 
+            - do sklýpku ukládáme/adresujeme podobným způsobem 
+
+- dvojité hashování 
+    - h1, h2, musí být nezávislé: h1(x) == h1(y) => h2(x) != h2(y)
+    - při insertu hledám nejmenší i: ab h1(x) + i*h2(x) mod m bylo volné 
+
+    - je nutné, aby i*h2(x) mod m měl prosté posloupnosti (z každého políčka řetěz po celé tabulce)
+    - lineární přidávání ~ "h2(x) = 1 always" 
+
+    - pro analýzu předpokládáme, že h2 tvoří náhodné permutace zkoušených memory buněk -> není přesné 
+    - analýza: 
+        - neuúspěšný: ~1/(1-a)
+        - úspěšný: 1/a * ln(1/(1-a))
+
+- použití
+    - Lineární funguje dobře pro tabulku zaplněnou do 70%, dvojité až do 90%.
+    - posouvající musím posouvat + cache 
+
+    - implementační detaily: 
+        - pro hledání volných řádků: stack 
+        - přeplnění se řeší přehashováním (větší tabulka + nová hash funkce) při určitém zaplnění 
+
+- kukaččí hashování: 
+    - používáme dvě funkce, h1, h2, prvek musí být buď v h1(x), nebo h2(x), v každé příhrádce jen jeden 
+        - funkce z 6logn, 1 universálního systému
+    - Find/delete triviálně O(1)
+    - insert: 
+        - pokud jedna z lokací volných, vlož
+        - pos <- h1(x)
+        - 6log(n)-krát se pokus: 
+            - pokud pos empty, vlož na pos, return 
+            - swap x, pos // ulož na pozici, pokus se přehashovat prvek, co tam byl původně
+
+            - if pos == h1(x): pos = h2 else pos = h1 // zkus vymemeny prvek udat na druhou pozici než kde je 
+        - přehashuj celou tabulku s novými h1, h2, případně zvětš tabulku, vlož
+    - analýza:
+        - vrcholy jsou přihrádky, hrany jsou dvojice (h1(x), h2(x))
+        - p spojení dvou vrcholů i, j cestou délky k je < 1 / mc^k, m < 2cn 
+        - p cyklu max 1/2
+        -> p přehashování: 1/n^2, způsobí n insertů každý log(n) -> O(1)
+
+        - amortizace insert bez rehash je O(1)
+        - amortizace insert s rehash je O(1)
+
+
+- perfektní hashování: 
+    - šance na perfektní hashovací funkci na první dobrou: malá 
+        -> kolize v sekundárních tabulkách kvadratické velikosti
+        - sekundární m > cn^2 -> p[není perfektní] < 1/2 -> E[počet pokusů] == 2
+    - vím, že bude stačit O(n) paměti celkově 
+        - primární tabulka: O(n)
+        - sekundární celkem také O(n) (velikost sekundárních vychází z c-universálnosti použitých hash. funkcí, kvadraticky kolizí -> O(n))
+
+- hashovaci funkce/universalnost: 
+    - motivace: pro N > mn, pro každou hash funkci h existuje S y U velikosti n, že h hašuje všechny prvky S do jedné příhrádky
+
+    - systém H je c-universální: Vx,y€U, x!=y, P_h€H[h(x) == h(y)] <= c/m 
+    - H je k,c-nezávislý: x1, x2, ... xk€U různá, a1...ak€P: Pr_h€H[AND h(xi) == ai] <= c/(m^k)
+
+    - H je 2, c nezávislý => H je c universální 
+        - 1 nezávislost je extrémně slabá, splněná např. konstantou 
+    - c-universální => E_h€H[#x, h(x) == h(y)] <= c*n/m
+
+    - skládání funkcí: Nechť H je 2, c nezávislý systém funkcí ... potom H* {h mod m | h z H} je 2c universalni a 2, 4c nezávislý 
+
+- výběr hashovací funkce:
+    - https://drive.google.com/drive/folders/1GDNVCKzAfSc3aSd3rieyeWwIbmzlVhig
+    - úplně náhodná: nepraktické, třeba omega(U*logm bitů paměti) // pro každý si pamatuju target 
+    - chceme: 
+        - efektivně náhodně vzbrat h z H 
+        - rychle vyhodnotit h(x)
+
+    - mod: nechť p >= |U| je prvočíslo, pak H = {h_ab | a, b z [p], a!=0} kde h_ab(x) = ax + b mod p mod m 
+        - je 1-universální 
+            - důkaz: r = ax + b mod p || s = ay + b mod p, soustava 2 nezávislých lineárních rovnic, E právě jedno řešení pro konkrétní r, s 
+                -> bijekce mezi a, b a r, s :: obojí z p^2 
+            -  započítáme modulo m -> odhad špatných dvojic a, b pro které h_ab(x) == h_ab(y)
+                - r, s kde r =(mod m)= s 
+                - pro každé r, kolik je s: p-1/m
+                -> celkem dvojic: p*(p-1) -> Pr[dvojice špatná] <= 1/m
+        - je 2, 4 nezávislý 
+            - Pr_r,s[r==i and s==j] <= 4/m^2 ..nezávislost..Pr_r[r==i] <= 2/m 
+            - r kongruentních s i nejvýše ceil(p-m) <= (p+m-1)/m <= 2p/m
+        - není 3 nezávislý 
+            - zvolme x, y, z že x + y = 2z, m == p 
+            - chceme aby platilo ax + b == i and ay + b == j and az + b == k, kdydkoliv 2k == i + j -> pravdepodobnost vyjde 1/m^2, není <= 1/m^3
+
+    - c universalita je daleko od skutečné náhodnosti
+        - viz absence 3-nezávyslost c-universálních  
+
+    - polynomy: 
+        - Pk = {ha | a z Zpk}, ha(x) = sum ai*x^i mod p 
+        - je k, 1 nezávislý 
+            - danými body (xi, h(xi)) prochází právě jeden polynom stupně menšího než d, možných polynomů je m^k
+
+    - multiply shift: 
+        - 2^32 -> 2^l: x*a (odd number), truncate to 32 bits, move to extract horních l bitů 
+        - 2 universální 
+
+    - tabulation hashing 
+        - t tabulek o 2^k entries -> 2^l, xor jednotlivé results 
+        - 3-nezávislé, ne 4 nezávislé
+
+    - hashování vektorů 
+        - skalární součin s a ze Zpd 
+        - rolling hash: ha(x) = SUM i..d-1 of xi+1 * a^i 
+            - d-universální 
+            - přehashovat v string searchi rychle: Hj+1 = aHj - xj*a^d + x(j+d)
 Analýza nejhoršího, amortizovaného a očekávaného chování datových struktur
 Chování a analýza datových struktur na systémech s paměťovou hierarchií.
