@@ -372,5 +372,65 @@ Hašování, řešení kolizí, univerzální hašování, výběr hašovací fu
         - rolling hash: ha(x) = SUM i..d-1 of xi+1 * a^i 
             - d-universální 
             - přehashovat v string searchi rychle: Hj+1 = aHj - xj*a^d + x(j+d)
+
 Analýza nejhoršího, amortizovaného a očekávaného chování datových struktur
+- uvažujme dva zdroje: paměť, čas 
+    - formálně: počet bitů, počet instrukcí RAMu / přechodů TS
+    - neformálně: počet elementárních entit, např. měst pro TSP, ..., počet elementárních časových jednotek
+
+    - složitost: funkce f, která udává počet kroků/paměti algoritmus potřebuje vůči velikosti vstupu "n" 
+
+- asymptotická notace: // možná bych se měl naučit řeckou abecedu ¯\_(ツ)_/¯ 
+    - f(n) z O(g(n)): Ec>0 En0>0 Vn>n0 0 <= f(n) <= c * g(n)        // menší či rovno 
+    - f(n) z Omega(g(n)): Ec>0 En0>0 Vn>n0 0 <= f(n) >= c * g(n)    // větší či rovno 
+    - f(n) z Theta(g(n)): f z O(g(n)) and f z Omega(g(n))           // asymptoticky stejná 
+    - f(n) z o(g(n)): Ec>0 En0>0 Vn>n0 0 <= f(n) < c * g(n) // ostře menší  
+    - f(n) z w(g(n)): Ec>0 En0>0 Vn>n0 0 <= f(n) > c * g(n) // ostře větší 
+
+
+- různé analyzy
+    - v nejlepším případě: většinou není moc užitečná, může pomoci s odhadem spodní hranice možného zlepšení 
+    - v nejhorším případě: garantuje nám absenci překvapení (ale v reálném životě pozor na konstranty!)
+        - občas nelze snadno určit nejhorší možný vstup: uvažujeme nejhorší průchod aniž by bylo jisté, zda k němu existuje vstup (better safe than sorry)
+        - mnohdy může dobrá implementace vést k minimalizaci počtů nejhoršího případu (hašovací tabulky)
+    - analýza v průměrném případě: Expected value přes všechny možné vstupy / všechny možné nedeterministické průchody
+        - mnoho problémů má worst case vcelku nepravděpodobný (např. quicksort, hashování) a v reálu je průměr relevantnější než worst case
+
+- amortizovaná složitost: 
+    - cena nejhoršího (nebo průměrného) případu pro sekvenci operací 
+    - můžeme dostat těsnější odhad na cenu jedné operace pokud se v rámci nich děje nějaký větší book-keeping (nejhorší případ uklízí za častější dobré případy)
+
+    - 3 techniky analýzi
+        - agregovaná analýza: dívám se na sérii operací přímo 
+        - účetní metoda: při každé operaci něco zaplatíme, platbu pak používáme na zaplacení operací book-keepingu
+        - potenciálová metoda: definujeme vhodnou nezápornou potenciálovou funkci, která charakterizuje uklizenost 
+            - amorT = realT + p' - p | p: potenciál před, p': potenciál po 
+
+
+- analýza: binární čítač 
+    - agregovaná: 
+        - poslední bit se ymění při každé operaci: k-krát 
+        - předposlední při každé druhé: k/2
+        - i-tý od konce: k/2^i 
+        -> sum_i..n: ceil(k/2^i) <= sum_i..n 1+k/2^i <= n+2k
+    - účetní metoda: 
+        - změna jednoho bitu stojí jeden žeton, na každou operaci dostaneme dva žetony 
+        - u každého jedničkového bitu v sekvenci si uchováme jeden žeton, v každém okamžitku na jendičkách žetony
+        - při incrementu: vynulování máme předplaceno 
+        - každá operace stojí 2 žetony, prvních j-nulování se zaplatí s uložených žetonů, pak jeden žeton za 0->1, a jeden žeton na uložení 
+    - potenciálová metoda: 
+        - p(x) počet jedničkových bitů 
+        - j: je počet jedniček vynulovaných při operaci  -> 1-j: zmena potenciálu
+        - amorT: j + 1 + (1 - j) = 2
+        - celkový čas tedy: T = SUM_i..k realT = k * amorT + p0 - pk <= 2k + n 
+- analýza: dynamické pole plne -> 2x, ctvrtina -> polovina 
+    - agregovaná:
+        - zkopírování trvá O(n), k dalšímu dojde nejdřív po n/2 insert nebo n/2 delete 
+        - (n0 + k1) + sum_i 2*ki <= n0 + 2k 
+    - potencialova metoda: 
+        - p: 0 if z poloviny, n z čtvrtiny / plné, zbytek interpolací 
+        - přidáváme/odebirame prvek: realT = 1, diffP <= 2, amorT <= 3 
+        - pridavame prvek a realokace: amorT = (n+1) + (2-n) = 3
+        - odebirame prvek a realokace: amorT = (n+1) + (1-n) = 2
+
 Chování a analýza datových struktur na systémech s paměťovou hierarchií.
