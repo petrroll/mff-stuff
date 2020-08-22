@@ -377,6 +377,9 @@ Analýza nejhoršího, amortizovaného a očekávaného chování datových stru
 - uvažujme dva zdroje: paměť, čas 
     - formálně: počet bitů, počet instrukcí RAMu / přechodů TS
     - neformálně: počet elementárních entit, např. měst pro TSP, ..., počet elementárních časových jednotek
+        - předpokládáme omezenost velikosti čísel / entit (větší diskuze viz složitost a vyčíslitelnost: číselné problémy / NP úplnost)
+        - předpokládáme konstantnost elementárních operací (vychází z maximální velikosti entit (čísel) výše)
+        - všechny mezivýsledky pol(vstup, max_cislo_ze_zadani)
 
     - složitost: funkce f, která udává počet kroků/paměti algoritmus potřebuje vůči velikosti vstupu "n" 
 
@@ -395,16 +398,20 @@ Analýza nejhoršího, amortizovaného a očekávaného chování datových stru
         - mnohdy může dobrá implementace vést k minimalizaci počtů nejhoršího případu (hašovací tabulky)
     - analýza v průměrném případě: Expected value přes všechny možné vstupy / všechny možné nedeterministické průchody
         - mnoho problémů má worst case vcelku nepravděpodobný (např. quicksort, hashování) a v reálu je průměr relevantnější než worst case
+        - stejně jako amortizovaná: pozor na realtime/soft realtime systémy
 
 - amortizovaná složitost: 
     - cena nejhoršího (nebo průměrného) případu pro sekvenci operací 
+        - pro interaktivní aplikace / realtime systémy: může být problém 
     - můžeme dostat těsnější odhad na cenu jedné operace pokud se v rámci nich děje nějaký větší book-keeping (nejhorší případ uklízí za častější dobré případy)
 
-    - 3 techniky analýzi
+
+    - 3 techniky analýzy
         - agregovaná analýza: dívám se na sérii operací přímo 
         - účetní metoda: při každé operaci něco zaplatíme, platbu pak používáme na zaplacení operací book-keepingu
         - potenciálová metoda: definujeme vhodnou nezápornou potenciálovou funkci, která charakterizuje uklizenost 
-            - amorT = realT + p' - p | p: potenciál před, p': potenciál po 
+            - amorT = realT + p' - p | p': potenciál po, p: potenciál před 
+            - amortT0 <= amortTm: pokud neplatí, musíme započítat inicializaci na začátku abychom nedlužili čas (jinak bychom na začátku nadefinovali obří potenciál, všechno z něj free)
 
 
 - analýza: binární čítač 
