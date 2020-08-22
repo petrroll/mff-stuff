@@ -196,8 +196,8 @@ Hašování, řešení kolizí, univerzální hašování, výběr hašovací fu
     - kolize x != y && h(x) == h(y)
 
 - notace: 
-    - n = |S|
-    - N = |U|
+    - n = |S| | množina prvků k uložení 
+    - N = |U| | universum 
     - m: velikost hashovaci tabulky  
     - a: n/m faktor zaplnění 
 
@@ -240,6 +240,8 @@ Hašování, řešení kolizí, univerzální hašování, výběr hašovací fu
     - pouze next, vkládám do libov. řetězce co h(x) prochází 
     - verze s pomocnou/nepomocnou pamětí 
 
+    - velmi friendly ke cachím, linear probing v podstatě 
+
     - problém s operací DELETE 
         - možné jen označit prvek jako deleted, zpomaluje vyhledávání 
     - na konec řetězce (LICH), za první prvek (EICH), ...
@@ -252,6 +254,11 @@ Hašování, řešení kolizí, univerzální hašování, výběr hašovací fu
         - při kolizích nejprve ukládáme do sklepa, teprve pak do adresovatelné, oddalujeme srůstání řetězců
             - do určitého momentu podobné separovaným 
             - do sklýpku ukládáme/adresujeme podobným způsobem 
+
+    - basic verze LICH 
+        - O(1/e^2) pro úplně random hash funkci / tabulation
+        - Omega(sqrt(n)) pro 1, 2 nezávislou hash funkci 
+        - 
 
 - dvojité hashování 
     - h1, h2, musí být nezávislé: h1(x) == h1(y) => h2(x) != h2(y)
@@ -275,7 +282,7 @@ Hašování, řešení kolizí, univerzální hašování, výběr hašovací fu
 
 - kukaččí hashování: 
     - používáme dvě funkce, h1, h2, prvek musí být buď v h1(x), nebo h2(x), v každé příhrádce jen jeden 
-        - funkce z 6logn, 1 universálního systému
+        - funkce z 6logn nezávislého systému, 6-nezávislá funkce nestačí, tabulation hashing stačí i když není ani 4-nezávislé 
     - Find/delete triviálně O(1)
     - insert: 
         - pokud jedna z lokací volných, vlož
@@ -308,11 +315,14 @@ Hašování, řešení kolizí, univerzální hašování, výběr hašovací fu
     - motivace: pro N > mn, pro každou hash funkci h existuje S y U velikosti n, že h hašuje všechny prvky S do jedné příhrádky
 
     - systém H je c-universální: Vx,y€U, x!=y, P_h€H[h(x) == h(y)] <= c/m 
+        - pokud vybereme h z H náhodně, šance kolize x a y je menší než c * absolutneNahodnaFunkce 
     - H je k,c-nezávislý: x1, x2, ... xk€U různá, a1...ak€P: Pr_h€H[AND h(xi) == ai] <= c/(m^k)
+        - když vybereme h náhodně, šance, že given items jsou mapped to given buckets je nejhůř c*absolutneNahodnaFunkce
 
     - H je 2, c nezávislý => H je c universální 
         - 1 nezávislost je extrémně slabá, splněná např. konstantou 
     - c-universální => E_h€H[#x, h(x) == h(y)] <= c*n/m
+        - expected počet kolizí s y je <= c*n/m
 
     - skládání funkcí: Nechť H je 2, c nezávislý systém funkcí ... potom H* {h mod m | h z H} je 2c universalni a 2, 4c nezávislý 
 
@@ -320,8 +330,8 @@ Hašování, řešení kolizí, univerzální hašování, výběr hašovací fu
     - https://drive.google.com/drive/folders/1GDNVCKzAfSc3aSd3rieyeWwIbmzlVhig
     - úplně náhodná: nepraktické, třeba omega(U*logm bitů paměti) // pro každý si pamatuju target 
     - chceme: 
-        - efektivně náhodně vzbrat h z H 
-        - rychle vyhodnotit h(x)
+        - efektivně náhodně vzbrat h z H :: O(1)
+        - rychle vyhodnotit h(x) :: O(1)
 
     - mod: nechť p >= |U| je prvočíslo, pak H = {h_ab | a, b z [p], a!=0} kde h_ab(x) = ax + b mod p mod m 
         - je 1-universální 
@@ -345,17 +355,20 @@ Hašování, řešení kolizí, univerzální hašování, výběr hašovací fu
         - Pk = {ha | a z Zpk}, ha(x) = sum ai*x^i mod p 
         - je k, 1 nezávislý 
             - danými body (xi, h(xi)) prochází právě jeden polynom stupně menšího než d, možných polynomů je m^k
+        - O(k) výběr a vyhodnocení 
 
     - multiply shift: 
         - 2^32 -> 2^l: x*a (odd number), truncate to 32 bits, move to extract horních l bitů 
-        - 2 universální 
+        - 2 universální, NE 2 independent, protože ha(0) = 0  (stačí přidat random bias)
 
     - tabulation hashing 
         - t tabulek o 2^k entries -> 2^l, xor jednotlivé results 
-        - 3-nezávislé, ne 4 nezávislé
+        - 3-nezávislé, ne 4 nezávislé, i přesto určité velmi dobré vlastnosti (cuckoo kde stačí namísto >> 6-nezávislé)
+        - O(t) eval, O(t*2^k) init 
 
     - hashování vektorů 
         - skalární součin s a ze Zpd 
+        - s biasem (a, b) 2, 2-nezávislé, jinak 1-universální 
         - rolling hash: ha(x) = SUM i..d-1 of xi+1 * a^i 
             - d-universální 
             - přehashovat v string searchi rychle: Hj+1 = aHj - xj*a^d + x(j+d)
