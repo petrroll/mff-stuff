@@ -441,3 +441,102 @@ Analýza nejhoršího, amortizovaného a očekávaného chování datových stru
         - odebirame prvek a realokace: amorT = (n+1) + (1-n) = 2
 
 Chování a analýza datových struktur na systémech s paměťovou hierarchií.
+- paměťová hierarchie cca:
+    - registry: 1kb : 1 cycle 
+    - L1-L3; ~10s kB, 100s kB, 1s MB per core; 1s cycles, low 10s, high 10s 
+    - RAM: ~low 10GBs, 100s cycles  
+
+    - nejen latence, ale i bandwidth problém: CPU dokáže teoreticky operovat s násobně víc daty než je bandwidth z RAM / main memory
+
+- external memory model: explicitni nacteni do cache vs. cache model: automaticky system (LRU, FIFO, ...)
+    - můžeme předpokládat cache model s optimálním controllerem, viz níže LRU je jen konstantně horší (s nutností konstantně větší paměti)
+
+- strategie pro správu cache
+    - OPT: Optimální algoritmus, který minimalizuje množství přístupů skrze znalost všeho dopředu 
+    - FIFO: smažeme z paměti tu, která je v paměti nejdéle dlouho 
+    - LRU: smažeme z paměti tu, která byla nejvíc v minulosti použitá (implementace skrze bidir-spojový seznam, např.)
+
+    - pokud může LRU uložit víc než 2*prvků, pak má LRU nejvýše dvojnásobný počet přenesených bloků proti OPT (+nOPT)
+        - fOPT <= nLRU / (nLRU - nOPT) * fOPT + nOPT
+        - rozdělíme na bloky s1...s2, v každém má nLRU výpadků -> alespoň nLRU různých bloků -> OPT má nLRU - nOPT výpadků 
+        -> fLRU/fOPT <= nLRU/(nLRU-nOPT)
+        ~ v posledním kuse dat to platit nemusí, počet výpadků může být menší -> omezený nOPT
+        - dvojnásobná cache nezmění asymptotickou analýzu našich alg.
+
+
+    - pokud musí mít stejně prvků: existuje posloupnost requestů kde tLRU >= (1-e)*C*tOPT   
+        - opakuj sekvenci 0..C+1, LRU zmissuje vše, OPT zvládá udržovat C-1 v cachi 
+        -> počet opakování podle wanted e
+
+- zjednodušení pro potřeby analýzy
+    - pouze 2 úrovně: pomalá, rychlá 
+    - cache rozdělená na bloky o velikosti B (prvky velikosti 1) -> počet bloků je P = M/B
+    - procesor může přistupovat pouze k datům v cache (~odpovídá realitě)
+    - paměť je plně asociativní: každý blok z disku může být kdekoliv v cache
+        - velké zjednodušení, cache je většinou n-way-asociativní: set derived adresy, v každém setu plně asociativní velikosti n
+        -> určité patterny přístupu do paměti mohou mít velmi nepříjemné kolize 
+    - neřešíme koherenci cachí (NUMA, multicore, ...) / writeback/writethrough / ... a další složitosti reálného světa
+    - měříme celkový počet přenesených bloků, bez znalosti konkrétních hodnot M, B (cache oblivious analýza)
+
+- dva typy algoritmů: 
+    - cache-aware: znají hodnoty M, B a podle nich nastaví své parametry
+        - b-stromy, velikost b na B 
+    - cache oblivious: je cache efektivní bez znalosti konkrétních hodnot M, B 
+        - výhodné pro hierarchii, je optimální pro všechny úrovně cachí 
+
+- přečtení souvislého pole: 
+    - ceil(n/B) + 1 // +1 protože nemusíme být zarovnáni 
+- binární vyhledávání v setříděném poli 
+    - provedeme O(logn) porovnání 
+    - posledních O(logB) porovnání je uloženo v nejvýše 2 blocích, zbytek v po 2 různých 
+    -> O(logn - logb) = O(log(n/b))
+
+- průchod binární haldou: 
+    - stejně jako bin. hledání v poli 
+
+- transpozice matice: naive version
+    - nejhorší možný případ: M/B < n 
+
+    - i pokud se řádek vejde do cache, pro transpozici prvního řádku musím načíst první sloupec -> n + 1 bloků 
+    - jak začnu číst druhý řádek & druhý sloupec -> načetl jsem mezi tím n jiných řádků -> při LRU pryč z cache 
+    -> O(n^2) přístupů do paměti 
+
+- cache-aware alg: 
+    - pokud M > 2*B^2, tj. tall cache (víc bloků než velikost jednoho bloku), potřeba v cachi udržet dva bloky najednou 
+    - rozdělím matici na BxB bloky a procházím po jednotlivých BxB blocích 
+        -> první řádek: čte nejvýše ve 2 blocích, zapisuje do B bloků -> B + 2 bloků -> vejde se 
+        -> druhý řádek: zapisuje do stejných bloků, čte z 2 bloků 
+        -> O(n^2/B) 
+- cache oblivious: 
+    - rekurzivně matici rozdělíme na A: A11 A12
+                                        A21 A22
+    - rekurzivně transponujeme menší a menší podmatice, v jeden moment budou mít velikost ni <= B < 2ni 
+        -> nedochází k výpadkům, stejné jako BxB 
+
+- násobení matic: stejně jako transposice 
+- merge sort: 
+    - potřeba 3 cache bloky, 2*čtení sources, 1*zápis result
+    - slytí jedné úrovně: 2n/B + O(1) = O(n/B + 1) přenosů 
+    -> celkem O(n/B)*(1+log2n/z) = O(n/B * log(n)+1)
+- multiway merge sort: využijeme víc než 3 cache lines at the same time + halda 
+    - O(n/B * logn/logK + 1)
+    - optimální K = M/2B 
+
+- funnel sort: cache oblivious optimální (za přepdokladu tall cache) verze merge sortu 
+    - split input into N^1/3 polí velikosti N^2/3 a sortuj rekurzivně
+    - merge sekvence skrze N^1/3 merger, rekurzivně, FIFO queue spojující vždy 2, ...
+
+- binární strom zkrze ukazatele: co uzel to (potenciálně) jiný blok 
+- B-strom: pokud uzly velikosti B, tak může být optimálně cache aware 
+
+- van emde boas: 
+    - rozsekneme strom v polovině výšky, vzniklé podstromy velikost sqrt(n), do paměti zeshora, zleva ... rekurzivně 
+    - v určitý moment se celý podstrom výšky z již vejde do cache: z < log2B < 2z 
+    -> počet stromů výšky z na cestě z kořene do listu je h/z <= 2log_B(n) -> O(log_B(n))
+
+- Dynamické stromy: 
+    - doplnit dynamický strom T prázdnými uzly &  uložit jako EmbeBoas
+    - pro každý uzel definujeme hustotu: poměr reálných a všech uzlů 
+        - každá úroveň má horní/dolní práh hustoty, při porušení vyvažujeme 
+    - update: O(logB(n) + log^2(n)/B)
+
