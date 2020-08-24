@@ -1,0 +1,175 @@
+Výpočetní modely (Turingovy stroje, RAM).
+- turingův stroj 
+    - Q: stavy, E: abeceda (včetně prázdného znaku), d: QxE->QxEx{R,N,L} přechodová funkce, q0 z Q: počáteční stav, F <= Q: přijímací stavy
+    - konfigurace: (stav, slova vlevo, slova vpravo)
+
+    - na pásce vstup, mimo něj prázdné znaky, hlava na prvním políčku, ... 
+    - podle aktuálního znaku a stavu se vybere přechodová funkce, zapíše se její result na aktuální políčko, změní stav, a přesune se Left, Right, Nowhere
+        - pokud není validní přechod - výpočet končí
+    
+    - TS M přijímá slovo w: výpočet končí a po ukončení se M nachází v přijímacím stavu 
+        - množina přijímaných slov: L(M)
+    - TS M odmítá slovo w: výpočet končí a po ukončení se M nenachází v přijímacím stavu 
+    - TS M konverguje nad w: výpočet končí 
+    - TS M diverguje nad w: výpočet nekončí 
+    
+    - varianty TS:  
+        - jednosměrné s nekonečnou páskou
+        - více páskami 
+        - více hlavami na více paskách (spojené hlavy/nezávislé)
+        - pouze binární abecedou 
+        - nedeterministické TS 
+
+        -> všechny jsou ekvivalentní našemu TS: přijímají stejnou třídu jazyků a vyčislují tutež třídu funkcí 
+
+    - k-páskový TS
+        - každá páska má hlavu zvlášť 
+        - vstupní páska: vstup, jen čtení
+        - výstupní páska: výstup, prázdná na začátku, jen zápis 
+        - pomocní pásky: prázdné na začátku, read/write 
+        -  QxE^k->QxE^kx{R,N,L}^k
+
+        - ekvivalentní jednopáskovému
+            - pásky interleavneme na jednu pásku 
+            - pozice hlav označujeme speciálním znakem 
+            - nová abeceda: kartézský součin původních k abeced + pozice hlav 
+- RAM 
+    - výpočetní stroj s náhodným přístupem do paměti 
+    - neomezená paměť "pole" 
+    - LOAD, ADD, SUB, COPY, JNZ, READ, PRINT 
+        - přímá/nepřímá adresace 
+        - load načte 0 -> konec vstupu 
+
+    - RAM přijme: ukončí a první číslo které zapíše na výstup je 1 
+    - RAM odmítne: stejné ale 0 
+    
+    - rozhodovatelné jazyky, vyčislitelné funkce, ..., stejné jako u TS 
+
+- ekvivalence RAM a TS: 
+    - TS->RAM 
+        - obsah pásky uložen ve dvou polích Tr, levá a pravá část pásky 
+        - poloha hlavy v proměnné h, stav v proměnné q
+        - výběr instrukce: podle h, q
+            - ~velký switch na odpovící branch přechodové funkce 
+
+    - RAM->TS: 
+        - čtyřpáskový TS, binárně zapsaná čísla && oddělení #
+        - vstupní páska: data, co má RAM dostat na vstupu 
+        - výstupní páska: ekvivalent 
+        - paměť RAM: obsah paměti 
+        - pomocná páska: mezivýpočty, ... 
+        
+- churchill turingova teze
+    - ke každému algoritmu v intuitivním smyslu existuje ekvivalentní Turingův stroj 
+
+- Gödelovo číslo: 
+    - chceme TS přiřadit číslo 
+    - mějme TS M s jediným přijímacím stavem, binární vstupní abecedou (každý TS lze převést do této podoby)
+    - potřeba zakodovat přechodovou funkci: 
+        - abeceda: 0, 1, L, N, R, |, #, ; 
+        - qi Xj -> qk, Xl, Z :: i | j | k | l | Z 
+        - jednotlivé instrukce za sebou C1#C2#C3... 
+        - převedeme do binarního zapisu jednoznačně: 0->000, 1->001, ..., #->110, ...
+
+    -> každému TS M lze přiřadit číslo. 
+        - pokud číslo není validní zakodování, řekneme, že odpovídá prázdnému TS, který vše odmítne 
+        -> každému TS M odpovídá číslo, každému číslu TS M 
+        - kód TS není jednoznačný (pořadí např. instrukcí)
+
+- universální TS: 
+    - vstupem je U: <M, x>, kde M je TS a x řetězec 
+    - U simuluje x na M 
+
+    - jazyk: universální jazyk Lu
+    - TS: 3 páskový 
+        - první páska vstup 
+        - druhá páska obsah pracovní pásky M 
+        - aktuální stav M 
+
+Rozhodnutelné a částečně rozhodnutelné problémy   
+- turingovsky rozhodnutelné jazyky
+    - jazyk je rozhodnutelný (rekurzivní) pokud existuje TS M, který se vždy zastaví a L=L(M)
+    - jazyk je částečně rozhodnutelný (rekurzivně spočetný) existuje-li M: L=L(M)
+
+- turingovsky vyčíslitelné funkce:
+    - TS M nad abecedou E počítá částečnou (def. jen pro některé vstupy) funkci fM: E*->E*:
+        - pokud M(w) konverguje: je fM(w) definovaná a hodnota je slovo na pásce po ukončení výpočtu 
+        - pokud M(w) diverguje: je fM(w) nedefinovaná
+    - funkce f: je turingovsky vyčíslitelná pokud existuje TS M,který ji počítá 
+        - každá tur. vyčíslitelná funkce má nekonečně strojů, které ji počítají 
+
+- rekurzivní a rekurzivně spočetné množiny
+    - základní funkce: 
+        - konstantní funkce o(x) = 0
+        - funkce následníka s(x) = x+1
+        - projekce: I_n_j(x1...xn) = xj 
+
+    - operátory: 
+        - substituce: h(x1...xn) = f(g1(x1...xn), ..., gm(x1...xn)) : volání procedur
+        - primitivní rekurze:  h(x1...xn) = f(x2...xn) if x == 0 else g(x1-1, h(x1-1, ..., xn), x2, ..., xn) : for cyklus 
+        - minimalizace: h(x1...xn) = min {y | f(x1..xn, y) = 0 and Vz <= y f(x1...xn, z) konverguje} : for cyklus : while cyklus
+
+    - primitivně rekurzivní funkce: základní funkce, substitutuce a primitivní rekurze 
+    - částečně rekurzivní funkce: základní funkce, substitutuce, primitivní rekurze, minimalizace
+    - obecně rekurzivní funkce: ČRF, která je všude definovaná tj. všude konverguje 
+
+    - primitivně/obecně/rekurzivně spočetný predikát: relace s odpovídající ^^ rekurzivní funkcí jako charakteristickou funkcí 
+        - odpovídá jazykům definovaným pro TS výše 
+    
+    - ekvivalence TS a ČRF 
+
+- vlastnosti rozhodnutelných jazyků
+    - jsou li L1, L2 (částečně) rozhodnutelné jazyky
+        - průniky, sjendocení, konkatenace, iterace jsou (částečně) rozhodnutelné jazyku
+
+    - postova věta: je-li L rozhodnutelný <> L a L' jsou částečně rozhodnutelné 
+        -> prohodím přijímající / nepřijímající stavy 
+        <- paralelní běh ML a ML', jeden z nich určitě jednou přijde -> můžu zastavit a přijmout/odmítnout 
+
+- vlastnosti částečně rozhodnutelných jazyků
+    - pro jazyk L <= E* jsou násl. ekvivalence 
+        - L je částečně rozhodnutelný 
+        - existuje TS Me, který se právě pro každé x z L zastaví 
+        - existuje rozhodnutelný jazyk B: L = {x z L | E y z E* | <x, y> z B}
+            - např. počet kroků, mohu pak simulovat a po překročení odmítnout 
+            
+
+Algoritmicky nerozhodnutelné problémy (halting problem)
+- množství jazyků:
+    - různých jazyků je nespočetně mnoho: podmnožina E* (~odp. přirozeným číslům)
+    - částečně rozhodnutelných jazyků max spočetně: pro každý existuje TS M, TS lze zakodovat viz. gödelovo číslo -> spočetně mnoho 
+    -> existuje nespočetně nerozhodnutelných jazků 
+
+- diagonalizační jazyk: není ani částečně rozhodnutelný
+    - Ldiag {<M> | <M> !z L(M)} // stroje, které sami nepřijímají vlastní kód 
+    - dk: sporem: nechť Ml přijímá: 
+        - řekněme, že <Ml> z Ldiag -> Ml musí přijmout <Ml> -> dle definice spor 
+        - řekněme, že <Ml> !z Ldiag -> přijme se -> musí být z jazyka -> spor 
+    - Ldiag' je částečně rozhodnutelný: skrze universální TS, díky Postově větě ale nemůže být rozhodnutelný 
+
+- universální jazyk je částečně rozhodnutelný, ale ne rozhodnutelný 
+    - je částečně rozhodnutelný neb existuje universální turingův stroj 
+    - kdyby byl rozhodnutelný, tak dle postuli věty je Lu' částečně rozhodnutelný -> , má TS M
+    - Lu' = L(M) = <M,x> | x !z L(M) má TS M
+    - vytvořme M' pomocí M na částečné rozhodnutí Ldiag:
+        - pokud na vstupu e ne-ok TS, odmítnu 
+        -> přijme právě pokud náleží do Ldiag -> nelze, protože není částečně rozhodnutelný -> spor 
+
+- halting problem: jazyk všech <M, x> které zastaví je částečně rozhodnutelný ale ne rozhodnutelný 
+    - částečná rozhodnutelnost plyne s existence universálního Mu (pro Lu)
+    - předpokládejme rozhodnutelnost Lhalt' je částečně rozhodnutelný (postova věta), má TS M 
+    - definujme L' = <M> | M(<M>) nezastaví, postavme M' pomocí M který částečně rozhoduje L'
+        - pokud vstup e není validní TS, odmítne 
+        - spustí M s <e,e>, pokud přijme, tak přijme; jinak se zacyklí -> přijme svůj stup právě když se zastaví -> L(M') = diagonala Lhalt' = L'
+        -> pokud <M'> z L' ->  M' se na <M'> musí zastavit -> z definice L' se M'(<M'>) nemá zastavit -> spor 
+        -> pokud <M'> !z L' ->  podle definice L' M'(<M'>) zastaví -> dle popsání M' ale přijme, z čehož vyplývá <M'> z L' -> spor 
+
+
+
+Nedeterministický výpočetní model
+Základní třídy složitosti a jejich vztahy
+Věty o hierarchii
+Úplné problémy pro třídu NP, Cook-Levinova věta
+
+Pseudopolynomiální algoritmy, silná NP-úplnost
+Aproximační algoritmy a schémata
