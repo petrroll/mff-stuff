@@ -132,9 +132,39 @@ Rozhodnutelné a částečně rozhodnutelné problémy
         - existuje TS Me, který se právě pro každé x z L zastaví 
         - existuje rozhodnutelný jazyk B: L = {x z L | E y z E* | <x, y> z B}
             - např. počet kroků, mohu pak simulovat a po překročení odmítnout 
-            
+
+- enumerátory: pro jazyk L je to turingův stroj E 
+    - ignoruje vstup 
+    - během výpočtu vypisuje řetězce w z L 
+    - každý řetězec z L je někdy vypsán
+    - pokud je L nekonečný tak E nikdy neskončí 
+    
+    - jazyk je částečně rozhodnutelný <> existuje enumerátor E 
+        -> generuju slova lexikograficky do délky "d", spouštím ts pro počet "k"roků, iterarivně obojí zvyšujeme   
+        <- čekám než iterátor vypíše slovo, pak přijmu
+    - jazyk je rozhodnutelný <> existuje enumerátor E v lexikografickém pořadí 
+        -> zkouším slova v lexigorafickém prostředí, výpočet vždy skončí -> vypisuju když přijmou
+        <- počkám než vypíše slovo za aktuálním -> přijmu/nepřijmu
+
+
+- převoditelnsot: 
+    - jazyk A je m-převoditelný na jazyk B pokud existuje `totální vyčíslitelná funkce` f: Vx z E* [x z A <> f(x) z B]
+    - jazyk A je m-úplný pokud je A částečně rozhodnutelný a každý částečně rozhodnutelný jazyk je na něj převoditelný 
+
+    - Lu, Lhalt, jsou m-úplné 
+
 
 Algoritmicky nerozhodnutelné problémy (halting problem)
+- Riceova věta 
+    - nechť C je třída částečně rozhodnutelných jazyků, Lc = {<M> | L(M) z C}, pak Lc je rozhodnutelný právě pokud je C triviální třída (vše/nic)
+    - spor: mějme netriviální třídu C, Mc je TS pro Lc, který (z rozhodovatelnsoti) vždy konverguje 
+    - zvolme jazyk z C přijímaný TS N
+    - vytvořme TS M, který na vstup pustí vlastní kód <M> a pokud se zastaví, tak spustí stroj N s původním vstupem 
+        - pokud M(<M>) konverguje -> L(M) == L(N)
+                                  -> <M> z Lc
+        - pokud M(<M>) diverguje -> <M> !z Lc 
+        -> pomocí Mc by se dal rozhodovat jazyk K = <M> | M(<M>) zastaví -> spor protože je nerozhodnutelný
+
 - množství jazyků:
     - různých jazyků je nespočetně mnoho: podmnožina E* (~odp. přirozeným číslům)
     - částečně rozhodnutelných jazyků max spočetně: pro každý existuje TS M, TS lze zakodovat viz. gödelovo číslo -> spočetně mnoho 
