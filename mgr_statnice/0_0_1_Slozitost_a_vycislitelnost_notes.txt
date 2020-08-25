@@ -282,7 +282,50 @@ Základní třídy složitosti a jejich vztahy
     -> PSPACE = NPSPACE 
 
 Věty o hierarchii
-Úplné problémy pro třídu NP, Cook-Levinova věta
+- f: N->N f(n)>logn je prostorově konstruovatelná, pokud zobrazuje 1^n na binární representaci f(n) a je vyčíslitelná v prostoru O(f(n))
+    - f vyčíslitelná v prostoru O(f(n)): existuje TS, který pracuje v prostoru O(f(n)) na vstupem 1^n a po ukončení je zapsán řetězec 1^f(n) 
+    - ~odpovídá zarezervování prostoru, není každá funkce, většina ano 
 
+- věta o prostorové hierarchii 
+    - pro každou prostorově konstruovatelnou funkci f: E L rozhodnutelný v prostoru O(f(n)) ale ne o(f(n))
+    - L = <M>, 10^k | M odmítá <<M>, 10^k> v prostoru <= f(|<<M>, 10^k>|)
+    - rozhodnutelné v prostoru O(f(n))
+        - pro vstup x, |x| = n, spocti f(n), označ dost buněk na pásce, pokud alg. zkusí označit víc buněk -> odmítni
+        - pokud x není validního tvaru, odmítni 
+        - simuluj běh M na x, pokud přesáhne f(n) prostoru nebo 2^f(n) času (viz odhad konfigurací, řeší zacyklení, na počítání času stačí log(2^fn)) == fn prostoru, odmítni 
+        - pokud M přijme, odmítni, jinak přijmi 
+    - L je nerozhonutelný v prostoru o(f(n)): sporem, mějme TS M rozhoduje L, slovo w <<M>, 10^k>
+        - w z L <> M přijme w <> M nepřijímá <<M>, 10^k> v prostoru <= f(|<<M>, 10^k>|) <> spor s předpokladem že `M přijme w` `v prostoru o(f(n))`
+        - uplatňuje se 10^k, kdyby tam nebylo tak velikost vstupu pouze |M|, celá práce se musí vejít do O(|M|)
+        - 10^k nám poskytuje prostor pro práci -> zajišťuje, že odmítnutí není kvůli překročení prostoru z důvodu simulace (tj. kde by M nativně nepřekročilo)
+
+    - důsledky
+        - jsou li f1, f2; f1 z o(f2); f2 prostorově konstruovatelná: SPACE(f1) < SPACE(f2) 
+        - e1 < e2 : SPACE(n^e1) < SPACE(n^e2)
+        - NL < PSPACE < EXPSPACE
+
+- věta o časové prostorové hierarchii 
+    - pro každou časově. konstr. funkci f existuje jazyk A, rozhonutelný v O(f(n)) ale ne o(f(n)/log(f(n)))
+    - faktor log(f(n)) navíc neb TS simulující důkaz si musí pamatovat konfiguraci stroje, který simuluje  
+
+    - L = <M>, 10^k | M neprijima <M>, 10^k v case <= f(n) / log(f(n))
+    - L rozhodnutelný v čase O(f(n)):
+        - pro vstup x spočti f(n)
+        - pokud x není v korektním tvaru, odmítni 
+        - Simuluj M na vstupu x, pokud nedoběhne v f(n) / log(f(n)) krocích, odmítni 
+        - Pokud přijme odmítni, jinak přijmi
+
+        - každý krok je třeba snížit čítač: v každém kroku simulace max O(log(f(n))) práce (max délka) -> náročnost simulace je O(f(n))
+    - L není rozhodnutelný v o(f(n) / log(f(n)))
+        - nechť je v daném čase rozhodnutelný pomocí TS M, slovo w = <M>, 10^k 
+        - w z L <> w přijmuté M v `o(f(n) / log(f(n)))` <> spor s definicí `M neprijima <M>, 10^k v case <= f(n) / log(f(n))`
+
+    - důsledky
+        - jsou li f1, f2; f1 z o(f2/logf2n); f2 prostorově konstruovatelná: TIME(f1) < TIME(f2) 
+        - TIME(n^e1) < TIME(n^e2)
+        - P < EXPTIME
+
+Úplné problémy pro třídu NP, Cook-Levinova věta
 Pseudopolynomiální algoritmy, silná NP-úplnost
+
 Aproximační algoritmy a schémata
