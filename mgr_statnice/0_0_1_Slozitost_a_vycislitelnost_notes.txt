@@ -163,7 +163,8 @@ Algoritmicky nerozhodnutelné problémy (halting problem)
         - pokud M(<M>) konverguje -> L(M) == L(N)
                                   -> <M> z Lc
         - pokud M(<M>) diverguje -> <M> !z Lc 
-        -> pomocí Mc by se dal rozhodovat jazyk K = <M> | M(<M>) zastaví -> spor protože je nerozhodnutelný
+        -> pomocí Mc ověřím jestli Mc(<M>), tj. jestli je <M> z Lc, čímž rozhodnu jestli <M> neupravený haltuje 
+        -> dá se rozhodovat jazyk K = <M> | M(<M>) zastaví -> spor protože je nerozhodnutelný
 
 - množství jazyků:
     - různých jazyků je nespočetně mnoho: podmnožina E* (~odp. přirozeným číslům)
@@ -197,7 +198,89 @@ Algoritmicky nerozhodnutelné problémy (halting problem)
 
 
 Nedeterministický výpočetní model
+- nedeterministický TS: d: QxE -> P(QxEx{L, N, R})
+    - NTS M v každém kroku uhodne/vybere správnou instrukci 
+    - NTS M vykoná všechny možné instrukce současně / je ve všech konfiguracích najednou 
+
+- stejná výpetní síla jako normální TS ~ stejně silný w.r.t to Churchov-Turing teze 
+    - kartezsky soucin stavu
+    - iterative deepening simulace 
+- výpočet NTS M 
+    - posloupnost konfigurací C0, C1, ... Cn 
+    - přechody jen možné, přijímající pokud konečný & stav příjímající, ... 
+
 Základní třídy složitosti a jejich vztahy
+- typy problému:
+    - rozhodovací problémy: ptáme se zda instance x má nějakou vlastnost, jazyk kladných instancí L <= E*, query: x z L 
+    - uloha pro danou instanci x: hledáme y, které suplňuje určitou podmínku -> hledání y z relace R <= E*xE* 
+    - optimalizační úloha: hledáme takové y, které minimalizuje externí míru 
+
+- časová a prostorová složitost 
+    - nechť M je TS M, f: N->N funkce 
+    - M pracuje v čase f(n): každý výpočet M nad libovolným vstupem x |x|=n skončí po provedení nejvýše f(n) kroků 
+    - M pracuje v prostoru f(n): každý výpočet M nad libovolným vstupem x |x|=n využije maximálně f(n) buněk pracovní pásky 
+
+    - NTIME(f(n)): třída jazyků přijímaných nedetermministickým TS, které pracují v čase O(f(n))
+    - TIME(f(n)): třída jazyků přijímaných determministickým TS, které pracují v čase O(f(n))
+    - NSPACE(f(n)): třída jazyků přijímaných nedetermministickým TS, které pracují v paměti O(f(n))
+    - SPACE(f(n)): třída jazyků přijímaných determministickým TS, které pracují v paměti O(f(n))
+
+    - NP: U_k€N NTIME(n^k) : přijímané nedeterministickým turing. v polynomiálním čase
+    - P: U_k€N TIME(n^k) : přijímané deterministickým turing. v polynomiálním čase 
+
+    - EXPTIME: U_k€N TIME(2^n^k)
+
+- polynomiální třídy: 
+    - nerostou příliš rychle 
+    - jsou uzavřené na skládání 
+    - silnější Curchil-Turing: každý rozumný a obecný výpočet lze na TS simulovat s polynomiálním zpomalením/zvětšením potřebného prostoru  
+        - P/PSPACE nezávislé na zvoleném výpočetním modelu / prog. jazyce 
+    
+- třída NP 
+    - verifikátor pro jazyk L je algoritmus V: L = {x| Ey V přijme(x, y)}
+        - polynomiální verifikátor: pracuje v polynomiálním čase vůči |x|
+        - pokud má y pol(x) délku: polynomiální certifikát 
+    -> NP: třída jazyků s polynomiálními verifikátory 
+    
+    - ekvivalence definic
+        -> existuje poly. verif: 
+            - NTS Ml první nedeterministicky uháhne 'y' 
+                - lze, prostě má přechody pro každý možný znak, lineárně uhádne celý
+            - odsimiluje dle předpokladů existující Mb pro funkci B 
+        <- jako 'y' můžeme brát jakou ze všech možných (nedeterministicky zvolených) předodů NTM vybere 
+            - maximálně polynomálně moc kroků -> y max polynomiálně dlouhé 
+
+- modely s menším než lineráním space/time 
+    - potřeba mít více pásek: vstupní, výstupní, pracovní  
+    - do času a prostoru pouze pracovní páska 
+    - konfigurace neobsahuje vstupní slovo 
+
+    - L: SPACE(log2n)
+    - NL: NSPACE(log2n)
+    - NPSPACE: Uk NSPACE(n^k)
+
+- pro každou f: platí, že 
+    - TIME(f(n)) <= SPACE(f(n)): 
+        - nelze popsat víc buněk než kolik je času (sublineární: třeba nepočítat vstup, viz výše)
+    - TIME(f(n)) <= NTIME(f(n)) <= SPACE(f(n)) <= NSPACE(f(n))
+        - první a třetí triviálně 
+        - druhá: simulujeme, max const možností/paměti per krok, tj. f(n)*const paměti pro backtrack záznam 
+
+- f(n) funkce f(n) >= log(n), pro každý L z NSPACE(f(n)) existuje L z TIME(2^(cl * f(n)))
+    - počet konfigurací je omezen 2^(cl * f(n)) -> odhad času (přijímací výpočet se v každé konfiguraci ocitne jen jednou else zacyklení)
+
+- platí inkluze: L <= P <= NP <= PSPACE <= NPSACE <= EXPTIME 
+
+- savičova věta: pro každou fn > logn vyčíslitelnou v prostoru O(f(n)) :: NSPACE(f(n)) <= SPACE(f^2(n))
+    - počet konfigurací je omezen 2^(cl * f(n))
+    - skrz dynamické progrmaování a půlení (vždy zafixujeme mid-bod, hledáme cestu k němu a od něj) procházíme grafem (pouze unikátní konfigurace) všech možných konfigurací
+        - v každém volání zafixujeme/otestujeme 1 konfiguraci a zavoláme se na 2 pod-problémy -> celkem 2^f(n) zafixovaných bodů 
+        - hloubka rekurze: O(f(n)) 
+        - jedna instance O(f(n))
+        -> O(f^2(n))
+
+    -> PSPACE = NPSPACE 
+
 Věty o hierarchii
 Úplné problémy pro třídu NP, Cook-Levinova věta
 
