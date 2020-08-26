@@ -476,7 +476,8 @@ Aproximační algoritmy a schémata
     - využijeme pseudopolynomiální alg. výše, který pracuje v čase O(nV)
     - skrze zaokrouhlení a rescaling: zmenšit cenu nových předmětů 
 
-    - funguje v čase: O(n^3*1/e)
+    - c[i] = floor(c[i]/2^floor( log2(e * c[max] / n)-1 ))
+    - funguje v čase: O(n^3*1/e) neb C <= 4n^2/e
 
 - lze otočit: UPAS -> psuedopolynomiální algoritmus 
     - nechť A je opt. úloha, kde přípustná řešení celočíselnou hodnotu a existuje polynom p: V I of A: opt(I) < q(len(I), max(I))
