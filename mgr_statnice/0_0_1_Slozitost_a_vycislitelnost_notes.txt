@@ -448,7 +448,62 @@ Pseudopolynomiální algoritmy, silná NP-úplnost
         - existuje Hammilton právě pokud obchodní cestující najde cestu nulové délky
         - hodnoty max 1, tj. určitě z TSP(1)
 
-
-    - každý NP úplný 
-
 Aproximační algoritmy a schémata
+- optimalizační úloha: 
+    - Instance, přípustná řešení, f: přípustné řešení->hodnota 
+    - úloha: přípustné řešení s nejmenší/největší hodnotou pro danou instanci 
+
+- aproximační algoritmus s poměrem e >= 1: 
+    - pro optimalizační úlohu A nalezne pro každou instanci I přípustné řešení R(I), že opt(I) <= e*R(I)
+
+- Bin-packing: rozdělení předmětů do co nejměnšího počtu binů velikosti 1 
+    - FirstFit: 
+        - vždy do prvního volného koše, když není, založ nový 
+        - 2-optimalizační alg: nemohou existovat 2 biny zaplněné méně než z poloviny 
+        - pro libovolné k existuje I, že FF vytvoří alespoň 5/3opt košů 
+            - 18k instancí: 6: 1/7+e, 6: 1/3+e, 6: 1/2+e 
+            - opt: 6k košů, FF: k-košů (6x první), 3k-košů (2x prostřední), 6k košů (1x poslední)
+    - FFD: First fit decreasing: setřiď podle velikosti, od nejmenších FF 
+        - 11/9 OPT + 4
+
+- aproximační schéma: 
+    - vstup: racionální číslo e, vzdá řešení s aproximačním poměrem 1+e 
+    - PAS: polynomiální aproximační schéma: pro každé e je časová složitost algoritmu polynomiální v len(I)
+    - UPAS: úplně polynomiální aproximační schéma: ALG je časově polynomiální v len(I) a 1/e 
+        - UPAS nesmí mít 1/e v exponentu čas. složitosti 
+
+- UPAS pro batoh 
+    - využijeme pseudopolynomiální alg. výše, který pracuje v čase O(nV)
+    - skrze zaokrouhlení a rescaling: zmenšit cenu nových předmětů 
+
+    - funguje v čase: O(n^3*1/e)
+
+- lze otočit: UPAS -> psuedopolynomiální algoritmus 
+    - nechť A je opt. úloha, kde přípustná řešení celočíselnou hodnotu a existuje polynom p: V I of A: opt(I) < q(len(I), max(I))
+    - pokud existuje UPAS -> existuje pseudopolynomiální algoritmus 
+
+    - ALG je UPAS pro A 
+    - pro I položíme e = 1/q(len(I), max(I)), pustíme ALG_e(I)
+        - runtime je pol(len(I), max(I)) z definice UPAS 
+        - opt(I) <= (1 + 1/q(len(I), max(I))) * ALG_e(I)
+        -> opt(I) - ALG_e(I) < e*ALG_e(I) <= e*OPT(i) <opt(I) < q(len(I), max(I))= 1
+        -> pokud jsou řešení celočíselná a rozdíl menší než 1 -> musí se rovnat 
+
+    - nechť A je silně NP-úplná optimalizační úloha, která splňuje předpoklady UPAS->pseudopoly, pak pokud P != NP neexistuje UPAS pro A. 
+
+- Neaproximovatelnost 
+    - TSP není aproximovatelný ani s konstnatním poměrem 
+    - předpokládejme, že existuje aproximační alg pro e: 
+        - nechť G je libovolný graf kterému chceme najít Hammilton kružnici, doplníme na úplný, ohodnotíme: 1::pokud z E, e*|V| else 
+        - ptáme se jestli existuje TSP <= |V|, pokud ano <> v původním grafu existuje hammlitonovska kružnice 
+            - cena ne-E hran nutí libovolně aprox. algoritmus, aby ji nevybral pokud hammilt. existuje (byť jedna hrana překročí aprox. poměr)
+        -> pokud by bylo polynomiální -> P = NP 
+
+    - pro TSP s trojúhelníkovou nerovností existuje 3/2 aproximační algoritmus 
+    - pro TSP v euklidovské rovidě existuje PAS 
+
+- Aproximace různé úrovně NP-úplných problémů 
+    - rychle a libovolně dobře aproximovatelné (UPAS): batoh 
+    - mají alespoň PAS 
+    - aproximační alg. s kosntantím poměrem, ale ne libovolným (tj. ne PAS): vrcholové pokrytí 
+    - nemají aprox. alg: klika, obchodní cestující 
