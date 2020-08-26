@@ -408,5 +408,47 @@ Pseudopolynomiální algoritmy, silná NP-úplnost
 - číselný problém
     - nechť A je libovolný rozhodovací problém, I instance problému; len(I): délka kódování, max(I): hodnota největšího číselného parametru 
     - A je číselný problém, pro V pol p: existuje I, že max(I) > p(len(I))
+    ~ intuitivně: v problému je číselný parametr, u kterého jeho velikost ovlivní rychlost alg. a je víc než poly velikosti vstupu 
+        - např.: batoh, loupežníci; ne kachlíkování 
+
+- Pseudopolynomiální algoritmus: časová složitost je omezená pol(len(I), max(I)) ~ byl by polynomiální kdyby kodovano unárně 
+    - je-li problém řešitelný Pseudopolynomiálně a nejde o číselný problém -> je ve skutečnosti polynomiální 
+
+- Batoh: množina předmětů, ci, wi; max cena pod určitou váhu 
+    - dynamické programování: dvě tabulky
+        - T:NxV: podmnožina indexů prvků celkové ceny přesně c s minimalni velikostí
+        - S:NxV: celková velikost prvků přesně cenz c 
+    - algoritmus: 
+        - for j: 0..N:          # Pro každý možný poslední prvek (ať už použitý nebo ne)
+            - for c in 1..V:    # Pro každou možnou cenu 
+                - T[j, c] = T[j-1,c] # Určitě alespoň stejně dobrá možnost, jako s max. posledním minulým prkvem 
+                - ... 
+                - pomocí prvků j lze poskládat lehčí váhu než T[j, c] -> update 
+        - max c z S[n, c] < B 
+
+- silná NP úplnost: 
+    - nechť A je NP úplný problém, A(p) je restrikce A na instance I pro něž platí, max(I) <= p(len(I))
+    - A je silně NP úplný existuje poly p, že A(p) je NP-úplný problém 
+    ~ A(p) nám dá jen "nečíselné problémy" instance, pokud i tihle jsou NP-úplné -> silně NP-úplný problém 
+
+- slabá NP úplnost: pokud existuje pseudopolynomiální algoritmus 
+    - jsou problémy co nejsou ani jedno 
+
+- důsledky
+    - každý nečíselný NP-úplný problém je silně NP-úplný 
+    - pokud by existoval silně NP-úplný problém řešitelný pseudopoly alg. -> P = NP 
+    - silně NP úplný je NP úplný i při unárním kódování 
+    - i číselné NP-úplné mohou být NP-úplné: TSP 
+
+- TSP je silně NP-úplný 
+    - určitě v NP 
+    - těžkost TSP(p) ukážeme na převodu hammiltonovské kružnice na poly omeyenou verzi TSP 
+
+    - úplný graf, vzdálenost 0 pokud v původním grafu, 1 jinak 
+        - existuje Hammilton právě pokud obchodní cestující najde cestu nulové délky
+        - hodnoty max 1, tj. určitě z TSP(1)
+
+
+    - každý NP úplný 
 
 Aproximační algoritmy a schémata
