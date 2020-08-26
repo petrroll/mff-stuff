@@ -2,12 +2,10 @@
     - Formální systémy, logika 1. řádu, jazyk, axiomy, odvozovací pravidla.
     - Výroková logika, sémantika, tautologie a splnitelnost, dokazatelnost
     - Normální tvary formulí.
-    - Strojové dokazování vět, model checking, dopředné a zpětné řetězení, rezoluční metoda
-a unifikace
+    - Strojové dokazování vět, model checking, dopředné a zpětné řetězení, rezoluční metoda a unifikace
 - Pravděpodobnostní metody (NMAI060)
     - podmíněná markovská pole
-    - částečně pozorovatelné markovské rozhodovací procesy, podmíněná markovská
-pole.
+    - částečně pozorovatelné markovské rozhodovací procesy, podmíněná markovská pole.
 - Umělá inteligence I (NAIL069)
 - Umělá inteligence II (NAIL070)
     - zpětnovazebné učení
