@@ -326,6 +326,87 @@ Věty o hierarchii
         - P < EXPTIME
 
 Úplné problémy pro třídu NP, Cook-Levinova věta
+- polynomiální převoditelnost 
+    - A je převoditelný v polyn. čase na B `A <= B` pokud E f: E*->E* vyčíslitelná v polynomiálním čase pro kterou platí `V w z E* (w z A <> f(w) z B)` 
+    - vlasnosti: 
+        - <= reflexivní a transitivní relace 
+        - pokud A <= B a B z P, tak A z P 
+        - pokud A <= B a B z NP, tak A z NP 
+
+- NP těžký: je na něj převoditelný každý problém z A z NP 
+- NP úplný: je-li NP těžký a ještě z NP 
+    - za předpokladu P != NP : pokud B NP úplný -> B !z P 
+
+- Cook-levinova věta 
+    - Pokud by byl SAT řešitelný v polynomiálním čase, pak by P = NP. 
+    - Respektive, SAT je NP úplný problém.
+
+    - Dokážeme, že kachlíkování je NP úplné: 
+        - množina barev B, čtvercova siť s okrajema baravenýma, kachlíky <= B^4, kachlíky se mohou opakovat 
+        - existuje přípustné vykachlíkování takové, kde sedí barvy na krajích a dotýkající se barvy sousedních kachlíků?
+
+        - KACHL z NP: dostaneme-li okachlikovani (certifikát) umíme v polz čase ověřit, jestli je přípustné 
+        - nechť A náleží NP, existuje k němu NTS M s počtem kroků omezeným pol(n), BUNO (lye převést do)
+            - M má jediný přijámací stav 
+            - z přijímacícho stavu neexistuje přechod dál 
+            - počáteční konfigurace: hlava vlevo 
+            - během konfigurace hlava nejde doprava 
+            - přijímací konfigurace: páska prázdná, hlava nejvíc vlevo 
+
+        - transforujme M do instance kachlíkování: existuje právě když M(x) přijme 
+            - barvy mezi řádky odpovídají legálním konfiguracím 
+            - řada kachlíků representuje validní přechod 
+            - horní a dolní okraje kódují startovací (závislá na x, jinak unikátní) a přijímajcí konfiguraci 
+
+        - kachlíky:
+            - barva (q, a): kóduje políčko na pásce s hlavou, pouze 1 na řádce  
+            - ostatní políčka barva odpovídající symbolu na daném místě 
+            - velikost strany čtvercové sítě f(n)
+            - boční strany: prázdný symbol 
+            
+            - kopirovani buněk nad kterými není hlava (prázdné strany, `a` nahoře/dole)
+            - přechodová funkce (BUNO L, analogicky R, N): dva kachlíky, na stranách 
+                - vpravo: starý stav nahoře, nový znak dole
+                - vlevo: starý znak nahoře/dole, nový stav dole) nový stav
+                - musí být vedle sebe -> koduji posun/přechod
+            - kopirovani příjímajícího stavu bez posunu 
+
+        - x z A <> KACHLIK ma pripustne vykachlikovani 
+            -> x z A, tj. existuje přijímající výpočet, po typech kachlíků dokážeme že lze vytvořit okachlíkování
+                - délka v pohodě 
+                - indukce: podle typů kachlíků
+            <- máme přípustné okachlíkování, dokážeme že odpovídá konfiguraci a validním přechodům
+                - validní konfigurace: právě jedna značka hlavy 
+                - validní přechod: zachová právě jednu hlavu, provede update stavu/znaku 
+                - skrze indukci dokážu že je zachováno a platí pro všechnz řádky
+                -> dostanu validní posloupnost konfigurací 
+            
+- SAT v KNF je NP úplný 
+    - odsimulujeme kachlíkování v SATu 
+    - s^2 * |K| proměnných, každá pro lokace::typ kachlíku 
+
+    - klazule: 
+        - každé pole má kachlík 
+        - každé pole má maximálně 1 kachlík 
+        - pole jsou vertikálně, horizontálně kompatibilní 
+        - hrany sedí 
+
+- 3-SAT: převod SAT->3SAT
+    -  (e1 v e2 v e3 v e4 v ... v ek) -> (e1 v e2 v j1) and (!j1 v e3 v e4 ...) a rekurzivně rozsekat 
+
+- vrcholové pokrytí: 3SAT -> VP 
+    - nahoře spojené dva vrcholy pro každou proměnnou (x, !x), dole trojúhelník pro každou klazuli, propojení podle toho, co klazule obsahuje
+
+- hammiltonovka kružnice: VP -> hammilton 
+- HC: 
+    - vyberu vrchol v0 z původního grafu
+    - z jedné strany k němu připojím hranu s novým vrcholem (začátek cesty)
+    - vytvořím ještě jeden nový vrchol u, připojím na všechny sousedy v0, a pak ještě jednu novou hranu s novým vrcholem (konec cesty)
+    -> procházející cesta začíná skrze v0, končí skrze souseda v0 -> odpovídá HK 
+
 Pseudopolynomiální algoritmy, silná NP-úplnost
+- číselný problém
+    - nechť A je libovolný rozhodovací problém, I instance problému; len(I): délka kódování, max(I): hodnota největšího číselného parametru 
+    - A je číselný problém, pro V pol p: existuje I, že max(I) > p(len(I))
 
 Aproximační algoritmy a schémata
