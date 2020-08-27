@@ -1,5 +1,53 @@
 Formální systémy, logika 1. řádu, jazyk, axiomy, odvozovací pravidla.
-Výroková logika, sémantika, tautologie a splnitelnost, dokazatelnost
+- 1. řád: objekty a vztahy mezi objekty 
+    - proměnné (spočetně mnoho)
+    - funkční symboly 
+    - relační/predikátové symboly 
+    - kvantifikátory 
+    - logické spojky 
+    - ?sort of predikát? :: ekvivalence 
+
+- Model / L-struktura: 
+    - realizace relačních symbolů 
+    - realizace funkčních symbolů 
+    - universum A pro relační a funkční symboly 
+    ~ výrokové proměnné: nulární relační symboly 
+    ~ konstanty: nulární funkční symboly 
+
+- Teorie jazyka: libovolná množina formulí T :: axiomů 
+    - model teorie: L-struktura taková, že v dané struktuře platí všechny axiomy 
+
+Výroková logika
+- predikátová logika: fakta platí / ne 
+    - výrokové proměnné z P (prvkovýroky) :: spočetně
+    - logické spojky
+    - závorky
+
+- odvozovací pravidla :: syntaktické vyplývání: 
+    - axiomová schémata: fí => (pí => fí)
+    - axiomová schémata: pí => (fí => psí) => (pí => fí) => (pí => psí) 
+    - axiomová schémata: (!pí => !fí) => (fí => pí)
+
+    - modus ponens: fí, fí=>psí / psí
+    -> důkaz je posloupnost formulí: a1, a2, a3, ...: ai
+        - axiom 
+        - formule z T
+        - vznikla odvozením z předchozích formulí a1..ai-1
+
+sémantika, tautologie a splnitelnost, dokazatelnost
+- sémantika: 
+    - uvažujeme pouze dvouhodnotovou logiku 
+    - prvovýroky odpovídají atomickým tvrzení s určeným významem 
+    - sémantika logických spojek je dána pravdivostními tabulkami 
+
+    - bool funkce: n-ární operace na [2]
+    - hodnota výroku rekurzivně 
+
+    - pro 1st order je sémantika daná modelem/strukturou 
+
+- tautologie a splnitelnost 
+    - 
+
 Normální tvary formulí.
 Strojové dokazování vět, model checking, dopředné a zpětné řetězení, rezoluční metoda a unifikace
 podmíněná markovská pole
