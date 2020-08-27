@@ -46,10 +46,34 @@ sémantika, tautologie a splnitelnost, dokazatelnost
     - pro 1st order je sémantika daná modelem/strukturou 
 
 - tautologie a splnitelnost 
-    - 
+    - tautologie/pravidvost: platí v každém modelu jazyka
+    - splnitelnost: platí v nějakém modelu jazyka  
+    - dokazatelný: dá se (syntakticky) dokázat z Teorie 
+
+    - dokazatelný -> platí: korektní 
+    - platí -> dokazatelný: úplný 
 
 Normální tvary formulí.
+- literál: prvovýrok / negace 
+- klazule: disjunkce literálů 
+- CNF: konjukce klazulí 
+
+- elementárních konjukce: konjukce literálů
+- DNF: disjunkce elementárních konjukcí 
+
+- převod tabulkou: 
+    - DNF: získám model, disjunkce modelů 
+    - CNF: z tabulky otočením and/or a negace doplňku modelu 
+
+    -> každý výrok lze převést do CNF/DNF 
+
+- skolemizace: zachovávává splnitelnost 
+    - převedu všechny existenční kvantifikátory na funkce předchozích proměnných (co se týče pořadí kvantifikátorů)
+    - vyvedu všechny universální kvantifikátory ven 
+
 Strojové dokazování vět, model checking, dopředné a zpětné řetězení, rezoluční metoda a unifikace
+
+
 podmíněná markovská pole
 částečně pozorovatelné markovské rozhodovací procesy, podmíněná markovská pole.
 zpětnovazebné učení
