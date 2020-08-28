@@ -230,7 +230,41 @@ Podmíněná nezávislost, Bayesovské sítě, výpočet v Bayesovské síti, na
     ~ rozšíření na strom závislostí 
 
 rozhodovací grafy, markovské rozhodovací procesy
+- rozhodovací strom :: PGM::idNovy.pdf
+    - zobecnění baysovské sítě 
+    - vrcholy: 
+        - rozhodovací: statické :: Di
+        - náhodné: pravděpodobnost pro každou možnou konfiguraci stavů :: Xi
+        - listy s utilitou: výplata situaci definovanou cestou od kořene
+    - hrany 
+        - stejný význam jako v bayseovské síti 
+        - do rozhodovacích z náhodných nesou informace 
+    - předpoklad nezapomínání: když se rozhodne hodnota proměnné, nezapomene se 
 
+    - maximalizujeme očekávanou hodnotu 
+        - EU(d|e) = sum_x V(d, x, e) * P(X|d, e)    
+    - vyhodnocujeme od listů, rekurzivně; v decision node vybereme nejvyšší expected children 
+    - v kořeni dostaneme očekávaný zisk ideální strategie
+
+- influenční diagram 
+    - DAG 
+    - rozhodovací, náhodné, uzly utility 
+        - rozhodovací a náhodné uzly mají konečné množiny vzájemně se vylučujících stavů 
+        - hrany do náhodných jako v BN 
+        - hrany do rozhodovacích přinášejí informace o příslušných náh. veličinách 
+            - ~ odpovídá časovému uspořádání: jedno rozhodnutí před druhým 
+
+    - vyhodnocení:
+        - vytvoříme rozhodovací strom a ten vyhodnotíme 
+        - skrze pozorované veličiny vytvoříme pořadí rozhodovacích uzlů, dřívější musí být blíže kořeni 
+            
+        - eliminace proměnných naproti časovému uspořádání
+            - řětězové pravidlo ~ jako v BN given decisions: P(O | D1, D2, ...) = TT_XzO: P(X|pa(X))
+        - optimální strategie pro I0 < D1 < I1 <...<: 
+            - sigm(I0, D1, I1) = argmaxDi Sum_Ii maxDi+1 ... maxDn P(U|D1...Dn)*V(U, D1, ... Dn)
+            - ???? NOT FINISHED ????
+- markovské rozhodovací procesy 
+    - 
 zpětnovazebné učení
 - ./1_4_2_HLAA_notes.txt
 
