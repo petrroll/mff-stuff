@@ -17,7 +17,7 @@ Formální systémy, logika 1. řádu, jazyk, axiomy, odvozovací pravidla.
 - Teorie jazyka: libovolná množina formulí T :: axiomů 
     - model teorie: L-struktura taková, že v dané struktuře platí všechny axiomy 
 
-Výroková logika
+Výroková logika sémantika, tautologie a splnitelnost, dokazatelnost
 - výroková logika: fakta platí / ne 
     - výrokové proměnné z P (prvkovýroky) :: spočetně
     - logické spojky
@@ -34,7 +34,6 @@ Výroková logika
         - formule z T
         - vznikla odvozením z předchozích formulí a1..ai-1
 
-sémantika, tautologie a splnitelnost, dokazatelnost
 - sémantika: 
     - uvažujeme pouze dvouhodnotovou logiku 
     - prvovýroky odpovídají atomickým tvrzení s určeným významem 
@@ -143,11 +142,10 @@ Strojové dokazování vět, model checking, dopředné a zpětné řetězení, 
     - x, f(x) not unifiable (check not done in Prolog)
 
 
-podmíněná markovská pole
-částečně pozorovatelné markovské rozhodovací procesy, podmíněná markovská pole.
+Podmíněná nezávislost, Bayesovské sítě, výpočet v Bayesovské síti, naivní Bayesovský klasifikátor, 
+
+rozhodovací grafy, markovské rozhodovací procesy
 
 zpětnovazebné učení
-- viz zpětněvazební v HLAA_notes.txt 
 
-Podmíněná nezávislost, Bayesovské sítě, výpočet v Bayesovské síti, naivní Bayesovský klasifikátor, rozhodovací grafy
-markovské rozhodovací procesy,
+částečně pozorovatelné markovské rozhodovací procesy, podmíněná markovská pole
