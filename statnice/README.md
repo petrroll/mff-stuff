@@ -4,3 +4,4 @@
 - poznamky-PP.pdf: Scany státnicových poznámek k jednotlivým okruhům od Anety Šťastné
 - zápisky-AS/: Zhuštěné poznámky k optimalizačním metodám, temnu, a algebře od Anety Šťastné
 - statnice-2017/: Opravené scany státnic z roku 2017 (kdo co poskytl)
+- [Oficiálna stránka so všetkými starými zadaniami](https://www.mff.cuni.cz/cs/studenti/bakalarske-studium/statni-zaverecne-zkousky/bakalarske-statni-zkousky-studijniho-programu-informatika)
