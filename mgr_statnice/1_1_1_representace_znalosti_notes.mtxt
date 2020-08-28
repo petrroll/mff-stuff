@@ -99,6 +99,17 @@ Strojové dokazování vět, model checking, dopředné a zpětné řetězení, 
     - rezoluce v 1st order 
         - přejmenuju na jiné proměnné, unifikuju rezolventy, rezolvuju
 
+    - rezoluční strategie:
+        - unit resoluce: preferujeme resoluční step s unit klazulí -> preference zkrácení klazulí
+        - input-resolution: vždycky alespoń jedna klazule z vstupu (not complete)
+        - subsumption: eliminace klazulí, které jsou subsumed (více specifické) než jiné z KB
+
+- FOL to PL 
+    - proměnné: grounding :: instanciate variables všemy možnými termy 
+    - kvantifikátory: skolemizace  
+
+    - Herbrand: Pokud existuje inference v FOL given KB, existuje inference v konečném (ale možná super-velkém) subsetu z plně instanciované PL
+
 - tablo     
     - binární ynačkovací strom representující hledání protipříkladu proti pí (hledání modelu teorie, kde pí neplatí)
         - připojuju atomická tabla pro jednotlivé formule 
@@ -114,9 +125,12 @@ Strojové dokazování vět, model checking, dopředné a zpětné řetězení, 
     - LI rezoluce :: rezoluce nad hornovskými klazulemi 
     - forward chaining: 
         - ze známých faktů odvozujeme skrze Horn-clauses všechny možné důsledky dokud je možné / narazíme na query 
+        - může být inkrementální: ber v potaz jen pravidla přidaná do KB v posledním kroce 
+            - precomputed dependency network 
         - ~data driven  
     - backward chaining 
         - query je postupně rozložená na sub-queries, postupně se snažíme dokázat než se dostaneme k faktům z KB / teorie
+        - not complete if implemented as DFS (can cycle)
         - ~goal driven
 
 - unifikace
@@ -126,6 +140,8 @@ Strojové dokazování vět, model checking, dopředné a zpětné řetězení, 
         - NE: není unifikovatelná 
         - ANO: subst += {x/t}  
     -> vydá MGU, v každém kroku eliminuje jednu proměnnou 
+    - x, f(x) not unifiable (check not done in Prolog)
+
 
 podmíněná markovská pole
 částečně pozorovatelné markovské rozhodovací procesy, podmíněná markovská pole.
