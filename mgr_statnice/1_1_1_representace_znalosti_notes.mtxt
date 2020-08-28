@@ -225,6 +225,7 @@ Podmíněná nezávislost, Bayesovské sítě, výpočet v Bayesovské síti, na
     - pro každý atribut Ai máme podmíněnou pravděpodobnost P(Ai | C=k)
     - naivní: předpokládáme podmíněnou nezávislost given wanted class 
 
+    - vychází z bayese P(Ck | x) = P(c) * P(x|c) / P(x) -> p(x) konstantní, nedůležité pro argmax 
     - predice: argmax_k P(C==k) * TT_i P(A = ai | C = k)
     ~ rozšíření na strom závislostí 
 
