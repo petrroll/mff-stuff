@@ -257,14 +257,37 @@ rozhodovací grafy, markovské rozhodovací procesy
     - vyhodnocení:
         - vytvoříme rozhodovací strom a ten vyhodnotíme 
         - skrze pozorované veličiny vytvoříme pořadí rozhodovacích uzlů, dřívější musí být blíže kořeni 
-            
+            - pro rozhodovací uzel Di: nejdříve zadáme hodnoty pozorované před, pak vybereme d1 s nejvyšším exp. ziskem 
+
         - eliminace proměnných naproti časovému uspořádání
             - řětězové pravidlo ~ jako v BN given decisions: P(O | D1, D2, ...) = TT_XzO: P(X|pa(X))
-        - optimální strategie pro I0 < D1 < I1 <...<: 
-            - sigm(I0, D1, I1) = argmaxDi Sum_Ii maxDi+1 ... maxDn P(U|D1...Dn)*V(U, D1, ... Dn)
-            - ???? NOT FINISHED ????
+        - optimální strategie pro Di given: I0 < D1 < I1 <...<: 
+            - sigm(I0, D1, I1..Di-1,Ii-1) = argmaxDi Sum_Ii maxDi+1 ... maxDn P(U|D1...Dn)*V(U, D1, ... Dn)
+
 - markovské rozhodovací procesy 
-    - 
+    - stavy S, akce A, počáteční stav s0, matice přechodu T(s, a, s')
+        - markovovská podmínka: přechod stavu závisí na k (většinou 1) předchozích stavech 
+        - k ekvivalentní 1 -> kartez soucin stavů 
+    - výplata v každém stavu R(s), 
+        - discount factor x konečný horizont 
+
+    - strategie: chceme najít pi(s), která maximalizuje expected value: 
+        - pi = argmax_pi E[ sum_t y^t R(st) | pi ]
+
+        - nekonečný horizont: stacionarní strategie, nezáleží kolik již bylo / zbývá 
+        - konečný horizont: ne-stacionarní, záleží kolik už hotových tahů / kolik zbývá do konce 
+
+    ~ reinforcement learning setup 
+    - iterace hodnot: 
+        - foreach s in S:
+            - U[s] <- R(s) + y*max_a sum_s' T(s, a, s')*U(s')
+    - iterace strategie: vygenerování strategie s known užitkem 
+        - until unchanged
+        - for each state s in S do: 
+            - if max_a sum_s' T(s, a, s')*U(s') > sum_s' T(s, pi(s), s')*U(s')
+                - unchanged <- false 
+                - pi(s) = argmax_a sum_s' T(s, a, s')*U(s')
+
 zpětnovazebné učení
 - ./1_4_2_HLAA_notes.txt
 
