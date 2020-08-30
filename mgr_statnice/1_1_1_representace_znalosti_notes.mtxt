@@ -326,10 +326,13 @@ zpětnovazebné učení
 
 - podmíněná markovská pole 
     - MRF: Markov random field
+        - neorientovaný graf, klidně s cykly 
         - definujeme podmnožiny proměnných a sílu jejich couplingu 
-        - p(x1, x2, ..., xn) = 1/Z IIc€C qc(xc) || C: množina klik v grafu, qc: faktor over proměnné v klice 
-            - nemusí být přes všechny kliky
-            - ignorujeme kliky velikosti 1
+
+        - oblíbená faktorizace do klik 
+            - p(x1, x2, ..., xn) = 1/Z IIc€C qc(xc) || C: množina klik v grafu, qc: faktor over proměnné v klice 
+                - nemusí být přes všechny kliky
+                - ignorujeme kliky velikosti 1
 
         - dobré např. na voting preferences skupiny lidí :: závislost ale ne jasná kauzalita, cykly
 
