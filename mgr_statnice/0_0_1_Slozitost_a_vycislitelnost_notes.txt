@@ -122,9 +122,9 @@ Rozhodnutelné a částečně rozhodnutelné problémy
     - jsou li L1, L2 (částečně) rozhodnutelné jazyky
         - průniky, sjendocení, konkatenace, iterace jsou (částečně) rozhodnutelné jazyku
 
-    - postova věta: je-li L rozhodnutelný <> L a L' jsou částečně rozhodnutelné 
-        -> prohodím přijímající / nepřijímající stavy 
-        <- paralelní běh ML a ML', jeden z nich určitě jednou přijde -> můžu zastavit a přijmout/odmítnout 
+- postova věta: je-li L rozhodnutelný <> L a L' jsou částečně rozhodnutelné 
+    -> prohodím přijímající / nepřijímající stavy 
+    <- paralelní běh ML a ML', jeden z nich určitě jednou přijde -> můžu zastavit a přijmout/odmítnout 
 
 - vlastnosti částečně rozhodnutelných jazyků
     - pro jazyk L <= E* jsou násl. ekvivalence 
@@ -155,6 +155,35 @@ Rozhodnutelné a částečně rozhodnutelné problémy
 
 
 Algoritmicky nerozhodnutelné problémy (halting problem)
+- množství jazyků:
+    - různých jazyků je nespočetně mnoho: podmnožina E* (~odp. přirozeným číslům)
+    - částečně rozhodnutelných jazyků max spočetně: pro každý existuje TS M, TS lze zakodovat viz. gödelovo číslo -> spočetně mnoho 
+    -> existuje nespočetně (i částečně) nerozhodnutelných jazků 
+
+- diagonalizační jazyk: není ani částečně rozhodnutelný
+    - Ldiag {<M> | <M> !z L(M)} // stroje, které sami nepřijímají vlastní kód 
+    - dk: sporem: nechť Ml přijímá Ldiag (část. rozhod.): 
+        - řekněme, že <Ml> z Ldiag -> Ml musí přijmout <Ml> -> dle definice spor 
+        - řekněme, že <Ml> !z Ldiag -> přijme se -> musí být z jazyka -> spor 
+    - Ldiag' je částečně rozhodnutelný: skrze universální TS, díky Postově větě ale nemůže být rozhodnutelný 
+
+- universální jazyk je částečně rozhodnutelný, ale ne rozhodnutelný 
+    - je částečně rozhodnutelný neb existuje universální turingův stroj 
+    - kdyby byl rozhodnutelný, tak dle postuli věty je Lu' částečně rozhodnutelný -> má TS M
+    - Lu' = L(M) = <M,x> | x !z L(M) má TS M
+    - vytvořme M' pomocí M na částečné rozhodnutí Ldiag:
+        - pokud na vstupu `e` ne-ok TS, odmítnu, jinak pošlu M' <e>, <e>
+        -> přijme právě pokud náleží do Ldiag -> nelze, protože není částečně rozhodnutelný -> spor 
+
+- halting problem: jazyk všech <M, x> které zastaví je částečně rozhodnutelný ale ne rozhodnutelný 
+    - částečná rozhodnutelnost plyne s existence universálního Mu (pro Lu)
+    - předpokládejme rozhodnutelnost -> Lhalt' je částečně rozhodnutelný (postova věta), má TS M 
+    - definujme L' = <M> | M(<M>) nezastaví, postavme M' pomocí M který částečně rozhoduje L'
+        - pokud vstup e není validní TS, odmítne 
+        - spustí M s <e,e>, pokud přijme, tak přijmeme; jinak se zacyklí -> přijme svůj stup právě když se zastaví -> L(M') = diagonala Lhalt' = L'
+        -> pokud <M'> z L' ->  M' se na <M'> musí zastavit -> z definice L' se M'(<M'>) nemá zastavit -> spor 
+        -> pokud <M'> !z L' ->  podle definice L' M'(<M'>) zastaví -> dle popsání M' ale přijme, z čehož vyplývá <M'> z L' -> spor 
+
 - Riceova věta 
     - nechť C je třída částečně rozhodnutelných jazyků, Lc = {<M> | L(M) z C}, pak Lc je rozhodnutelný právě pokud je C triviální třída (vše/nic)
     - spor: mějme netriviální třídu C, Mc je TS pro Lc, který (z rozhodovatelnsoti) vždy konverguje 
@@ -165,36 +194,6 @@ Algoritmicky nerozhodnutelné problémy (halting problem)
         - pokud M(<M>) diverguje -> <M> !z Lc 
         -> pomocí Mc ověřím jestli Mc(<M>), tj. jestli je <M> z Lc, čímž rozhodnu jestli <M> neupravený haltuje 
         -> dá se rozhodovat jazyk K = <M> | M(<M>) zastaví -> spor protože je nerozhodnutelný
-
-- množství jazyků:
-    - různých jazyků je nespočetně mnoho: podmnožina E* (~odp. přirozeným číslům)
-    - částečně rozhodnutelných jazyků max spočetně: pro každý existuje TS M, TS lze zakodovat viz. gödelovo číslo -> spočetně mnoho 
-    -> existuje nespočetně nerozhodnutelných jazků 
-
-- diagonalizační jazyk: není ani částečně rozhodnutelný
-    - Ldiag {<M> | <M> !z L(M)} // stroje, které sami nepřijímají vlastní kód 
-    - dk: sporem: nechť Ml přijímá: 
-        - řekněme, že <Ml> z Ldiag -> Ml musí přijmout <Ml> -> dle definice spor 
-        - řekněme, že <Ml> !z Ldiag -> přijme se -> musí být z jazyka -> spor 
-    - Ldiag' je částečně rozhodnutelný: skrze universální TS, díky Postově větě ale nemůže být rozhodnutelný 
-
-- universální jazyk je částečně rozhodnutelný, ale ne rozhodnutelný 
-    - je částečně rozhodnutelný neb existuje universální turingův stroj 
-    - kdyby byl rozhodnutelný, tak dle postuli věty je Lu' částečně rozhodnutelný -> , má TS M
-    - Lu' = L(M) = <M,x> | x !z L(M) má TS M
-    - vytvořme M' pomocí M na částečné rozhodnutí Ldiag:
-        - pokud na vstupu e ne-ok TS, odmítnu 
-        -> přijme právě pokud náleží do Ldiag -> nelze, protože není částečně rozhodnutelný -> spor 
-
-- halting problem: jazyk všech <M, x> které zastaví je částečně rozhodnutelný ale ne rozhodnutelný 
-    - částečná rozhodnutelnost plyne s existence universálního Mu (pro Lu)
-    - předpokládejme rozhodnutelnost Lhalt' je částečně rozhodnutelný (postova věta), má TS M 
-    - definujme L' = <M> | M(<M>) nezastaví, postavme M' pomocí M který částečně rozhoduje L'
-        - pokud vstup e není validní TS, odmítne 
-        - spustí M s <e,e>, pokud přijme, tak přijme; jinak se zacyklí -> přijme svůj stup právě když se zastaví -> L(M') = diagonala Lhalt' = L'
-        -> pokud <M'> z L' ->  M' se na <M'> musí zastavit -> z definice L' se M'(<M'>) nemá zastavit -> spor 
-        -> pokud <M'> !z L' ->  podle definice L' M'(<M'>) zastaví -> dle popsání M' ale přijme, z čehož vyplývá <M'> z L' -> spor 
-
 
 
 Nedeterministický výpočetní model
@@ -347,7 +346,7 @@ Věty o hierarchii
 
         - KACHL z NP: dostaneme-li okachlikovani (certifikát) umíme v polz čase ověřit, jestli je přípustné 
         - nechť A náleží NP, existuje k němu NTS M s počtem kroků omezeným pol(n), BUNO (lye převést do)
-            - M má jediný přijámací stav 
+            - M má jediný přijímací stav 
             - z přijímacícho stavu neexistuje přechod dál 
             - počáteční konfigurace: hlava vlevo 
             - během konfigurace hlava nejde doprava 
