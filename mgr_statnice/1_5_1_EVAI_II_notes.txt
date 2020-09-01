@@ -106,7 +106,7 @@ Teorie schémat, pravděpodobnostní modely jednoduchého genetického algoritmu
             - myslelo se že hraje ~3 rukého banditu, actually více her kde se soutěží o pevné pozice
             - schémata řádu k soutěží o k pozic skrze 2^k rukého bandity -> až na to, že GA nesampluje schémata rovnoměrně 
 
-        - problém oshadu fitness schémat
+        - problém odhadu fitness schémat
             - např. F(111*) = 2, F(0*) = 1, F(x) = 0, tak F(1*)=1/2 a F(0*)=+, jenže GA odhadne F(1*) ~ 2, protože 111* v populaci převáží 
             - kolaterální konvergence -> jakmile začneme konvergovat, tak jsou všechny samply schémat biased a nejsou samplované rovnoměrně 
 
