@@ -26,13 +26,12 @@ Vyhledávací stromy ((a,b)-stromy, Splay stromy)
     - FIND(x): prohledej od začátku vrať 
     - INSERT(x): najdi vrchol v pod který patří x, 
         - pokud má <b potomků, přidej hotovo 
-        - pokud má b potomků, rozštěp v, vytvoř nové v' pro prvních b+1/2 dětí, vlož do parent(v) rekurzivně
+        - pokud má b potomků, rozštěp v, vytvoř nové v' pro prvních b/2+1 dětí, vlož do parent(v) rekurzivně
     - Delete(x): najdi vrchol v pod kterým je x
         - pokud má >a potomků, smaž 
-        - pokud má v společné s levým/pravým sousedem >2a potomků, přesuň jednoho potomka zleva/zprava 
+        - pokud má v společné s levým/pravým sousedem >2a potomků, přesuň jednoho potomka zleva/zprava (musí se přerotovat přes otce/updatovat v otci, aby byla zachována podmínka vyhledávacích stromů)
         - otherwise: smaž x, spojen se s levým/pravým sousedem (smaž v otci, rekurzivně dál)
     - ORD(i): vrátí i-tý nejmenší prvek, O(log(n)) pokud si udržuju počty v podstromech v každém nodu
-
 
     - paralelní verze: 
         - b>=2a 
@@ -56,7 +55,7 @@ Vyhledávací stromy ((a,b)-stromy, Splay stromy)
         - b*: plnější vrcholy, dolní limit není 1/2 maxima, ale třeba 2/3 maxima, při zaplnění se sdílí klíče se sousedem, až u zaplnění obou se rozpadnou ze 3 na 2
 
     - červeno-černé: v podstatě odpovídají 2, 4 stromům, implementačně BVS 
-        - listy černé, červené vrcholu pouze syny černých vrcholů, všechny cesty z x do listu stejný počet černých vrcholů 
+        - listy černé, červené vrcholy pouze syny černých vrcholů, všechny cesty z x do listu stejný počet černých vrcholů 
         - vyvažování rotacemi 
         - One way to see this equivalence is to "move up" the red nodes in a graphical representation of the red–black tree, so that they align horizontally with their parent black node, by creating together a horizontal cluster. In the B-tree, or in the modified graphical representation of the red–black tree, all leaf nodes are at the same depth.
 
@@ -116,7 +115,6 @@ Haldy (regulární, binomiální).
 
     - Insert: přidám na konec, heap-up 
     - Delete-min: smažu vrchol, na jeho místo dám poslední prvek, heap-down 
-    - increase: bublani dolu by trvalo log^2n, protože až log(n) synů 
     
 
 - binomiální halda: 
@@ -140,6 +138,7 @@ Haldy (regulární, binomiální).
     - min: O(1), easy 
     - delete-min: O(logn)
         - smaže kořen stromu s minimálním prvkem, zbytek stromu rozpadneme, fixup jako u insertu 
+    - increase: bublani dolu by trvalo log^2n, protože až log(n) synů 
 
 - liná varianta: 
     - insert: O(1) přidám nový strom, neupravuju, fixnu pointer na nejmenší prvek 
@@ -207,7 +206,7 @@ Hašování, řešení kolizí, univerzální hašování, výběr hašovací fu
         - množina S je náhodný výběr U s náhodným rozdělením 
 
     - očekávaná délka řetězců: P(l(i) = l) = n over l * 1/m^l * (1-1/m)^n-l 
-        - aproximace pro nakonečné universum a seznamů 
+        - aproximace pro nekonečné universum a seznamů 
     -> střední hodnota je n/m, rozptyl n/m*(1-1/m)
     -> očekávaná délka nejdelšího log(n)/loglog(n) ??? where is m ???
 
@@ -269,12 +268,12 @@ Hašování, řešení kolizí, univerzální hašování, výběr hašovací fu
 
     - pro analýzu předpokládáme, že h2 tvoří náhodné permutace zkoušených memory buněk -> není přesné 
     - analýza: 
-        - neuúspěšný: ~1/(1-a)
+        - neúspěšný: ~1/(1-a)
         - úspěšný: 1/a * ln(1/(1-a))
 
 - použití
-    - Lineární funguje dobře pro tabulku zaplněnou do 70%, dvojité až do 90%.
-    - posouvající musím posouvat + cache 
+    - lineární funguje dobře pro tabulku zaplněnou do 70%, dvojité až do 90%.
+    - posouvající: musím posouvat + cache 
 
     - implementační detaily: 
         - pro hledání volných řádků: stack 
@@ -387,15 +386,15 @@ Analýza nejhoršího, amortizovaného a očekávaného chování datových stru
     - f(n) z O(g(n)): Ec>0 En0>0 Vn>n0 0 <= f(n) <= c * g(n)        // menší či rovno 
     - f(n) z Omega(g(n)): Ec>0 En0>0 Vn>n0 0 <= f(n) >= c * g(n)    // větší či rovno 
     - f(n) z Theta(g(n)): f z O(g(n)) and f z Omega(g(n))           // asymptoticky stejná 
-    - f(n) z o(g(n)): Ec>0 En0>0 Vn>n0 0 <= f(n) < c * g(n) // ostře menší  
-    - f(n) z w(g(n)): Ec>0 En0>0 Vn>n0 0 <= f(n) > c * g(n) // ostře větší 
+    - f(n) z o(g(n)): Vc>0 En0>0 Vn>n0 0 <= f(n) < c * g(n) // ostře menší  
+    - f(n) z w(g(n)): Vc>0 En0>0 Vn>n0 0 <= f(n) > c * g(n) // ostře větší 
 
 
 - různé analyzy
     - v nejlepším případě: většinou není moc užitečná, může pomoci s odhadem spodní hranice možného zlepšení 
     - v nejhorším případě: garantuje nám absenci překvapení (ale v reálném životě pozor na konstranty!)
         - občas nelze snadno určit nejhorší možný vstup: uvažujeme nejhorší průchod aniž by bylo jisté, zda k němu existuje vstup (better safe than sorry)
-        - mnohdy může dobrá implementace vést k minimalizaci počtů nejhoršího případu (hašovací tabulky)
+        - mnohdy může dobrá implementace vést k minimalizaci pravděpodobnosti nejhoršího případu (hašovací tabulky)
     - analýza v průměrném případě: Expected value přes všechny možné vstupy / všechny možné nedeterministické průchody
         - mnoho problémů má worst case vcelku nepravděpodobný (např. quicksort, hashování) a v reálu je průměr relevantnější než worst case
         - stejně jako amortizovaná: pozor na realtime/soft realtime systémy
@@ -410,19 +409,21 @@ Analýza nejhoršího, amortizovaného a očekávaného chování datových stru
         - agregovaná analýza: dívám se na sérii operací přímo 
         - účetní metoda: při každé operaci něco zaplatíme, platbu pak používáme na zaplacení operací book-keepingu
         - potenciálová metoda: definujeme vhodnou nezápornou potenciálovou funkci, která charakterizuje uklizenost 
-            - amorT = realT + p' - p | p': potenciál po, p: potenciál před 
-            - amortT0 <= amortTm: pokud neplatí, musíme započítat inicializaci na začátku abychom nedlužili čas (jinak bychom na začátku nadefinovali obří potenciál, všechno z něj free)
+            - amorT = realT + pN - p0 | pN: potenciál po, p0: potenciál před 
+            -> realT = amorT - (pN - p0)
+            -> realT = amorT + p0 - pN 
+            - p0 <= pN: pokud neplatí, musíme započítat inicializaci na začátku abychom nedlužili čas (jinak bychom na začátku nadefinovali obří potenciál, všechno z něj free)
 
 
 - analýza: binární čítač 
     - agregovaná: 
-        - poslední bit se ymění při každé operaci: k-krát 
+        - poslední bit se změní při každé operaci: k-krát 
         - předposlední při každé druhé: k/2
         - i-tý od konce: k/2^i 
         -> sum_i..n: ceil(k/2^i) <= sum_i..n 1+k/2^i <= n+2k
     - účetní metoda: 
         - změna jednoho bitu stojí jeden žeton, na každou operaci dostaneme dva žetony 
-        - u každého jedničkového bitu v sekvenci si uchováme jeden žeton, v každém okamžitku na jendičkách žetony
+        - u každého jedničkového bitu v sekvenci si uchováme jeden žeton, v každém okamžitku na jedničkách žetony
         - při incrementu: vynulování máme předplaceno 
         - každá operace stojí 2 žetony, prvních j-nulování se zaplatí s uložených žetonů, pak jeden žeton za 0->1, a jeden žeton na uložení 
     - potenciálová metoda: 
