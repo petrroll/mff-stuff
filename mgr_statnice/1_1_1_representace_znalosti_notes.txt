@@ -33,7 +33,7 @@ Výroková logika sémantika, tautologie a splnitelnost, dokazatelnost
     - inferenční pravidla: 
         - modus ponens: fí, fí=>psí / psí
         - pravidlo generalizace: fi => Vx fi
-        
+
     -> důkaz je posloupnost formulí: a1, a2, a3, ...: ai
         - axiom 
         - formule z T
@@ -48,6 +48,7 @@ Výroková logika sémantika, tautologie a splnitelnost, dokazatelnost
     - hodnota výroku rekurzivně 
 
     - pro 1st order je sémantika daná modelem/strukturou 
+    - má model pokud každá konečná podčást má model 
 
 - tautologie a splnitelnost 
     - tautologie/pravidvost: platí v každém modelu jazyka
