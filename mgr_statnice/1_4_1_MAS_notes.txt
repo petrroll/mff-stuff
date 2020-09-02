@@ -144,9 +144,13 @@ Metody pro řízení agentů; symbolické a konekcionistické reaktivní plánov
 - POSH: Parallel ordered slip-stack hierarchy
     - http://www.cs.bath.ac.uk/~jjb/web/posh.html
     - goal: posh expression
-    - drive collection:  this is the root of the POSH hierarchy, and on every POSH action-selection cycle, this reconsiders which goal the agent should be working on.  This is how a BOD agent can respond rapidly to changes in the environment.
-    - competences: these are basic reactive plans.  They allow a BOD agent to complete a task robustly and opportunistically.
-    - action patterns: or simple sequences.  These are a basic kind of plan aggregate which turn out to be useful in quite a lot of situations, despite their lack of flexibility.  They reduce the combinatorial complexity of the agent when a full competence is not really necessary. 
+    - drive collection: root of the POSH hierarchy, on every POSH action-selection cycle reconsiders which goal the agent should be working on.  
+        - how a BOD agent can respond rapidly to changes in the environment.
+    - competences: these are basic reactive plans.  
+        - allow a BOD agent to complete a task robustly and opportunistically.
+    - action patterns: or simple sequences.  
+        - a basic kind of plan aggregate which turn out to be useful in quite a lot of situations, despite their lack of flexibility.  
+        - reduce the combinatorial complexity of the agent when a full competence is not really necessary. 
 
     - unless goal satisfied
         - goes through drives, executes the one with correct trigger & not exceeded freq
@@ -175,7 +179,7 @@ Metody pro řízení agentů; symbolické a konekcionistické reaktivní plánov
     - pros:
         - unification makes us to code faster, prolog good for reasoning, rule prioritization
     - cons: 
-        - hard to model durative actions- no action sequence, same as SHRP 
+        - hard to model durative actions - no action sequence, same as SHRP 
 
 - BDI 
     - Beliefs: domělý stav světa
@@ -240,7 +244,7 @@ Metody pro řízení agentů; symbolické a konekcionistické reaktivní plánov
 - Symbolické a konekcionistické reaktivní plánování: 
     - SOAR: State operator, and result  
     - higher level procesy se dají rozložit do malých primitivních (a rychlých) operatorů nad daty
-    - pouze jeden operátor at the same time (bottleneck), selection process je parallení§
+    - pouze jeden operátor at the same time (bottleneck), selection process je parallení
     - rekurzivní řešení subgoals, ... 
 
     - konekcionistické reaktivní plánování
@@ -306,7 +310,7 @@ Komunikace a znalosti v multiagentních systémech, ontologie, řečové akty, F
 
     - performative word (definuje typ) + content 
 
-    - mohou být vnímány jako akce -> lze skrze ne plánovat 
+    - mohou být vnímány jako akce -> lze skrze ně plánovat 
         - e.g. strips (pre/pos conditions)
 
 - otevřený (co není explicitně true nevíme) vs uzavřený svět (co není explicitně true je false)
@@ -334,7 +338,7 @@ Komunikace a znalosti v multiagentních systémech, ontologie, řečové akty, F
         - pravdivost vždy vůči světu a světech dostupných
 
         - necessity: P je true ve všech možných acessible worlds 
-        - possibilitz: p je true v některých accessible worlds
+        - possibility: p je true v některých accessible worlds
 
     - multimodalita, Ri i€[0...n]
 
@@ -504,7 +508,7 @@ Metodologie návrhu, jazyky a prostředí multiagentních systémů
         - org structures and patterns: topology, control regime (efficienty, robustness, ...)
 
     - analysis
-        - suborganizations: requirements, subgoals, interakce, nutn0 skilly 
+        - suborganizations: requirements, subgoals, interakce, nutne skilly 
         - enviroment model: abstraktní resources, vztahy mezi zdroji, dynamics prostředí 
         - preliminary role model: identifikace basic skills (permissions, responsibilities)
         - preliminatory interaction model: vztahy a závislosti mezi rolemi, interakce jako abstraktní protokoly (kdo, initiator, partneři, output, ...)
