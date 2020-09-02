@@ -113,7 +113,7 @@ Problém hledání cesty; navigační pravidla, reprezentace terénu
 
     - lookahead a steer away, problém u více agentů (sami mohou změnit kurz, ...), lepší nepředpokládat kooperaci (jinak velmi komplexní systém)
 
-    - velocity obstracles: 
+    - velocity obstacles: 
         - uhýbání dynamickým překážkám
         - pokud agent A ví o agentu B (lokace, velocity), můžeme detekovat velocity obstacle pro A: velocities které způsobí srážku 
         - analytické řešení 
@@ -233,7 +233,7 @@ Etologické motivace, modely populační dynamiky
     - ~podobné dnešním DNN
 
 Metody pro učení agentů; zpětnovazební učení, základní formy učení zvířat
-- s učitelem: máme (xk, yk) pro k=0..N, chceme f(xi) = f(yi)
+- s učitelem: máme (xk, yk) pro k=0..N, chceme f(xi) = yi
 - bez učitele: máme xk, chceme P(X=xi) (clustering, anonimaly detection, EM algoritmus, ...)
 - semisupervised: máme část labled, část ne
 - zpětně-vazební: máme s0a1s1a2, po epizodě dostaneme signál, chceme sadu pravidel pro maximalizaci odměn 
@@ -255,8 +255,8 @@ Metody pro učení agentů; zpětnovazební učení, základní formy učení zv
             - U(s) = U(s) + a(R(s) + y~U(s') - U(s)) | ~U(s') střední hodnota successorů skrze learned transition 
         - Temporal difference: 
             - neučí se transition model 
-            - U(s) = U(s) + a(R(s) + yU(s') - U(s)) | U(s') ten konkrétní vybranej transition, faster 
-            - 
+            - U(s) = U(s) + a(R(s) + yU(s') - U(s)) | U(s') ten konkrétní vybranej transition, faster, jede vlastně pro minulý stav 
+            
     - aktivní učení: učí se policy: Pi(s, a)
         - Monte carlo search: U(s) <- R(s) + y*max_a f(SUM_s'( P(s'|s,a) * U(s') ), N(s,a))
             - passive agent and using value or policy iteration to learn optimal choices 
