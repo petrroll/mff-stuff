@@ -116,7 +116,7 @@ Strojové dokazování vět, model checking, dopředné a zpětné řetězení, 
     - Herbrand: Pokud existuje inference v FOL given KB, existuje inference v konečném (ale možná super-velkém) subsetu z plně instanciované PL
 
 - tablo     
-    - binární ynačkovací strom representující hledání protipříkladu proti pí (hledání modelu teorie, kde pí neplatí)
+    - binární značkovací strom representující hledání protipříkladu proti pí (hledání modelu teorie, kde pí neplatí)
         - připojuju atomická tabla pro jednotlivé formule 
         - větve: or 
     - formule má důkaz pokud každá větev tabla selže 
@@ -208,10 +208,10 @@ Podmíněná nezávislost, Bayesovské sítě, výpočet v Bayesovské síti, na
         - orders variables: na pořadí zásadně záleží 
         - foreach: var in vars 
             factors :- make-factor[var, e][factors] 
-                - vem všechny tabulky co mají v doméně X
+                - vem všechny tabulky co mají v doméně var
                 - udělej kartézský součin
             if var hidden_variable, then factors :- sum-out(var, factors)
-                - marginalizuj out X / vyfiltruj jen přípustné
+                - marginalizuj out var / vyfiltruj jen přípustné
         - return normalize(pointwise(factors))
 
         - pořadí: 
