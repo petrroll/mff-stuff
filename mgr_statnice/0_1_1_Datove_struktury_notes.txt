@@ -260,7 +260,7 @@ Hašování, řešení kolizí, univerzální hašování, výběr hašovací fu
 
     - exp number of probes: 
         - for: m >= (1+e) * n
-        - O(1/e^2) ~ O((n/m-n)^2): úplně random funkce / tabulation
+        - O(1/e^2) ~ O((n/m-n)^2) ~ O(1) for <1 alpha: úplně random funkce / tabulation
         - omega(sqrt(n)): pro 2 nezávislé 
 
     - problém s delete pokud není "next" pointer jako níže 
