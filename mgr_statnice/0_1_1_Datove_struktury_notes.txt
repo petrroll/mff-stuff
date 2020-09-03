@@ -101,6 +101,20 @@ Vyhledávací stromy ((a,b)-stromy, Splay stromy)
     - working set theorem: pokud provedeme nlogn úspěšných vyhl. operací -> amortizovaná cena jedné O(1+logt), t: počet operací od předchozího přístupu k prvku 
     - sequential access theorem: pokud vyhledáme všech n prvků ve vzestupném pořadí: O(1)
 
+- intervalové dotazy 
+    - triviálně v setříděném poli: binárně najdu hrany O(logn + p), enumerate mezi nimi (p)
+    - pro BVS: interval(v) :: všechny hodnoty jejiž vyhledání navštíví v: ~všichni potomci + v, hrany nekonečno, ...
+        - chce si to pamatovat interval(v) v každém vrcholu pro efektivní rangeQuery (O(nlogn) stavba)
+        - snadná aktualizace při rotaci z přímých potomků
+
+    - rangeQuery(v, Q):
+        - iterativně prochází po hranách / reportne celý podstrom 
+        - maximálně dvě hrany O(log(n)) pro vyvážený BVS 
+
+    - díky BVS .next() -> můžeme také enumerovat 
+        - next je O(h+k) :: https://stackoverflow.com/questions/40561235/time-complexity-of-finding-k-successors-in-bst (remember: values are on every level)
+
+
 Haldy (regulární, binomiální).
 - stromová strkutura splňující, že potomci jsou vždy větší (minimální) než rodič 
 - Dolů: O(logd(n)), nahoru d*logd(n)
