@@ -223,13 +223,24 @@ Metody pro řízení agentů; symbolické a konekcionistické reaktivní plánov
     - planning alg: nalezení nejkratší cesty mezi curr-state a goal 
 
 - subsumpční architektura: 
+    - http://gki.informatik.uni-freiburg.de/teaching/ws0809/map/mas_lect3.pdf
     - čistě reaktivní architektura 
     - agenti mají tělesnost, jsou vrstevnatí, žádná explicitní representace znalostí
-    - inteligence vzniká emergentně
+    - inteligence vzniká emergentně, žádný explicitní reasoning/symbolická representace 
     
+    - world -> perception -> (cognition) -> action 
+        - podle Brookse kognice jenom in the eye of the observer 
+
     - rule-like structure, parallelní run několika behaviors
+        - přímé mapování mezi stavem prostředí a akcemi 
     - subsumpční hierarchie pravidel dodává prioritu
-    - vybere se aplikovatelné behavior s nejvyšší prioritou 
+        - všechny úrovně najednou 
+        - vybere se aplikovatelné behavior s nejvyšší prioritou 
+
+    - mars roover s radioactive crumbs + gradient signálu od mother-ship 
+    - problémy
+        - jednotlivé vrstvy nejsou tak nezávislé, začne být čím dál větší coupling 
+        - těžko modelovat long-term rozhodnutí, ...
 
 - Hybridní reasoning: 
     - high level planning, low level reakční architektura 
