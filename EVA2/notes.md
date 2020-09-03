@@ -174,7 +174,7 @@ ADF: Automatically defined functions
 - program has main() and one or more ADF subtrees
 - evolution doesn't mix main and ADF subtrees
 
-- specilized code constructs for ADF (loops, iterations, ...)
+- specialized code constructs for ADF (loops, iterations, ...)
 - alternative approach: co-evolution of population of mains and ADFs
 
 GP:

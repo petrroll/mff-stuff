@@ -35,6 +35,12 @@ Genetické algoritmy, genetické a evoluční programování
         - křížení: výměna subtrees 
         - mutace: výměna nodes, musí se zachovat arita 
         - ADF (automaticky definované funkce): dvojúrovňové, místo low-level nodes používám komplexnější ADF podstromy (předdefinované, co-evolved, ...)
+            - evolve subprograms that can be composed 
+            - program has main() and one or more ADF subtrees
+            - evolution doesn't mix main and ADF subtrees
+
+            - specialized code constructs for ADF (loops, iterations, ...)
+            - alternative approach: co-evolution of population of mains and ADFs
     - může být i lineárně (bytecode)
         - větší problém s generování nevalidních programů, tree structure funguje jako regularizace
     - problémy: 
