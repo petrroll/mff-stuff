@@ -225,7 +225,7 @@ Hašování, řešení kolizí, univerzální hašování, výběr hašovací fu
     -> očekávaná délka nejdelšího log(n)/loglog(n) ??? where is m ???
 
     - očekávaný počet testů: 
-        - úspěšné: 1 + alpha/2 (1 + polovina délky)
+        - úspěšné: 1 + a/2 (1 + polovina délky)
         - neúspěšné: odpovídá délce průměrného řetězce + situace když je prázdný: e^-a + a
             - e^-a :: (1 - 1/m)^n :: šance, že je řetězec prázdný 
 
@@ -248,9 +248,25 @@ Hašování, řešení kolizí, univerzální hašování, výběr hašovací fu
     - rětězec nemusí začínat na své pozici, (c se dá rovnou na 3, na 2 se dá begin pointer na 3.)
 
     - počet testů o něco vyšší 
+        - úspěšné: 1 + a^2/6 + a/2
+        - neúspěšné: řádově podobně
+
+- srůstající hash: klasický linear probing
+    - Insert: pokusím se vložit do prvku, případně na první volnou pozici za řetězcem co h(x) prochází
+    - Find: jde od h(x) a testuje do konce řetízku 
+    
+    - vytváří velké clustery 
+    - cache friendly 
+
+    - exp number of probes: 
+        - for: m >= (1+e) * n
+        - O(1/e^2) ~ O((n/m-n)^2): úplně random funkce / tabulation
+        - omega(sqrt(n)): pro 2 nezávislé 
+
+    - problém s delete pokud není "next" pointer jako níže 
 
 - srůstající hash: 
-    - pouze next, vkládám do libov. řetězce co h(x) prochází 
+    - pouze next (???proč next???), vkládám do libov. řetězce co h(x) prochází 
     - verze s pomocnou/nepomocnou pamětí 
 
     - velmi friendly ke cachím, linear probing v podstatě 
