@@ -126,7 +126,7 @@ Rozhodnutelné a částečně rozhodnutelné problémy
     -> prohodím přijímající / nepřijímající stavy 
     <- paralelní běh ML a ML', jeden z nich určitě jednou přijde -> můžu zastavit a přijmout/odmítnout 
 
-- vlastnosti částečně rozhodnutelných jazyků
+- vlastnosti částečně rozhodnutelných jazyků-
     - pro jazyk L <= E* jsou násl. ekvivalence 
         - L je částečně rozhodnutelný 
         - existuje TS Me, který se právě pro každé x z L zastaví 
@@ -142,8 +142,8 @@ Rozhodnutelné a částečně rozhodnutelné problémy
     - jazyk je částečně rozhodnutelný <> existuje enumerátor E 
         -> generuju slova lexikograficky do délky "d", spouštím ts pro počet "k"roků, iterarivně obojí zvyšujeme   
         <- čekám než iterátor vypíše slovo, pak přijmu
-    - jazyk je rozhodnutelný <> existuje enumerátor E v lexikografickém pořadí 
-        -> zkouším slova v lexigorafickém prostředí, výpočet vždy skončí -> vypisuju když přijmou
+    - jazyk je rozhodnutelný <> existuje enumerátor E v pořadí od nejkratšího slova (sekundární kritérium třeba lexikografické, ale je to jedno) -- nevím jak je to s ekvivalnecí na lexikografické uspořádání, ale ty implikace se tu rozbijou (v obou směrěch) na to, že mezi A a B je nekonečně mnoho slov
+        -> zkouším slova od nejkratšího, výpočet vždy skončí -> vypisuju když přijmou
         <- počkám než vypíše slovo za aktuálním -> přijmu/nepřijmu
 
 
@@ -156,7 +156,7 @@ Rozhodnutelné a částečně rozhodnutelné problémy
 
 Algoritmicky nerozhodnutelné problémy (halting problem)
 - množství jazyků:
-    - různých jazyků je nespočetně mnoho: podmnožina E* (~odp. přirozeným číslům)
+    - různých jazyků je nespočetně mnoho: E je konečná, E* (slova) je nekonečná spočetná (~odp. přirozeným číslům), P(E*) (jazyky) je nekonečná nespočetná (z Cantorovy věty)
     - částečně rozhodnutelných jazyků max spočetně: pro každý existuje TS M, TS lze zakodovat viz. gödelovo číslo -> spočetně mnoho 
     -> existuje nespočetně (i částečně) nerozhodnutelných jazků 
 
@@ -169,7 +169,7 @@ Algoritmicky nerozhodnutelné problémy (halting problem)
 
 - universální jazyk je částečně rozhodnutelný, ale ne rozhodnutelný 
     - je částečně rozhodnutelný neb existuje universální turingův stroj 
-    - kdyby byl rozhodnutelný, tak dle postuli věty je Lu' částečně rozhodnutelný -> má TS M
+    - kdyby byl rozhodnutelný, tak dle Postovy věty je Lu' částečně rozhodnutelný -> má TS M
     - Lu' = L(M) = <M,x> | x !z L(M) má TS M
     - vytvořme M' pomocí M na částečné rozhodnutí Ldiag:
         - pokud na vstupu `e` ne-ok TS, odmítnu, jinak pošlu M' <e>, <e>
