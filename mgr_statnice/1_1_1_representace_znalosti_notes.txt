@@ -187,6 +187,13 @@ Podmíněná nezávislost, Bayesovské sítě, výpočet v Bayesovské síti, na
         - tipni parametry, infer hidden variables, které neznáme, na základě parametrů known evidence
         - aktualizuj parametry na základě hidden variables 
 
+    - DNB 
+        - representuje temporální pravděpodobnostní model, lze vytvořit BN skrze unrolling v časovém rozměru 
+        - při inferenci můžeme vždy marginalizovat a mít jen poslední dva temporální stavy 
+
+    - spojité proměnné: 
+        - řešitelné skrze diskrétní parametry distribuce (gauss: mean, variance) ~ kalman filters 
+
 - výpočet v Bayesovské síti: zjištění posterior pravděpodobnosti X 
     - P(X|e) = a * P(X,e) = a*sum_Y P(X, e, y) // a: 1/P(e), e: evidence, y: hidden variables 
     - P(x1, x2, ...) = TT_i P(xi | parents(xi))
