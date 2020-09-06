@@ -337,6 +337,7 @@ zpětnovazebné učení
         - pravděpodobnost stavu Xk given e1:k X pravděpodobnost evidence ek:t given stav Xk 
 
     - most likely sequence: nejpravděpodobnější cesta do stavu Xk se skládá z nejpravděpodobnější cesty do předchozího stavu + tranition to Xk -> iterativně
+        - nebere v úvahu budoucnost, jiné než smoothing pro všechny body 
 
 - podmíněná markovská pole 
     - MRF: Markov random field
