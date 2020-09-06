@@ -193,7 +193,7 @@ Podmíněná nezávislost, Bayesovské sítě, výpočet v Bayesovské síti, na
 
     - inference enumerací 
         - chain rule rozpočítám viz výše -> odpovídá stromu -> některé cesty se opakují
-            - např. denominátory v normalizaci 
+            - např. denominátory v normalizaci :: lze eliminovat normalizací na 1 (víme, že mám mít)
         - for each val xi of X:
             - extend xi with e 
             - Q(xi) <- enumerate_all(vars[bn], e)
