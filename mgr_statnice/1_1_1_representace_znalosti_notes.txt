@@ -211,7 +211,8 @@ Podmíněná nezávislost, Bayesovské sítě, výpočet v Bayesovské síti, na
                 - vem všechny tabulky co mají v doméně var
                 - udělej kartézský součin
             if var hidden_variable, then factors :- sum-out(var, factors)
-                - marginalizuj out var / vyfiltruj jen přípustné
+                - marginalizuj (summing out) var
+                - else: vyfiltruj přípustné e
         - return normalize(pointwise(factors))
 
         - pořadí: 
