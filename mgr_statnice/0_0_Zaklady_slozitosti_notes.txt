@@ -142,12 +142,12 @@ Rozhodnutelné a částečně rozhodnutelné problémy
     - jazyk je částečně rozhodnutelný <> existuje enumerátor E 
         -> generuju slova lexikograficky do délky "d", spouštím ts pro počet "k"roků, iterarivně obojí zvyšujeme   
         <- čekám než iterátor vypíše slovo, pak přijmu
-    - jazyk je rozhodnutelný <> existuje enumerátor E v pořadí od nejkratšího slova (sekundární kritérium třeba lexikografické, ale je to jedno) -- nevím jak je to s ekvivalnecí na lexikografické uspořádání, ale ty implikace se tu rozbijou (v obou směrěch) na to, že mezi A a B je nekonečně mnoho slov
+    - jazyk je rozhodnutelný <> existuje enumerátor E v pořadí od nejkratšího slova (sekundární kritérium třeba lexikografické, ale je to jedno) 
         -> zkouším slova od nejkratšího, výpočet vždy skončí -> vypisuju když přijmou
         <- počkám než vypíše slovo za aktuálním -> přijmu/nepřijmu
 
 
-- převoditelnsot: 
+- převoditelnost: 
     - jazyk A je m-převoditelný na jazyk B pokud existuje `totální vyčíslitelná funkce` f: Vx z E* [x z A <> f(x) z B]
     - jazyk A je m-úplný pokud je A částečně rozhodnutelný a každý částečně rozhodnutelný jazyk je na něj převoditelný 
 
@@ -211,7 +211,7 @@ Nedeterministický výpočetní model
 Základní třídy složitosti a jejich vztahy
 - typy problému:
     - rozhodovací problémy: ptáme se zda instance x má nějakou vlastnost, jazyk kladných instancí L <= E*, query: x z L 
-    - uloha pro danou instanci x: hledáme y, které suplňuje určitou podmínku -> hledání y z relace R <= E*xE* 
+    - uloha pro danou instanci x: hledáme y, které splňuje určitou podmínku -> hledání y z relace R <= E*xE* 
     - optimalizační úloha: hledáme takové y, které minimalizuje externí míru 
 
 - časová a prostorová složitost 
@@ -261,7 +261,7 @@ Základní třídy složitosti a jejich vztahy
 - pro každou f: platí, že 
     - TIME(f(n)) <= SPACE(f(n)): 
         - nelze popsat víc buněk než kolik je času (sublineární: třeba nepočítat vstup, viz výše)
-    - TIME(f(n)) <= NTIME(f(n)) <= SPACE(f(n)) <= NSPACE(f(n))
+    - TIME(f(n)) <= NTIME(f(n)) <= SPACE(f(n)) <= NSPACE(f(n)) // ~technically should be O(f(n))
         - první a třetí triviálně 
         - druhá: simulujeme, max const možností/paměti per krok, tj. f(n)*const paměti pro backtrack záznam 
 
@@ -345,7 +345,7 @@ Věty o hierarchii
         - existuje přípustné vykachlíkování takové, kde sedí barvy na krajích a dotýkající se barvy sousedních kachlíků?
 
         - KACHL z NP: dostaneme-li okachlikovani (certifikát) umíme v polz čase ověřit, jestli je přípustné 
-        - nechť A náleží NP, existuje k němu NTS M s počtem kroků omezeným pol(n), BUNO (lye převést do)
+        - nechť A náleží NP, existuje k němu NTS M s počtem kroků omezeným pol(n), BUNO (lze převést do)
             - M má jediný přijímací stav 
             - z přijímacícho stavu neexistuje přechod dál 
             - počáteční konfigurace: hlava vlevo 
@@ -425,6 +425,8 @@ Pseudopolynomiální algoritmy, silná NP-úplnost
                 - pomocí prvků j lze poskládat lehčí váhu než T[j, c] -> update 
         - max c z S[n, c] < B 
 
+        - O(n*V)
+
 - silná NP úplnost: 
     - nechť A je NP úplný problém, A(p) je restrikce A na instance I pro něž platí, max(I) <= p(len(I))
     - A je silně NP úplný existuje poly p, že A(p) je NP-úplný problém 
@@ -466,7 +468,7 @@ Aproximační algoritmy a schémata
         - 11/9 OPT + 4
 
 - aproximační schéma: 
-    - vstup: racionální číslo e, vzdá řešení s aproximačním poměrem 1+e 
+    - vstup: racionální číslo e, vydá řešení s aproximačním poměrem 1+e 
     - PAS: polynomiální aproximační schéma: pro každé e je časová složitost algoritmu polynomiální v len(I)
     - UPAS: úplně polynomiální aproximační schéma: ALG je časově polynomiální v len(I) a 1/e 
         - UPAS nesmí mít 1/e v exponentu čas. složitosti 
