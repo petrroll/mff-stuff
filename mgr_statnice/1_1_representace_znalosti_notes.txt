@@ -17,16 +17,11 @@ Formální systémy, logika 1. řádu, jazyk, axiomy, odvozovací pravidla.
 - Teorie jazyka: libovolná množina formulí T :: axiomů 
     - model teorie: L-struktura taková, že v dané struktuře platí všechny axiomy 
 
-Výroková logika sémantika, tautologie a splnitelnost, dokazatelnost
-- výroková logika: fakta platí / ne 
-    - výrokové proměnné z P (prvkovýroky) :: spočetně
-    - logické spojky
-    - závorky
-
 - odvozovací pravidla :: syntaktické vyplývání :: hilbertovský kalkulus 
-    - axiomová schémata: fí => (pí => fí)
-    - axiomová schémata: pí => (fí => psí) => (pí => fí) => (pí => psí) 
-    - axiomová schémata: (!pí => !fí) => (fí => pí)
+    - axiomová schémata: 
+        - fí => (pí => fí)
+        - pí => (fí => psí) => (pí => fí) => (pí => psí) 
+        - (!pí => !fí) => (fí => pí)
 
     - případně axiom substituce
 
@@ -38,6 +33,12 @@ Výroková logika sémantika, tautologie a splnitelnost, dokazatelnost
         - axiom 
         - formule z T
         - vznikla odvozením z předchozích formulí a1..ai-1
+
+Výroková logika sémantika, tautologie a splnitelnost, dokazatelnost
+- výroková logika: fakta platí / ne 
+    - výrokové proměnné z P (prvkovýroky) :: spočetně
+    - logické spojky
+    - závorky
 
 - sémantika: 
     - uvažujeme pouze dvouhodnotovou logiku 
@@ -51,7 +52,7 @@ Výroková logika sémantika, tautologie a splnitelnost, dokazatelnost
     - má model pokud každá konečná podčást má model 
 
 - tautologie a splnitelnost 
-    - tautologie/pravidvost: platí v každém modelu jazyka
+    - tautologie/pravdivost: platí v každém modelu jazyka
     - splnitelnost: platí v nějakém modelu jazyka  
     - dokazatelný: dá se (syntakticky) dokázat z Teorie 
 
