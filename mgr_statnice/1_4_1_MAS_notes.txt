@@ -30,7 +30,7 @@ Architektura autonomního agenta: percepce, mechanismus výběru akcí, paměť,
     - fuzzy rules: specifikují potřebnou míru -> projektují míru předpokladu do míry výsledku
     - fuzzy FSM: fuzzy pravidla, fuzzy přechody 
 
-- psychologická inspirace Human-li artificial creatures: 
+- psychologická inspirace Human-like artificial creatures: 
     - člověk: high level conscious kognice: plánování; low level lizard brain reflexy
     - fuzzy patern based paměť + explicitní na tvrdá akta 
     - assumption nějakého plánování, racionality, komunikace, ...
@@ -116,7 +116,7 @@ Metody pro řízení agentů; symbolické a konekcionistické reaktivní plánov
         - pFSM: probabilistic, sFSM: sequential 
 
 - scripting 
-    - důkaz na behavior oriented design 
+    - důraz na behavior oriented design 
     - decompose v top-down, implementuj bottom-up 
 
     - těžké udržovat sequence: problém s blocking actions, reevaluace, ...
@@ -201,7 +201,13 @@ Metody pro řízení agentů; symbolické a konekcionistické reaktivní plánov
             - if reconsider(I, B) then D=options(B, I), I = filter(B, D, I)
             - if not sound (p, I, B) then p = plan(B, I, Ac) // if curr plan doesn't work for reconsidered intention / changed beliefs ->   new plan
 
-    - např. PRS 
+    - např. PRS (procedural reasoning system)
+        - Database for beliefs about the world, represented using first order predicate calculus.
+        - Goals to be realized by the system as conditions over an interval of time on internal and external state descriptions (desires).
+        - Knowledge areas (KAs) or plans that define sequences of low-level actions toward achieving a goal in specific situations.
+        - Intentions that include those KAs that have been selected for current and eventual execution.
+        - Interpreter or inference mechanism that manages the system.
+
         - goals can have subgoals 
         - není plné plánování, pouze z databáze plánů 
         - stack of intentions: postupně přibívají sub-intentions 
@@ -214,7 +220,7 @@ Metody pro řízení agentů; symbolické a konekcionistické reaktivní plánov
 
 - plánování 
     - plan většinou z databáze plánů
-    - občas je třeba reconsider: open-minded (dokud se věří, že lze) vs. single-minded (dokud se nevěří, že nelze)
+    - občas je třeba reconsider: open-minded (dokud se věří, že lze) vs. close-minded (dokud se nevěří, že nelze)
     - sort of exploration vs expotation (when to reconsider)
 
 - STRIPS: 
@@ -245,11 +251,11 @@ Metody pro řízení agentů; symbolické a konekcionistické reaktivní plánov
 - Hybridní reasoning: 
     - high level planning, low level reakční architektura 
     - horizontální stacking: každá vrstva samostantně, těžko mít koherentní jednání 
-    - vertikální: dolní vstvy poskytují vjemy nahoru, horní vsrvy příkazy dolů
+    - vertikální: dolní vstvy poskytují vjemy nahoru, horní vstvy příkazy dolů
 
     - touring machines 
         - modelovací vrstva (cíle, konflikty, ...)
-        - modelovací vrstvavztváří plán, proaktivní chování
+        - modelovací vrstva vytváří plán, proaktivní chování
         - reaktivní vrstva
 
 - Symbolické a konekcionistické reaktivní plánování: 
@@ -263,12 +269,11 @@ Metody pro řízení agentů; symbolické a konekcionistické reaktivní plánov
         - 128 perc -1:4-> 640 concept -128inh,128exc-> 16 decision
         - posilněné pozitivní, zeslabené negativní
         - když 0, tak se může přepojit 
-        ~ fully connected se silnou regularizací
+        ~ fully connected NN se silnou regularizací
 
 - reactive planning: 
     - v podstatě hledání cesty 
     - States, Actions, Actions(s), Result(s, a), Cost(s, a)
-
 
 - klasické plánování: 
     - vyžaduje plně pozorovatelný svět, povětšinou statický 
@@ -306,7 +311,7 @@ Komunikace a znalosti v multiagentních systémech, ontologie, řečové akty, F
 
     - jazyk pro specifikaci ontologií, queries, ...
     - conpcepts (classes), roles (properties, predicates), individuals (objects)
-    - extension proporitional logic, ne tak strong jako FO, většinou rozhodnutelné
+    - extension propositional logic, ne tak strong jako FO, většinou rozhodnutelné
 
 - Řečové akty
     - ovlivnění světa skrze řečový akt 
@@ -325,7 +330,7 @@ Komunikace a znalosti v multiagentních systémech, ontologie, řečové akty, F
         - e.g. strips (pre/pos conditions)
 
 - otevřený (co není explicitně true nevíme) vs uzavřený svět (co není explicitně true je false)
-    - representace negativních znalostí, ekvivalence v logickém programování
+    - representace negativních znalostí, jako v logickém programování
 
 - FIPA-ACL 
     - protocol FIPA (foundation for inteligent physical agents)
@@ -384,7 +389,7 @@ Komunikace a znalosti v multiagentních systémech, ontologie, řečové akty, F
 Distribuované řešení problémů, kooperace, Nashova ekvilibria, Paretova efektivita, alokace zdrojů, aukce
 - distribuované řešení viz protokoly nahoře
 - kooperace: 
-    - agenti nemusí být upřímní okolo svých capabilities, ...
+    - agenti nemusí být upřímní o svých capabilities, ...
     - maximalizace self vs common utility
 
 - problém více agentů -> teorie her
@@ -411,16 +416,15 @@ Distribuované řešení problémů, kooperace, Nashova ekvilibria, Paretova efe
     - slatov: optimalizační strategie nejmíň dvojic co jsou špatně: NP úplné
     - scotish smth: každej dá jeden bod nejlepšímu + pořadí, přenáší se na další když vypadne
 
-    - arrow theorem: 
-        - žádný volební systém založený na úplném pořadí nemůže z indiv. preferencí (úplné a transitiv) vytvořit uspořádání za:
-            - neomezená doména: všechny možné užitky jsou brané v úvahu
-            - ne-diktátorství: nevybere se jeden člověk, co to rozhodne
-            - pareto-opt: nelze zvíšit užitek pro jednoho volícího bez snížení užitku ostatních
-            - nezávislost irelevantnich alternativ: pořadí X, Y závisí jen na jejich ohodnocení
+    - arrow theorem: žádný volební systém založený na úplném pořadí nemůže z indiv. preferencí (úplné a transitiv) vytvořit uspořádání při:
+        - neomezená doména: všechny možné užitky jsou brané v úvahu
+        - ne-diktátorství: nevybere se jeden člověk, co to rozhodne
+        - pareto-opt: nelze zvětšit užitek pro jednoho volícího bez snížení užitku ostatních
+        - nezávislost irelevantnich alternativ: pořadí X, Y závisí jen na jejich ohodnocení
     
 
 - Aukce: 
-    - obálková metoda (true-eps)
+    - obálková metoda + nejvýšší (true-eps)
     - Vickry: obálka + cena 2. nejvyšší (true)
     - anglická: otevřená zvyšující (as long as <= true-eps)
     - holandská: snižuje (until <= true-eps)
@@ -451,7 +455,7 @@ Metodologie návrhu, jazyky a prostředí multiagentních systémů
         - komunikační protokoly viz výše: Request, contract net 
         - zprávy mají performative (na základě nich lze např. filtrovat)
         - multiplatfromní obsah zpráv na základě definvoané ontologie (jinak lze i prostě serializované java objects, ale...)
-            - action (request akce), predicate (otázka), concept )other
+            - action (request akce), predicate (otázka), concept (other)
 
 
 - agentspeak: https://drive.google.com/drive/folders/1r5ROOEOkSCGFsl8Qt7-AmTPS6mDkbcBr
