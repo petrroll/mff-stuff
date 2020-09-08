@@ -45,8 +45,8 @@ Vyhledávací stromy ((a,b)-stromy, Splay stromy)
     - a-sort 
         - z prvků nedříve sestrojí a,b strom 
         - při vkládání hledáme pozici pro aktuální klíč od poslední pozice, počet kroků: 
-            - menší: nahoru (a analogicky dolů) max log_1(|{j | j < i; xi+1 < xj}|)
-            - větší: nahoru (a analogicky dolů) max log_1(|{j | j < i; x < xj}|)
+            - menší: nahoru (a analogicky dolů) max log_2(|{j | j < i; xi+1 < xj}|)
+            - větší: nahoru (a analogicky dolů) max log_2(|{j | j < i; x < xj}|)
         - předpoklad: štěpení amortizovaně O(1)
         -> O(n*log(F/n)), F je počet inverzí 
 
@@ -117,7 +117,7 @@ Vyhledávací stromy ((a,b)-stromy, Splay stromy)
 
 Haldy (regulární, binomiální).
 - stromová strkutura splňující, že potomci jsou vždy větší (minimální) než rodič 
-- Dolů: O(logd(n)), nahoru d*logd(n)
+- Dolů: O(d*logd(n)), nahoru O(logd(n))
 - k-regulární halda 
     - každý vrchol má k synů 
     - pro 2: snadno reprezentovatelné v poli 
@@ -140,7 +140,7 @@ Haldy (regulární, binomiální).
 
     - binomiální strom
         - rekurzivní: pokud je řád k==0 -> T jenom kořen
-        - T má právě k synů, tito sznové jsou kořeny podstromů 0...k-1
+        - T má právě k synů, tito synové jsou kořeny podstromů 0...k-1
 
         - alternativně: bk = bk-1 + pod kořenem další bk-1
         - 2^k vrcholů v k hladinách 
@@ -359,7 +359,7 @@ Hašování, řešení kolizí, univerzální hašování, výběr hašovací fu
     - https://drive.google.com/drive/folders/1GDNVCKzAfSc3aSd3rieyeWwIbmzlVhig
     - úplně náhodná: nepraktické, třeba omega(U*logm bitů paměti) // pro každý si pamatuju target 
     - chceme: 
-        - efektivně náhodně vzbrat h z H :: O(1)
+        - efektivně náhodně vybrat h z H :: O(1)
         - rychle vyhodnotit h(x) :: O(1)
 
     - mod: nechť p >= |U| je prvočíslo, pak H = {h_ab | a, b z [p], a!=0} kde h_ab(x) = ax + b mod p mod m 
@@ -433,7 +433,6 @@ Analýza nejhoršího, amortizovaného a očekávaného chování datových stru
     - cena nejhoršího (nebo průměrného) případu pro sekvenci operací 
         - pro interaktivní aplikace / realtime systémy: může být problém 
     - můžeme dostat těsnější odhad na cenu jedné operace pokud se v rámci nich děje nějaký větší book-keeping (nejhorší případ uklízí za častější dobré případy)
-
 
     - 3 techniky analýzy
         - agregovaná analýza: dívám se na sérii operací přímo 
