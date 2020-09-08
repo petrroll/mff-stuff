@@ -19,14 +19,14 @@ Problém hledání cesty; navigační pravidla, reprezentace terénu
     - navgraph 
         - navigation points, edges 
         - spoustu informací se ztratí -> přádání area informace (pro steering) -> skoro navmesh
-    - navmesh
-        - má objemy, lepší steering 
-        - musí být coupled with navmesh 
-        - získat contour, triangularizace, odstranit stěny, 
+        - automatizacia: získat contour, triangularizace, odstranit stěny, 
             - duální graf je ~funkční navgraph
             - většinou třeba ručně přidat relevantní navpointy (hiding spots, ...)
+    - navmesh
+        - má objemy, lepší steering 
+        - musí být coupled with navgraph (jump points) 
+        - automatizacia: Recast (tool)
             - třeba přidat relevantní hrany: jumpoints, ...
-
         - těžko odhadnout jak má být jemný: 
     - voxel navigace: 
         - plně 3D
@@ -46,17 +46,18 @@ Problém hledání cesty; navigační pravidla, reprezentace terénu
 
 
 - navigace velkých skupin jednotek  
-    - proper pathfinding pro leadera skupiny, zbytek steering okolo něj
+    - problemy: 
         - do not overlap units
         - start fast 
         - maintain coherence of the group 
         - solve dynamic obstacles 
-        -> těžké 
-
-    - různá řešení 
+        
+    - různe relaxace: 
         - relaxace do grid based: jeden cell - jedna jednotka, žádná větší jednotka, kolize by swapping 
         - neřešit koherenci, jednotky následující jednu cestu, vede k lining behavior 
         - počkat jednotkami, které se právě nemohou pohnout, případně ignoruj lokální kolize  
+    
+    - jedno z reseni: proper pathfinding pro leadera skupiny, zbytek steering okolo něj
 
     - lokální řešení: steering skzre flocking behavior:
         - ne moc blízko ostatním
@@ -128,7 +129,7 @@ Problém hledání cesty; navigační pravidla, reprezentace terénu
 
     - un/known environment, static/dynamic, ...
 
-- pathdinding representace:
+- pathfinding representace:
     - uniform tiles 
         - problém velkých otevřených prostor, pomalé
         - walkable/non-walkable tiles
