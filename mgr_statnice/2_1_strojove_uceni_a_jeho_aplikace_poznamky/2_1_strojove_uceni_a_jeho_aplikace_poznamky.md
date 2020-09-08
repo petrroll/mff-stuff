@@ -66,14 +66,14 @@
 ### Bias-variance tradeoff
 - preučenie na trénovacích -> väčšia chyba na testovacích
 - iné vyjadrenie chyby:  
-    ![](bias-variance-tradeoff.jpg)
+    ![](bias-variance-tradeoff.JPG)
 - bias = chyba spôsobená "zjednodušením sveta", tj. zlá voľba modelu (lin. regresia na kvadratickú funkciu)
 - variance = rozptyl danej metódy, tj. ako veľmi sa zmení na základe iných trénovacích dát. Vysoký variance značí pretrénovanie na "šum" v dátach
 - nižší bias ma vyšší variance a opačne
 - snaha minimalizovaýť oba súčasne, 
 - vysoký bias = underfitting, vysoká variance = overfitting
 - vedie napríklad k regularizácii  
-![](variance-bias.jpg)
+![](variance-bias.JPG)
 
 ### Prokletí dimenzionality
 - zvyšovanie počtu features vedie k exponenciálnemu zníženiu hustoty vzorkov v priestore
@@ -83,7 +83,7 @@
     - 1D: 20% populácie v danej dimenzii
     - 2D: 45% (0.45 * 0.45 = 0.2)
     - 3D: 58% (0.58 * 0.58 * 0.58 = 0.2)
-- ![](curse-dimensionality.jpg)
+- ![](curse-dimensionality.JPG)
 - môžme redukovať počet dimenzií, napríklad pomocou PCA (Principal Component Analysis)
     - z korelovaných príznakov získame menšie množstvo dekorelovaných (principal compoentns)
     - prvá komponenta má najväčší rozptyk (vysvetľuje najviac rozdielov), ďalšie sú na ňu kolmé, atď
@@ -145,7 +145,7 @@
         - predpokladáme rovnakú apriórni pravdepodobnosť
         - θ_MAP = argmax_θ P(X | θ)
         - dobrá aproximácia pre veľa dát = dáta prevážia apriorni rozloženie hypotéz
-        ![](ml_estimate.jpg)
+        ![](ml_estimate.JPG)
         - v pripade viacerých parametrov sa robia parciálne derivácie voči každému parametru
 
 - bruteforce MAP = for each hypothesis calculate the posterior prob.
@@ -202,7 +202,7 @@
 - RSS - residual sum of squares e1^2 + e2^2 + e3^2 .. + e_n^2
     - minimalizovat
     - zderivujeme a položíme rovno nule (pre β0 je to ľahké)
-    - ![](linear_regression.jpg)
+    - ![](linear_regression.JPG)
 - viacrozmerná lineárna regressia β = (X^T X)^{-1} * X^T * y
 - kvalitatívne premenné - použijeme dummy premenné, pre k tried je potrebné vziať k-1 (kóduje jedničkou čo to je)
     - pozor zmena významu jednotlivých β
@@ -228,14 +228,14 @@
 ### Logistická regrese
 - predpokladáme binárnu klasifikáciu, chceme predpovedať pravdepodobnosť, teda medzi 0 1
 - logistická funkce a logit funkce  
-![](logit.jpg)
+![](logit.JPG)
 - učenie parametrov pomocou **maximalizace verohodnosti**
     - l(B1, B2) = sucin p(xi), kde yi je true * sucin 1 - p(xi), kde yi je false
 - viac prediktorov - do sumy pridaj dalsie bety
 - viac klasifikačných tried - nepoužíva sa, radšej LDA
 
 ### LDA Linear Discriminant Analysis
-![](lda.jpg)
+![](lda.JPG)
 - projektuje na menší priestor, možno použiť ako dimensionality reduction
 - predpoklad normálneho rozloženia
 
@@ -243,9 +243,9 @@
 - binarny klasifikátor, hľadá deliacu nadrovinu
 - maximalizuje margin - tj vzdialenosť najbližsieho prvku k nadrovine
 - kóduje do -1 a 1  
-![](svm.jpg)
+![](svm.JPG)
 - maximalizujeme nasledujuci výraz
-![](svm2.jpg)
+![](svm2.JPG)
 - riešenie pomocou úpravy len minimalizovania bety, ktorá sa dá odvodiť pomocou Lagrangeových multiplikátorov
 - následne riešime duálnu formu problému - convex quadratic optimization problem - solved by quadrating programming alg.
 - **soft margin** - pre neseparabilné prípady povolíme slack - tz. že môžeme byť na opačnej strane, alpha pre kotnrolovanie tradeoff
@@ -329,14 +329,14 @@ ak data obsahujú už len cieľovú hodnotu jedného druhu, alebo už nie sú at
     - miera chyby - modifikované one-leave-out
         - minimalizuj a nájdi váhy w
         - chyba cez každý prvok, kde sa použije daný model bez jedného prvku (ten voči ktorému rátame chybu)
-        ![](stacking.jpg)
+        ![](stacking.JPG)
     - predikce - vážené predikce nižších modelov
 - **Boosting**
     - stromy sa stavajú iterativne, na základe chýb predošlého
     - zle ohodnotené prvky majú vyššiu váhu
     - **AdaBoost**
         - citlivý na šum a outliers
-        ![](adaboost.jpg)
+        ![](adaboost.JPG)
         - chyba m-tého klasifikátora je chyba 1-0 (vážené váhou prvkov)
         - váha klasifikátoru je vyššia s nižším errorom
         - váha prvku sa aktualizuje, nakoniec normuje
@@ -433,7 +433,7 @@ Prostor hypotéz
         - najobecnejšia <? ? ? ?>
         - najšpecifickejšia <∅, ∅, . . . , ∅>
         - prostor všech hypotéz tvorí svaz
-        ![](svaz.jpg)
+        ![](svaz.JPG)
 - ohodnocovací funkce
     - určuje nakolik hypotéza odpovedá dátam
     - hledáme hypotézu, ktorú by splňovali všetky pozitivné príklady a nesplňoval žiaden negatívny
@@ -563,16 +563,16 @@ pre kazdy priklad d
     - H(Y|X) <= H(Y)
     - miera neistoty, v bitoch, najvyššia pre uniformné rozdelenie
     - minimálny počet bitov pre zakódovanie informácie
-- podmienená entropia ![](podminena_entropie.jpg)
-- cross entropia ![](crossentropie.jpg)
+- podmienená entropia ![](podminena_entropie.JPG)
+- cross entropia ![](crossentropie.JPG)
     - na koľko naše pozorovania odpovedaju očakávanému rozdeleniu
     - používa sa na porovnanie rozdielnych distribúcií, ktoré lepšie zodpovedajú skutočnosti
-    - dá sa počítať aj jednoduchšie cez testovacie dáta ![](crossentropie-zkratka.jpg)
+    - dá sa počítať aj jednoduchšie cez testovacie dáta ![](crossentropie-zkratka.JPG)
 - mutual information MI(X, Y) = H(X) + H(Y) - H(X, Y)
 - modelovanie jazyka
     - obmedzená pamäť - markokvov proces (nemení sa funkcia prechodu a zároveň história je obmedzená)
     - p(x | a b) sa dá odhadnúť četnosťami toho trigramu a b x deleno četnosť dvojgramu b x
-    ![](ngram.jpg)
+    ![](ngram.JPG)
 - vyhladzovanie jazyka
     - nulove pravdepodobnosti urobia bordel
     - buď pridaním lambdy, tj. odobranie nenulovým a rozdanie nulovým (špecialný prípad je jednotka)
