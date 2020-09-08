@@ -91,9 +91,8 @@ Problém hledání cesty; navigační pravidla, reprezentace terénu
             - steering = des_vel - velocity
         - pursue and evade 
         - wander: random steering
-            -  at each step, random offset added to wander direction, offset constrained to be in cone/circle in front of the subject 
-            - 
-            - 
+            - at each step, random offset added to wander direction
+            - offset constrained to be in cone/circle in front of the subject 
         - arrival: as seek but slow down as you approach it 
             - ramped_speed = max_speed * (distance / slowing_distance)
             - clipped_speed = min(ramped_speed, max_speed) 
