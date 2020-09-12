@@ -126,7 +126,7 @@ Rozhodnutelné a částečně rozhodnutelné problémy
     -> prohodím přijímající / nepřijímající stavy 
     <- paralelní běh ML a ML', jeden z nich určitě jednou přijde -> můžu zastavit a přijmout/odmítnout 
 
-- vlastnosti částečně rozhodnutelných jazyků-
+- vlastnosti částečně rozhodnutelných jazyků
     - pro jazyk L <= E* jsou násl. ekvivalence 
         - L je částečně rozhodnutelný 
         - existuje TS Me, který se právě pro každé x z L zastaví 

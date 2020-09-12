@@ -20,7 +20,7 @@ Vyhledávací stromy ((a,b)-stromy, Splay stromy)
     - všechny cesty z kořene do listu jsou stejně dlouhé 
 
     - hodnoty (většinou) pouze v listech, vnitřní vrcholy jen ukazatele na lower nodes 
-    - pro (a, b) strom o hloubce h platí: a2^h-1 < #leaves < b^h
+    - pro (a, b) strom o hloubce h platí: 2*a^h-1 < #leaves < b^h
         - různé hodnoty a,b: (2, 3), velikost cache, disk bloku, ... 
 
     - FIND(x): prohledej od začátku vrať 
@@ -291,7 +291,7 @@ Hašování, řešení kolizí, univerzální hašování, výběr hašovací fu
 
 - dvojité hashování 
     - h1, h2, musí být nezávislé: h1(x) == h1(y) => h2(x) != h2(y)
-    - při insertu hledám nejmenší i: ab h1(x) + i*h2(x) mod m bylo volné 
+    - při insertu hledám nejmenší i: h1(x) + i*h2(x) mod m je volné 
 
     - je nutné, aby i*h2(x) mod m měl prosté posloupnosti (z každého políčka řetěz po celé tabulce)
     - lineární přidávání ~ "h2(x) = 1 always" 
@@ -341,11 +341,11 @@ Hašování, řešení kolizí, univerzální hašování, výběr hašovací fu
         - sekundární celkem také O(n) (velikost sekundárních vychází z c-universálnosti použitých hash. funkcí, kvadraticky kolizí -> O(n))
 
 - hashovaci funkce/universalnost: 
-    - motivace: pro N > mn, pro každou hash funkci h existuje S y U velikosti n, že h hašuje všechny prvky S do jedné příhrádky
+    - motivace: pro N > mn, pro každou hash funkci h existuje S <= U velikosti n, že h hašuje všechny prvky S do jedné příhrádky
 
     - systém H je c-universální: Vx,y€U, x!=y, P_h€H[h(x) == h(y)] <= c/m 
         - pokud vybereme h z H náhodně, šance kolize x a y je menší než c * absolutneNahodnaFunkce 
-    - H je k,c-nezávislý: x1, x2, ... xk€U různá, a1...ak€P: Pr_h€H[AND h(xi) == ai] <= c/(m^k)
+    - H je k,c-nezávislý: V x1, x2, ... xk€U různá, a1...ak€P: Pr_h€H[AND h(xi) == ai] <= c/(m^k)
         - když vybereme h náhodně, šance, že given items jsou mapped to given buckets je nejhůř c*absolutneNahodnaFunkce
 
     - H je 2, c nezávislý => H je c universální 
@@ -391,7 +391,7 @@ Hašování, řešení kolizí, univerzální hašování, výběr hašovací fu
         - 2 universální, NE 2 independent, protože ha(0) = 0  (stačí přidat random bias)
 
     - tabulation hashing 
-        - t tabulek o 2^k entries -> 2^l, xor jednotlivé results 
+        - t tabulek o 2^k entries (domény tabulek pokrývají vstup) -> 2^l, xor jednotlivé results 
         - 3-nezávislé, ne 4 nezávislé, i přesto určité velmi dobré vlastnosti (cuckoo kde stačí namísto >> 6-nezávislé)
         - O(t) eval, O(t*2^k) init 
 
