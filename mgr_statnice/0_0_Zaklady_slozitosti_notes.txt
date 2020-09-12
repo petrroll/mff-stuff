@@ -151,7 +151,7 @@ Rozhodnutelné a částečně rozhodnutelné problémy
     - jazyk A je m-převoditelný na jazyk B pokud existuje `totální vyčíslitelná funkce` f: Vx z E* [x z A <> f(x) z B]
     - jazyk A je m-úplný pokud je A částečně rozhodnutelný a každý částečně rozhodnutelný jazyk je na něj převoditelný 
 
-    - Lu, Lhalt, jsou m-úplné 
+    - Lu, Lhalt jsou m-úplné 
 
 
 Algoritmicky nerozhodnutelné problémy (halting problem)
@@ -186,7 +186,7 @@ Algoritmicky nerozhodnutelné problémy (halting problem)
 
 - Riceova věta 
     - nechť C je třída částečně rozhodnutelných jazyků, Lc = {<M> | L(M) z C}, pak Lc je rozhodnutelný právě pokud je C triviální třída (vše/nic)
-    - spor: mějme netriviální třídu C, Mc je TS pro Lc, který (z rozhodovatelnsoti) vždy konverguje 
+    - spor: mějme netriviální třídu C, Mc je TS pro Lc, který (z rozhodovatelnosoti) vždy konverguje 
     - zvolme jazyk z C přijímaný TS N
     - vytvořme TS M, který na vstup pustí vlastní kód <M> a pokud se zastaví, tak spustí stroj N s původním vstupem 
         - pokud M(<M>) konverguje -> L(M) == L(N)
@@ -261,7 +261,7 @@ Základní třídy složitosti a jejich vztahy
 - pro každou f: platí, že 
     - TIME(f(n)) <= SPACE(f(n)): 
         - nelze popsat víc buněk než kolik je času (sublineární: třeba nepočítat vstup, viz výše)
-    - TIME(f(n)) <= NTIME(f(n)) <= SPACE(f(n)) <= NSPACE(f(n)) // ~technically should be O(f(n))
+    - TIME(f(n)) <= NTIME(f(n)) <= SPACE(f(n)) <= NSPACE(f(n)) // nezapomenout, že notace implikuje O(f(n))
         - první a třetí triviálně 
         - druhá: simulujeme, max const možností/paměti per krok, tj. f(n)*const paměti pro backtrack záznam 
 
@@ -349,7 +349,7 @@ Věty o hierarchii
             - M má jediný přijímací stav 
             - z přijímacícho stavu neexistuje přechod dál 
             - počáteční konfigurace: hlava vlevo 
-            - během konfigurace hlava nejde doprava 
+            - během konfigurace hlava nejde doleva od začátku 
             - přijímací konfigurace: páska prázdná, hlava nejvíc vlevo 
 
         - transforujme M do instance kachlíkování: existuje právě když M(x) přijme 
@@ -394,7 +394,7 @@ Věty o hierarchii
     -  (e1 v e2 v e3 v e4 v ... v ek) -> (e1 v e2 v j1) and (!j1 v e3 v e4 ...) a rekurzivně rozsekat 
 
 - vrcholové pokrytí: 3SAT -> VP 
-    - nahoře spojené dva vrcholy pro každou proměnnou (x, !x), dole trojúhelník pro každou klazuli, propojení podle toho, co klazule obsahuje
+    - nahoře spojené dva vrcholy pro opačné literály jedné proměnné (x, !x), dole trojúhelník pro každou klazuli, propojení podle toho, co klazule obsahuje
 
 - hammiltonovka kružnice: VP -> hammilton 
 - HC: 
@@ -416,7 +416,7 @@ Pseudopolynomiální algoritmy, silná NP-úplnost
 - Batoh: množina předmětů, ci, wi; max cena pod určitou váhu 
     - dynamické programování: dvě tabulky
         - T:NxV: podmnožina indexů prvků celkové ceny přesně c s minimalni velikostí
-        - S:NxV: celková velikost prvků přesně cenz c 
+        - S:NxV: celková velikost prvků přesně ceny c 
     - algoritmus: 
         - for j: 0..N:          # Pro každý možný poslední prvek (ať už použitý nebo ne)
             - for c in 1..V:    # Pro každou možnou cenu 
@@ -437,13 +437,13 @@ Pseudopolynomiální algoritmy, silná NP-úplnost
 
 - důsledky
     - každý nečíselný NP-úplný problém je silně NP-úplný 
-    - pokud by existoval silně NP-úplný problém řešitelný pseudopoly alg. -> P = NP 
+    - pokud by existoval silně NP-úplný problém řešitelný pseudopoly alg. (tj. i slabě úplný) -> P = NP 
     - silně NP úplný je NP úplný i při unárním kódování 
     - i číselné NP-úplné mohou být NP-úplné: TSP 
 
 - TSP je silně NP-úplný 
     - určitě v NP 
-    - těžkost TSP(p) ukážeme na převodu hammiltonovské kružnice na poly omeyenou verzi TSP 
+    - těžkost TSP(p) ukážeme na převodu hammiltonovské kružnice na poly omezenou verzi TSP 
 
     - úplný graf, vzdálenost 0 pokud v původním grafu, 1 jinak 
         - existuje Hammilton právě pokud obchodní cestující najde cestu nulové délky
@@ -507,5 +507,5 @@ Aproximační algoritmy a schémata
 - Aproximace různé úrovně NP-úplných problémů 
     - rychle a libovolně dobře aproximovatelné (UPAS): batoh 
     - mají alespoň PAS 
-    - aproximační alg. s kosntantím poměrem, ale ne libovolným (tj. ne PAS): vrcholové pokrytí 
-    - nemají aprox. alg: klika, obchodní cestující 
+    - aproximační alg. s kosntantím poměrem, ale ne libovolným (tj. ne PAS): vrcholové pokrytí / bin packing
+    - nemají aprox. alg: klika, obchodní cestující (TSP)
