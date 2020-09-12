@@ -144,6 +144,10 @@ Metody pro řízení agentů; symbolické a konekcionistické reaktivní plánov
 - POSH: Parallel ordered slip-stack hierarchy
     - http://www.cs.bath.ac.uk/~jjb/web/posh.html
     - goal: posh expression
+
+    - Remembers what subtask the agent was currently pursuing
+    - provides a way to encode when that subtask should be abandoned, or when a more important new goal or task should take over.
+
     - drive collection: root of the POSH hierarchy, on every POSH action-selection cycle reconsiders which goal the agent should be working on.  
         - how a BOD agent can respond rapidly to changes in the environment.
     - competences: these are basic reactive plans.  
@@ -383,7 +387,7 @@ Komunikace a znalosti v multiagentních systémech, ontologie, řečové akty, F
         - rewriting problems to subproblems, ... 
     - FELINE 
         - sdílení znalostí / subtasků
-        - každý agent má rule-based systém: umím tohle dokázat/vyvrtit, chtěl bych tohle nechat dokázat/vyvrátit 
+        - každý agent má rule-based systém: umím tohle dokázat/vyvrátit, chtěl bych tohle nechat dokázat/vyvrátit 
         - komunikace skrze zprávy: hypotézy+speech acts, ... 
 
 Distribuované řešení problémů, kooperace, Nashova ekvilibria, Paretova efektivita, alokace zdrojů, aukce

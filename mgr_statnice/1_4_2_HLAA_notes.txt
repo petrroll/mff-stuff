@@ -18,8 +18,11 @@ Problém hledání cesty; navigační pravidla, reprezentace terénu
 
     - navgraph 
         - navigation points, edges 
-        - spoustu informací se ztratí -> přádání area informace (pro steering) -> skoro navmesh
-        - automatizacia: získat contour, triangularizace, odstranit stěny, 
+        - spoustu informací se ztratí -> přidání area informace (pro steering) -> skoro navmesh
+    - navmesh
+        - má objemy, lepší steering 
+        - musí být coupled with navgraph
+        - získat contour, triangularizace, odstranit stěny, 
             - duální graf je ~funkční navgraph
             - většinou třeba ručně přidat relevantní navpointy (hiding spots, ...)
     - navmesh
@@ -85,6 +88,7 @@ Problém hledání cesty; navigační pravidla, reprezentace terénu
         - look_dir = v.norm
 
         - position can be used for next-target-to-reach for anim. controller, speed for switching animations, ...
+
     - list of reynold steerings: 
         - seek and flee: steer to/from static target
             - to_target = target_pos - my_pos 
@@ -226,11 +230,12 @@ Etologické motivace, modely populační dynamiky
     - http://www.dgp.toronto.edu/~tu/thesis/node165.html
     - node hierarchie, all nodes express preference for set of motor action, finální roznodnutí weighted sum 
     - propagace takovéto hierarchie skze několik vrstev, nakonec se vybere akce argmax 
+
     - no focus attention
-    - hierarchie senzorických inputů / vnitřních drivů, ...
+    - hierarchie senzorických inputů / vnitřních drivů, ... (top) -> akce (bottom)
     - těžko správně nastavit/naučit váhy, hodně parametrů
 
-    - ~podobné dnešním DNN
+    - ~podobné dnešním DNN (vertikalne flipped)
 
 Metody pro učení agentů; zpětnovazební učení, základní formy učení zvířat
 - s učitelem: máme (xk, yk) pro k=0..N, chceme f(xi) = yi
