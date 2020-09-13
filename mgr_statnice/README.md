@@ -11,3 +11,7 @@
     - ?Odkdy platí současná akreditace a jak moc víc zpátky je safe jít? 
     - http://forum.matfyz.info/viewforum.php?f=419
     - poslední (už nevytřízené téma): http://forum.matfyz.info/viewtopic.php?f=419&t=10956
+
+- poznámky `_notes.txt`, `_poznamky.md` nebo `_poznamky_houska_og.txt`
+    - `_notes.txt` a `_poznamky_houska_og.txt` jsou poznámky napsané mnou (Petr Houška) v dost neupraveném stylu, nijak zásadně zkorektované, ... 
+    - `_poznamky.md` jsou do markdownu přepracovaná verze od Janky Bátoryové, většinou vycházejí z (v repu zachované) `_poznamky_houska_og.txt` verze
