@@ -187,8 +187,8 @@ Metody pro řízení agentů; symbolické a konekcionistické reaktivní plánov
 
 - BDI 
     - Beliefs: domělý stav světa
-    - intentions: state of env. agent might want to to achieve 
-    - desire: one of possible intention 
+    - intentions: Intentions represent a subset of desires that the agent has taken as goals to be accomplished soon 
+    - desire: Desires represent the ideal state of the environment for the agent.  
 
     - má intention stack aktuálních intentions, která se snaží zpracovat; přijímám subintentions delibareted plánů
 
