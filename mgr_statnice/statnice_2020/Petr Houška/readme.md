@@ -55,7 +55,7 @@ Zkoušející si přečetl co jsem napsal (IMHO jsem jen dodal jak by se dělal 
 
 Pak si všiml mé poznámky, že existují varianty s garantovanou složitostí, k tomu jsem dodal, že se ale nepoužívají protože špatné konstanty. Zkoušející se začal ptát jaké přesně operace to garantuje lepší worst case. Přiznal jsem se, že upřímně netuším; buď decrease nebo i extract-min, ale že si to pamatuju jen jako poznámku pod čarou. Trochu jsem se začal bát, ale zkoušející okamžitě začal popisovat svůj paper na Haldy, které právě tohle řeší s údajně velmi dobrými konstantami. To nakonec zabralo víc času než samotné zkoušení, ale zas jsem se dozvěděl něco nového (vcelku theme mých státnic); zkoušející odcházel zřejmě spokojený.
 
-## Representace znalostí [O. Čepek]
+## Representace znalostí [O. Čepek]: Formální systémy, logika 1. řádu, jazyk, axiomy, odvozovací pravidla.
 - `./2_1.jpg`
 
 Začal jsem víceméně 1:1 přeříkávat co mám na papíře, zkoušející si to u toho vcelku pečlivě pročítal. Záhy si přisedl ?P. Kučera. U funkčních/relačních symbolů jsem nad rámec papíru chtěl zmínit, že můžeme nahradit funkční symboly skrz n+1-ární relaci. Okamžitě jsem byl P. Kučerou (asi?) upozorněn, že to úplně obecně nefunguje a že tam musí být zásadní omezení na použití této substituce. Nezdálo se, že by to byl zásadní problém. Oproti papíru jsem trochu víc rozvedl že důkazy jsou čistě syntaktické a jak model do FO zavádí sémantiku. U FO vs PL jsem nevěděl, jak se jmenuje ona věta o modelu konečné podmnožiny grounded verze, vůbec to nevadilo; zdálo se, že je pozitivní, že jsem ji vůbec zmínil. Zkoušející odcházel spokojený.
