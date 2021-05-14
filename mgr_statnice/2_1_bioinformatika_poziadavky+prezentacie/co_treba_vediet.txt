@@ -1,0 +1,14 @@
+- algoritmy pre Gibbsovo vzorkovnie (hľadanie motívov)
+- projekčný algoritmus (hľadanie motívov)
+- Markovove algoritmy a ich aplikácia v bioinformatike
+    - stačí jednoduchý Markovov model 
+    - jeho použitie na rozlíšenie, či daný úsek DNA je kódujúci alebo nie
+- skryté Markovské procesy
+    - model
+    - ako sa dá aplikovať na detekciu génov 
+    - ako sa dajú nájsť jeho parametre z trénovacej množiny
+- predikcia štruktúry proteínov
+    - čo to je
+    - dá robiť s využitím rôznych modelov (napr. neurónových sietí).
+
+
