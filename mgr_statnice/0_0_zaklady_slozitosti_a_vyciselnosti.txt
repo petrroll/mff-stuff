@@ -76,3 +76,9 @@ Za 1.
 
 Rekurzivní a rekurzivně spočetné množiny (Hric)
 Nejvíce chtěl definice a generování. Důkazy stačily popisem ("pustím dva stroje a čekám...", generování RS je složitější). Je potřeba to chápat, formální vzorec čistě nepomůže.
+
+Aproximační algoritmy & schémata (unknown) [2021]
+Popsal jsem definici číselných problémů a pseudopolynomiálních algoritmů. Potom optimalizační úlohy a aproximační poměr. Zeptal se na příklady, popsal jsem binpacking -
+aproximační poměry ho tolik nezajímaly, ale myslím, že je fajn zmínit, že FF je 2. Potom jsme mluvili o batohu, zmínil jsem, že složitost závisí na cenách předmětů a byl jsem v
+zápětí opraven, že ve skutečnosti závisí na cenách a na velikostech (záleží, co je větší). Popsal jsem jak vytvoříme v Batohu aproximační schéma bez vzorců a všeobecně
+spíš tak intuitivně. Z toho nadšený nebyl ale vzal to. Uzavřel jsem s TSP a jeho relaxacema - tady je dobrý vědět jak aproximovat relaxovaný problémy (minimální kostra).
