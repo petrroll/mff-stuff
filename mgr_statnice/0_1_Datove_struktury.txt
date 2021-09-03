@@ -90,3 +90,9 @@ Takže bacha na tuhle otázku - klidně ji nějakým random přístupem můžete
 
 Hešování - obecné principy + univerzální hešování (Hric)
 Velmi tradiční, bez hešování státnice nejsou. Hlavní výhoda univerzálního je že nepředpokládám náhodnost dat (při tvorbě tabulky vždy vyberu náhodně funkci). Důkazy tolik nepotřeboval, stačilo jen že c-univerzální existuje.
+
+Chování a analýza DS s paměťovou hierarchií (unknown) [2021]
+Popsal jsem druhy paměti, Bloky, uložení polí, cache oblivious a další typy. Jako příklady jsem uvedl matice, jejich uložení a transpozice (tady zkoušející ještě
+zmínil násobení matic) a stromy. U stromů jsem si nepamatoval jak se mají správně ukládat, vymyslel jsem svůj - subotimální - způsob uložení a ten mi byl odsouhlasen
+včetně mnou odhadnutého počtu přístupů do paměti. Pak ze mě zkoušející asi 6 minut tahal s hromadou pomoci optimální cache-oblivious způsob uložení (rekurzivní
+rozdělování stromu na menší struktury obdobně jak matice, nechápu že mi to trvalo tak dlouho).
