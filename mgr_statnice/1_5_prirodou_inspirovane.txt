@@ -36,3 +36,7 @@ Přírodou inspirované počítání - Neruda - NEAT: Dostal jsem za úkol nejd�
 5) Přírodou inspirované počítání
 Hill climbing a simulované žíhání (Hric)
 Tady nebylo moc co vymyslet (vymýšlet?), docela jednoduchá otázka; asi Hric původně moc nevěděl, na co se zeptat. Ale bylo to asi nejpříjemnější zkoušení na závěr včetně dvou vtípků (populace horolezců a fakt, že teplota je proměnná konstanta) :)
+
+Aplikace EA - kombinatorické úlohy (Pilát) 2021
+Konkrétně zkoušejícího zajímalo TSP. Sepsal jsem různé druhy reprezentací (binární - bit = hrana, přímé, permutací). Shodli jsme se, že má smysl se pořádně bavit
+jen o permutacích - zbytek reprezentací je vps nepoužitelný. Popsal jsem jak fungují mutace a křížení, jakou fitness a možnosti chytré inicializace. Zkoušející mi nic nevytkl, pouze občas něco doplnil nebo upřesnil.
