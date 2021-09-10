@@ -18,3 +18,6 @@ Pri tomto som sa úplne zabudol naučiť veci podrobnejšie a na začiatku som n
 
 Neruda: Řídící systémy -- Řídící systém robota
 - deliberate, reaktivní, hybridní přístup. docela důraz byl na subsumption architekturu. která je vhodná na nějaké učení?
+
+Problémy hledání cesty, navigační pravidla & reprezentace terénu (Gemrot) 2021
+Zkoušení byl spíš rozhovor, začali jsme druhy mapování, pak jsem přešel na způsob získávání informací v neznámém terénu (rWalk, breadcrunmbs, ...), popis plánování navigace a druhy algoritmů na hledání cesty (DFS, BFS, BestFirst, Iterativní prohlubování, Navgraph, Navmesh, Jump points, Hierarchy search tree, ..), steering. Zkoušející mi doplnil akorát funneling v kombinaci s hledáním cesty v navmeshi a potom jsem zapomněl zmínit vyhýbání dynamickým překážkám pomocí techniky atraktoru a repulsoru, nicméně jsem si na to vzpomněl jakmile o tom začal zkoušející mluvit a doplnil ho.

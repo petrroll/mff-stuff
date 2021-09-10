@@ -18,3 +18,7 @@ Reprezentace znalostí - Barták - Bayesovské sítě
 Reprezentáce znalostí : Bayesovské siete. (Barták)
 Téma mi sadla, napísal som čo to je, ako sa v tom počíta, Bartáka zaujímalo aj ako sa to konštruuje a 1000 ďalších vecí, ale celkovo som z toho mal dobrý pocit, chce toho veľa, ale dáva nápovedy a je pre neho dôležité, že to človek pochopí.
 
+Zpětnovazební učení (Barták) 2021
+Definice aktivního a pasivního zpětnovazebního učení - aktivní se učí politiku, pasivní se učí ohodnocení stavů, pro *given* politiku. Měl jsem sepsaný definice,
+ADP, Bellmanovy rovnice, TD, Q-Learning a SARSU. Barták to vůbec nečetl a spíš to probíhalo formou rozhovoru, kdy občas přepl do "přednáškového módu" a chtěl čas od
+času doplnit nějaký výraz.
