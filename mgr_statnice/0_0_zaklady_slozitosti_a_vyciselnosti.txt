@@ -86,5 +86,7 @@ spíš tak intuitivně. Z toho nadšený nebyl ale vzal to. Uzavřel jsem s TSP 
 Approximation algorithm and approximation scheme [P. Kucera] 9/2021
 I followed the definitions of slide from 2019, defined what is optimization problem, what is approximation algorithms for it. Here comes approximation ratios, I use Bin Packing,
 a definition of the problem and two approximation algorithms for it. For 2-approximation algorithm, I mentioned it is 2-approximation because at most one bin is >1/2 full. For
-the better algorithm, I didn't say any approximation ratio. Then I defined Knapsack, briefly mention the table we use for the algorthm, why it works in pseudo polynomial, connection with number problem and strong np-completeness. I also wrote down the definition of approximation scheme, only mentioning that Knapsack has some approximation scheme from the definition. I also wrote down some sketch of NP-complete problem, 3SAT,SAT,Vertex Cover (brief write in 30 seconds). When the examinee comes, he just took the paper
+the better algorithm, I didn't say any approximation ratio. Then I defined Knapsack, briefly mention the table we use for the algorthm, why it works in pseudo polynomial,
+ connection with number problem and strong np-completeness. I also wrote down the definition of approximation scheme, only mentioning that Knapsack has some approximation 
+scheme from the definition. I also wrote down some sketch of NP-complete problem, 3SAT,SAT,Vertex Cover (brief write in 30 seconds). When the examinee comes, he just took the paper
 read it for ~2mins, then he said it's fine, without asking anything.
