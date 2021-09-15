@@ -6,7 +6,12 @@
     - Chování a analýza datových struktur na systémech s paměťovou hierarchií.
 
 Hashing, collision [Božovský] 9/2021
-I wrote down what is hashing, the universe and brackets, then he asked why we need hashing. I said for fast find, then he corrected me with one sentence. We move on to definition of c-univsal hashing, I wrote down the expected length of the chain for c-universal with the proof. He seems doesn't care about the proof. Then I said the worst case complexity of chaining (insert, find, delete), one sentence of mentioning the amortized complexity. Definitions of the scalar product hash function to hash vector and linear hash function. He seems happy when I speaking about those definitions. Then I proceed to Cuckoo hashing, what is the disadvantage and the insert/find work. He wants to listen how delete works, with his hint I correct it. Then I wrote down how linear probing works, the disadvantage (make cluster thus may has long sequence), operations(insert,find,delete). He has no further questions. Grade 1.
+I wrote down what is hashing, the universe and brackets, then he asked why we need hashing. I said for fast find, then he corrected me with one sentence. We move on to
+definition of c-univsal hashing, I wrote down the expected length of the chain for c-universal with the proof. He seems doesn't care about the proof. Then I said the worst case
+complexity of chaining (insert, find, delete), one sentence of mentioning the amortized complexity. Definitions of the scalar product hash function to hash vector and linear
+hash function. He seems happy when I speaking about those definitions. Then I proceed to Cuckoo hashing, what is the disadvantage and the insert/find work. He wants to listen
+how delete works, with his hint I correct it. Then I wrote down how linear probing works, the disadvantage (make cluster thus may has long sequence),
+operations(insert,find,delete). He has no further questions. Grade 1.
 
 Datovky [Gregor]
 Hesovanie. Chcel univerzalne a prehlad metod (mal som kukackove, separovane a linerne pridavanie). Dost sa v tom rypal, hlavne definicie, odhady casov a systemy funkcii na take odhady potrebne. Zistoval, ci tomu rozumiem a kladol pomerne neprijemne otazky, ale cely cas navadzal a daval priklady, kde sa to dalo celkom fajn vysvetlit. Hodne som sa trapil, odchadzal vsak so slovami, ze je spokojny.
