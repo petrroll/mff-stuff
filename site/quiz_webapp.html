@@ -50,7 +50,7 @@
         function parseQuestions(text) {
             const converter = new showdown.Converter();
 
-            const sections = text.split('####').slice(1).filter(section => section.trim());
+            const sections = text.split('###').slice(1).filter(section => section.trim());
             const questions = [];
             
             sections.forEach(section => {
