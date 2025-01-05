@@ -17,3 +17,7 @@ Site_2024
 - Jde o otázky k hlavičkám roku __roku 2024/2025__, které byly stejné jako v roce __2016/2017__.
 - Došlo k značnému přepisu
 - Autorem je Šimon Kala
+
+quiz_webapp.html
+- [kvízovou webovou aplikaci](https://lovec741.github.io/mff-stuff/site/quiz_webapp.html) na procvičení, která odkrývá zpracovaný text k otázkám. 
+- Lokálně: pro její funkčnost stáhněte 'quiz_webapp.html' a soubor s otázkami 'site_2024.md' a servujte 'quiz_webapp.html' pomocí vámi zvoleného web serveru (např. [http-server](https://www.npmjs.com/package/http-server))
