@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QUIZ - Počítačové sítě</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/showdown/2.1.0/showdown.min.js"></script>
+    <style>
+        .card {
+            min-height: 200px;
+            cursor: pointer;
+        }
+        .progress-text {
+            font-size: 1.2rem;
+            font-weight: bold;
+        }
+        .content-area {
+            user-select: none;
+        }
+    </style>
+</head>
+<body class="bg-light">
+    <div class="container py-5">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="d-flex justify-content-between align-items-center mb-4">
+                    <div class="me-4">
+                        <h2 class="mb-3">QUIZ - Počítačové sítě</h2>
+                        <p class="mb-0">Kliknutím zobrazíte odpověď, dalším kliknutím zobrazíte další otázku.</p>    
+                    </div>
+                    <div class="d-flex align-items-center gap-3">
+                        <span class="progress-text" id="progress">0/0</span>
+                        <button class="btn btn-warning" id="resetBtn">Reset Progress</button>
+                    </div>
+                </div>
+                
+                <div class="card shadow-sm content-area" id="contentCard">
+                    <div class="card-body p-4">
+                        <div id="content" class="mb-4">
+                            Otázky se nenačetly!
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function parseQuestions(text) {
+            const converter = new showdown.Converter();
+
+            const sections = text.split('###').slice(1).filter(section => section.trim());
+            const questions = [];
+            
+            sections.forEach(section => {
+                const lines = section.trim().split('\n');
+                const question = converter.makeHtml(lines[0].trim());
+                const answer = converter.makeHtml(lines.slice(1).join('\n').trim());
+                if (answer.length != 0 && !lines[0].trim().endsWith("ø")) {
+                    questions.push({
+                        question,
+                        answer
+                    });
+                }
+            });
+            
+            return questions;
+        }
+
+        class QuizManager {
+            constructor(questions) {
+                this.questions = questions;
+                this.shown = new Set(JSON.parse(localStorage.getItem('shownQuestions') || '[]'));
+                this.currentQuestion = null;
+                this.isShowingAnswer = false;
+                this.isComplete = false;
+            }
+
+            reset() {
+                this.shown.clear();
+                localStorage.setItem('shownQuestions', '[]');
+                this.currentQuestion = null;
+                this.isShowingAnswer = false;
+                this.isComplete = false;
+            }
+
+            getRandomQuestion() {
+                const available = this.questions.filter((_, index) => !this.shown.has(index));
+                if (available.length === 0) {
+                    this.isComplete = true;
+                    return null;
+                }
+                
+                const randomIndex = Math.floor(Math.random() * available.length);
+                const questionIndex = this.questions.indexOf(available[randomIndex]);
+                this.currentQuestion = { ...available[randomIndex], index: questionIndex };
+                return this.currentQuestion;
+            }
+
+            markCurrentAsShown() {
+                if (this.currentQuestion) {
+                    this.shown.add(this.currentQuestion.index);
+                    localStorage.setItem('shownQuestions', JSON.stringify([...this.shown]));
+                }
+            }
+
+            getProgress() {
+                return {
+                    shown: this.shown.size,
+                    total: this.questions.length
+                };
+            }
+        }
+
+        // init
+        const questions = loadQuestions('site_2024.md');
+        const quiz = new QuizManager(questions);
+        const contentDiv = document.getElementById('content');
+        const contentCard = document.getElementById('contentCard');
+        const resetBtn = document.getElementById('resetBtn');
+        const progressSpan = document.getElementById('progress');
+
+        function loadQuestions(filename) {
+            let questionsText = "";
+            const response = new XMLHttpRequest();
+            response.open('GET', filename, false);
+            response.send();
+            questionsText = response.responseText;
+            return parseQuestions(questionsText);
+        }
+        
+        function updateProgress() {
+            const progress = quiz.getProgress();
+            progressSpan.textContent = `${progress.shown}/${progress.total}`;
+        }
+
+        function displayContent() {
+            if (quiz.isComplete) {
+                contentDiv.innerHTML = `
+                    <h3 class="text-center mb-4">Congratulations!</h3>
+                    <p class="text-center">You've seen all the questions. Click anywhere or use the Reset button to start over.</p>
+                `;
+                return;
+            }
+
+            if (!quiz.currentQuestion) {
+                const question = quiz.getRandomQuestion();
+                if (!question) {
+                    return;
+                }
+                contentDiv.innerHTML = `<h4>${question.question}</h4>`;
+                quiz.isShowingAnswer = false;
+            } else if (!quiz.isShowingAnswer) {
+                contentDiv.innerHTML = `
+                    <h4 class="mb-4">${quiz.currentQuestion.question}</h4>
+                    <hr>
+                    <div class="mt-4">${quiz.currentQuestion.answer}</div>
+                `;
+                quiz.isShowingAnswer = true;
+            } else {
+                quiz.markCurrentAsShown();
+                quiz.currentQuestion = null;
+                updateProgress();
+                displayContent();
+            }
+        }
+
+        contentCard.addEventListener('click', (event) => {
+            if (event.target.tagName === 'A') {
+                return;
+            }
+            if (quiz.isComplete) {
+                quiz.reset();
+                updateProgress();
+            }
+            displayContent();
+        });
+
+        resetBtn.addEventListener('click', () => {
+            quiz.reset();
+            updateProgress();
+            displayContent();
+        });
+
+        // init display
+        updateProgress();
+        displayContent();
+    </script>
+</body>
+</html>
